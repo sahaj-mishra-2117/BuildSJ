@@ -4,7 +4,7 @@ import folium
 # allows us to load in stuff to have interactive maps -> python database
 from folium.plugins import Geocoder
 
-# Define the geographic coordinates for San Jose, California (don't know id they are specificly correct )
+# Define the geographic coordinates for San Jose, California (don't know if they are specificly correct )
 san_jose_coords = [37.23, -121.82]
 
 # Create an open-source map centered on San Jose
