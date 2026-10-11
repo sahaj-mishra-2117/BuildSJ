@@ -1,10 +1,7 @@
 # starting file
-# 1. Find an open source map that can be used in python within the website  
 
 import folium 
-# allows us to load in stuff to have interactive maps -> python database 
-import os
-# Allows us to get stuff from openstreetmap to get street network stuff (allows us to zoom on into SJ)
+# allows us to load in stuff to have interactive maps -> python database
 
 # Define the geographic coordinates for San Jose, California (don't know id they are specificly correct )
 san_jose_coords = [37.23, -121.82]
@@ -17,6 +14,18 @@ sj_map = folium.Map(
     control_scale=True
 )
 
+# After generating the map, we add our CSS file to style the map container
+# We can't add it to html directly because map generation changes everytime the script is run
+sj_map.get_root().header.add_child(
+    folium.Element('<link rel="stylesheet" href="website.css"/>')
+)
+
 # The map is added to our html file
 sj_map.save("website.html") # create website.html file 
 print("Map was generated on website") # To inform us that
+
+# INSTRUCTIONS TO VIEW THE MAP (for now ig)
+
+# To run the script, run in the terminal, the command: py .\app.py (Really need to do it once)
+# To see the map, create a server in the terminal with the command: py -m http.server 8000
+# Then open your web browser and navigate to http://localhost:8000/website.html
