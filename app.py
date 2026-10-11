@@ -11,17 +11,31 @@ san_jose_coords = [37.23, -121.82]
 # The default tile layer is 'OpenStreetMap'
 sj_map = folium.Map(
     location=san_jose_coords, 
-    zoom_start=12,
-    control_scale=True
+    zoom_start=11,
+    min_zoom=11,
+    control_scale=True,
+    # Bounds for the map (limits the viewable area)
+    min_lat=37.05,
+    max_lat=37.45,
+    min_lon=-122.1,
+    max_lon=-121.65,
+    max_bounds=True
 )
 
 # Adding the search tool (uses the Photon geocoding service)
 # Will have to check usage rights for Photon later
 Geocoder(
     provider = "photon",
-    provider_options={"geocodingQueryParams": {"limit": 5}},
+    provider_options={
+        "geocodingQueryParams": {
+            # Limits autocomplete results to San Jose
+            "bbox": "-122.1, 37.05, -121.65, 37.45",
+            # Max amount of suggested results
+            "limit": 5
+        }
+    },
     add_marker = True,
-    suggestMinLength = 1,
+    suggestMinLength = 3,
     suggestTimeout = 250,
 ).add_to(sj_map)
 
