@@ -1,6 +1,7 @@
 # starting file
 
-import folium 
+import folium
+import webcolors
 # allows us to load in stuff to have interactive maps -> python database
 from folium.plugins import Geocoder
 
@@ -36,7 +37,37 @@ Geocoder(
     },
     add_marker = True,
     suggestMinLength = 3,
-    suggestTimeout = 250,
+    suggestTimeout = 250, 
+).add_to(sj_map)
+
+fire_colors = {
+    "Very High": webcolors.name_to_hex('red'),
+    "High": webcolors.name_to_hex('orange'),
+    "Medium": webcolors.name_to_hex('yellow'),
+    "None": webcolors.name_to_hex('gray')
+}
+
+FIELD = "FIREHAZARDSEVERITYZONE"
+
+def map_style(feature):
+    level = feature["properties"].get(FIELD)
+    color = fire_colors.get(level,"#868e96") #comes out as dark gray if the colors don't work
+    # i think we need something more if it's like faint but i don't think our map is there yet 
+    return {
+        "fillColor": color, 
+        "color": color, 
+        "weight": 1, 
+        "fillOpacity": 0.1
+    }
+
+folium.GeoJson(
+    "fire_zones_d10.geojson",
+    name = "Map of D10 Fire Hazards (by CalFire)",
+    style_function =  map_style,
+    tooltip=folium.GeoJsonTooltip(
+        fields=[FIELD],
+        aliases=["Fire Hazard level: "]
+    )
 ).add_to(sj_map)
 
 # After generating the map, we add our CSS file to style the map container
@@ -53,4 +84,4 @@ print("Map was generated on website") # To inform us that python script has succ
 
 # To run the script, run in the terminal, the command: py .\app.py (Really need to do it once)
 # To see the map, create a server in the terminal with the command: py -m http.server 8000
-# Then open your web browser and navigate to http://localhost:8000/website.html
+# Then open your web browser and navigate to http://localhost:8000/website.html.
