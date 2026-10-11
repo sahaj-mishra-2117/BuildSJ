@@ -23,6 +23,28 @@ sj_map = folium.Map(
     max_bounds=True
 )
 
+# Define the field and color mapping for fire hazard severity zones
+FIELD = "FIREHAZARDSEVERITYZONE"
+
+fire_colors = {
+    "Very High": webcolors.name_to_hex('red'),
+    "High": webcolors.name_to_hex('orange'),
+    "Moderate": webcolors.name_to_hex('yellow'),
+    "None": webcolors.name_to_hex('gray')
+}
+
+# Function to define the style for each fire hazard zone on the map
+def map_style(feature):
+    level = feature["properties"].get(FIELD)
+    color = fire_colors.get(level,"#868e96") # Comes out as dark gray if the colors don't work
+    # I think we need something more if it's like faint but I don't think our map is there yet
+    return {
+        "fillColor": color, 
+        "color": color, 
+        "weight": 1, 
+        "fillOpacity": 0.1
+    }
+
 # Adding the search tool (uses the Photon geocoding service)
 # Will have to check usage rights for Photon later
 Geocoder(
@@ -40,33 +62,14 @@ Geocoder(
     suggestTimeout = 250, 
 ).add_to(sj_map)
 
-fire_colors = {
-    "Very High": webcolors.name_to_hex('red'),
-    "High": webcolors.name_to_hex('orange'),
-    "Medium": webcolors.name_to_hex('yellow'),
-    "None": webcolors.name_to_hex('gray')
-}
-
-FIELD = "FIREHAZARDSEVERITYZONE"
-
-def map_style(feature):
-    level = feature["properties"].get(FIELD)
-    color = fire_colors.get(level,"#868e96") #comes out as dark gray if the colors don't work
-    # i think we need something more if it's like faint but i don't think our map is there yet 
-    return {
-        "fillColor": color, 
-        "color": color, 
-        "weight": 1, 
-        "fillOpacity": 0.1
-    }
-
+# Add the fire hazard zones to the map
 folium.GeoJson(
     "fire_zones_d10.geojson",
     name = "Map of D10 Fire Hazards (by CalFire)",
-    style_function =  map_style,
+    style_function = map_style,
     tooltip=folium.GeoJsonTooltip(
-        fields=[FIELD],
-        aliases=["Fire Hazard level: "]
+        fields=[FIELD], # Specify the field to display in the tooltip
+        aliases=["Fire Hazard Level: "] # Specifies the description for the field
     )
 ).add_to(sj_map)
 
@@ -82,6 +85,6 @@ print("Map was generated on website") # To inform us that python script has succ
 
 # INSTRUCTIONS TO VIEW THE MAP (for now ig)
 
-# To run the script, run in the terminal, the command: py .\app.py (Really need to do it once)
+# To run the script, run in the terminal, the command: py .\app.py (Do it when you update the app.py file)
 # To see the map, create a server in the terminal with the command: py -m http.server 8000
 # Then open your web browser and navigate to http://localhost:8000/website.html.
