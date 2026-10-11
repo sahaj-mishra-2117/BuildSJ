@@ -21,7 +21,7 @@ sj_map.get_root().header.add_child(
 )
 
 # The map is added to our html file
-sj_map.save("website.html") # create website.html file 
+sj_map.save("map.html") # create map.html file 
 print("Map was generated on website") # To inform us that
 
 # INSTRUCTIONS TO VIEW THE MAP (for now ig)
