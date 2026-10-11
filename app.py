@@ -2,6 +2,7 @@
 
 import folium 
 # allows us to load in stuff to have interactive maps -> python database
+from folium.plugins import Geocoder
 
 # Define the geographic coordinates for San Jose, California (don't know id they are specificly correct )
 san_jose_coords = [37.23, -121.82]
@@ -14,6 +15,16 @@ sj_map = folium.Map(
     control_scale=True
 )
 
+# Adding the search tool (uses the Photon geocoding service)
+# Will have to check usage rights for Photon later
+Geocoder(
+    provider = "photon",
+    provider_options={"geocodingQueryParams": {"limit": 5}},
+    add_marker = True,
+    suggestMinLength = 1,
+    suggestTimeout = 250,
+).add_to(sj_map)
+
 # After generating the map, we add our CSS file to style the map container
 # We can't add it to html directly because map generation changes everytime the script is run
 sj_map.get_root().header.add_child(
@@ -22,7 +33,7 @@ sj_map.get_root().header.add_child(
 
 # The map is added to our html file
 sj_map.save("map.html") # create map.html file 
-print("Map was generated on website") # To inform us that
+print("Map was generated on website") # To inform us that python script has successfully created the map.html file
 
 # INSTRUCTIONS TO VIEW THE MAP (for now ig)
 
