@@ -15,3 +15,7 @@ iframe {
     height: 100%;
     border: none;
 }
+
+.leaflet-interactive {
+    outline: none;
+}
