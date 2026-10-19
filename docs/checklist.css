@@ -1,56 +1,140 @@
+/* Small improvements and structure tweaks for checklist page */
+:root{
+    --brand:#107aa7; /* keep original brand color */
+    --bg1: #0f2a44;
+    --bg2: #082033;
+    --card:#ffffff;
+    --muted: #6b7280;
+}
+
 html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    color: white;
+    color: white; /* keep text readable on header */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%); /* subtle gradient background */
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
 }
 
+/* Header with subtle shadow and spacing */
 header {
-    background-color: #107aa7;
-    padding: 10px;
-    border: 1px solid #000000;
+    background-color: var(--brand);
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 
 .nav-links {
     display: flex;
-    gap: 5px;
+    gap: 8px;
+    align-items: center;
 }
 
 h1 {
     color: white;
-    margin: 5px 20px;
+    margin: 0 12px;
+    font-size: 20px;
+    letter-spacing: 0.2px;
 }
 
+/* Make primary buttons cleaner and more modern */
 button {
-    background-color: #107aa7;
+    background-color: transparent; /* prefer outlined style */
     color: white;
-    border: 3px solid white;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border: 2px solid rgba(255,255,255,0.95);
+    border-radius: 8px;
+    padding: 8px 14px;
     text-align: center;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    margin: 5px;
+    margin: 4px;
+    transition: all 160ms ease-in-out;
+}
+button:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(16,122,167,0.18);
+    border-color: white;
 }
 
+/* active tab buttons remain bold as before */
 #map-page .tab-map button,
 #checklist-page .tab-checklist button {
-    font-weight: bold;
+    font-weight: 700;
+    background-color: rgba(255,255,255,0.06); /* subtle emphasis */
 }
 
+/* Content container to center and improve readability */
 .content {
-    color: black;
+    color: #0b1320; /* dark text for main content */
+    max-width: 980px; /* keep lines readable */
+    margin: 22px auto;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.12);
 }
 
+/* Checklist card and items — improves structure without changing HTML */
+.checklist {
+    display: grid;
+    gap: 12px;
+}
+
+.checklist-item{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(11,19,32,0.04);
+}
+
+/* custom checkbox look (works with input[type=checkbox] inside) */
+.checklist-item input[type="checkbox"]{
+    width: 18px;
+    height: 18px;
+    accent-color: var(--brand); /* modern way to tint checkboxes */
+    cursor: pointer;
+}
+
+.checklist-item label{
+    color: #0b1320;
+    font-size: 15px;
+}
+
+/* Small utility card to hold meta info */
+.meta {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Tab button hover improvement kept from previous rule but unified */
 .tab-button:hover {
     cursor: pointer;
     transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px){
+    .content{ padding: 16px; margin: 12px; }
+    nav { flex-direction: column; align-items: flex-start; gap: 6px; }
+    h1 { font-size: 18px; }
+}
+
+/* small visual flourish for focus accessibility */
+button:focus, .checklist-item input[type="checkbox"]:focus{
+    outline: 3px solid rgba(16,122,167,0.18);
+    outline-offset: 2px;
 }
