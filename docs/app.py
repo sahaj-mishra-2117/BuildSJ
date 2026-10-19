@@ -19,7 +19,7 @@ app = Flask(__name__)
 # Route to serve the website.html file
 @app.route("/")
 def website():
-    return send_from_directory(app.root_path, "website.html")
+    return send_from_directory(app.root_path, "index.html")
 
 # Route to serve the map.html file
 @app.route("/map.html")
@@ -51,7 +51,6 @@ if __name__ == "__main__":
 
 # INSTRUCTIONS TO VIEW THE WEBSITE
 
-# To run the script, run in the terminal, the command: py .\app.py
-# Will print a URL in the terminal, copy and paste it into your web browser to view the website
-# Just refresh the page in your web browser to see changes made to code
+# py -m http.server 8000 --directory .\docs
+# open http://localhost:8000/ in your browser
 
