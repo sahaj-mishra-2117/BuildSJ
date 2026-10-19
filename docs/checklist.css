@@ -49,3 +49,8 @@ button {
 .content {
     color: black;
 }
+
+.tab-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}

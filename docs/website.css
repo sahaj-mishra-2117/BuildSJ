@@ -76,3 +76,8 @@ button {
 .leaflet-interactive {
     outline: none;
 }
+
+.tab-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
