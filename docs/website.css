@@ -2,12 +2,24 @@
     font-size: 1rem;
 }
 
+:root {
+    --brand:#107aa7; /* keep original brand color */
+    --bg1: #0f2a44;
+    --bg2: #082033;
+    --card:#ffffff;
+    --muted: #6b7280;
+}
+
 html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    color: white;
+    color: white; /* keep text readable on header */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%); /* subtle gradient background */
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
 }
 
 iframe {
@@ -34,29 +46,34 @@ iframe {
 }
 
 header {
-    background-color: #107aa7;
-    padding: 10px;
-    border: 1px solid #000000;
+    background-color: var(--brand);
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 
 .nav-links {
     display: flex;
-    gap: 5px;
+    gap: 8px;
+    align-items: center;
 }
 
 h1 {
     color: white;
     margin: 5px 20px;
+    font-size: 20px;
+    letter-spacing: 0.2px;
 }
 
 button {
-    background-color: #107aa7;
+    background-color: transparent;
     color: white;
     border: 3px solid white;
     border-radius: 5px;
@@ -71,6 +88,7 @@ button {
 #map-page .tab-map button,
 #checklist-page .tab-checklist button {
     font-weight: bold;
+    background-color: rgba(255,255,255,0.06); /* subtle emphasis */
 }
 
 .leaflet-interactive {
@@ -79,5 +97,6 @@ button {
 
 .tab-button:hover {
     cursor: pointer;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(16,122,167,0.18);
 }

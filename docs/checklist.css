@@ -42,25 +42,25 @@ nav {
 
 h1 {
     color: white;
-    margin: 0 12px;
+    margin: 5px 20px;
     font-size: 20px;
     letter-spacing: 0.2px;
 }
 
 /* Make primary buttons cleaner and more modern */
 button {
-    background-color: transparent; /* prefer outlined style */
+    background-color: transparent;
     color: white;
-    border: 2px solid rgba(255,255,255,0.95);
-    border-radius: 8px;
-    padding: 8px 14px;
+    border: 3px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
     text-align: center;
     display: inline-block;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
-    margin: 4px;
-    transition: all 160ms ease-in-out;
+    margin: 5px;
 }
+
 button:hover{
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(16,122,167,0.18);
@@ -70,7 +70,7 @@ button:hover{
 /* active tab buttons remain bold as before */
 #map-page .tab-map button,
 #checklist-page .tab-checklist button {
-    font-weight: 700;
+    font-weight: bold;
     background-color: rgba(255,255,255,0.06); /* subtle emphasis */
 }
 
@@ -124,17 +124,4 @@ button:hover{
 .tab-button:hover {
     cursor: pointer;
     transform: translateY(-2px);
-}
-
-/* Responsive tweaks */
-@media (max-width: 720px){
-    .content{ padding: 16px; margin: 12px; }
-    nav { flex-direction: column; align-items: flex-start; gap: 6px; }
-    h1 { font-size: 18px; }
-}
-
-/* small visual flourish for focus accessibility */
-button:focus, .checklist-item input[type="checkbox"]:focus{
-    outline: 3px solid rgba(16,122,167,0.18);
-    outline-offset: 2px;
 }
