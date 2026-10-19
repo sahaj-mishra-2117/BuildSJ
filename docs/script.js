@@ -1,3 +1,5 @@
+// This was AI'd completely but seems easy to understand.
+
 // Wait for the HTML document to fully load before running code
 document.addEventListener("DOMContentLoaded", () => {
   
