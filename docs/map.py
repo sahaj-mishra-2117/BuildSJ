@@ -27,7 +27,7 @@ def map_style(feature):
         "fillColor": color, 
         "color": color, 
         "weight": 1, 
-        "fillOpacity": 0.1
+        "fillOpacity": 0.5
     }
 
 # Function that holds main code (Used for error handling)
