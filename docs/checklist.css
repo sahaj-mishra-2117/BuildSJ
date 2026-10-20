@@ -114,6 +114,12 @@ button:hover{
     font-size: 15px;
 }
 
+.task-item:checked + label {
+  text-decoration: line-through;
+  color: #888888;
+  font-style: italic;
+}
+
 /* Small utility card to hold meta info */
 .meta {
     color: var(--muted);
@@ -124,4 +130,8 @@ button:hover{
 .tab-button:hover {
     cursor: pointer;
     transform: translateY(-2px);
+}
+
+progress.complete {
+    accent-color: green;
 }

@@ -46,6 +46,11 @@ def checklist_css():
 def fire_zones():
     return send_from_directory(app.root_path, "fire_zones_d10.geojson")
 
+# Route to serve the script.js file
+@app.route("/script.js")
+def script():
+    return send_from_directory(app.root_path, "script.js")
+
 if __name__ == "__main__":
     app.run(debug=True) # Make sure to turn off debug mode when website goes public, it is just to help us see changes on website way quicker
 

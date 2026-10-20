@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Change the text below or next to the bar
     progressText.textContent = `${percentage}% (${checkedCount} of ${total} tasks completed)`;
+
+    progressBar.classList.toggle("complete", percentage === 100);
   }
 
   // 3. Tell every checkbox to trigger our function whenever a user clicks it
