@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Change the text below or next to the bar
     progressText.textContent = `${percentage}% (${checkedCount} of ${total} tasks completed)`;
 
+    progressBar.classList.toggle("not-started", percentage === 0);
+    progressBar.classList.toggle("below-halfway", percentage > 0 && percentage < 50);
+    progressBar.classList.toggle("halfway-past", percentage >= 50 && percentage < 100);
     progressBar.classList.toggle("complete", percentage === 100);
   }
 

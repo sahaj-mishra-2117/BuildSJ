@@ -149,3 +149,39 @@ progress.complete::-webkit-progress-value {
 progress.complete::-moz-progress-bar {
     background-color: green;
 }
+
+progress.halfway-past {
+    accent-color: yellow;
+}
+
+progress.halfway-past::-webkit-progress-value {
+    background-color: yellow;
+}
+
+progress.halfway-past::-moz-progress-bar {
+    background-color: yellow;
+}
+
+progress.below-halfway {
+    accent-color: orange;
+}
+
+progress.below-halfway::-webkit-progress-value {
+    background-color: orange;
+}
+
+progress.below-halfway::-moz-progress-bar {
+    background-color: orange;
+}
+
+progress.not-started {
+    accent-color: red;
+}
+
+progress.not-started::-webkit-progress-value {
+    background-color: red;
+}
+
+progress.not-started::-moz-progress-bar {
+    background-color: red;
+}
