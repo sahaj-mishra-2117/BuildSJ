@@ -133,6 +133,8 @@ button:hover{
 }
 
 progress {
+    width: 100%;
+    height: 30px;
     accent-color: #0081FA;
 }
 
@@ -150,6 +152,22 @@ progress.complete::-moz-progress-bar {
     background-color: green;
 }
 
+/* Yellow-Green progress bar for almost done tasks */
+
+progress.almost-done {
+    accent-color: yellowgreen;
+}
+
+progress.almost-done::-webkit-progress-value {
+    background-color: yellowgreen;
+}
+
+progress.almost-done::-moz-progress-bar {
+    background-color: yellowgreen;
+}
+
+/* Yellow progress bar for halfway-past tasks */
+
 progress.halfway-past {
     accent-color: yellow;
 }
@@ -162,6 +180,8 @@ progress.halfway-past::-moz-progress-bar {
     background-color: yellow;
 }
 
+/* Orange progress bar for below-halfway tasks */
+
 progress.below-halfway {
     accent-color: orange;
 }
@@ -173,6 +193,8 @@ progress.below-halfway::-webkit-progress-value {
 progress.below-halfway::-moz-progress-bar {
     background-color: orange;
 }
+
+/* Red progress bar for not-started tasks */
 
 progress.not-started {
     accent-color: red;
