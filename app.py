@@ -79,4 +79,4 @@ def script():
     return FileResponse("docs/script.js")
 
 # During development, to test code:
-# py -m uvicorn main:app --reload
+# py -m uvicorn app:app --reload

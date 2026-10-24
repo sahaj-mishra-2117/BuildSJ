@@ -207,3 +207,14 @@ progress.not-started::-webkit-progress-value {
 progress.not-started::-moz-progress-bar {
     background-color: red;
 }
+
+.submit-button {
+    background-color: var(--brand);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}

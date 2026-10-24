@@ -25,6 +25,7 @@
         <h2>Wildfire Emergency: Evacuation Checklist</h2>
         <progress value="0" max="100" id="progress-bar"></progress>
         <span id="progress-text">0%</span>
+        <form action="/api/save-info" method="post">
         <ol>
             <li>
                 <input type="checkbox" class="task-item" id="check_item1" name="checked" value="true">
@@ -55,6 +56,9 @@
                 <label for="check_item7">Leave immediately do not wait for any formal evacuation order if you feel unsafe. Follow designated local routes.</label>
             </li>
         </ol>
+
+        <button type="submit" class="submit-button">Submit Information</button>
+        </form>
         <h2>Links and Resources</h2>
         <ol>
             <li><a href="https://www.readyforwildfire.org/">Ready for Wild Fire</a></li>
