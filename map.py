@@ -13,8 +13,8 @@ FIELD = "FIREHAZARDSEVERITYZONE"
 
 fire_colors = {
     "Very High": webcolors.name_to_hex('red'),
-    "High": webcolors.name_to_hex('orange'),
-    "Moderate": webcolors.name_to_hex('yellow'),
+    "High": "#FF8C00",
+    "Moderate": "#B59A00",
     "None": webcolors.name_to_hex('gray')
 }
 
