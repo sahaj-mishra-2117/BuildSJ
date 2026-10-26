@@ -26,7 +26,7 @@ def map_style(feature):
     return {
         "fillColor": color, 
         "color": "#212529", 
-        "weight": 4, 
+        "weight": 6, 
         "opacity": 1,
         "fillOpacity": 0.9,
         "lineJoin": "round", 
