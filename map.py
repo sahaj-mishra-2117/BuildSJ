@@ -25,9 +25,12 @@ def map_style(feature):
     # I think we need something more if it's like faint but I don't think our map is there yet
     return {
         "fillColor": color, 
-        "color": color, 
-        "weight": 1, 
-        "fillOpacity": 0.1
+        "color": "#212529", 
+        "weight": 4, 
+        "opacity": 1,
+        "fillOpacity": 0.9,
+        "lineJoin": "round", 
+        "lineCap": "round"
     }
 
 # Function that holds main code (Used for error handling)
