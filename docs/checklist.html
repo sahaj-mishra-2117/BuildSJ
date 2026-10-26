@@ -26,7 +26,7 @@
         <progress value="0" max="100" id="progress-bar"></progress>
         <span id="progress-text">0%</span>
         <form action="/api/save-info" method="post">
-        <h2>Disaster kit essentials</h2>
+        <h2>Disaster Kit Essentials</h2>
             <ol>
             <li> 
                 <input type="checkbox" class="task-item" id="check_item1" name="checked" value="true">
@@ -96,7 +96,7 @@
             </li>
         </ol>
         <h2>Inside your home</h2>
-        <ul>
+        <ol>
              <li>
                 <input type="checkbox" class="task-item" id="check_item17" name="checked" value="true">
                 <label for="check_item17">Prepare an emergency supply kit and wildfire evacuation plan.</label>
@@ -117,9 +117,9 @@
                 <input type="checkbox" class="task-item" id="check_item21" name="checked" value="true">
                 <label for="check_item21">Shut off gas and pilot lights, turn off the air conditioner, and leave lights on for firefighters.</label>
             </li>
-        </ul>
+        </ol>
         <h2>Outside your home</h2> 
-        <ul>
+        <ol>
         <li>
             <input type="checkbox" class="task-item" id="check_item22" name="checked" value="true">
             <label for="check_item22">Bring flammable outdoor items inside and move propane grills away from buildings.</label>
@@ -148,11 +148,21 @@
             <input type="checkbox" class="task-item" id="check_item28" name="checked" value="true">
             <label for="check_item28">Monitor the fire, evacuate if you feel threatened, and check that neighbors are preparing to leave.</label>
         </li>  
-        </ul>
-
-        <section class="evacuation-section">
-    <h2>Wildfire Evacuation Steps</h2>
-    <ul>
+        </ol>
+    
+        <h2>Animals</h2>
+        <ol>
+        <li>
+            <input type="checkbox" class="task-item" id="check_item32" name="checked" value="true">
+            <label for="check_item32">Locate your pets and keep them nearby.</label>
+        </li>
+        <li>
+            <input type="checkbox" class="task-item" id="check_item33" name="checked" value="true">
+            <label for="check_item33">Prepare farm animals for transport and think about moving them to a safe location early.</label>
+        </li>
+        </ol>  
+    <h2>Wildfire Evacuation Steps <a href="https://www.sanjoseca.gov/your-government/departments-offices/fire-department/public-education/wildfire-preparedness/wildfire-evacuation">Wildfire Evacuation Steps</a></h2>
+    <ol>
       <li>
             <input type="checkbox" class="task-item" id="check_item29" name="checked" value="true">
             <label for="check_item29">Review the pre-evacuation checklist.</label>
@@ -165,5 +175,8 @@
             <input type="checkbox" class="task-item" id="check_item31" name="checked" value="true">
             <label for="check_item31">Cover-up to protect against heat and flying embers. Wear a long-sleeve shirt, long pants, heavy shoes, cap, bandanna to cover your face, and goggles or glasses. If possible, where clothes are made from cotton.</label>
         </li>  
-    </ul>  
-
+    </ol>  
+    <button type="submit" class="submit-button">Submit Information</button>
+</form>
+</body>
+</html>
