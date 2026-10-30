@@ -12,10 +12,10 @@ san_jose_coords = [37.23, -121.82]
 FIELD = "FIREHAZARDSEVERITYZONE"
 
 fire_colors = {
-    "Very High": webcolors.name_to_hex('red'),
-    "High": "#964000",
+    "Very High": "#d62828",
+    "High": "#f77f00",
     "Moderate": "#B59A00",
-    "None": webcolors.name_to_hex('gray')
+    "None": "#adb5bd" 
 }
 
 # Function to define the style for each fire hazard zone on the map
@@ -51,6 +51,13 @@ def main():
             max_bounds=True
         )
 
+        # Creates tiles, which are the many small square images that the map will stitch together 
+        folium.TileLayer(
+             tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", # where to fetch the tile images from
+             attr='&copy; OpenStreetMap contributors &copy; CARTO', # copyright text shown in corner
+             name="Light Map", # labels for the layer 
+        ).add_to(sj_map) # attaches these layers to our new map 
+
         # Adding the search tool (uses the Photon geocoding service)
         # Will have to check usage rights for Photon later
         Geocoder(
@@ -79,11 +86,15 @@ def main():
             )
         ).add_to(sj_map)
         
+       
         # After generating the map, we add our CSS file to style the map container
         # We can't add it to html directly because map generation changes everytime the script is run
         sj_map.get_root().header.add_child(
             folium.Element('<link rel="stylesheet" href="website.css"/>')
         )
+
+
+        folium.LayerControl().add_to(sj_map)
 
         # The map is added to our html file
         sj_map.save("map.html") # create map.html file 
