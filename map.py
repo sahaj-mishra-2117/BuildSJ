@@ -1,9 +1,10 @@
 # starting file
 
+from fastapi import requests
 import folium
-import webcolors
 # allows us to load in stuff to have interactive maps -> python database
 from folium.plugins import Geocoder
+from fetch_neighborhoods import get_filtered_neighborhoods
 
 # Define the geographic coordinates for San Jose, California (don't know if they are specificly correct )
 san_jose_coords = [37.23, -121.82]
@@ -32,7 +33,13 @@ def map_style(feature):
         "lineJoin": "round", 
         "lineCap": "round"
     }
-
+def neighborhood_style(feature):
+    return {
+        "color": "#212529",  # Border color
+        "weight": 2,         # Border thickness
+        "opacity": 1,
+        "fillOpacity": 0,    # Transparent fill, so the map underneath stays visible
+    }
 # Function that holds main code (Used for error handling)
 def main():
     try:
@@ -85,14 +92,23 @@ def main():
                 aliases=["Fire Hazard Level: "] # Specifies the description for the field
             )
         ).add_to(sj_map)
-        
+
+        # Add the neighborhood boundaries to the map
+        folium.GeoJson(
+            get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley"]),
+            name = "Neighborhood Boundaries",
+            style_function = neighborhood_style,
+            tooltip=folium.GeoJsonTooltip(
+                fields=["NAME"], # Specify the field to display in the tooltip
+                aliases=["Neighborhood: "], # Specifies the description for the field
+            )
+        ).add_to(sj_map)
        
         # After generating the map, we add our CSS file to style the map container
         # We can't add it to html directly because map generation changes everytime the script is run
         sj_map.get_root().header.add_child(
             folium.Element('<link rel="stylesheet" href="website.css"/>')
         )
-
 
         folium.LayerControl().add_to(sj_map)
 
