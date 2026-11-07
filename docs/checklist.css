@@ -64,6 +64,7 @@ body {
     line-height: 1.6;
 }
 
+
 /* ===== Header and navigation ===== */
 
 header {
@@ -72,7 +73,7 @@ header {
         var(--brand),
         var(--brand-dark)
     );
-    padding: 16px 12px;
+    padding: 8px 20px 8px 32px;
     border-bottom: 1px solid rgba(255,255,255,0.15);
     box-shadow: 0 5px 20px rgba(0,0,0,0.16);
 }
@@ -85,23 +86,16 @@ nav {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 14px;
+    flex-wrap: nowrap;
 }
 
-h1 {
-    color: white;
-    margin: 5px 0;
-    font-size: clamp(24px, 4vw, 34px);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-}
 
 /* ===== Buttons ===== */
 
