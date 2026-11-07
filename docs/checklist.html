@@ -88,7 +88,7 @@
             </li>
           
         </ol>
-        <h2>Inside your home</h2>
+        <h2>Preparation</h2>
         <ol class = "checklist">
              <li class ="checklist-item">
                 <input type="checkbox" class="task-item" id="check_item17" name="checked" value="true">
@@ -98,6 +98,10 @@
                 <input type="checkbox" class="task-item" id="check_item18" name="checked" value="true">
                 <label for="check_item18">Know your community’s emergency plan, evacuation destinations, and escape routes</label>
             </li>
+        </ol>
+        <h2>In the Event of Emergency</h2>
+        <h3>Indoor</h3>
+        <ol>
             <li class ="checklist-item">
                 <input type="checkbox" class="task-item" id="check_item19" name="checked" value="true">
                 <label for="check_item19">Close windows and doors, but leave them unlocked</label>
@@ -111,7 +115,7 @@
                 <label for="check_item21">Shut off gas and pilot lights, turn off the air conditioner, and leave lights on for firefighters</label>
             </li>
         </ol>
-        <h2>Outside your home</h2> 
+        <h3>Outdoor</h3> 
         <ol class = "checklist">
         <li class ="checklist-item">
             <input type="checkbox" class="task-item" id="check_item22" name="checked" value="true">
@@ -171,6 +175,54 @@
         <label for="check_item31">Cover-up to protect against heat and flying embers. Wear a long-sleeve shirt, long pants, heavy shoes, cap, bandanna to cover your face, and goggles or glasses. If possible, wear clothes that are made from cotton.</label>
     </li>
 </ol>
+    <h2>Resource Links</h2>
+<ol>
+    
+    <li>
+        <label for="resource-links">General Use Links</label>
+        <select name ="GeneralUseLinks" id = "links1" >
+            <option value = "genUseLink1" data-label = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans" data-url = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans">San Jose Emergency Plans</option>
+            <option value = "genUseLink2" data-label = "https://app.watchduty.org/" data-url = "https://app.watchduty.org/">Fire Watch</option>
+            <option value = "genUseLink3" data-label = "https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed" data-url = "https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed">Traffic Map</option>
+            <option value = "genUseLink4" data-label = "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html" data-url = "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html">Red Cross Download Info</option>
+            <option value = "genUseLink5" data-label = "https://www.sanjoseca.gov/your-government/departments-offices/fire-department" data-url = "https://www.sanjoseca.gov/your-government/departments-offices/fire-department">San Jose Fire Station</option>
+        </select>
+    </li>
+</ol>
+
+
+<script>
+    const listbox = document.getElementById('links1');
+    var linkLabel = null;
+    
+    
+    listbox.addEventListener('change', function () {
+        // Get selected option
+        const selectedOption = listbox.options[listbox.selectedIndex];
+        const labelText = selectedOption.getAttribute('data-label');
+        const linkUrl = selectedOption.getAttribute('data-url');
+
+        if (linkLabel) {
+        linkLabel.remove();
+        }
+        // Show label if available
+        if (labelText && linkUrl) {
+            
+            linkLabel = document.createElement('a');
+            linkLabel.textContent = " " + labelText;
+            linkLabel.href = linkUrl;
+            linkLabel.target = '_blank';
+            linkLabel.rel = 'noopener noreferrer';
+            listbox.insertAdjacentElement('afterend', linkLabel);
+        }
+        
+            
+        
+    });
+</script>
+
+
+
 
 <button type="submit" class="submit-button">Submit Information</button>
 </form>
