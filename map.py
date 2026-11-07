@@ -1,4 +1,8 @@
 # starting file
+# To update map.html run py .\map.py
+
+from pathlib import Path
+import json
 
 from fastapi import requests
 import folium
@@ -27,9 +31,9 @@ def map_style(feature):
     return {
         "fillColor": color, 
         "color": "#212529", 
-        "weight": 6, 
+        "weight": 2, 
         "opacity": 1,
-        "fillOpacity": 0.9,
+        "fillOpacity": 0.3,
         "lineJoin": "round", 
         "lineCap": "round"
     }
@@ -58,13 +62,6 @@ def main():
             max_bounds=True
         )
 
-        # Creates tiles, which are the many small square images that the map will stitch together 
-        folium.TileLayer(
-             tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", # where to fetch the tile images from
-             attr='&copy; OpenStreetMap contributors &copy; CARTO', # copyright text shown in corner
-             name="Light Map", # labels for the layer 
-        ).add_to(sj_map) # attaches these layers to our new map 
-
         # Adding the search tool (uses the Photon geocoding service)
         # Will have to check usage rights for Photon later
         Geocoder(
@@ -84,7 +81,11 @@ def main():
 
         # Add the fire hazard zones to the map
         folium.GeoJson(
-            "fire_zones_d10.geojson",
+            # Load the fire hazard zones GeoJSON data and add it to the map
+            json.loads(
+                (Path(__file__).resolve().parent / "docs" / "fire_zones_d10.geojson")
+                .read_text(encoding="utf-8")
+            ),
             name = "Map of D10 Fire Hazards (by CalFire)",
             style_function = map_style,
             tooltip=folium.GeoJsonTooltip(
