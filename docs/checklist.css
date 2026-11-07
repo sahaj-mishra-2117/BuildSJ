@@ -440,27 +440,23 @@ progress.not-started::-moz-progress-bar {
     }
 }
 
-/* Center the Submit Information button */
-.submit-button {
-    display: flex;
-    width: fit-content;
-    margin: 24px auto 0 auto;
+/* Remove unwanted left indentation from checklist */
+.checklist,
+.checklist ul,
+.checklist ol {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    list-style: none;
 }
 
-/* Fix extra left spacing on checklist cards */
-.checklist {
-    margin-left: 0;
-    padding-left: 0;
-}
-
-/* Keep checklist items aligned */
+/* Align wildfire checklist cards */
 .checklist-item {
-    margin-left: 0;
+    margin-left: 0 !important;
 }
 
-/* Mobile adjustment */
-@media (max-width: 600px) {
-    .submit-button {
-        width: 100%;
-    }
+/* Center Submit Information button */
+.submit-button {
+    display: block !important;
+    width: fit-content;
+    margin: 24px auto 0 auto !important;
 }
