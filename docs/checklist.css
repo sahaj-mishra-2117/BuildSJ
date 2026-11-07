@@ -67,7 +67,7 @@ body {
             rgba(8, 32, 51, 0.18),
             rgba(8, 32, 51, 0.18)
         ),
-        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8");
+        url("1080p_HBK_autumn-morning_GI.jpg");
 
     background-size: cover;
     background-position: center;
@@ -534,4 +534,6 @@ body {
 
 .checklist-item {
     background: rgba(255, 255, 255, 0.92);
+}
+}
 }
