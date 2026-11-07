@@ -2,6 +2,13 @@
 /* =========================================
    EMERGENCY PREPAREDNESS CHECKLIST
    ========================================= */
+.site-title,
+.site-title:visited,
+.site-title:hover,
+.site-title:active {
+    color: white;
+    text-decoration: none;
+}
 .site-title {
     text-decoration: none;
     color: white;
