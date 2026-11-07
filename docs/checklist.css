@@ -58,7 +58,17 @@ body {
     color: white;
     font-family: -apple-system, BlinkMacSystemFont,
         "Segoe UI", Roboto, Arial, sans-serif;
-    background: linear-gradient(145deg, var(--bg1), var(--bg2));
+   background:
+    linear-gradient(
+        rgba(8, 32, 51, 0.40),
+        rgba(8, 32, 51, 0.40)
+    ),
+    url("https://images.unsplash.com/photo-1448375240586-882707db888b");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
@@ -511,4 +521,16 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 36px;
+}
+/* ===== Transparent forest background effect ===== */
+
+.content {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Checklist cards */
+.checklist-item {
+    background: rgba(255, 255, 255, 0.92);
 }
