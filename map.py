@@ -58,7 +58,7 @@ def main():
             control_scale=True,
             # Bounds for the map (limits the viewable area)
             min_lat=37.05,
-            max_lat=37.45,
+            max_lat=37.35,
             min_lon=-122.1,
             max_lon=-121.65,
             max_bounds=True
