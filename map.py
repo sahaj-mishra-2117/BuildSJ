@@ -1,123 +1,224 @@
-# starting file
-# To update map.html run py .\map.py
+# Builds the District 10 wildfire hazard map and writes it to docs/map.html.
 
-from pathlib import Path
 import json
+from pathlib import Path
 
-from fastapi import requests
 import folium
 # allows us to load in stuff to have interactive maps -> python database
 from folium.plugins import Geocoder
 from fetch_neighborhoods import get_filtered_neighborhoods
 
-# Define the geographic coordinates for San Jose, California (don't know if they are specificly correct )
-san_jose_coords = [37.23, -121.82]
+ROOT = Path(__file__).resolve().parent
+DOCS = ROOT / "docs"
+MAP_PATH = DOCS / "map.html"
+FIRE_ZONES_PATH = DOCS / "fire_zones_d10.geojson"
+
+# District 10 covers south San Jose (Almaden / Blossom Valley / Santa Teresa).
+# (south, west, north, east) - the map is held inside this box instead of the whole city.
+D10_BOUNDS = (37.15, -121.97, 37.30, -121.72)
+# How far past the district edge the user may pan. The extra room east/west keeps
+# wide screens from showing empty space outside the bounds at the starting zoom.
+PADDING_LAT = 0.02
+PADDING_LON = 0.05
+
+D10_CENTER = [
+    (D10_BOUNDS[0] + D10_BOUNDS[2]) / 2,
+    (D10_BOUNDS[1] + D10_BOUNDS[3]) / 2,
+]
+MAX_BOUNDS = [
+    [D10_BOUNDS[0] - PADDING_LAT, D10_BOUNDS[1] - PADDING_LON],
+    [D10_BOUNDS[2] + PADDING_LAT, D10_BOUNDS[3] + PADDING_LON],
+]
 
 # Define the field and color mapping for fire hazard severity zones
 FIELD = "FIREHAZARDSEVERITYZONE"
 
+# Calm -> severe, with the opacity each zone is drawn at.
+# NonWildland is almost transparent so it reads as "no hazard" instead of greying out the map.
 fire_colors = {
-    "Very High": "#d62828",
-    "High": "#f77f00",
-    "Moderate": "#B59A00",
-    "None": "#07e81a" 
+    "NonWildland": ("#9aa5b1", 0.06),
+    "Moderate": ("#e0a300", 0.28),
+    "High": ("#ef6c1a", 0.34),
+    "Very High": ("#c1121f", 0.40),
 }
+FALLBACK_COLOR = ("#9aa5b1", 0.06)  # used if a zone shows up with a value we don't know
+
+
+# Rounds coordinates so the page carries far less geometry data (5 decimals ~= 1 meter).
+def _round_coords(coords, digits=5):
+    if isinstance(coords[0], (int, float)):
+        return [round(coords[0], digits), round(coords[1], digits)]
+    return [_round_coords(part, digits) for part in coords]
+
+
+def load_fire_zones(path):
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    for feature in data.get("features", []):
+        geometry = feature.get("geometry") or {}
+        if "coordinates" in geometry:
+            geometry["coordinates"] = _round_coords(geometry["coordinates"])
+    return data
+
 
 # Function to define the style for each fire hazard zone on the map
 def map_style(feature):
     level = feature["properties"].get(FIELD)
-    color = fire_colors.get(level,"#868e96") # Comes out as dark gray if the colors don't work
-    # I think we need something more if it's like faint but I don't think our map is there yet
+    color, fill_opacity = fire_colors.get(level, FALLBACK_COLOR)
     return {
-        "fillColor": color, 
-        "color": "#212529", 
-        "weight": 0.5, 
-        "opacity": 1,
-        "fillOpacity": 0.3,
-        "lineJoin": "round", 
-        "lineCap": "round"
+        "fillColor": color,
+        "color": color,
+        "weight": 0.6,
+        "opacity": 0.55,
+        "fillOpacity": fill_opacity,
+        "lineJoin": "round",
+        "lineCap": "round",
     }
+
+
+# Brighter, thicker version of a zone while the cursor is over it.
+def map_highlight(feature):
+    style = map_style(feature)
+    style.update({
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": min(style["fillOpacity"] + 0.22, 0.7),
+    })
+    return style
+
 
 def neighborhood_style(feature):
     return {
-        "color": "#212529",  # Border color
-        "weight": 2,         # Border thickness
-        "opacity": 1,
-        "fillOpacity": 0,    # Transparent fill, so the map underneath stays visible
+        "color": "#475569",   # Border color
+        "weight": 1.1,        # Border thickness
+        "opacity": 0.55,
+        "fillOpacity": 0,     # Transparent fill, so the map underneath stays visible
+        "dashArray": "5, 6",
+        "lineCap": "round",
     }
+
+
+TITLE_HTML = """
+<div class="map-title">
+  <h2>San Jos&eacute; &middot; District 10</h2>
+  <p>Wildfire hazard severity zones &middot; CalFire</p>
+</div>
+"""
+
+LEGEND_HTML = """
+<div class="map-legend">
+  <h2>Fire hazard severity</h2>
+  <ul>
+    <li><span class="swatch" style="background:#c1121f"></span>Very High</li>
+    <li><span class="swatch" style="background:#ef6c1a"></span>High</li>
+    <li><span class="swatch" style="background:#e0a300"></span>Moderate</li>
+    <li><span class="swatch" style="background:#9aa5b1"></span>Not wildland</li>
+  </ul>
+</div>
+"""
+
 
 # Function that holds main code (Used for error handling)
 def main():
     try:
-        # Create an open-source map centered on San Jose
-        # The default tile layer is 'OpenStreetMap'
+        # Create an open-source map centered on District 10.
+        # tiles=None keeps folium from adding its own default basemap.
         sj_map = folium.Map(
-            location=san_jose_coords, 
-            zoom_start=11,
-            min_zoom=11,
+            location=D10_CENTER,
+            tiles=None,
+            zoom_start=13,
+            min_zoom=12,
+            max_zoom=18,
+            zoom_snap=0.5,          # half-step zooming feels smoother than whole steps
+            max_bounds=True,
             control_scale=True,
-            # Bounds for the map (limits the viewable area)
-            min_lat=37.05,
-            max_lat=37.45,
-            min_lon=-122.1,
-            max_lon=-121.65,
-            max_bounds=True
+            prefer_canvas=True,     # canvas draws the large hazard polygons far more smoothly
         )
+
+        # Creates tiles, which are the many small square images that the map will stitch together.
+        # Positron is a quiet, light basemap, so the hazard colours stay the star of the show.
+        folium.TileLayer(
+            tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+            attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; CARTO',
+            name="Base map",
+            overlay=False,
+            control=False,
+            max_zoom=19,
+            subdomains="abcd",
+            detect_retina=True,
+        ).add_to(sj_map)
+
+        # Keeping the map inside District 10, now and after any pan/zoom.
+        sj_map.options["maxBounds"] = MAX_BOUNDS
+        sj_map.options["maxBoundsViscosity"] = 1.0
 
         # Adding the search tool (uses the Photon geocoding service)
         # Will have to check usage rights for Photon later
         Geocoder(
-            provider = "photon",
+            provider="photon",
             provider_options={
                 "geocodingQueryParams": {
-                    # Limits autocomplete results to San Jose
-                    "bbox": "-122.1, 37.05, -121.65, 37.45",
+                    # Limits autocomplete results to District 10
+                    "bbox": f"{D10_BOUNDS[1]},{D10_BOUNDS[0]},{D10_BOUNDS[3]},{D10_BOUNDS[2]}",
                     # Max amount of suggested results
-                    "limit": 5
+                    "limit": 5,
                 }
             },
-            add_marker = True,
-            suggestMinLength = 3,
-            suggestTimeout = 250, 
+            add_marker=True,
+            zoom=15,
+            suggestMinLength=3,
+            suggestTimeout=250,
         ).add_to(sj_map)
 
         # Add the fire hazard zones to the map
         folium.GeoJson(
-            # Load the fire hazard zones GeoJSON data and add it to the map
-            json.loads(
-                (Path(__file__).resolve().parent / "docs" / "fire_zones_d10.geojson")
-                .read_text(encoding="utf-8")
-            ),
-            name = "Map of D10 Fire Hazards (by CalFire)",
-            style_function = map_style,
+            load_fire_zones(FIRE_ZONES_PATH),
+            name="CalFire fire hazard zones",
+            style_function=map_style,
+            highlight_function=map_highlight,
+            smooth_factor=1.2,
             tooltip=folium.GeoJsonTooltip(
-                fields=[FIELD], # Specify the field to display in the tooltip
-                aliases=["Fire Hazard Level: "] # Specifies the description for the field
-            )
+                fields=[FIELD],
+                aliases=["Fire hazard level: "],
+                sticky=True,
+                opacity=1,
+            ),
         ).add_to(sj_map)
 
         # Add the neighborhood boundaries to the map
         folium.GeoJson(
             get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley"]),
-            name = "Neighborhood Boundaries",
-            style_function = neighborhood_style,
+            name="Neighborhood boundaries",
+            style_function=neighborhood_style,
+            smooth_factor=1.5,
             tooltip=folium.GeoJsonTooltip(
-                fields=["NAME"], # Specify the field to display in the tooltip
-                aliases=["Neighborhood: "], # Specifies the description for the field
-            )
+                fields=["NAME"],
+                aliases=["Neighborhood: "],
+                sticky=True,
+                opacity=1,
+            ),
         ).add_to(sj_map)
-       
+
+        # Frame the district itself rather than a city-wide view.
+        sj_map.fit_bounds(
+            [[D10_BOUNDS[0], D10_BOUNDS[1]], [D10_BOUNDS[2], D10_BOUNDS[3]]],
+            padding=(16, 16),
+        )
+
         # After generating the map, we add our CSS file to style the map container
         # We can't add it to html directly because map generation changes everytime the script is run
         sj_map.get_root().header.add_child(
             folium.Element('<link rel="stylesheet" href="website.css"/>')
         )
 
-        folium.LayerControl().add_to(sj_map)
+        # Small floating cards so the map explains itself without a key sitting elsewhere.
+        sj_map.get_root().html.add_child(folium.Element(TITLE_HTML))
+        sj_map.get_root().html.add_child(folium.Element(LEGEND_HTML))
+
+        folium.LayerControl(position="topright", collapsed=True).add_to(sj_map)
 
         # The map is added to our html file
-        sj_map.save("map.html") # create map.html file 
-        print("Map was generated on website") # To inform us that python script has successfully created the map.html file
+        sj_map.save(str(MAP_PATH))
+        print(f"Map was generated at {MAP_PATH.relative_to(ROOT)}")
 
     except FileNotFoundError as e:
         print(f"Missing file: {e}")
@@ -125,6 +226,7 @@ def main():
         print(f"Bad data or color mapping: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
