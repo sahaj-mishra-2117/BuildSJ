@@ -2,27 +2,31 @@
 /* =========================================
    EMERGENCY PREPAREDNESS CHECKLIST
    ========================================= */
+
+/* ===== Build SJ clickable title ===== */
+
 .site-title,
+.site-title:link,
 .site-title:visited,
 .site-title:hover,
 .site-title:active {
-    color: white;
-    text-decoration: none;
-}
-.site-title {
-    text-decoration: none;
-    color: white;
+    color: white !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
     cursor: pointer;
 }
 
 .site-title h1 {
     color: white;
+    text-decoration: none !important;
+    margin: 5px 0;
     transition: opacity 0.2s ease;
 }
 
 .site-title:hover h1 {
     opacity: 0.8;
 }
+
 :root {
     --brand: #107aa7;
     --brand-dark: #08638a;
