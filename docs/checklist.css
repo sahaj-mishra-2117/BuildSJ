@@ -72,14 +72,15 @@ header {
         var(--brand),
         var(--brand-dark)
     );
-    padding: 16px 24px;
+    padding: 16px 12px;
     border-bottom: 1px solid rgba(255,255,255,0.15);
     box-shadow: 0 5px 20px rgba(0,0,0,0.16);
 }
 
 nav {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
