@@ -31,12 +31,13 @@ def map_style(feature):
     return {
         "fillColor": color, 
         "color": "#212529", 
-        "weight": 2, 
+        "weight": 1, 
         "opacity": 1,
         "fillOpacity": 0.3,
         "lineJoin": "round", 
         "lineCap": "round"
     }
+
 def neighborhood_style(feature):
     return {
         "color": "#212529",  # Border color
@@ -44,6 +45,7 @@ def neighborhood_style(feature):
         "opacity": 1,
         "fillOpacity": 0,    # Transparent fill, so the map underneath stays visible
     }
+
 # Function that holds main code (Used for error handling)
 def main():
     try:
