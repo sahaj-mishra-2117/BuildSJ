@@ -439,3 +439,28 @@ progress.not-started::-moz-progress-bar {
         transform: none !important;
     }
 }
+
+/* Center the Submit Information button */
+.submit-button {
+    display: flex;
+    width: fit-content;
+    margin: 24px auto 0 auto;
+}
+
+/* Fix extra left spacing on checklist cards */
+.checklist {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+/* Keep checklist items aligned */
+.checklist-item {
+    margin-left: 0;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+    .submit-button {
+        width: 100%;
+    }
+}
