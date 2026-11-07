@@ -512,3 +512,12 @@ body {
     justify-content: flex-end;
     gap: 36px;
 }
+/* ===== Center Submit Information button ===== */
+
+.submit-button {
+    display: block !important;
+    width: fit-content !important;
+    margin: 24px auto 0 auto !important;
+    align-self: center;
+    text-align: center;
+/* ===== Center Submit Information button ===== */
