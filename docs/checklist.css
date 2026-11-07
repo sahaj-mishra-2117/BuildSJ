@@ -131,14 +131,6 @@ input:focus-visible {
 
 /* Active navigation tab */
 
-#map-page .tab-map button,
-#checklist-page .tab-checklist button {
-    background: white;
-    color: var(--brand-dark);
-    border-color: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
 /* ===== Main content panel ===== */
 
 .content {
