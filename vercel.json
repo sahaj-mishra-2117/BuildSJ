@@ -1,6 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
+  "installCommand": "python3 -m pip install --quiet folium==0.20.0",
+  "buildCommand": "python3 map.py",
   "rewrites": [
     {
       "source": "/(.*)",

@@ -2,6 +2,8 @@
 # Save them as a file in our repo, that we can then use on our map 
 
 import json
+from pathlib import Path
+
 import requests  # type: ignore -> idk so an error doesn't pop up
 
 # allows python to actually download things from the internet
@@ -12,6 +14,10 @@ URL = ("https://geo.sanjoseca.gov/server/rest/services/FIR/"
 
 BBOX = "-121.98,37.15,-121.74,37.30" 
 # general rough box around San Jose d10 - we can change it later 
+
+# Always save into docs/ so map.py picks the fresh data up, no matter which folder
+# this script is run from. ("fire_zones_d10.geojson" alone would land in the cwd.)
+OUT_PATH = Path(__file__).resolve().parent / "docs" / "fire_zones_d10.geojson"
 
 params = {
     "where": "1=1",                         # 1 to 1 so we get everything inside of the box 
@@ -47,7 +53,7 @@ print(f"Got {len(data['features'])} zones. Hazard values found: {levels}")
 # iterates through the drive and prints a summary of the data
 
 
-with open("fire_zones_d10.geojson", "w") as f:           
+with open(OUT_PATH, "w", encoding="utf-8") as f:           
     f.write(response.text)
 # we open the json file in "w" mode (so we can write stuff)
 # in the file, we write the box/parameter data we wrote above 
@@ -55,5 +61,5 @@ with open("fire_zones_d10.geojson", "w") as f:
 
 # we can use this file in our repo now 
 
-print("Saved fire_zones_d10.geojson")
+print(f"Saved {OUT_PATH}")
 
