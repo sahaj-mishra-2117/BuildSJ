@@ -20,7 +20,7 @@ fire_colors = {
     "Very High": "#d62828",
     "High": "#f77f00",
     "Moderate": "#B59A00",
-    "None": "#adb5bd" 
+    "None": "#07e81a" 
 }
 
 # Function to define the style for each fire hazard zone on the map
