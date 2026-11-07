@@ -417,6 +417,39 @@ progress.not-started::-moz-progress-bar {
         padding: 13px;
         gap: 11px;
     }
+   /* Top-right navigation buttons */
+.navbar button,
+.navbar a {
+    background: transparent;
+    color: white;
+    border: 6px solid white;
+    border-radius: 10px;
+    padding: 16px 40px;
+    font-size: 32px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* Map button */
+.navbar .map-button {
+    background: rgba(255, 255, 255, 0.12);
+    min-width: 156px;
+}
+
+/* Preparation Checklist button */
+.navbar .checklist-button {
+    min-width: 396px;
+}
+
+/* Space between buttons */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 36px;
+}
 
     .checklist-item label {
         font-size: 14px;
