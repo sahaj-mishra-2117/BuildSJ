@@ -3,7 +3,7 @@
 }
 
 :root {
-    --brand:#107aa7; /* keep original brand color */
+    --brand:#10a729; /* keep original brand color */
     --bg1: #0f2a44;
     --bg2: #082033;
     --card:#ffffff;
@@ -46,7 +46,7 @@ iframe {
 }
 
 header {
-    background-color: var(--brand);
+    background-color: rgba(18,55,30,0.95);
     padding: 14px 18px;
     border-bottom: 1px solid rgba(0,0,0,0.15);
     box-shadow: 0 4px 18px rgba(0,0,0,0.12);
@@ -75,9 +75,9 @@ h1 {
 button {
     background-color: transparent;
     color: white;
-    border: 3px solid white;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 1px;
+    padding: 5px 10px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
@@ -87,7 +87,7 @@ button {
 
 #map-page .tab-map button,
 #checklist-page .tab-checklist button {
-border: 6px solid white;
+    font-weight: bold;
     background-color: rgba(255,255,255,0.06); /* subtle emphasis */
 }
 
@@ -98,5 +98,5 @@ border: 6px solid white;
 .tab-button:hover {
     cursor: pointer;
     transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(16,122,167,0.18);
+    box-shadow: 0 6px 18px rgba(16, 167, 49, 0.18);
 }
