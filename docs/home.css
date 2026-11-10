@@ -154,3 +154,16 @@
   border: 1px dashed var(--line);
   border-radius: var(--radius-sm);
 }
+
+/* =========================================================
+   4. Footer
+   ========================================================= */
+
+.site-footer {
+  padding: 24px 20px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
