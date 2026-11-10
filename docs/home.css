@@ -1,0 +1,156 @@
+/* =========================================================
+   Home page
+   Hero, quick-start cards and the about section.
+   Shared tokens (colors, spacing, buttons) come from theme.css.
+   ========================================================= */
+
+.home-main {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  width: min(var(--page-width), 100%);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) 20px clamp(40px, 6vw, 72px);
+}
+
+/* =========================================================
+   1. Hero
+   ========================================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 56px);
+  color: #fff;
+  background: linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 55%, var(--green-700) 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Soft light bloom in the corner */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 70%);
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .eyebrow { color: var(--green-100); }
+
+.hero h1 {
+  max-width: 18ch;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.hero-text {
+  max-width: 56ch;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Invert the buttons so they stand out on the dark hero */
+.hero .btn-primary {
+  color: var(--green-900);
+  background: #fff;
+}
+
+.hero .btn-primary:hover { background: var(--green-50); }
+
+.hero .btn-secondary {
+  color: #fff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero .btn-secondary:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fff;
+}
+
+/* =========================================================
+   2. Quick-start cards
+   ========================================================= */
+
+.step-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.step-card:hover {
+  border-color: var(--green-100);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.step-card h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.step-card p {
+  flex: 1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.step-link {
+  color: var(--green-700);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.step-link:hover { text-decoration: underline; }
+
+/* =========================================================
+   3. About
+   ========================================================= */
+
+.about p {
+  max-width: 70ch;
+  color: var(--ink-soft);
+}
+
+.about h3 { margin-top: 24px; }
+
+/* Placeholder until the team photo is added */
+.team-note {
+  margin: 0;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  background: var(--green-50);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+}

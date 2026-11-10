@@ -1,0 +1,295 @@
+/* =========================================================
+   Build SJ — shared theme
+   Design tokens, page shell (header + nav) and shared pieces
+   (buttons, panels) used by every page.
+
+   Page-specific styles live in:
+     home.css       -> home page
+     website.css    -> map page + the Folium map
+     checklist.css  -> preparation checklist
+   ========================================================= */
+
+:root {
+  /* Brand palette: deep forest green -> fresh leaf */
+  --green-950: #06251a;
+  --green-900: #0a3b2a;
+  --green-800: #0f5138;
+  --green-700: #146c46;
+  --green-600: #1a8a58;
+  --green-500: #22a86b;
+  --green-100: #d7ebdf;
+  --green-50:  #f1f8f4;
+
+  /* Neutrals */
+  --ink: #10241b;
+  --ink-soft: #3f5349;
+  --muted: #6b7d73;
+  --line: #dbe5df;
+  --surface: #ffffff;
+  --page: #f2f6f3;
+
+  /* Shape, depth, rhythm */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(6, 37, 26, 0.06), 0 4px 12px rgba(6, 37, 26, 0.05);
+  --shadow-md: 0 12px 32px rgba(6, 37, 26, 0.12);
+  --header-height: 64px;
+  --page-width: 1080px;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+/* =========================================================
+   1. Base
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  color: var(--green-950);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 2.6rem); }
+h2 { font-size: clamp(1.25rem, 2.2vw, 1.5rem); }
+h3 { font-size: 1.05rem; }
+
+p { margin: 0 0 1em; }
+
+a { color: var(--green-700); }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--green-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--green-100);
+  color: var(--green-950);
+}
+
+/* =========================================================
+   2. Small shared helpers
+   ========================================================= */
+
+/* Small uppercase label above a heading */
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--green-600);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Intro paragraph */
+.lead {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+/* White content card */
+.panel {
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================
+   3. Page shell: header + navigation
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, var(--green-900), var(--green-800));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(6, 37, 26, 0.18);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(var(--page-width), 100%);
+  min-height: var(--header-height);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Brand — the dot replaces a logo image for now */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 4px rgba(34, 168, 107, 0.25);
+}
+
+.brand:hover { opacity: 0.85; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Active tab — each page sets one body class, so no JavaScript is needed */
+.home-page .nav-home,
+.map-page .nav-map,
+.checklist-page .nav-checklist {
+  color: var(--green-900);
+  background: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(6, 37, 26, 0.18);
+}
+
+/* Keep the active tab solid while hovered */
+.home-page .nav-home:hover,
+.map-page .nav-map:hover,
+.checklist-page .nav-checklist:hover {
+  color: var(--green-900);
+  background: #fff;
+}
+
+/* =========================================================
+   4. Buttons
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.btn-primary {
+  color: #fff;
+  background: var(--green-700);
+  box-shadow: 0 6px 18px rgba(15, 81, 56, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--green-800);
+  box-shadow: 0 10px 22px rgba(15, 81, 56, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  color: var(--green-800);
+  background: #fff;
+  border-color: var(--line);
+}
+
+.btn-secondary:hover {
+  color: var(--green-700);
+  border-color: var(--green-500);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   5. Responsive + accessibility
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 7px 12px;
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    transform: none !important;
+  }
+}

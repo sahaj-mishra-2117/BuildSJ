@@ -1,686 +1,174 @@
+/* =========================================================
+   Preparation checklist
+   Progress panel + grouped task cards.
+   Shared tokens (colors, spacing, panels) come from theme.css.
+   ========================================================= */
 
-/* =========================================
-   EMERGENCY PREPAREDNESS CHECKLIST
-   REVISED STYLESHEET
-   ========================================= */
-
-
-/* =========================================
-   1. ROOT VARIABLES
-   ========================================= */
-
-:root {
-    --brand: #107aa7;
-    --brand-dark: #08638a;
-
-    --bg1: #0f2a44;
-    --bg2: #082033;
-
-    --card: rgba(255, 255, 255, 0.90);
-
-    --muted: #64748b;
-    --text: #0f172a;
-
-    --border: #e2e8f0;
-
-    --success: #15803d;
-
-    --radius: 14px;
+.checklist-main {
+  display: grid;
+  gap: 20px;
+  width: min(880px, 100%);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) 20px clamp(48px, 7vw, 80px);
 }
 
+/* =========================================================
+   1. Progress panel
+   ========================================================= */
 
-/* =========================================
-   2. GENERAL PAGE STYLING
-   ========================================= */
+.progress-panel h1 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); }
 
-* {
-    box-sizing: border-box;
+.progress-panel .lead { margin-bottom: 22px; }
+
+.progress-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
 }
 
-html {
-    min-height: 100%;
-    scroll-behavior: smooth;
+.progress-text {
+  color: var(--green-800);
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-
-    font-family: -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, Arial, sans-serif;
-
-    color: white;
-
-    /* Forest background */
-    background-image:
-        linear-gradient(
-            rgba(8, 32, 51, 0.18),
-            rgba(8, 32, 51, 0.18)
-        ),
-        url("1080p_HBK_autumn-morning_GI.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    background-color: #183d29;
-}
-
-
-/* =========================================
-   3. SITE TITLE
-   ========================================= */
-
-.site-title,
-.site-title:link,
-.site-title:visited,
-.site-title:hover,
-.site-title:active {
-    color: white !important;
-    text-decoration: none !important;
-    border-bottom: none !important;
-    cursor: pointer;
-}
-
-.site-title h1 {
-    color: white;
-    text-decoration: none !important;
-    margin: 5px 0;
-
-    transition: opacity 0.2s ease;
-}
-
-.site-title:hover h1 {
-    opacity: 0.8;
-}
-
-
-/* ===== Header and navigation ===== */
-
-header {
-    background: #12351F;
-    padding: 20px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-nav {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: nowrap;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: nowrap;
-}
-
-/* =========================================
-   5. GENERAL BUTTON STYLING
-   ========================================= */
-
-button {
-    background: rgba(255,255,255,0.08);
-    color: white;
-
-    border: 1px solid rgba(255,255,255,0.55);
-    border-radius: 8px;
-
-    padding: 10px 18px;
-
-    font: inherit;
-    font-size: 15px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-button:hover {
-    background: rgba(255,255,255,0.18);
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 5px 14px rgba(0,0,0,0.12);
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-
-/* Keyboard accessibility */
-
-button:focus-visible,
-input:focus-visible,
-a:focus-visible {
-    outline: 3px solid #facc15;
-    outline-offset: 3px;
-}
-
-
-/* =========================================
-   6. NAVIGATION BUTTONS
-   ========================================= */
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    gap: 18px;
-}
-
-.navbar button,
-.navbar a {
-    background: rgba(255,255,255,0.08);
-
-    color: white;
-
-    border: 2px solid white;
-    border-radius: 10px;
-
-    padding: 12px 24px;
-
-    font-size: 17px;
-    font-weight: 600;
-
-    text-decoration: none;
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.navbar button:hover,
-.navbar a:hover {
-    background: white;
-    color: var(--brand-dark);
-
-    transform: translateY(-2px);
-}
-
-
-/* Map button */
-
-.navbar .map-button {
-    background: rgba(255,255,255,0.12);
-    min-width: 156px;
-}
-
-
-/* Preparation Checklist button */
-
-.navbar .checklist-button {
-    min-width: 240px;
-}
-
-
-/* =========================================
-   7. MAIN CONTENT PANEL
-   ========================================= */
-
-.content {
-    width: min(960px, calc(100% - 32px));
-
-    margin: 32px auto;
-
-    padding: clamp(20px, 4vw, 36px);
-
-    color: var(--text);
-
-    background: rgba(255,255,255,0.90);
-
-    border: 1px solid rgba(255,255,255,0.6);
-
-    border-radius: 18px;
-
-    box-shadow: 0 18px 45px rgba(0,0,0,0.18);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-
-/* =========================================
-   8. CONTENT HEADINGS AND TEXT
-   ========================================= */
-
-.content h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-
-    color: #0f2a44;
-
-    font-size: clamp(23px, 3vw, 30px);
-    line-height: 1.3;
-}
-
-.content h3 {
-    color: #163c58;
-    margin-bottom: 8px;
-}
-
-.content p {
-    color: #475569;
-    line-height: 1.6;
-}
-
-
-/* =========================================
-   9. CHECKLIST LAYOUT
-   ========================================= */
-
-.checklist {
-    display: grid;
-    gap: 12px;
-
-    margin-top: 22px;
-    margin-left: 0;
-
-    padding-left: 0;
-
-    list-style: none;
-}
-
-.checklist ul,
-.checklist ol {
-    margin-left: 0;
-    padding-left: 0;
-
-    list-style: none;
-}
-
-
-/* Individual checklist cards */
-
-.checklist-item {
-    display: flex;
-    align-items: flex-start;
-
-    gap: 14px;
-
-    margin-left: 0;
-
-    padding: 16px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    background: rgba(255,255,255,0.94);
-
-    box-shadow: 0 2px 6px rgba(15,23,42,0.03);
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-/* Checklist hover effect */
-
-.checklist-item:hover {
-    border-color: #9bcde0;
-
-    background: #f8fcff;
-
-    box-shadow: 0 5px 14px rgba(15,23,42,0.07);
-
-    transform: translateY(-1px);
-}
-
-
-/* =========================================
-   10. CHECKBOXES
-   ========================================= */
-
-.checklist-item input[type="checkbox"] {
-    flex-shrink: 0;
-
-    width: 22px;
-    height: 22px;
-
-    margin: 2px 0 0;
-
-    accent-color: var(--brand);
-
-    cursor: pointer;
-}
-
-
-/* Checklist labels */
-
-.checklist-item label {
-    flex: 1;
-
-    color: var(--text);
-
-    font-size: 15px;
-    line-height: 1.7;
-
-    cursor: pointer;
-
-    transition: color 0.2s ease;
-}
-
-
-/* Highlight completed checklist cards */
-
-.checklist-item:has(input[type="checkbox"]:checked) {
-    background: #f0fdf4;
-
-    border-color: #86efac;
-
-    box-shadow: 0 3px 10px rgba(22,163,74,0.08);
-}
-
-
-/* Cross out completed tasks */
-
-.task-item:checked + label {
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-
-    color: #64748b;
-
-    font-style: normal;
-}
-
-
-/* =========================================
-   11. METADATA
-   ========================================= */
-
-.meta {
-    color: var(--muted);
-
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-
-/* =========================================
-   12. TAB BUTTONS
-   ========================================= */
-
-.tab-button {
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.tab-button:hover {
-    cursor: pointer;
-    transform: translateY(-2px);
-}
-
-
-/* =========================================
-   13. PROGRESS BAR
-   ========================================= */
+/* =========================================================
+   2. Progress bar
+   The states below are added/removed by script.js.
+   One --fill variable keeps both browser sets in sync.
+   ========================================================= */
 
 progress {
-    display: block;
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  background: var(--green-100);
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  -webkit-appearance: none;
 
-    width: 100%;
-    height: 12px;
-
-    margin: 12px 0 18px;
-
-    overflow: hidden;
-
-    appearance: none;
-    -webkit-appearance: none;
-
-    border: none;
-    border-radius: 999px;
-
-    background: #e2e8f0;
+  --fill: var(--green-700);
 }
-
-
-/* Progress bar background */
 
 progress::-webkit-progress-bar {
-    background: #e2e8f0;
-    border-radius: 999px;
+  background: var(--green-100);
+  border-radius: 999px;
 }
 
-
-/* Default filled portion */
-
 progress::-webkit-progress-value {
-    background: var(--brand);
-
-    border-radius: 999px;
-
-    transition: width 0.35s ease;
+  background: var(--fill);
+  border-radius: 999px;
+  transition: width 0.35s ease, background 0.35s ease;
 }
 
 progress::-moz-progress-bar {
-    background: var(--brand);
-    border-radius: 999px;
+  background: var(--fill);
+  border-radius: 999px;
 }
 
+/* Green ramp: pale green -> bright green as tasks are completed */
+progress.not-started    { --fill: #a9cdb9; }
+progress.below-halfway  { --fill: #7cc79a; }
+progress.halfway-past   { --fill: #46b177; }
+progress.almost-done    { --fill: var(--green-600); }
+progress.complete       { --fill: var(--green-500); }
 
-/* Green: completed */
+/* =========================================================
+   3. Task sections
+   ========================================================= */
 
-progress.complete::-webkit-progress-value {
-    background: #16a34a;
+.checklist-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.15rem;
 }
 
-progress.complete::-moz-progress-bar {
-    background: #16a34a;
+/* Short green rule beside each section title */
+.checklist-section h2::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 4px;
+  height: 18px;
+  background: var(--green-600);
+  border-radius: 999px;
 }
 
-
-/* Yellow-green: almost done */
-
-progress.almost-done::-webkit-progress-value {
-    background: #84cc16;
+.checklist {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-progress.almost-done::-moz-progress-bar {
-    background: #84cc16;
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: background 0.18s ease, border-color 0.18s ease;
 }
 
-
-/* Yellow: halfway */
-
-progress.halfway-past::-webkit-progress-value {
-    background: #eab308;
+.checklist-item:hover {
+  background: var(--green-50);
+  border-color: var(--green-100);
 }
 
-progress.halfway-past::-moz-progress-bar {
-    background: #eab308;
+.checklist-item input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--green-600);
+  cursor: pointer;
 }
 
-
-/* Orange: below halfway */
-
-progress.below-halfway::-webkit-progress-value {
-    background: #f97316;
+.checklist-item label {
+  flex: 1;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  cursor: pointer;
 }
 
-progress.below-halfway::-moz-progress-bar {
-    background: #f97316;
+/* Completed task: soft green card, muted crossed-out text */
+.checklist-item:has(input:checked) {
+  background: var(--green-50);
+  border-color: var(--green-100);
 }
 
-
-/* Red: not started */
-
-progress.not-started::-webkit-progress-value {
-    background: #dc2626;
+.checklist-item:has(input:checked) label {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(107, 125, 115, 0.5);
 }
 
-progress.not-started::-moz-progress-bar {
-    background: #dc2626;
-}
+/* =========================================================
+   4. Small screens
+   ========================================================= */
 
+@media (max-width: 560px) {
+  .checklist-main { padding: 20px 14px 48px; }
 
-/* =========================================
-   14. SUBMIT BUTTON
-   ========================================= */
-
-.submit-button {
-    display: block;
-
-    width: fit-content;
-
-    justify-content: center;
-    align-items: center;
+  .progress-row {
+    grid-template-columns: 1fr;
     gap: 8px;
+  }
 
-    min-height: 46px;
+  .checklist-item {
+    padding: 11px 12px;
+    gap: 10px;
+  }
 
-    margin: 24px auto 0;
-
-    padding: 12px 24px;
-
-    color: white;
-
-    background: var(--brand);
-
-    border: none;
-    border-radius: 9px;
-
-    font-size: 16px;
-    font-weight: 700;
-
-    box-shadow: 0 4px 10px rgba(16,122,167,0.2);
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.submit-button:hover {
-    background: var(--brand-dark);
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 7px 16px rgba(16,122,167,0.25);
-}
-
-
-/* =========================================
-   15. ADDITIONAL VISUAL DETAILS
-   ========================================= */
-
-::selection {
-    background: var(--brand);
-    color: white;
-}
-
-
-/* =========================================
-   16. MOBILE RESPONSIVENESS
-   ========================================= */
-
-@media (max-width: 600px) {
-
-    header {
-        padding: 14px 16px;
-    }
-
-    nav {
-        align-items: stretch;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .nav-links {
-        width: 100%;
-        gap: 8px;
-    }
-
-    .navbar {
-        width: 100%;
-
-        flex-direction: column;
-        align-items: stretch;
-
-        gap: 10px;
-    }
-
-    .navbar button,
-    .navbar a {
-        width: 100%;
-        min-width: 0;
-
-        padding: 12px;
-
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .content {
-        width: calc(100% - 20px);
-
-        margin: 18px auto;
-
-        padding: 20px 16px;
-
-        border-radius: 14px;
-    }
-
-    .checklist {
-        gap: 10px;
-    }
-
-    .checklist-item {
-        padding: 13px;
-        gap: 11px;
-    }
-
-    .checklist-item label {
-        font-size: 14px;
-    }
-
-    .submit-button {
-        width: 100%;
-    }
-}
-
-
-/* =========================================
-   17. REDUCED-MOTION ACCESSIBILITY
-   ========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transform: none !important;
-    }
+  .checklist-item label { font-size: 0.9rem; }
 }
