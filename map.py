@@ -135,16 +135,26 @@ def main():
         )
 
         # Creates tiles, which are the many small square images that the map will stitch together.
-        # Positron is a quiet, light basemap, so the hazard colours stay the star of the show.
+        #
+        # These used to come from CARTO (the pale "Positron" style). On 25 September 2026 CARTO
+        # stopped serving those tiles without an API key, so every square came back stamped
+        # "API KEY REQUIRED" and the map had no background at all.
+        # We now use the standard OpenStreetMap tiles: they are free, they need no key, and there
+        # is nothing to sign up for that could expire later. The trade-off is a busier picture
+        # (green parks, yellow main roads), so the hazard colours stand out a bit less than they
+        # did on the plain grey background.
+        #
+        # OpenStreetMap's tile rules are simple: keep the credit line visible (the "attr" below
+        # does that) and don't send them huge amounts of traffic. A neighborhood club site is well
+        # within that, but if this ever gets genuinely busy we should move to paid or self-hosted
+        # tiles. Rules: https://operations.osmfoundation.org/policies/tiles/
         folium.TileLayer(
-            tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-            attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; CARTO',
+            tiles="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             name="Base map",
             overlay=False,
             control=False,
             max_zoom=19,
-            subdomains="abcd",
-            detect_retina=True,
         ).add_to(sj_map)
 
         # Keeping the map inside District 10, now and after any pan/zoom.
