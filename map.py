@@ -88,9 +88,9 @@ def map_highlight(feature):
 
 def neighborhood_style(feature):
     return {
-        "color": "#475569",   # Border color
-        "weight": 1.1,        # Border thickness
-        "opacity": 0.55,
+        "color": "#1d4ed8",   # Border color
+        "weight": 3,        # Border thickness
+        "opacity": 0.90,
         "fillOpacity": 0,     # Transparent fill, so the map underneath stays visible
         "dashArray": "5, 6",
         "lineCap": "round",
