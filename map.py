@@ -136,18 +136,12 @@ def main():
 
         # Creates tiles, which are the many small square images that the map will stitch together.
         #
-        # These used to come from CARTO (the pale "Positron" style). On 25 September 2026 CARTO
-        # stopped serving those tiles without an API key, so every square came back stamped
-        # "API KEY REQUIRED" and the map had no background at all.
-        # We now use the standard OpenStreetMap tiles: they are free, they need no key, and there
-        # is nothing to sign up for that could expire later. The trade-off is a busier picture
-        # (green parks, yellow main roads), so the hazard colours stand out a bit less than they
-        # did on the plain grey background.
+        # CARTO made it so we need API keys 
+        # use the standard OpenStreetMap tiles - are free and need no key
         #
-        # OpenStreetMap's tile rules are simple: keep the credit line visible (the "attr" below
-        # does that) and don't send them huge amounts of traffic. A neighborhood club site is well
-        # within that, but if this ever gets genuinely busy we should move to paid or self-hosted
-        # tiles. Rules: https://operations.osmfoundation.org/policies/tiles/
+        #  the openstreet map doesn't do well w/ too much traffic to the website so if it ever gets genuinely busy
+        #  we should move to paid or self-hosted tiles
+        #  Rules: https://operations.osmfoundation.org/policies/tiles/
         folium.TileLayer(
             tiles="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
             attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
