@@ -86,15 +86,24 @@ def map_highlight(feature):
     return style
 
 
-def neighborhood_style(feature):
+def neighborhood_halo_style(feature):
     return {
-        "color": "#1d4ed8",   # Border color
-        "weight": 3,        # Border thickness
-        "opacity": 0.90,
-        "fillOpacity": 0,     # Transparent fill, so the map underneath stays visible
-        "dashArray": "5, 6",
-        "lineCap": "round",
-    }
+            "color": "#ffffff",
+            "weight": 6,
+            "opacity": 0.9,
+            "fill": False,
+            "lineCap": "round",
+            "lineJoin": "round"
+            }
+
+
+def neighborhood_style(feature):
+    return {"color": "#1d4ed8", "weight": 3, "opacity": 0.95, "fill": False,
+            "dashArray": "", "lineCap": "round", "lineJoin": "round"}
+
+
+def neighborhood_highlight(feature):
+    return {"color": "#1e3a8a", "weight": 5, "opacity": 1}
 
 
 TITLE_HTML = """
@@ -189,16 +198,18 @@ def main():
         ).add_to(sj_map)
 
         # Add the neighborhood boundaries to the map
+        hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley"])
+
         folium.GeoJson(
-            get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley"]),
-            name="Neighborhood boundaries",
-            style_function=neighborhood_style,
-            smooth_factor=1.5,
+            hoods, name="Neighborhood halo", style_function=neighborhood_halo_style,
+            smooth_factor=1.5, control=False,
+        ).add_to(sj_map)
+
+        folium.GeoJson(
+            hoods, name="Neighborhood boundaries", style_function=neighborhood_style,
+            highlight_function=neighborhood_highlight, smooth_factor=1.5,
             tooltip=folium.GeoJsonTooltip(
-                fields=["NAME"],
-                aliases=["Neighborhood: "],
-                sticky=True,
-                opacity=1,
+                fields=["NAME"], aliases=["Neighborhood: "], sticky=True, opacity=1,
             ),
         ).add_to(sj_map)
 
