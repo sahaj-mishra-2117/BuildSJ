@@ -198,7 +198,7 @@ def main():
         ).add_to(sj_map)
 
         # Add the neighborhood boundaries to the map
-        hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley"])
+        hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley", "Almaden Valley"])
 
         folium.GeoJson(
             hoods, name="Neighborhood halo", style_function=neighborhood_halo_style,
