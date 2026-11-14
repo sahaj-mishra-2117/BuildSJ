@@ -95,6 +95,33 @@ def map_highlight(feature):
     return style
 
 
+# Each neighborhood gets its own boundary color so the three are easy to tell apart.
+# The display name is changed here only; neighborhoods.geojson keeps its source names.
+NEIGHBORHOOD_LABELS = {"Almaden Valley": "Greater Almaden Valley"}
+NEIGHBORHOOD_COLORS = {
+    "Greater Almaden Valley": "#000000",  # black
+    "Santa Teresa": "#000080",            # navy blue
+    "Blossom Valley": "#006400",          # dark green
+}
+NEIGHBORHOOD_FALLBACK_COLOR = "#000000"
+
+
+def load_neighborhoods():
+    hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley", "Almaden Valley"])
+    for feature in hoods.get("features", []):
+        properties = feature.get("properties") or {}
+        name = properties.get("NAME")
+        if name in NEIGHBORHOOD_LABELS:
+            properties["NAME"] = NEIGHBORHOOD_LABELS[name]
+    return hoods
+
+
+def _neighborhood_color(feature):
+    return NEIGHBORHOOD_COLORS.get(
+        feature["properties"].get("NAME"), NEIGHBORHOOD_FALLBACK_COLOR
+    )
+
+
 def neighborhood_halo_style(feature):
     return {
             "color": "#ffffff",
@@ -107,12 +134,12 @@ def neighborhood_halo_style(feature):
 
 
 def neighborhood_style(feature):
-    return {"color": "#000000", "weight": 3, "opacity": 0.95, "fill": False,
+    return {"color": _neighborhood_color(feature), "weight": 3, "opacity": 0.95, "fill": False,
             "dashArray": "", "lineCap": "round", "lineJoin": "round"}
 
 
 def neighborhood_highlight(feature):
-    return {"color": "#000000", "weight": 5, "opacity": 1}
+    return {"color": _neighborhood_color(feature), "weight": 5, "opacity": 1}
 
 
 TITLE_HTML = """
@@ -207,7 +234,7 @@ def main():
         ).add_to(sj_map)
 
         # Add the neighborhood boundaries to the map
-        hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley", "Almaden Valley"])
+        hoods = load_neighborhoods()
         neighborhood_group = folium.FeatureGroup(name="Neighborhood boundaries").add_to(sj_map)
 
         folium.GeoJson(
