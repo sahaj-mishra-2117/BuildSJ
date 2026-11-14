@@ -7,12 +7,10 @@
 /* =========================================================
    1. HERO SECTION
    ========================================================= */
-/* Page background: a flat neutral surface.
-   A stock watercolour-leaf image used to sit here. Removing it keeps the
-   green hero and the white panels as the only colour on the page, which is
-   what makes a site look like an official resource instead of a template. */
+/* Page background: watercolour leaf image supplied by the team */
 .home-page {
-    background: var(--page);
+  background-image: url("https://static.vecteezy.com/system/resources/previews/016/807/599/non_2x/beautiful-green-leaf-background-watercolor-vector.jpg");
+
 }
 .hero {
     position: relative;
