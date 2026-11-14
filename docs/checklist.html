@@ -226,7 +226,12 @@
        The option's data-url is the destination; data-label is the URL text. */
     const listbox = document.getElementById('links1');
     var linkLabel = null;
-    
+    linkLabel = document.createElement('a');
+    linkLabel.textContent = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans";
+    linkLabel.href = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans";
+    linkLabel.target = '_blank';
+    linkLabel.rel = 'noopener noreferrer';
+    listbox.insertAdjacentElement('afterend', linkLabel);
     
     listbox.addEventListener('change', function () {
         // Get selected option
