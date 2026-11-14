@@ -10,7 +10,11 @@
 /* Page background: watercolour leaf image supplied by the team */
 .home-page {
   background-image: url("https://static.vecteezy.com/system/resources/previews/016/807/599/non_2x/beautiful-green-leaf-background-watercolor-vector.jpg");
-
+.hi{
+display: flex;
+  gap: 10px; /* Adds space between the two elements */
+  align-items: center; /* Vertically aligns them */
+}
 }
 .hero {
     position: relative;
@@ -210,6 +214,7 @@
    It previously said `green` — a raw CSS colour that ignored the theme. */
 .about h2 {
     color: var(--green-900);
+    text-align: center;
 }
 
 
@@ -405,4 +410,12 @@
     .hero-actions {
         flex-wrap: wrap;
     }
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
