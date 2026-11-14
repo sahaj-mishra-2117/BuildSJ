@@ -101,12 +101,12 @@ def neighborhood_halo_style(feature):
 
 
 def neighborhood_style(feature):
-    return {"color": "#006400", "weight": 3, "opacity": 0.95, "fill": False,
+    return {"color": "#000000", "weight": 3, "opacity": 0.95, "fill": False,
             "dashArray": "", "lineCap": "round", "lineJoin": "round"}
 
 
 def neighborhood_highlight(feature):
-    return {"color": "#006400", "weight": 5, "opacity": 1}
+    return {"color": "#000000", "weight": 5, "opacity": 1}
 
 
 TITLE_HTML = """
@@ -166,7 +166,7 @@ def main():
         # Keeping the map inside District 10, now and after any pan/zoom.
         sj_map.options["maxBounds"] = MAX_BOUNDS
         sj_map.options["maxBoundsViscosity"] = 1.0
-        sj_map.options["minZoom"] = 12
+        sj_map.options["minZoom"] = 11
         # Adding the search tool (uses the Photon geocoding service)
         # Will have to check usage rights for Photon later
         Geocoder(
