@@ -142,6 +142,7 @@
 .about p {
   max-width: 150ch;
   color: var(--ink-soft);
+  text-align: center;
 }
 
 .about h3 { margin-top: 24px; }
@@ -170,18 +171,51 @@
   border-top: 1px solid var(--line);
 }
 
-/* ===== CENTER ABOUT US SECTION ===== */
 
-.about-section {
-    text-align: center;
+/* ===== HOMEPAGE TWO-COLUMN LAYOUT ===== */
+
+.home-content-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    align-items: start;
+    margin: 35px 22px;
 }
 
-.about-section p {
-    max-width: 800px;
-    margin: 0 auto 25px;
-    line-height: 1.8;
+/* LEFT: ABOUT US */
+
+.about-column {
+    min-width: 0;
 }
 
-.about-section h2 {
-    text-align: center;
+.about-column .about-section {
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* RIGHT: THREE CARDS */
+
+.cards-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* Make cards fill the right column */
+
+.cards-column > * {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 768px) {
+    .home-content-layout {
+        grid-template-columns: 1fr;
+        margin: 20px;
+    }
 }
