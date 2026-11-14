@@ -5,6 +5,7 @@
 
 import colorsys
 import json
+import re
 from pathlib import Path
 
 import folium
@@ -159,13 +160,21 @@ def _distinct_colors(count):
     return colors
 
 
+# Google My Maps names end in "NA" / "NAC" (neighborhood association).
+# Strip that suffix for the tooltip only; NAME stays the key for colors and styling.
+def _display_name(name):
+    return re.sub(r"\s+N\.?A\.?C?\.?$", "", name, flags=re.IGNORECASE).strip()
+
+
 # Read the pre-filtered GeoJSON and tag every neighborhood with its own color.
 # (HOAs, apartments, mobile homes, senior housing, and clubs were removed already.)
 def load_specific_neighborhoods():
     data = json.loads(SPECIFIC_NEIGHBORHOODS_PATH.read_text(encoding="utf-8"))
     features = data.get("features", [])
     for feature, color in zip(features, _distinct_colors(len(features))):
-        feature.setdefault("properties", {})["COLOR"] = color
+        properties = feature.setdefault("properties", {})
+        properties["COLOR"] = color
+        properties["LABEL"] = _display_name(properties.get("NAME", ""))
     return data
 
 
@@ -309,7 +318,7 @@ def main():
             style_function=specific_neighborhood_style,
             highlight_function=specific_neighborhood_highlight, smooth_factor=1.5,
             tooltip=folium.GeoJsonTooltip(
-                fields=["NAME"], aliases=["Neighborhood: "], sticky=True, opacity=1,
+                fields=["LABEL"], aliases=["Neighborhood: "], sticky=True, opacity=1,
             ),
         ).add_to(specific_group)
 
