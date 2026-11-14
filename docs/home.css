@@ -142,7 +142,7 @@
 .about p {
   max-width: 150ch;
   color: var(--ink-soft);
-  text-align: center;
+  
 }
 
 .about h3 { margin-top: 24px; }
