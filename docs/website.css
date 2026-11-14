@@ -84,6 +84,8 @@
 .map-legend h2 {
   margin: 0 0 10px;
   color: var(--green-700);
+  /* Small uppercase label: stays in the sans face, not the serif headings */
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;

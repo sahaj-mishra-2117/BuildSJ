@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preparation Checklist | Build SJ</title>
     <meta name="description" content="Wildfire evacuation checklist for San Jose District 10 residents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="checklist.css">
     <script src="script.js" defer></script>
@@ -191,28 +194,36 @@
                     <label for="check_item31">Cover up to protect against heat and flying embers. Wear a long-sleeve shirt, long pants, heavy shoes, a cap, a bandana to cover your face, and goggles or glasses to protect the eyes.</label>
                 </li>
                 <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item31" name="checked" value="true">
-                    <label for="check_item31">If possible, wear clothes made from cotton as it reduces risk of clothes melting.</label>
+                    <!-- This item reused id="check_item31" from the item above, so the label
+                         toggled the wrong checkbox. It has its own id now. -->
+                    <input type="checkbox" class="task-item" id="check_item34" name="checked" value="true">
+                    <label for="check_item34">If possible, wear clothes made from cotton as it reduces risk of clothes melting.</label>
                 </li>
             </ul>
         </section>
         <section class="panel checklist-section">
-            <h2>Resource Links</h2>
-            <ul>   
+            <h2>Resource links</h2>
+            <!-- One dropdown of official outside pages. script.js turns the
+                 chosen option into a link underneath it (see the script below).
+                 The label's `for` now points at the select's id, so clicking
+                 the label focuses the dropdown. -->
+            <ul class="resource-list">
                 <li>
-                <label for="resource-links">General Use Links</label>
-                <select name ="GeneralUseLinks" id = "links1" >
-                    <option value = "genUseLink1" data-label = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans" data-url = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans">San Jose Emergency Plans</option>
-                    <option value = "genUseLink2" data-label = "https://app.watchduty.org/" data-url = "https://app.watchduty.org/">Fire Watch</option>
-                    <option value = "genUseLink3" data-label = "https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed" data-url = "https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed">Traffic Map</option>
-                    <option value = "genUseLink4" data-label = "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html" data-url = "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html">Red Cross Download Info</option>
-                    <option value = "genUseLink5" data-label = "https://www.sanjoseca.gov/your-government/departments-offices/fire-department" data-url = "https://www.sanjoseca.gov/your-government/departments-offices/fire-department">San Jose Fire Station</option>
-                </select>
+                    <label for="links1">General use links</label>
+                    <select name="GeneralUseLinks" id="links1">
+                        <option value="genUseLink1" data-label="https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans" data-url="https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans">San Jose Emergency Plans</option>
+                        <option value="genUseLink2" data-label="https://app.watchduty.org/" data-url="https://app.watchduty.org/">Fire Watch</option>
+                        <option value="genUseLink3" data-label="https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed" data-url="https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed">Traffic Map</option>
+                        <option value="genUseLink4" data-label="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html" data-url="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html">Red Cross Download Info</option>
+                        <option value="genUseLink5" data-label="https://www.sanjoseca.gov/your-government/departments-offices/fire-department" data-url="https://www.sanjoseca.gov/your-government/departments-offices/fire-department">San Jose Fire Station</option>
+                    </select>
                 </li>
             </ul>
         </section>
 
 <script>
+    /* Turns the dropdown choice into a clickable link underneath it.
+       The option's data-url is the destination; data-label is the URL text. */
     const listbox = document.getElementById('links1');
     var linkLabel = null;
     

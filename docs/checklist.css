@@ -3,8 +3,11 @@
    Progress panel + grouped task cards.
    Shared tokens (colors, spacing, panels) come from theme.css.
    ========================================================= */
-.checklist-page{
-  background-image: url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D");
+/* Flat neutral page background, matching the home page.
+   A full-bleed stock photo used to sit behind the checklist, which made the
+   task list harder to read. */
+.checklist-page {
+  background: var(--page);
 }
 
 .checklist-main {
@@ -35,6 +38,8 @@
   font-size: 0.9rem;
   font-weight: 600;
   white-space: nowrap;
+  /* Lining, equal-width digits so the percentage does not jitter as it counts */
+  font-variant-numeric: tabular-nums;
 }
 
 /* =========================================================
@@ -157,7 +162,48 @@ progress.complete       { --fill: var(--green-500); }
 }
 
 /* =========================================================
-   4. Small screens
+   4. Resource links
+   One dropdown that links out to official outside pages.
+   Styled here so it does not sit on the page as a raw browser control.
+   ========================================================= */
+
+.resource-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resource-list label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--green-800);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.resource-list select {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 12px;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+/* Link that script.js inserts under the dropdown once an option is chosen */
+.resource-list a {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.92rem;
+}
+
+/* =========================================================
+   5. Small screens
    ========================================================= */
 
 @media (max-width: 560px) {
@@ -174,4 +220,6 @@ progress.complete       { --fill: var(--green-500); }
   }
 
   .checklist-item label { font-size: 0.9rem; }
+
+  .resource-list select { max-width: 100%; }
 }

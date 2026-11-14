@@ -37,8 +37,18 @@
   --header-height: 64px;
   --page-width: 1450px;
 
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+  /* Typography
+     Two faces, one job each:
+       --font-sans  -> body copy, buttons, nav (Source Sans 3)
+       --font-serif -> headings and the brand name (Source Serif 4)
+     The system stack stays on the end of each list, so the site still looks
+     correct if Google Fonts is slow or blocked. */
+  --font-sans: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", "Source Serif Pro", Georgia,
+    "Times New Roman", serif;
+  /* Kept as an alias: existing rules use `var(--font)` for body text */
+  --font: var(--font-sans);
 }
 
 /* =========================================================
@@ -62,17 +72,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings use the serif face so the page has a clear editorial hierarchy.
+   Serifs are optically larger and tighter than sans, so this drops from 700 to
+   600 weight and relaxes the tracking we used for bold sans headlines. */
 h1,
 h2,
 h3 {
   margin: 0 0 0.5em;
   color: var(--green-950);
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  line-height: 1.22;
+  letter-spacing: -0.005em;
 }
 
-h1 { font-size: clamp(2rem, 4vw, 2.6rem); }
+h1 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
 h2 { font-size: clamp(1.25rem, 2.2vw, 1.5rem); }
 h3 { font-size: 1.05rem; }
 
@@ -100,13 +119,15 @@ img {
    2. Small shared helpers
    ========================================================= */
 
-/* Small uppercase label above a heading */
+/* Small uppercase label above a heading.
+   Wider-than-tight tracking is correct here, but 0.14em at weight 700 came
+   across as a template label — 0.1em at 600 is calmer. */
 .eyebrow {
   margin: 0 0 10px;
   color: var(--green-600);
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -156,9 +177,11 @@ img {
   align-items: center;
   gap: 10px;
   color: #fff;
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  /* Serif brand name: reads as an organisation, not a product logo */
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -180,9 +203,11 @@ img {
   gap: 4px;
 }
 
+/* Nav items use a small corner radius instead of fully rounded pills.
+   Squares and small radii read as "institution"; full pills read as "app". */
 .nav-link {
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.92rem;
   font-weight: 500;
@@ -196,14 +221,14 @@ img {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* Active tab — each page sets one body class, so no JavaScript is needed */
+/* Active tab — each page sets one body class, so no JavaScript is needed.
+   Solid white tab, no drop shadow: the colour swap alone marks the current page. */
 .home-page .nav-home,
 .map-page .nav-map,
 .checklist-page .nav-checklist {
   color: var(--green-900);
   background: #fff;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(6, 37, 26, 0.18);
 }
 
 /* Keep the active tab solid while hovered */
@@ -223,9 +248,10 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 22px;
+  padding: 11px 20px;
   border: 1px solid transparent;
-  border-radius: 999px;
+  /* Small radius, not a pill: matches the nav and the cards. */
+  border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 600;

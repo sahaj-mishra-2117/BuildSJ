@@ -225,6 +225,15 @@ def main():
 
         # After generating the map, we add our CSS file to style the map container
         # We can't add it to html directly because map generation changes everytime the script is run
+        # The site typefaces go in first so the map chrome matches the other pages.
+        # If you change the font list here, change it in the HTML pages too.
+        sj_map.get_root().header.add_child(
+            folium.Element(
+                '<link rel="preconnect" href="https://fonts.googleapis.com"/>'
+                '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>'
+                '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap"/>'
+            )
+        )
         sj_map.get_root().header.add_child(
             folium.Element('<link rel="stylesheet" href="website.css"/>')
         )

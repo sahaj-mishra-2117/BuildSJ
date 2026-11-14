@@ -7,9 +7,12 @@
 /* =========================================================
    1. HERO SECTION
    ========================================================= */
+/* Page background: a flat neutral surface.
+   A stock watercolour-leaf image used to sit here. Removing it keeps the
+   green hero and the white panels as the only colour on the page, which is
+   what makes a site look like an official resource instead of a template. */
 .home-page {
-  background-image: url("https://static.vecteezy.com/system/resources/previews/016/807/599/non_2x/beautiful-green-leaf-background-watercolor-vector.jpg");
-
+    background: var(--page);
 }
 .hero {
     position: relative;
@@ -33,8 +36,8 @@
 
     color: #ffffff;
 
-    /* Uniform rounded corners */
-    border-radius: 22px;
+    /* Rounded corners, same radius token as the panels below */
+    border-radius: var(--radius-lg);
 
     /* Prevent overflow */
     box-sizing: border-box;
@@ -44,36 +47,8 @@
 }
 
 
-/* Soft light bloom in upper-right corner */
-
-.hero::after {
-    content: "";
-    position: absolute;
-
-    top: -80px;
-    right: -80px;
-
-    width: 320px;
-    height: 320px;
-
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.16),
-        transparent 70%
-    );
-
-    pointer-events: none;
-}
-
-
-/* Keep hero content above the glow */
-
-.hero > * {
-    position: relative;
-    z-index: 1;
-}
+/* No decorative glow / light bloom in the corner — it was pure decoration
+   and is one of the first things that reads as a generated landing page. */
 
 
 /* Small heading above main title */
@@ -187,10 +162,11 @@
 
 /* Card headings */
 
+/* Card headings are written in sentence case in the HTML, so no
+   text-transform is needed here — forcing capital letters looks generated. */
 .step-card h2 {
     margin: 0;
     font-size: 1.05rem;
-    text-transform: capitalize;
 }
 
 
@@ -223,38 +199,37 @@
    3. ABOUT US SECTION
    ========================================================= */
 
+/* About Us reads as normal body copy (left aligned) rather than a
+   centred marketing block, which is easier to read and looks calmer. */
 .about {
-    text-align: center;
+    text-align: left;
 }
 
 
 /* About Us heading */
 
+/* Uses the brand green from the palette.
+   It previously said `green` — a raw CSS colour that ignored the theme. */
 .about h2 {
-    color: green;
-    text-align: center;
-    text-transform: capitalize;
+    color: var(--green-900);
 }
 
 
 /* About Us paragraph */
 
 .about p {
-    max-width: 750px;
-    margin: 20px auto;
+    max-width: 68ch;
+    margin: 0 0 1em;
 
     color: var(--ink-soft);
-    line-height: 1.8;
-    text-align: center;
+    line-height: 1.65;
 }
 
 
 /* Meet Our Team heading */
 
 .about h3 {
-    margin-top: 30px;
-    text-align: center;
-    text-transform: capitalize;
+    margin-top: 28px;
 }
 
 
@@ -268,7 +243,7 @@
     height: auto;
 
     margin: 15px auto;
-    border-radius: 12px;
+    border-radius: var(--radius);
 }
 
 
@@ -340,14 +315,11 @@
 
 
 /* =========================================================
-   5. TITLE CASE FOR ALL HEADINGS
-   ========================================================= */
-
-.home-page h1,
-.home-page h2,
-.home-page h3 {
-    text-transform: capitalize;
-}
+   5. HEADINGS
+   =========================================================
+   Headings follow whatever case is written in the HTML (sentence case).
+   We used to force `text-transform: capitalize` on every heading, which
+   Title-Cased them all and looked automated. */
 
 
 /* =========================================================
