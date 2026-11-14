@@ -140,7 +140,7 @@ def main():
             zoom_start=13,
             min_zoom=12,
             max_zoom=18,
-            zoom_snap=0.5,          # half-step zooming feels smoother than whole steps
+            zoom_snap=0.1,
             max_bounds=True,
             control_scale=True,
             prefer_canvas=True,     # canvas draws the large hazard polygons far more smoothly
