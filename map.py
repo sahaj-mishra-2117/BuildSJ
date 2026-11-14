@@ -36,10 +36,12 @@ MAX_BOUNDS = [
 # Define the field and color mapping for fire hazard severity zones
 FIELD = "FIREHAZARDSEVERITYZONE"
 
+# CalFire calls this zone "NonWildland"; the map shows it as "Non-Hazard".
 # Calm -> severe, with the opacity each zone is drawn at.
-# NonWildland is almost transparent so it reads as "no hazard" instead of greying out the map.
+# Non-Hazard is almost transparent so it reads as "no hazard" instead of greying out the map.
+ZONE_LABELS = {"NonWildland": "Non-Hazard"}
 fire_colors = {
-    "NonWildland": ("#9aa5b1", 0.06),
+    "Non-Hazard": ("#9aa5b1", 0.06),
     "Moderate": ("#e0a300", 0.28),
     "High": ("#ef6c1a", 0.34),
     "Very High": ("#c1121f", 0.40),
@@ -57,6 +59,10 @@ def _round_coords(coords, digits=5):
 def load_fire_zones(path):
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     for feature in data.get("features", []):
+        properties = feature.get("properties") or {}
+        zone = properties.get(FIELD)
+        if zone in ZONE_LABELS:
+            properties[FIELD] = ZONE_LABELS[zone]
         geometry = feature.get("geometry") or {}
         if "coordinates" in geometry:
             geometry["coordinates"] = _round_coords(geometry["coordinates"])
@@ -123,7 +129,7 @@ LEGEND_HTML = """
     <li><span class="swatch" style="background:#c1121f"></span>Very High</li>
     <li><span class="swatch" style="background:#ef6c1a"></span>High</li>
     <li><span class="swatch" style="background:#e0a300"></span>Moderate</li>
-    <li><span class="swatch" style="background:#9aa5b1"></span>Not wildland</li>
+    <li><span class="swatch" style="background:#9aa5b1"></span>Non-Hazard</li>
   </ul>
 </div>
 """
