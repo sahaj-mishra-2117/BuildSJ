@@ -3,7 +3,9 @@
    Hero, quick-start cards and the about section.
    Shared tokens (colors, spacing, buttons) come from theme.css.
    ========================================================= */
-
+.home-page{
+   background-image: url('https://img.magnific.com/free-vector/leaves-background-with-metallic-foil_79603-914.jpg?semt=ais_hybrid&w=740&q=80');
+}
 .home-main {
   display: grid;
   gap: clamp(20px, 3vw, 32px);
