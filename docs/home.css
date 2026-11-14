@@ -219,3 +219,19 @@
         margin: 20px;
     }
 }
+
+/* ===== PUSH FOOTER TO BOTTOM ===== */
+
+.home-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-main {
+    flex: 1;
+}
+
+.site-footer {
+    margin-top: auto;
+}
