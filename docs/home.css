@@ -510,19 +510,20 @@ body {
     border-radius: 12px;
 }
 
-/* ===== MOVE SAN JOSE LOGO TO THE RIGHT ===== */
+/* ===== MOVE SAN JOSE LOGO FARTHER RIGHT ===== */
 
 .hero img {
     position: relative;
-    left: 70px;
+    left: 140px;
     max-width: 100%;
     height: auto;
 }
 
-/* Keep logo within screen on mobile */
+/* Mobile adjustment */
 
 @media (max-width: 768px) {
     .hero img {
         left: 0;
     }
 }
+
