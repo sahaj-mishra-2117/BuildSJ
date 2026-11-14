@@ -106,7 +106,7 @@ def neighborhood_style(feature):
 
 
 def neighborhood_highlight(feature):
-    return {"color": "#1e3a8a", "weight": 5, "opacity": 1}
+    return {"color": "#006400", "weight": 5, "opacity": 1}
 
 
 TITLE_HTML = """
