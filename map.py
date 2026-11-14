@@ -1,5 +1,8 @@
 # Builds the District 10 wildfire hazard map and writes it to docs/map.html.
 
+# IMPORTANT
+# Run py .\map.py to generate the map
+
 import json
 from pathlib import Path
 
@@ -199,11 +202,12 @@ def main():
 
         # Add the neighborhood boundaries to the map
         hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley", "Almaden Valley"])
+        neighborhood_group = folium.FeatureGroup(name="Neighborhood boundaries").add_to(sj_map)
 
         folium.GeoJson(
             hoods, name="Neighborhood halo", style_function=neighborhood_halo_style,
             smooth_factor=1.5, control=False,
-        ).add_to(sj_map)
+        ).add_to(neighborhood_group)
 
         folium.GeoJson(
             hoods, name="Neighborhood boundaries", style_function=neighborhood_style,
@@ -211,7 +215,7 @@ def main():
             tooltip=folium.GeoJsonTooltip(
                 fields=["NAME"], aliases=["Neighborhood: "], sticky=True, opacity=1,
             ),
-        ).add_to(sj_map)
+        ).add_to(neighborhood_group)
 
         # Frame the district itself rather than a city-wide view.
         sj_map.fit_bounds(
