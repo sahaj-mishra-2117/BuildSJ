@@ -221,3 +221,11 @@ progress.complete       { --fill: var(--green-500); }
 
   .resource-list select { max-width: 100%; }
 }
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
