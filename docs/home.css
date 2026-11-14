@@ -10,6 +10,7 @@
 /* Page background: watercolour leaf image supplied by the team */
 .home-page {
   background-image: url("https://static.vecteezy.com/system/resources/previews/016/807/599/non_2x/beautiful-green-leaf-background-watercolor-vector.jpg");
+  font-family
 .hi{
 display: flex;
   gap: 10px; /* Adds space between the two elements */
@@ -418,4 +419,94 @@ body {
     background-position: center center;
     background-attachment: fixed;
     min-height: 100vh;
+}
+
+/* =========================================
+   CENTER ABOUT US SECTION
+   ========================================= */
+
+/* Center all content inside About Us */
+
+.home-content-layout .about {
+    text-align: center !important;
+}
+
+/* Center About Us heading */
+
+.home-content-layout .about h2 {
+    text-align: center !important;
+    width: 100%;
+}
+
+/* Center About Us paragraph */
+
+.home-content-layout .about p {
+    text-align: center !important;
+    max-width: 750px;
+    margin: 20px auto !important;
+    line-height: 1.8;
+}
+
+/* Center Meet Our Team heading */
+
+.home-content-layout .about h3 {
+    text-align: center !important;
+    width: 100%;
+    margin: 30px auto 20px !important;
+}
+
+/* Center team picture */
+
+.home-content-layout .about img {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    margin: 20px auto !important;
+    border-radius: 12px;
+}
+
+/* =========================================
+   CENTER ABOUT US SECTION
+   ========================================= */
+
+/* Center all content inside About Us */
+
+.home-content-layout .about {
+    text-align: left !important;
+}
+
+/* Center About Us heading */
+
+.home-content-layout .about h2 {
+    text-align: center !important;
+    width: 100%;
+}
+
+/* Center About Us paragraph */
+
+.home-content-layout .about p {
+    text-align: center !important;
+    max-width: 750px;
+    margin: 20px auto !important;
+    line-height: 1.8;
+}
+
+/* Center Meet Our Team heading */
+
+.home-content-layout .about h3 {
+    text-align: center !important;
+    width: 100%;
+    margin: 30px auto 20px !important;
+}
+
+/* Center team picture */
+
+.home-content-layout .about img {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    margin: 20px auto !important;
+    border-radius: 12px;
 }
