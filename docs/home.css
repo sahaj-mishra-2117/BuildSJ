@@ -9,8 +9,7 @@
    ========================================================= */
 /* Page background: watercolour leaf image supplied by the team */
 .home-page {
-  background-image: url("https://static.vecteezy.com/system/resources/previews/016/807/599/non_2x/beautiful-green-leaf-background-watercolor-vector.jpg");
-  font-family
+  background-image: url("https://mail.google.com/mail/u/0/?ui=2&ik=e8cd60cca8&attid=0.1&permmsgid=msg-f:1881877866621244336&th=1a1dc5f2f6a113b0&view=fimg&fur=ip&permmsgid=msg-f:1881877866621244336&sz=s0-l75-ft&attbid=ANGjdJ-v8aPEmeA4ObLKXLfod2iG2sgvGelqtztUqk70DWtk8O2a2RYGm8oM5pxVFF58K8L_hOBQHZD7FVljyOaK8kuJ7hsPZgCIvCEvPRlRk6-uxvFrDI76yebIG1g&disp=emb&realattid=ii_mwh16uy70&zw");
 .hi{
 display: flex;
   gap: 10px; /* Adds space between the two elements */
