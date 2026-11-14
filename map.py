@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 MAP_PATH = DOCS / "map.html"
 FIRE_ZONES_PATH = DOCS / "fire_zones_d10.geojson"
+# Smaller neighborhood areas (snapshot from the District 10 neighborhood map).
+SPECIFIC_NEIGHBORHOODS_PATH = DOCS / "specific_neighborhoods.geojson"
 
 # District 10 covers south San Jose (Almaden / Blossom Valley / Santa Teresa).
 # (south, west, north, east) - the map is held inside this box instead of the whole city.
@@ -106,6 +108,7 @@ NEIGHBORHOOD_COLORS = {
 NEIGHBORHOOD_FALLBACK_COLOR = "#000000"
 
 
+# Load the three broad neighborhoods and swap in the display name for Almaden.
 def load_neighborhoods():
     hoods = get_filtered_neighborhoods(["Santa Teresa", "Blossom Valley", "Almaden Valley"])
     for feature in hoods.get("features", []):
@@ -140,6 +143,31 @@ def neighborhood_style(feature):
 
 def neighborhood_highlight(feature):
     return {"color": _neighborhood_color(feature), "weight": 5, "opacity": 1}
+
+
+# The smaller neighborhoods all share one color so they read as a single layer
+# against the three colored general boundaries.
+SPECIFIC_NEIGHBORHOOD_COLOR = "#6a1b9a"  # purple
+
+
+# Read the pre-filtered GeoJSON (no HOAs, apartments, mobile homes, senior housing, or clubs).
+def load_specific_neighborhoods():
+    return json.loads(SPECIFIC_NEIGHBORHOODS_PATH.read_text(encoding="utf-8"))
+
+
+# Thin white outline behind each specific boundary so it stays visible over the hazard colors.
+def specific_neighborhood_halo_style(feature):
+    return {"color": "#ffffff", "weight": 4, "opacity": 0.75, "fill": False,
+            "lineCap": "round", "lineJoin": "round"}
+
+
+def specific_neighborhood_style(feature):
+    return {"color": SPECIFIC_NEIGHBORHOOD_COLOR, "weight": 2, "opacity": 0.85, "fill": False,
+            "lineCap": "round", "lineJoin": "round"}
+
+
+def specific_neighborhood_highlight(feature):
+    return {"color": SPECIFIC_NEIGHBORHOOD_COLOR, "weight": 4, "opacity": 1}
 
 
 TITLE_HTML = """
@@ -235,7 +263,7 @@ def main():
 
         # Add the neighborhood boundaries to the map
         hoods = load_neighborhoods()
-        neighborhood_group = folium.FeatureGroup(name="Neighborhood boundaries").add_to(sj_map)
+        neighborhood_group = folium.FeatureGroup(name="General neighborhoods").add_to(sj_map)
 
         folium.GeoJson(
             hoods, name="Neighborhood halo", style_function=neighborhood_halo_style,
@@ -249,6 +277,26 @@ def main():
                 fields=["NAME"], aliases=["Neighborhood: "], sticky=True, opacity=1,
             ),
         ).add_to(neighborhood_group)
+
+        # Add the smaller neighborhood areas as their own toggle so the three
+        # general boundaries can still be viewed on their own.
+        specific_hoods = load_specific_neighborhoods()
+        specific_group = folium.FeatureGroup(name="Specific neighborhoods").add_to(sj_map)
+
+        folium.GeoJson(
+            specific_hoods, name="Specific neighborhood halo",
+            style_function=specific_neighborhood_halo_style,
+            smooth_factor=1.5, control=False,
+        ).add_to(specific_group)
+
+        folium.GeoJson(
+            specific_hoods, name="Specific neighborhood boundaries",
+            style_function=specific_neighborhood_style,
+            highlight_function=specific_neighborhood_highlight, smooth_factor=1.5,
+            tooltip=folium.GeoJsonTooltip(
+                fields=["NAME"], aliases=["Neighborhood: "], sticky=True, opacity=1,
+            ),
+        ).add_to(specific_group)
 
         # Frame the district itself rather than a city-wide view.
         sj_map.fit_bounds(
