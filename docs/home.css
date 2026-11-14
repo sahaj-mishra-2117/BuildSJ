@@ -19,7 +19,7 @@ display: flex;
 .hero {
     position: relative;
     overflow: hidden;
-   font-size: 20px;
+   font-size: 30px;
     /* Equal spacing on both sides */
     width: auto;
     max-width: 100%;
