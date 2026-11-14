@@ -46,7 +46,7 @@
 .hero .eyebrow { color: var(--green-100); }
 
 .hero h1 {
-  max-width: 18ch;
+  max-width: 30ch;
   margin-bottom: 16px;
   color: #fff;
 }
