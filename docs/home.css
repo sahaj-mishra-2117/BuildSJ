@@ -513,17 +513,24 @@ body {
 /* ===== MOVE SAN JOSE LOGO FARTHER RIGHT ===== */
 
 .hero img {
-    position: relative;
-    left: 1000px;
-    max-width: 100%;
+    position: absolute;
+    right: 5vw;
+    left: auto;
+
+    max-width: 40%;
     height: auto;
+    object-fit: contain;
 }
 
 /* Mobile adjustment */
 
 @media (max-width: 768px) {
     .hero img {
-        left: 0;
+        position: relative;
+        right: auto;
+        left: auto;
+        display: block;
+        max-width: 90%;
+        margin: 20px auto;
     }
 }
-
