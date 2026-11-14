@@ -7,7 +7,10 @@
 /* =========================================================
    1. HERO SECTION
    ========================================================= */
+.home-page {
+  background-image: url("https://t4.ftcdn.net/jpg/02/83/36/47/360_F_283364706_EyAbCnZVtqp0qFBNJv06ld8p1rGW7PWB.jpg");
 
+}
 .hero {
     position: relative;
     overflow: hidden;
