@@ -3,6 +3,7 @@
 # IMPORTANT
 # Run py .\map.py to generate the map
 
+import colorsys
 import json
 from pathlib import Path
 
@@ -145,14 +146,27 @@ def neighborhood_highlight(feature):
     return {"color": _neighborhood_color(feature), "weight": 5, "opacity": 1}
 
 
-# The smaller neighborhoods all share one color so they read as a single layer
-# against the three colored general boundaries.
-SPECIFIC_NEIGHBORHOOD_COLOR = "#6a1b9a"  # purple
+# Pick a different, readable boundary color for each specific neighborhood.
+def _distinct_colors(count):
+    colors = []
+    for index in range(count):
+        # Golden-angle hues keep consecutive entries far apart on the color wheel;
+        # alternating lightness keeps similar hues from looking the same.
+        hue = ((index * 137.508) % 360) / 360
+        lightness = 0.30 if index % 2 == 0 else 0.40
+        red, green, blue = colorsys.hls_to_rgb(hue, lightness, 0.85)
+        colors.append(f"#{round(red * 255):02x}{round(green * 255):02x}{round(blue * 255):02x}")
+    return colors
 
 
-# Read the pre-filtered GeoJSON (no HOAs, apartments, mobile homes, senior housing, or clubs).
+# Read the pre-filtered GeoJSON and tag every neighborhood with its own color.
+# (HOAs, apartments, mobile homes, senior housing, and clubs were removed already.)
 def load_specific_neighborhoods():
-    return json.loads(SPECIFIC_NEIGHBORHOODS_PATH.read_text(encoding="utf-8"))
+    data = json.loads(SPECIFIC_NEIGHBORHOODS_PATH.read_text(encoding="utf-8"))
+    features = data.get("features", [])
+    for feature, color in zip(features, _distinct_colors(len(features))):
+        feature.setdefault("properties", {})["COLOR"] = color
+    return data
 
 
 # Thin white outline behind each specific boundary so it stays visible over the hazard colors.
@@ -162,12 +176,12 @@ def specific_neighborhood_halo_style(feature):
 
 
 def specific_neighborhood_style(feature):
-    return {"color": SPECIFIC_NEIGHBORHOOD_COLOR, "weight": 2, "opacity": 0.85, "fill": False,
+    return {"color": feature["properties"]["COLOR"], "weight": 2, "opacity": 0.9, "fill": False,
             "lineCap": "round", "lineJoin": "round"}
 
 
 def specific_neighborhood_highlight(feature):
-    return {"color": SPECIFIC_NEIGHBORHOOD_COLOR, "weight": 4, "opacity": 1}
+    return {"color": feature["properties"]["COLOR"], "weight": 4, "opacity": 1}
 
 
 TITLE_HTML = """
@@ -261,9 +275,10 @@ def main():
             ),
         ).add_to(sj_map)
 
-        # Add the neighborhood boundaries to the map
+        # Create the three general boundaries, but start the layer unchecked so the
+        # map opens showing only the 48 specific neighborhoods.
         hoods = load_neighborhoods()
-        neighborhood_group = folium.FeatureGroup(name="General neighborhoods").add_to(sj_map)
+        neighborhood_group = folium.FeatureGroup(name="General neighborhoods", show=False).add_to(sj_map)
 
         folium.GeoJson(
             hoods, name="Neighborhood halo", style_function=neighborhood_halo_style,
@@ -323,7 +338,8 @@ def main():
         sj_map.get_root().html.add_child(folium.Element(TITLE_HTML))
         sj_map.get_root().html.add_child(folium.Element(LEGEND_HTML))
 
-        folium.LayerControl(position="topright", collapsed=True).add_to(sj_map)
+        # Keep the layer list open so it is obvious the map can be changed.
+        folium.LayerControl(position="topright", collapsed=False).add_to(sj_map)
 
         # The map is added to our html file
         sj_map.save(str(MAP_PATH))

@@ -33,7 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 3. Tell every checkbox to trigger our function whenever a user clicks it
   checkboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", updateProgress);
+    const storageKey = `buildSJ.checklist.${checkbox.id}`;
+    checkbox.checked = localStorage.getItem(storageKey) === "true"; // Load saved state
+    checkbox.addEventListener("change", () => {
+      localStorage.setItem(storageKey, String(checkbox.checked)); // Save state on change
+      updateProgress(); // Update progress bar and text
+    });
   });
 
   // 4. Run the function once immediately so it accurately displays 0% on page load

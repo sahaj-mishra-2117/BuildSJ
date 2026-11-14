@@ -149,10 +149,32 @@
   border-bottom-color: var(--line) !important;
 }
 
+/* Layer control: kept open and highlighted so it reads as a clickable control */
 .leaflet-control-layers {
-  padding: 8px 10px !important;
+  min-width: 200px;
+  padding: 10px 12px !important;
   color: var(--ink-soft) !important;
+  border: 2px solid var(--green-700) !important;
+  box-shadow: var(--shadow-md) !important;
   font-size: 0.82rem;
+}
+
+.leaflet-control-layers::before {
+  content: "Map layers";
+  display: block;
+  margin-bottom: 6px;
+  color: var(--green-800);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.leaflet-control-layers label {
+  margin: 5px 0;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .leaflet-control-geocoder input {
