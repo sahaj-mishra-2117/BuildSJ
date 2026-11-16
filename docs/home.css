@@ -472,3 +472,23 @@
         margin: 25px auto 0;
     }
 }
+
+/* =========================================
+   MAKE BOTH HERO BUTTONS WHITE
+   ========================================= */
+
+.hero .btn-primary,
+.hero .btn-secondary {
+    background-color: #ffffff;
+    color: #0b3d2e;
+    border: 1px solid #ffffff;
+}
+
+/* Hover effect for both buttons */
+
+.hero .btn-primary:hover,
+.hero .btn-secondary:hover {
+    background-color: #e8f3ec;
+    color: #0b3d2e;
+    border-color: #e8f3ec;
+}
