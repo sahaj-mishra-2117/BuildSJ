@@ -1,288 +1,394 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Preparation Checklist | Build SJ</title>
-    <meta name="description" content="Wildfire evacuation checklist for San Jose District 10 residents.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+
+    <meta name="description"
+          content="Wildfire emergency preparation checklist for San Jose District 10 residents.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+
+    <!-- Website Styles -->
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="checklist.css">
+
+    <!-- Checklist Progress Script -->
     <script src="script.js" defer></script>
 </head>
+
 <body class="checklist-page">
-    <!-- Shared header. The body class above highlights the active tab. -->
-    
-<!-- BUILD SJ NAVIGATION HEADER -->
 
-<header class="site-header">
-    <nav class="site-nav">
+    <!-- =====================================
+         BUILD SJ NAVIGATION HEADER
+         ===================================== -->
 
-        <a href="home.html" class="brand">
-            Build SJ
-        </a>
+    <header class="site-header">
 
-        <div class="nav-links">
+        <nav class="site-nav">
 
-            <a href="home.html"
-               class="nav-link nav-home">
-                Home
+            <a href="home.html" class="brand">
+                Build SJ
             </a>
 
-            <a href="index.html"
-               class="nav-link nav-map">
-                Emergency Map
-            </a>
+            <div class="nav-links">
 
-            <a href="checklist.html"
-               class="nav-link nav-checklist">
-                Preparation Checklist
-            </a>
+                <a href="home.html"
+                   class="nav-link nav-home">
+                    Home
+                </a>
 
-            <a href="information.html"
-               class="nav-link nav-information">
-                Information
-            </a>
+                <a href="index.html"
+                   class="nav-link nav-map">
+                    Emergency Map
+                </a>
 
-        </div>
+                <a href="checklist.html"
+                   class="nav-link nav-checklist"
+                   aria-current="page">
+                    Preparation Checklist
+                </a>
 
-    </nav>
-</header>
+                <a href="information.html"
+                   class="nav-link nav-information">
+                    Information
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         MAIN CHECKLIST CONTENT
+         ===================================== -->
 
     <main class="checklist-main">
-        <!-- Progress panel: script.js fills in the bar and the text -->
+
+        <!-- PROGRESS PANEL -->
+
         <section class="panel progress-panel">
-            <p class="eyebrow">Wildfire Preparedness</p>
+
+            <p class="eyebrow">
+                Wildfire Preparedness
+            </p>
+
             <h1>Evacuation Checklist</h1>
+
             <p class="lead">
-                Work through the sections below, then keep this page open while
-                you pack. Your progress is counted automatically.
+                Use the checklist below to prepare
+                your emergency disaster kit.
+                Check off each item as you gather
+                your supplies and track your progress.
             </p>
 
             <div class="progress-row">
-                <progress value="0" max="100" id="progress-bar"></progress>
-                <span id="progress-text" class="progress-text">0%</span>
+
+                <progress
+                    value="0"
+                    max="100"
+                    id="progress-bar">
+                </progress>
+
+                <span
+                    id="progress-text"
+                    class="progress-text">
+                    0%
+                </span>
+
             </div>
+
         </section>
 
+
+        <!-- =====================================
+             DISASTER KIT ESSENTIALS
+             ===================================== -->
+
         <section class="panel checklist-section">
+
             <h2>Disaster Kit Essentials</h2>
+
             <ul class="checklist">
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item1" name="checked" value="true">
-                    <label for="check_item1">Have a backpack or duffel bag to store supplies</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item2" name="checked" value="true">
-                    <label for="check_item2">One gallon of water per person</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item3" name="checked" value="true">
-                    <label for="check_item3">3 day supply of non-perishable snacks or canned food</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item4" name="checked" value="true">
-                    <label for="check_item4">First-aid kit that can treat minor injuries</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item5" name="checked" value="true">
-                    <label for="check_item5">Hand sanitizer</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item6" name="checked" value="true">
-                    <label for="check_item6">Changes of clothes</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item7" name="checked" value="true">
-                    <label for="check_item7">Toothbrush and toothpaste</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item8" name="checked" value="true">
-                    <label for="check_item8">Flashlight</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item9" name="checked" value="true">
-                    <label for="check_item9">Battery-powered radio</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item10" name="checked" value="true">
-                    <label for="check_item10">Cash and credit cards</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item11" name="checked" value="true">
-                    <label for="check_item11">Whistle</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item12" name="checked" value="true">
-                    <label for="check_item12">Masks</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item13" name="checked" value="true">
-                    <label for="check_item13">Important documents (i.e. passports and birth certificates)</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item14" name="checked" value="true">
-                    <label for="check_item14">Cell phone battery pack with charging cords</label>
-                </li>
-            </ul>
-        </section>
 
-        <section class="panel checklist-section">
-            <h2>Inside Your Home</h2>
-            <ul class="checklist">
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item17" name="checked" value="true">
-                    <label for="check_item17">Prepare an emergency supply kit and wildfire evacuation plan</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item18" name="checked" value="true">
-                    <label for="check_item18">Know your community&rsquo;s emergency plan, evacuation destinations, and escape routes</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item19" name="checked" value="true">
-                    <label for="check_item19">Close windows and doors, but leave them unlocked</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item20" name="checked" value="true">
-                    <label for="check_item20">Remove flammable curtains and shades, and move flammable furniture away from windows and doors</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item21" name="checked" value="true">
-                    <label for="check_item21">Shut off gas and pilot lights, turn off the air conditioner, and leave lights on for firefighters</label>
-                </li>
-            </ul>
-        </section>
+                <!-- ITEM 1 -->
 
-        <section class="panel checklist-section">
-            <h2>Outside Your Home</h2>
-            <ul class="checklist">
                 <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item22" name="checked" value="true">
-                    <label for="check_item22">Bring flammable outdoor items inside and move propane grills away from buildings</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item23" name="checked" value="true">
-                    <label for="check_item23">Turn off propane tanks and connect garden hoses for firefighters, but do not leave sprinklers or water running</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item24" name="checked" value="true">
-                    <label for="check_item24">Leave exterior lights on so firefighters can see your home</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item25" name="checked" value="true">
-                    <label for="check_item25">Put your emergency kit in your vehicle, back your car into the driveway, and keep your keys with you</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item26" name="checked" value="true">
-                    <label for="check_item26">Place a ladder where firefighters can access the roof</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item27" name="checked" value="true">
-                    <label for="check_item27">Seal attic and ground vents to help prevent embers from entering</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item28" name="checked" value="true">
-                    <label for="check_item28">Monitor the fire, evacuate if you feel threatened, and check if neighbors are preparing to leave</label>
-                </li>
-            </ul>
-        </section>
 
-        <section class="panel checklist-section">
-            <h2>Animals</h2>
-            <ul class="checklist">
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item32" name="checked" value="true">
-                    <label for="check_item32">Locate your pets, and keep them nearby in case of threats</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item33" name="checked" value="true">
-                    <label for="check_item33">Prepare farm animals for transport and think about moving them to a safe location early</label>
-                </li>
-            </ul>
-        </section>
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item1"
+                        name="checked"
+                        value="true">
 
-        <section class="panel checklist-section">
-            <h2>Wildfire Evacuation Steps</h2>
-            <ul class="checklist">
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item29" name="checked" value="true">
-                    <label for="check_item29">Review the pre-evacuation checklist</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item30" name="checked" value="true">
-                    <label for="check_item30">Check that your emergency supply kit is in your vehicle</label>
-                </li>
-                <li class="checklist-item">
-                    <input type="checkbox" class="task-item" id="check_item31" name="checked" value="true">
-                    <label for="check_item31">Cover up to protect against heat and flying embers. Wear a long-sleeve shirt, long pants, heavy shoes, a cap, a bandana to cover your face, and goggles or glasses to protect the eyes.</label>
-                </li>
-                <li class="checklist-item">
-                    <!-- This item reused id="check_item31" from the item above, so the label
-                         toggled the wrong checkbox. It has its own id now. -->
-                    <input type="checkbox" class="task-item" id="check_item34" name="checked" value="true">
-                    <label for="check_item34">If possible, wear clothes made from cotton as it reduces risk of clothes melting.</label>
-                </li>
-            </ul>
-        </section>
-        <section class="panel checklist-section">
-            <h2>Resource links</h2>
-            <!-- One dropdown of official outside pages. script.js turns the
-                 chosen option into a link underneath it (see the script below).
-                 The label's `for` now points at the select's id, so clicking
-                 the label focuses the dropdown. -->
-            <ul class="resource-list">
-                <li>
-                    <label for="links1">General use links</label>
-                    <select name="GeneralUseLinks" id="links1">
-                        <option value="genUseLink1" data-label="https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans" data-url="https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans">San Jose Emergency Plans</option>
-                        <option value="genUseLink2" data-label="https://app.watchduty.org/" data-url="https://app.watchduty.org/">Fire Watch</option>
-                        <option value="genUseLink3" data-label="https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed" data-url="https://quickmap.dot.ca.gov/?view=37.4538%2C-119.2500%2C6&layers=full_closures%2Clane_closures%2Cspeed">Traffic Map</option>
-                        <option value="genUseLink4" data-label="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html" data-url="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html">Red Cross Download Info</option>
-                        <option value="genUseLink5" data-label="https://www.sanjoseca.gov/your-government/departments-offices/fire-department" data-url="https://www.sanjoseca.gov/your-government/departments-offices/fire-department">San Jose Fire Station</option>
-                    </select>
-                </li>
-            </ul>
-        </section>
+                    <label for="check_item1">
+                        Have a backpack or duffel bag
+                        to store supplies
+                    </label>
 
-<script>
-    /* Turns the dropdown choice into a clickable link underneath it.
-       The option's data-url is the destination; data-label is the URL text. */
-    const listbox = document.getElementById('links1');
-    var linkLabel = null;
-    linkLabel = document.createElement('a');
-    linkLabel.textContent = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans";
-    linkLabel.href = "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management/emergency-plans";
-    linkLabel.target = '_blank';
-    linkLabel.rel = 'noopener noreferrer';
-    listbox.insertAdjacentElement('afterend', linkLabel);
-    
-    listbox.addEventListener('change', function () {
-        // Get selected option
-        const selectedOption = listbox.options[listbox.selectedIndex];
-        const labelText = selectedOption.getAttribute('data-label');
-        const linkUrl = selectedOption.getAttribute('data-url');
+                </li>
 
-        if (linkLabel) {
-        linkLabel.remove();
-        }
-        // Show label if available
-        if (labelText && linkUrl) {
-            
-            linkLabel = document.createElement('a');
-            linkLabel.textContent = " " + labelText;
-            linkLabel.href = linkUrl;
-            linkLabel.target = '_blank';
-            linkLabel.rel = 'noopener noreferrer';
-            listbox.insertAdjacentElement('afterend', linkLabel);
-        }
-        
-            
-        
-    });
-</script>
+
+                <!-- ITEM 2 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item2"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item2">
+                        One gallon of water per person
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 3 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item3"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item3">
+                        3 day supply of non-perishable
+                        snacks or canned food
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 4 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item4"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item4">
+                        First-aid kit that can treat
+                        minor injuries
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 5 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item5"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item5">
+                        Hand sanitizer
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 6 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item6"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item6">
+                        Changes of clothes
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 7 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item7"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item7">
+                        Toothbrush and toothpaste
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 8 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item8"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item8">
+                        Flashlight
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 9 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item9"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item9">
+                        Battery-powered radio
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 10 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item10"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item10">
+                        Cash and credit cards
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 11 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item11"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item11">
+                        Whistle
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 12 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item12"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item12">
+                        Masks
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 13 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item13"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item13">
+                        Important documents
+                        (i.e. passports and
+                        birth certificates)
+                    </label>
+
+                </li>
+
+
+                <!-- ITEM 14 -->
+
+                <li class="checklist-item">
+
+                    <input
+                        type="checkbox"
+                        class="task-item"
+                        id="check_item14"
+                        name="checked"
+                        value="true">
+
+                    <label for="check_item14">
+                        Cell phone battery pack
+                        with charging cords
+                    </label>
+
+                </li>
+
+            </ul>
+
+        </section>
 
     </main>
+
 </body>
 </html>
