@@ -365,3 +365,174 @@ img {
         font-size: 0.85rem;
     }
 }
+
+/* ==========================================
+   BUILD SJ - SHARED NAVIGATION HEADER
+   ========================================== */
+
+/* Header background */
+
+.site-header {
+    width: 100%;
+    background: #104631;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-sizing: border-box;
+}
+
+/* Navigation layout */
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    width: 100%;
+    min-height: 76px;
+    padding: 0 22px;
+    box-sizing: border-box;
+}
+
+/* Build SJ logo */
+
+.site-nav .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #ffffff;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Green circle next to logo */
+
+.site-nav .brand::before {
+    content: "";
+    display: block;
+
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+
+    background: #1c9a62;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(28,154,98,0.15);
+}
+
+/* Navigation links container */
+
+.site-nav .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+/* All navigation buttons */
+
+.site-nav .nav-link,
+.site-nav .nav-link:link,
+.site-nav .nav-link:visited {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 15px;
+
+    color: rgba(255,255,255,0.85);
+    background: transparent;
+
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0 0 10px 10px;
+
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* Hover effect */
+
+.site-nav .nav-link:hover {
+    color: #ffffff;
+    background: rgba(255,255,255,0.06);
+}
+
+/* Selected page underline */
+
+.home-page .site-nav .nav-home,
+.map-page .site-nav .nav-map,
+.checklist-page .site-nav .nav-checklist,
+.information-page .site-nav .nav-information,
+.site-nav .nav-link[aria-current="page"] {
+    color: #ffffff;
+    background: transparent;
+    border-bottom: 2px solid #ffffff;
+    font-weight: 700;
+}
+
+/* Keep selected tab white when hovered */
+
+.site-nav .nav-link[aria-current="page"]:hover {
+    color: #ffffff;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Keyboard accessibility */
+
+.site-nav .nav-link:focus-visible,
+.site-nav .brand:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .site-nav {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .site-nav .nav-links {
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .site-nav .nav-link {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .site-nav .nav-links {
+        gap: 4px;
+    }
+
+    .site-nav .nav-link {
+        padding: 9px 8px;
+        font-size: 0.82rem;
+        white-space: normal;
+        text-align: center;
+    }
+}
