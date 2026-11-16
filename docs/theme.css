@@ -319,3 +319,49 @@ img {
     transform: none !important;
   }
 }
+
+/* ========================================
+   BUILD SJ - FOUR TAB NAVIGATION
+   ======================================== */
+
+.home-page .nav-home,
+.map-page .nav-map,
+.checklist-page .nav-checklist,
+.information-page .nav-information {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+    font-weight: 700;
+}
+
+/* Hover effect */
+
+.site-nav .nav-link:hover {
+    color: #d7f2dc;
+}
+
+/* Make all four tabs fit on smaller screens */
+
+.site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+    }
+}
