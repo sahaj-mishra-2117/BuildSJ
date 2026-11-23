@@ -1,5 +1,3 @@
-// Shows "Log In" when signed out and "Log Out" when signed in.
-// Add to any public page that has the buttons (e.g. home.html).
 const loginBtn = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout-btn');
 
