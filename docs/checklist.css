@@ -75,7 +75,9 @@ body.checklist-page {
     padding: 0 5%;
 }
 
-.checklist-page .brand,
+.checklist-page .brand{
+  color: white;
+}
 .checklist-page .footer-brand {
     color: var(--ink);
     font-size: 1.05rem;
