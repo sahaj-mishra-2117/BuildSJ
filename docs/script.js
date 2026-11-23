@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let checkedInSaved = false;
 
   async function markCheckedIn() {
-    if (checkedInSaved || !window.supabaseClient) return;
+    if (checkedInSaved || typeof supabaseClient === "undefined") return;
     checkedInSaved = true;
 
     const { data: { session } } = await supabaseClient.auth.getSession();
