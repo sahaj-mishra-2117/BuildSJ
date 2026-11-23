@@ -217,42 +217,45 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 35px;
-
+    gap: 45px;
     width: 100%;
 }
 
 .home-page .hero h1 {
-    max-width: 650px;
+    width: 100%;
+    max-width: 550px;
     margin: 0;
-
-    color: var(--home-white);
-    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    color: white;
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
     font-weight: 600;
-    line-height: 1.08;
+    line-height: 1.15;
     letter-spacing: -2px;
 }
-
-/* San Jose image */
 
 .home-page .hero .hi > div {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
+    min-width: 0;
 }
 
 .home-page .hero img {
     display: block;
     width: 100%;
-    max-width: 390px;
-    max-height: 340px;
+    max-width: 420px;
     height: auto;
-    margin: 0;
+    max-height: none;
     object-fit: contain;
 }
+ 
+
+/* San Jose image */
+
+
+
 
 /* Hero description */
 
