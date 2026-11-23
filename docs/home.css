@@ -1,494 +1,649 @@
+/* =====================================================
+   BUILD SJ - FULL SCREEN WEBSITE
+   TESLA-INSPIRED DESIGN
+===================================================== */
 
-/* =========================================================
-   BUILD SJ - HOME PAGE STYLES
-   ========================================================= */
+:root {
+    --green-dark: #0b3025;
+    --green-main: #14543d;
+    --green-light: #dcebe2;
 
+    --white: #ffffff;
+    --text-dark: #18372b;
+    --text-muted: #63776b;
 
-/* =========================================================
-   1. HERO SECTION
-   ========================================================= */
-/* Page background: watercolour leaf image supplied by the team */
- .home-page {
-    background-image: url("https://mail.google.com/mail/u/0/?ui=2&ik=e8cd60cca8&attid=0.1&permmsgid=msg-f:1881877866621244336&th=1a1dc5f2f6a113b0&view=fimg&fur=ip&permmsgid=msg-f:1881877866621244336&sz=s0-l75-ft&attbid=ANGjdJ-v8aPEmeA4ObLKXLfod2iG2sgvGelqtztUqk70DWtk8O2a2RYGm8oM5pxVFF58K8L_hOBQHZD7FVljyOaK8kuJ7hsPZgCIvCEvPRlRk6-uxvFrDI76yebIG1g&disp=emb&realattid=ii_mwh16uy70&zw");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    --radius: 14px;
 }
 
-.hi {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.hero {
-    position: relative;
-    overflow: hidden;
-   font-size: 30px;
-    /* Equal spacing on both sides */
-    width: auto;
-    max-width: 100%;
-    margin: 24px 22px 0;
-
-    /* Internal spacing */
-    padding: clamp(28px, 5vw, 56px);
-
-    /* Green gradient background */
-    background: linear-gradient(
-        135deg,
-        var(--green-900) 0%,
-        var(--green-800) 55%,
-        var(--green-700) 100%
-    );
-
-    color: #ffffff;
-
-    /* Rounded corners, same radius token as the panels below */
-    border-radius: var(--radius-lg);
-
-    /* Prevent overflow */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-
-    /* Soft shadow */
-    box-shadow: var(--shadow-md);
 }
 
-
-/* No decorative glow / light bloom in the corner — it was pure decoration
-   and is one of the first things that reads as a generated landing page. */
-
-
-/* Small heading above main title */
-
-.hero .eyebrow {
-    color: var(--green-100);
+html {
+    scroll-behavior: smooth;
 }
 
-
-/* Main hero title */
-
-.hero h1 {
-    max-width: 30ch;
-    margin-bottom: 16px;
-    color: #ffffff;
-   
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-dark);
+    overflow: hidden;
 }
 
+/* =====================================================
+   MAIN SCROLLING CONTAINER
+===================================================== */
 
-/* Hero description */
+.home-page {
+    height: 100vh;
+    height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-.hero-text {
-    max-width: 56ch;
-    margin-bottom: 24px;
-
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.05rem;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
 }
 
+.page-section {
+    position: relative;
 
-/* Hero buttons */
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
 
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 
-
-/* Primary button */
-
-.hero .btn-primary {
-    color: var(--green-900);
-    background: #ffffff;
-}
-
-.hero .btn-primary:hover {
-    background: var(--green-50);
-}
-
-
-/* Secondary button */
-
-.hero .btn-secondary {
-    color: #ffffff;
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-.hero .btn-secondary:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #ffffff;
-}
-
-
-/* =========================================================
-   2. QUICK-START CARDS
-   ========================================================= */
-
-.step-grid {
-    display: grid;
-    gap: 16px;
-
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(230px, 1fr)
-    );
-}
-
-
-/* Individual cards */
-
-.step-card {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    justify-content: center;
 
-    padding: 22px;
-
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow-sm);
-
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease;
+    overflow: hidden;
 }
 
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
 
-/* Card hover effect */
-
-.step-card:hover {
-    border-color: var(--green-100);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
 }
 
-
-/* Card headings */
-
-/* Card headings are written in sentence case in the HTML, so no
-   text-transform is needed here — forcing capital letters looks generated. */
-.step-card h2 {
-    margin: 0;
-    font-size: 1.05rem;
-}
-
-
-/* Card descriptions */
-
-.step-card p {
-    flex: 1;
-    margin: 0;
-
-    color: var(--muted);
-    font-size: 0.94rem;
-}
-
-
-/* Card links */
-
-.step-link {
-    color: var(--green-700);
-    font-size: 0.9rem;
+h1,
+h2 {
+    font-size: clamp(42px, 6.5vw, 88px);
+    line-height: 1.05;
     font-weight: 600;
+    letter-spacing: -3px;
+}
+
+h1 span,
+h2 span {
+    display: block;
+}
+
+.section-description {
+    max-width: 570px;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-top: 25px;
+    color: var(--text-muted);
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.top-navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 30px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 10;
+}
+
+.brand {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: white;
     text-decoration: none;
 }
 
-.step-link:hover {
-    text-decoration: underline;
-}
-
-
-/* =========================================================
-   3. ABOUT US SECTION
-   ========================================================= */
-
-/* About Us reads as normal body copy (left aligned) rather than a
-   centred marketing block, which is easier to read and looks calmer. */
-.about {
-    text-align: left;
-}
-
-
-/* About Us heading */
-
-/* Uses the brand green from the palette.
-   It previously said `green` — a raw CSS colour that ignored the theme. */
-.about h2 {
-    color: var(--green-900);
-    text-align: center;
-}
-
-
-/* About Us paragraph */
-
-.about p {
-    max-width: 68ch;
-    margin: 0 0 1em;
-
-    color: var(--ink-soft);
-    line-height: 1.65;
-}
-
-
-/* Meet Our Team heading */
-
-.about h3 {
-    margin-top: 28px;
-}
-
-
-/* Team picture */
-
-.about img {
-    display: block;
-
-    width: 100%;
-    max-width: 650px;
-    height: auto;
-
-    margin: 15px auto;
-    border-radius: var(--radius);
-}
-
-
-/* Optional team placeholder */
-
-.team-note {
-    margin: 0;
-    padding: 16px;
-
-    color: var(--muted);
-    font-size: 0.92rem;
-
-    background: var(--green-50);
-    border: 1px dashed var(--line);
-    border-radius: var(--radius-sm);
-}
-
-
-/* =========================================================
-   4. TWO-COLUMN HOMEPAGE LAYOUT
-   ========================================================= */
-
-.home-content-layout {
-    display: grid;
-
-    /* About Us left, cards right */
-    grid-template-columns: 1.5fr 1fr;
-
-    gap: 24px;
-    align-items: start;
-
-    margin: 35px 22px;
-}
-
-
-/* Left column */
-
-.home-content-layout .about {
-    margin: 0;
-    width: 100%;
-    min-width: 0;
-
-    box-sizing: border-box;
-}
-
-
-/* Right column */
-
-.home-content-layout .step-grid {
+.nav-links {
     display: flex;
-    flex-direction: column;
-
-    gap: 20px;
-    margin: 0;
-
-    width: 100%;
-    min-width: 0;
+    gap: 35px;
 }
 
-
-/* Cards fill right column */
-
-.home-content-layout .step-card {
-    width: 100%;
-    margin: 0;
-
-    box-sizing: border-box;
+.nav-links a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    transition: opacity .3s;
 }
 
-
-/* =========================================================
-   5. HEADINGS
-   =========================================================
-   Headings follow whatever case is written in the HTML (sentence case).
-   We used to force `text-transform: capitalize` on every heading, which
-   Title-Cased them all and looked automated. */
-
-
-/* =========================================================
-   6. PAGE WIDTH AND OVERFLOW FIX
-   ========================================================= */
-
-.home-main {
-    flex: 1;
-
-    width: 100%;
-    min-width: 0;
-
-    box-sizing: border-box;
+.nav-links a:hover {
+    opacity: .65;
 }
 
+/* =====================================================
+   HERO SECTION
+===================================================== */
 
-/* Keep all elements within their containers */
+.hero-section {
+    background:
+        linear-gradient(
+            110deg,
+            rgba(5, 37, 26, .94),
+            rgba(11, 61, 43, .78)
+        ),
+        url("YOUR-WATERCOLOUR-IMAGE.jpg")
+        center / cover no-repeat;
 
-.home-page {
-    min-height: 100vh;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    padding: 100px 8% 80px;
 
     display: flex;
-    flex-direction: column;
-
-    overflow-x: hidden;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
 }
 
-
-/* =========================================================
-   7. FOOTER
-   ========================================================= */
-
-.site-footer {
-    margin-top: auto;
-
-    padding: 24px 20px;
-
-    color: var(--muted);
-    font-size: 0.85rem;
-    text-align: center;
-
-    background: var(--surface);
-    border-top: 1px solid var(--line);
+.hero-copy {
+    max-width: 720px;
 }
 
-
-/* =========================================================
-   8. MOBILE RESPONSIVENESS
-   ========================================================= */
-
-@media (max-width: 768px) {
-
-    /* Hero stays inside screen */
-
-    .hero {
-        margin: 20px;
-        padding: 28px 24px;
-        border-radius: 18px;
-    }
-
-    /* Stack About Us and cards vertically */
-
-    .home-content-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin: 20px;
-    }
-
-    .home-content-layout .about {
-        width: 100%;
-    }
-
-    .home-content-layout .step-grid {
-        width: 100%;
-    }
-
-    /* Responsive team image */
-
-    .about img {
-        max-width: 100%;
-    }
-
-    /* Keep buttons responsive */
-
-    .hero-actions {
-        flex-wrap: wrap;
-    }
+.hero-section .eyebrow {
+    color: #c4dfcf;
 }
 
-/* ===== CENTER ABOUT US CONTENT ===== */
-.home-content-layout .about,
-.home-content-layout .about h2,
-.home-content-layout .about h3,
-.home-content-layout .about p {
-    text-align: center;
-}
-.home-content-layout .about p {
+.hero-section h1 {
     max-width: 750px;
-    margin: 20px auto;
+}
+
+.hero-description {
+    max-width: 520px;
+    margin-top: 25px;
+
+    color: rgba(255,255,255,.82);
+
+    font-size: 17px;
     line-height: 1.8;
 }
-.home-content-layout .about h3 {
-    margin: 30px auto 20px;
-}
-.home-content-layout .about img {
-    display: block;
-    width: 100%;
-    max-width: 650px;
-    height: auto;
-    margin: 20px auto;
-    border-radius: 12px;
-}
 
-/* ===== SAN JOSE LOGO: FIT INSIDE THE HERO ===== */
-.hero img {
-    position: absolute;
-    top: 50%;
-    right: 5%;
-    left: auto;
-    transform: translateY(-50%);
-    width: 32%;
-    max-width: 450px;
-    max-height: 75%;
-    height: auto;
+.hero-logo {
+    width: 30%;
+    max-width: 380px;
+    max-height: 420px;
     object-fit: contain;
 }
 
-@media (max-width: 768px) {
-    .hero img {
-        position: relative;
-        top: auto;
-        right: auto;
-        left: auto;
-        transform: none;
-        display: block;
-        width: 65%;
-        max-width: 300px;
-        max-height: none;
-        height: auto;
-        margin: 25px auto 0;
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 35px;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 0 28px;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    transition: .25s ease;
+}
+
+.btn-light {
+    background: white;
+    color: var(--green-dark);
+    border: 1px solid white;
+}
+
+.btn-light:hover {
+    background: var(--green-light);
+    border-color: var(--green-light);
+}
+
+.btn-outline {
+    border: 1px solid rgba(255,255,255,.7);
+    color: white;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--green-dark);
+}
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    z-index: 3;
+}
+
+.scroll-arrow {
+    font-size: 22px;
+    animation: bounce 1.7s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
     }
 }
 
-/* =========================================
-   MAKE BOTH HERO BUTTONS WHITE
-   ========================================= */
+/* =====================================================
+   ABOUT SECTION
+===================================================== */
 
-.hero .btn-primary,
-.hero .btn-secondary {
-    background-color: #ffffff;
-    color: #0b3d2e;
-    border: 1px solid #ffffff;
+.about-section {
+    background:
+        linear-gradient(
+            rgba(247, 250, 246, .91),
+            rgba(247, 250, 246, .91)
+        ),
+        url("YOUR-WATERCOLOUR-IMAGE.jpg")
+        center / cover no-repeat;
+
+    color: var(--green-dark);
 }
 
-/* Hover effect for both buttons */
+.section-content {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+    padding: 75px 8%;
+}
 
-.hero .btn-primary:hover,
-.hero .btn-secondary:hover {
-    background-color: #e8f3ec;
-    color: #0b3d2e;
-    border-color: #e8f3ec;
+.about-section .eyebrow,
+.explore-section .eyebrow {
+    color: var(--green-main);
+}
+
+.about-section h2 span,
+.explore-section h2 span {
+    color: var(--green-main);
+}
+
+.team-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 60px;
+
+    margin-top: 55px;
+}
+
+.team-text h3 {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.team-text p {
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.team-image {
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+/* =====================================================
+   QUICK START SECTION
+===================================================== */
+
+.explore-section {
+    background: #edf3ee;
+}
+
+.step-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    margin-top: 50px;
+}
+
+.step-card {
+    min-height: 245px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background: white;
+    border: 1px solid #dce7df;
+    border-radius: var(--radius);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(15, 55, 35, .12);
+}
+
+.card-number {
+    color: var(--green-main);
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.step-card h3 {
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.step-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.card-link {
+    margin-top: auto;
+    padding-top: 25px;
+
+    color: var(--green-main);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =====================================================
+   CONTACT SECTION
+===================================================== */
+
+.contact-section {
+    background:
+        linear-gradient(
+            130deg,
+            #092d22,
+            #14543d
+        );
+
+    color: white;
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 850px;
+    margin: auto;
+    padding: 60px 25px;
+}
+
+.contact-content .eyebrow {
+    color: #b9d9c5;
+}
+
+.contact-content h2 span {
+    color: #c5dfce;
+}
+
+.contact-content p {
+    margin: 25px auto 35px;
+    max-width: 550px;
+
+    line-height: 1.8;
+    color: rgba(255,255,255,.8);
+}
+
+.site-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 25px 6%;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: rgba(255,255,255,.65);
+    font-size: 12px;
+
+    border-top: 1px solid rgba(255,255,255,.15);
+}
+
+/* =====================================================
+   SECTION NUMBERS
+===================================================== */
+
+.section-number {
+    position: absolute;
+    bottom: 35px;
+    right: 6%;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+/* =====================================================
+   TABLET RESPONSIVENESS
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .hero-content {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .hero-logo {
+        width: 25%;
+    }
+
+    .step-grid {
+        gap: 12px;
+    }
+
+    .step-card {
+        padding: 20px;
+    }
+
+    .team-content {
+        gap: 30px;
+    }
+}
+
+/* =====================================================
+   MOBILE RESPONSIVENESS
+===================================================== */
+
+@media (max-width: 650px) {
+
+    body {
+        overflow: hidden;
+    }
+
+    .home-page {
+        scroll-snap-type: y proximity;
+    }
+
+    .page-section {
+        min-height: 100svh;
+        height: auto;
+        overflow: visible;
+    }
+
+    .top-navigation {
+        padding: 22px 20px;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .brand {
+        font-size: 15px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 115px 25px 100px;
+        gap: 25px;
+    }
+
+    h1,
+    h2 {
+        font-size: clamp(40px, 12vw, 58px);
+        letter-spacing: -2px;
+    }
+
+    .hero-description,
+    .section-description {
+        font-size: 15px;
+    }
+
+    .hero-logo {
+        width: 48%;
+        max-width: 190px;
+        max-height: 180px;
+        align-self: center;
+    }
+
+    .hero-buttons {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 0 17px;
+        font-size: 10px;
+    }
+
+    .section-content {
+        padding: 75px 24px;
+    }
+
+    .team-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 35px;
+    }
+
+    .team-image {
+        max-height: 250px;
+    }
+
+    .step-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 30px;
+    }
+
+    .step-card {
+        min-height: 200px;
+    }
+
+    .contact-content {
+        padding: 60px 25px 100px;
+    }
+
+    .site-footer {
+        padding: 20px;
+        font-size: 10px;
+    }
+
+    .section-number {
+        bottom: 15px;
+        right: 20px;
+    }
+
+    .scroll-indicator {
+        bottom: 15px;
+    }
+}
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html,
+    .home-page {
+        scroll-behavior: auto;
+    }
+
+    .scroll-arrow {
+        animation: none;
+    }
+
+    .step-card {
+        transition: none;
+    }
 }
