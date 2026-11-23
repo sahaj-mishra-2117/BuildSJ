@@ -124,7 +124,7 @@ body {
 
 /* Login hero */
 .eyebrow {
-  margin-top: 26vh;
+  margin-top: 16vh;
   font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
   color: var(--ink-dim); text-align: center;
 }
@@ -153,7 +153,7 @@ h1 {
 
 /* Scroll cue */
 .scroll-cue {
-  display: block; width: 28px; height: 44px; margin: clamp(40px, 12vh, 120px) 0 clamp(30px, 6vh, 60px);
+  display: block; width: 28px; height: 44px; margin: 40px 0 36px;
   border: 2px solid rgba(255,255,255,.7); border-radius: 16px; position: relative;
 }
 .scroll-cue span {
@@ -164,9 +164,9 @@ h1 {
 
 /* Feature panels (full-screen, Tesla style) */
 .panel {
-  width: 100%; min-height: 100vh;
+  width: 100%; min-height: 62vh;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  padding: 18vh 24px 0; text-align: center;
+  padding: 72px 24px 72px; text-align: center;
   background-size: cover; background-position: center;
   position: relative;
 }
@@ -177,9 +177,9 @@ h1 {
 .panel-text { position: relative; max-width: 560px; }
 .panel h2 {
   font-family: var(--serif); font-weight: 500;
-  font-size: clamp(34px, 5vw, 52px); letter-spacing: -0.02em; margin-bottom: 14px;
+  font-size: clamp(34px, 5vw, 52px); letter-spacing: -0.02em; margin-bottom: 10px;
 }
-.panel p { font-size: 17px; line-height: 1.6; color: var(--ink-dim); margin-bottom: 30px; }
+.panel p { font-size: 17px; line-height: 1.6; color: var(--ink-dim); margin-bottom: 22px; }
 .btn {
   display: inline-block; min-width: 220px; padding: 14px 28px;
   background: rgba(255,255,255,.92); color: #14201a;
@@ -203,7 +203,7 @@ h1 {
 @media (max-width: 700px) {
   .site-nav { grid-template-columns: 1fr auto; }
   .site-nav nav { display: none; }
-  .eyebrow { margin-top: 22vh; }
+  .eyebrow { margin-top: 14vh; }
   .intro, .panel p { font-size: 16px; }
   .site-footer { flex-direction: column; gap: 8px; }
 }
