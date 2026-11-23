@@ -48,13 +48,19 @@ body.checklist-page {
    ========================================================= */
 
 .checklist-page .site-header {
-  text-align: left;  
-  position: sticky;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px; /* Adjust spacing between header items as needed */
+  width: min(1440px, 100%);
+  height: 100%;
+  margin: 0 auto;
+  
     top: 0;
     z-index: 100;
     width: 100%;
     height: 68px;
-    background: rgba(0, 217, 29, 0.96);
+    background: rgb(20, 61, 47);
     border-bottom: 1px solid #eeeeee;
     backdrop-filter: blur(12px);
 }
