@@ -221,6 +221,18 @@ img {
   background: rgba(255, 255, 255, 0.12);
 }
 
+button.nav-link {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#login-btn[hidden],
+#logout-btn[hidden] {
+  display: none !important;
+}
+
 /* Active tab — each page sets one body class, so no JavaScript is needed.
    Solid white tab, no drop shadow: the colour swap alone marks the current page. */
 .home-page .nav-home,
