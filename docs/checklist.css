@@ -74,8 +74,9 @@ body.checklist-page {
     font-family: 'Times New Roman', Times, serif;
     font-weight: 1400;
     font-size: 1.1rem;
-    margin-left: 10px;
+    margin-left: 1px;
     white-space: nowrap;
+    font-size: 24px;
 }
 
 .checklist-page .nav-links {
