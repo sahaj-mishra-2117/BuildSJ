@@ -60,9 +60,33 @@ document.addEventListener("DOMContentLoaded", () => {
   checkboxes.forEach(checkbox => {
     const storageKey = `buildSJ.checklist.${checkbox.id}`;
     checkbox.checked = localStorage.getItem(storageKey) === "true"; // Load saved state
-    checkbox.addEventListener("change", () => {
+
+    checkbox.addEventListener("click", async event => {
+      event.preventDefault();
+      checkbox.disabled = true;
+
+      try {
+        const { data: { session }, error } = await supabaseClient.auth.getSession();
+        if (error) {
+          console.error("Could not verify login:", error.message);
+          return;
+        }
+
+        if (!session) {
+          if (window.confirm("Please log in to use the checklist. Would you like to log in now?")) {
+            window.location.href = "login.html";
+          }
+          return;
+        }
+
+        checkbox.checked = !checkbox.checked;
       localStorage.setItem(storageKey, String(checkbox.checked)); // Save state on change
       updateProgress(); // Update progress bar and text
+      } catch (error) {
+        console.error("Could not verify login:", error);
+      } finally {
+        checkbox.disabled = false;
+      }
     });
   });
 
