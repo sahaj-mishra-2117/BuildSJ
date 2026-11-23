@@ -1,26 +1,18 @@
-const emailEl = document.getElementById('email');
-const passwordEl = document.getElementById('password');
 const messageEl = document.getElementById('message');
 
-document.getElementById('signup-btn').addEventListener('click', async () => {
-  const { error } = await supabaseClient.auth.signUp({
-    email: emailEl.value,
-    password: passwordEl.value,
-  });
-  messageEl.textContent = error
-    ? error.message
-    : 'Check your email to confirm your account.';
+// If the user is already logged in, skip the login page
+supabaseClient.auth.getSession().then(({ data: { session } }) => {
+  if (session) window.location.href = 'home.html';
 });
 
-document.getElementById('auth-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const { error } = await supabaseClient.auth.signInWithPassword({
-    email: emailEl.value,
-    password: passwordEl.value,
+// Continue with Google
+document.getElementById('google-btn').addEventListener('click', async () => {
+  messageEl.textContent = '';
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin + '/home.html',
+    },
   });
-  if (error) {
-    messageEl.textContent = error.message;
-  } else {
-    window.location.href = 'dashboard.html';
-  }
+  if (error) messageEl.textContent = error.message;
 });
