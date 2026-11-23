@@ -143,6 +143,26 @@ body.checklist-page {
     background: var(--tesla-blue);
 }
 
+.checklist-page #login-btn,
+.checklist-page #logout-btn {
+    padding: 9px 17px;
+    color: #10432F;
+    background: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.checklist-page #login-btn:hover,
+.checklist-page #logout-btn:hover {
+    color: var(--ink);
+    background: #f4f4f4;
+}
+
 
 /* =========================================================
    3. HERO SECTION
