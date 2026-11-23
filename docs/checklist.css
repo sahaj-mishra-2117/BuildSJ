@@ -70,8 +70,10 @@ body.checklist-page {
 }
 
 .checklist-page .brand {
-    color: white;
+     color: white;
     font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 1.1rem;
     margin-left: 10px;
     white-space: nowrap;
 }
