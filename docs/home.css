@@ -112,14 +112,14 @@
 /* Login and logout controls */
 
 .home-page #login-btn {
-    padding: 9px 13px;
-    color: var(--home-text);
-    background: transparent;
-    border: none;
+    padding: 9px 17px;
+    color: green;
+    background: white;
+    border: 1px solid green;
     border-radius: 4px;
     font-family: inherit;
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease;
