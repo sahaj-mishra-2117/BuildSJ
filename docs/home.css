@@ -1,4 +1,3 @@
-
 /* =========================================================
    BUILD SJ - HOME PAGE STYLES
    ========================================================= */
@@ -55,7 +54,7 @@
 }
 
 
-/* No decorative glow / light bloom in the corner — it was pure decoration
+/* No decorative glow / light bloom in the corner â€” it was pure decoration
    and is one of the first things that reads as a generated landing page. */
 
 
@@ -172,7 +171,7 @@
 /* Card headings */
 
 /* Card headings are written in sentence case in the HTML, so no
-   text-transform is needed here — forcing capital letters looks generated. */
+   text-transform is needed here â€” forcing capital letters looks generated. */
 .step-card h2 {
     margin: 0;
     font-size: 1.05rem;
@@ -218,7 +217,7 @@
 /* About Us heading */
 
 /* Uses the brand green from the palette.
-   It previously said `green` — a raw CSS colour that ignored the theme. */
+   It previously said `green` â€” a raw CSS colour that ignored the theme. */
 .about h2 {
     color: var(--green-900);
     text-align: center;
