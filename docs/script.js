@@ -8,6 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressBar = document.getElementById("progress-bar");
   const progressText = document.getElementById("progress-text");
 
+  // Marks the profile row as checked in. Only runs once per page load,
+  // because we don't want a database write on every single click.
+  let checkedInSaved = false;
+
+  async function markCheckedIn() {
+    if (checkedInSaved || !window.supabaseClient) return;
+    checkedInSaved = true;
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) return; // not logged in: checklist still works locally
+
+    const { error } = await supabaseClient
+      .from("profiles")
+      .update({ "checked-in": true })
+      .eq("email", session.user.email);
+
+    if (error) {
+      console.error("Could not save check-in:", error.message);
+      checkedInSaved = false; // let the next checkbox click try again
+    }
+  }
+
   // 2. Define the mathematical function that updates the numbers
   function updateProgress() {
     const total = checkboxes.length;
@@ -29,6 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
     progressBar.classList.toggle("halfway-past", percentage >= 50 && percentage < 70);
     progressBar.classList.toggle("almost-done", percentage >= 70 && percentage < 100);
     progressBar.classList.toggle("complete", percentage === 100);
+
+    // 100% of the list done = checked in
+    if (percentage === 100) markCheckedIn();
   }
 
   // 3. Tell every checkbox to trigger our function whenever a user clicks it
