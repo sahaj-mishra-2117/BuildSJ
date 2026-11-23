@@ -120,7 +120,14 @@ body {
 .site-nav nav { display: flex; gap: clamp(8px, 2vw, 28px); }
 .site-nav nav a { padding: 8px 14px; border-radius: 4px; transition: background .2s; }
 .site-nav nav a:hover { background: rgba(255,255,255,.14); }
-.district { justify-self: end; color: var(--ink-dim); text-transform: uppercase; font-size: 12px; letter-spacing: .16em; }
+.nav-right { justify-self: end; display: flex; align-items: center; gap: 20px; }
+.back-home {
+  padding: 9px 16px; border: 1px solid rgba(255,255,255,.55); border-radius: 4px;
+  transition: background .2s, color .2s;
+}
+.back-home:hover { background: #fff; color: #14201a !important; }
+.back-home:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.district { color: var(--ink-dim); text-transform: uppercase; font-size: 12px; letter-spacing: .16em; }
 
 /* Login hero */
 .eyebrow {
@@ -203,6 +210,7 @@ h1 {
 @media (max-width: 700px) {
   .site-nav { grid-template-columns: 1fr auto; }
   .site-nav nav { display: none; }
+  .district { display: none; }
   .eyebrow { margin-top: 14vh; }
   .intro, .panel p { font-size: 16px; }
   .site-footer { flex-direction: column; gap: 8px; }
