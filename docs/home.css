@@ -210,15 +210,12 @@
 
 /* Hero title and San Jose image */
 
-<<<<<<< HEAD
 /* No decorative glow / light bloom in the corner â€” it was pure decoration
    and is one of the first things that reads as a generated landing page. */
-=======
+
 .home-page .hero .hi {
     position: relative;
     z-index: 2;
->>>>>>> 1cbbe7afd9f5a7e903b2a8db23645e62b5c4c1b2
-
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
@@ -434,13 +431,18 @@
 
 /* Card headings */
 
-<<<<<<< HEAD
+
 /* Card headings are written in sentence case in the HTML, so no
    text-transform is needed here â€” forcing capital letters looks generated. */
 .step-card h2 {
-=======
+    margin: 0;
+    color: var(--home-ink);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
 .home-page .step-card h2 {
->>>>>>> 1cbbe7afd9f5a7e903b2a8db23645e62b5c4c1b2
     margin: 0;
     color: var(--home-ink);
     font-size: 1.35rem;
@@ -484,7 +486,6 @@
    8. FOOTER
    ========================================================= */
 
-<<<<<<< HEAD
 /* About Us reads as normal body copy (left aligned) rather than a
    centred marketing block, which is easier to read and looks calmer. */
 .about {
@@ -524,10 +525,15 @@
 
 .about img {
     display: block;
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    margin: 25px auto 0;
+    border-radius: 5px;
+    object-fit: cover;
+}
 
-=======
 .home-page .site-footer {
->>>>>>> 1cbbe7afd9f5a7e903b2a8db23645e62b5c4c1b2
     width: 100%;
     margin-top: auto;
     padding: 27px 20px;
