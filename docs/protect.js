@@ -1,5 +1,5 @@
 async function checkSession() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) {
     window.location.href = 'login.html';
   }
@@ -7,6 +7,6 @@ async function checkSession() {
 checkSession();
 
 document.getElementById('logout-btn')?.addEventListener('click', async () => {
-  await supabase.auth.signOut();
+  await supabaseClient.auth.signOut();
   window.location.href = 'login.html';
 });
