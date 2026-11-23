@@ -73,9 +73,9 @@ body.checklist-page {
 .checklist-page .brand {
     color: white;
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 1000;
+    font-weight: 800;
     font-size: 1.1rem;
-    margin-left: 10px;
+    margin-left: 20px;
     padding: 0;
     font-size: 24px;
     white-space: nowrap;
