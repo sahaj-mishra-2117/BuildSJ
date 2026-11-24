@@ -112,7 +112,7 @@
 
 .home-page #login-btn {
     padding: 9px 17px;
-    color: black;
+    color: green;
     background: white;
     border: 1px solid green;
     border-radius: 4px;
@@ -136,7 +136,7 @@
     border: 1px solid white;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
 }
@@ -210,7 +210,7 @@
 
 /* Hero title and San Jose image */
 
-/* No decorative glow / light bloom in the corner â€” it was pure decoration
+/* No decorative glow / light bloom in the corner — it was pure decoration
    and is one of the first things that reads as a generated landing page. */
 
 .home-page .hero .hi {
@@ -437,7 +437,7 @@
 
 
 /* Card headings are written in sentence case in the HTML, so no
-   text-transform is needed here â€” forcing capital letters looks generated. */
+   text-transform is needed here — forcing capital letters looks generated. */
 .step-card h2 {
     margin: 0;
     color: var(--home-ink);
@@ -500,7 +500,7 @@
 /* About Us heading */
 
 /* Uses the brand green from the palette.
-   It previously said `green` â€” a raw CSS colour that ignored the theme. */
+   It previously said `green` — a raw CSS colour that ignored the theme. */
 .about h2 {
     color: var(--green-900);
     text-align: center;
@@ -753,4 +753,45 @@
         padding: 25px 18px;
         font-size: 0.75rem;
     }
+}
+
+
+/* =========================================================
+   ADDED: center the team heading + photo, and center the
+   cards on the right (everything above is your original CSS)
+   ========================================================= */
+
+/* Left side: everything in About Us centered, including the photo */
+.home-page .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.home-page .about p {
+    width: 100%;
+}
+
+.home-page .about h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.home-page .about img {
+    margin: 25px auto 0;
+}
+
+/* Right side: cards centered to match */
+.home-page .step-grid {
+    align-self: center;
+}
+
+.home-page .step-card {
+    align-items: center;
+    text-align: center;
+}
+
+.home-page .step-link {
+    align-self: center;
 }
