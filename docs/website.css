@@ -164,13 +164,26 @@
 }
 
 .leaflet-control-zoom,
-.leaflet-control-layers,
-.leaflet-control-geocoder {
+.leaflet-control-layers {
   overflow: hidden;
   background: #fff !important;
   border: 1px solid var(--line) !important;
   border-radius: var(--radius-sm) !important;
   box-shadow: var(--shadow-sm) !important;
+}
+
+.leaflet-control-geocoder {
+  position: relative;
+  overflow: visible !important;
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.leaflet-control-geocoder-alternatives {
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
 }
 
 .leaflet-control-zoom a {

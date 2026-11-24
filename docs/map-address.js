@@ -1,23 +1,6 @@
 (() => {
-  const map = window.map_b7dcc81e2ea976ef891fac0989f036fc;
-  const geocoder = L.Control.geocoder({
-    collapsed: false,
-    position: "topright",
-    defaultMarkGeocode: true,
-    zoom: 15,
-    provider: "photon",
-    providerOptions: {
-      geocodingQueryParams: {
-        bbox: "-121.97,37.15,-121.72,37.3",
-        limit: 5,
-      },
-    },
-    suggestMinLength: 3,
-    suggestTimeout: 250,
-  });
-
-  geocoder.on("markgeocode", async event => {
-    const address = event.geocode.name && event.geocode.name.trim();
+  window.addEventListener("map-address-selected", async event => {
+    const address = event.detail && event.detail.trim();
     if (!address) return;
 
     try {
@@ -31,6 +14,4 @@
       console.error("Could not save the map search address:", error.message || error);
     }
   });
-
-  geocoder.addTo(map);
 })();
