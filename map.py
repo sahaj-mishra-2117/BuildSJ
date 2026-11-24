@@ -11,7 +11,6 @@ from pathlib import Path
 import folium
 # allows us to load in stuff to have interactive maps -> python database
 from folium.plugins import Geocoder
-from folium.template import Template
 from fetch_neighborhoods import get_filtered_neighborhoods
 
 ROOT = Path(__file__).resolve().parent
@@ -37,39 +36,6 @@ MAX_BOUNDS = [
     [D10_BOUNDS[0] - PADDING_LAT, D10_BOUNDS[1] - PADDING_LON],
     [D10_BOUNDS[2] + PADDING_LAT, D10_BOUNDS[3] + PADDING_LON],
 ]
-
-
-class AddressGeocoder(Geocoder):
-    _template = Template(
-        """
-        {% macro script(this, kwargs) %}
-            var geocoderOpts_{{ this.get_name() }} = {{ this.options|tojavascript }};
-            var geocoderName_{{ this.get_name() }} = geocoderOpts_{{ this.get_name() }}["provider"];
-            var customGeocoder_{{ this.get_name() }} = L.Control.Geocoder[
-                geocoderName_{{ this.get_name() }}
-            ](geocoderOpts_{{ this.get_name() }}["providerOptions"]);
-            geocoderOpts_{{ this.get_name() }}["geocoder"] = customGeocoder_{{ this.get_name() }};
-
-            L.Control.geocoder(geocoderOpts_{{ this.get_name() }})
-                .on("markgeocode", function(event) {
-                    var zoom = geocoderOpts_{{ this.get_name() }}["zoom"]
-                        || {{ this._parent.get_name() }}.getZoom();
-                    {{ this._parent.get_name() }}.setView(event.geocode.center, zoom);
-                    window.dispatchEvent(new CustomEvent("map-address-selected", {
-                        detail: event.geocode.name
-                    }));
-                })
-                .addTo({{ this._parent.get_name() }});
-        {% endmacro %}
-        """
-    )
-
-    def render(self, **kwargs):
-        super().render(**kwargs)
-        self.get_root().header.add_child(
-            folium.Element('<link rel="stylesheet" href="website.css"/>'),
-            name="website-css",
-        )
 
 
 # Define the field and color mapping for fire hazard severity zones
@@ -288,7 +254,7 @@ def main():
         sj_map.options["minZoom"] = 11
         # Adding the search tool (uses the Photon geocoding service)
         # Will have to check usage rights for Photon later
-        AddressGeocoder(
+        geocoder = Geocoder(
             provider="photon",
             provider_options={
                 "geocodingQueryParams": {
@@ -302,7 +268,9 @@ def main():
             zoom=15,
             suggestMinLength=3,
             suggestTimeout=250,
-        ).add_to(sj_map)
+        )
+        geocoder.default_css = [*geocoder.default_css, ("website.css", "website.css")]
+        geocoder.add_to(sj_map)
 
         # Add the fire hazard zones to the map
         folium.GeoJson(
@@ -386,6 +354,27 @@ def main():
 
         # Keep the layer list open so it is obvious the map can be changed.
         folium.LayerControl(position="topright", collapsed=False).add_to(sj_map)
+
+        map_name = sj_map.get_name()
+        sj_map.get_root().script.add_child(
+            folium.Element(
+                f"""
+                {map_name}.on("popupopen", function(event) {{
+                    const marker = event.popup._source;
+                    if (!(marker instanceof L.Marker)) return;
+
+                    const content = event.popup.getContent();
+                    const address = typeof content === "string" ? content : content.textContent;
+                    if (address) {{
+                        window.dispatchEvent(new CustomEvent("map-address-selected", {{
+                            detail: address
+                        }}));
+                    }}
+                }});
+                """
+            ),
+            name="map-address-popup-listener",
+        )
 
         # The map is added to our html file
         sj_map.save(str(MAP_PATH))
