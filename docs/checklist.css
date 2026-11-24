@@ -1088,11 +1088,14 @@ body.checklist-page {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .congrats-close:hover {
     background: #209c70;
 }
+
+/* Popup animation */
 
 @keyframes congratsPop {
     0% {
@@ -1133,6 +1136,24 @@ body.checklist-page {
         opacity: 0;
     }
 }
+
+/* Mobile responsiveness */
+
+@media (max-width: 600px) {
+    .congrats-box {
+        padding: 35px 20px;
+    }
+
+    .congrats-box h2 {
+        font-size: 27px;
+    }
+
+    .congrats-box p {
+        font-size: 14px;
+    }
+}
+
+/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
     .congrats-box {

@@ -42,7 +42,7 @@ body.information-page { padding-top:80px; }
     height: 100%;
 }
 .information-page .site-nav { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:none; height:100%; padding:0; margin:0; }
-.information-page .site-header :is(.brand,.logo) { display:flex; align-items:center; gap:12px; color:white; font-family: 'Times New Roman', Times, serif; font-weight:700; font-size:24px; letter-spacing:1px; margin-left:20px; padding:0; white-space:nowrap; }
+.information-page .site-header :is(.brand,.logo) { display:flex; align-items:center; gap:12px; color:white; font-family: 'Times New Roman', Times, serif; font-weight:550; font-size:24px; letter-spacing:1px; margin-left:20px; padding:0; white-space:nowrap; }
 .information-page .site-header :is(.brand,.logo):not(:has(.logo-dot))::before, .information-page .site-header .logo-dot { content:""; display:inline-block; width:11px; height:11px; flex-shrink:0; background:#209c70; border-radius:50%; box-shadow:0 0 0 4px rgba(32,156,112,.15); }
 .information-page .site-header .nav-links { display:flex; align-items:center; height: 100%; justify-content:flex-end; gap:5px; margin-left:auto; margin-right:10px; }
 .information-page .site-header .nav-links a { display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 15px; color:#e4ece7; background:transparent; font-family:inherit; font-size:0.9rem; font-weight:500; white-space:nowrap; border:0; border-bottom:2px solid transparent; border-radius:0 0 10px 10px; transition:background .2s ease,color .2s ease; }
