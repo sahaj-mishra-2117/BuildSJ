@@ -1327,3 +1327,53 @@ body.checklist-page {
         display: none;
     }
 }
+/* =========================================
+   ACCOUNT BUTTON
+   ========================================= */
+
+.account-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: transparent;
+    color: white;
+
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+
+    padding: 7px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Default profile picture */
+
+.account-button::after {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+
+    background-color: #e0e5e3;
+    border-radius: 50%;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='4' fill='%2310432F'/%3E%3Cpath d='M4 21v-2a8 8 0 0 1 16 0v2' fill='%2310432F'/%3E%3C/svg%3E");
+
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Hover animation */
+
+.account-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: white;
+}
