@@ -338,6 +338,154 @@ body.checklist-page {
     letter-spacing: 1.3px;
 }
 
+.checklist-page .checklist-address-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    align-items: start;
+    gap: 32px;
+    margin: 42px 0;
+    padding: 26px;
+    background: var(--light-gray);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.checklist-page .checklist-address-panel .eyebrow {
+    margin: 0 0 8px;
+    color: var(--tesla-blue);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+}
+
+.checklist-page .checklist-address-panel h2 {
+    margin: 0 0 8px;
+    color: var(--ink);
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.checklist-page .checklist-address-description {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.checklist-page #checklist-address-form {
+    position: relative;
+}
+
+.checklist-page #checklist-address-form > label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--body-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.checklist-page .checklist-address-row {
+    display: flex;
+    gap: 8px;
+}
+
+.checklist-page #checklist-address-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    padding: 0 12px;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font: inherit;
+}
+
+.checklist-page .checklist-address-row button {
+    flex: 0 0 auto;
+    padding: 0 15px;
+    color: var(--white);
+    background: var(--tesla-blue);
+    border: 1px solid var(--tesla-blue);
+    border-radius: 4px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.checklist-page .checklist-address-row button:hover {
+    filter: brightness(0.92);
+}
+
+.checklist-page .checklist-address-suggestions:not([hidden]) {
+    position: absolute;
+    top: 72px;
+    right: 0;
+    left: 0;
+    z-index: 20;
+    max-height: 240px;
+    overflow-y: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 12%);
+}
+
+.checklist-page .checklist-address-option {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 12px;
+    color: var(--ink);
+    text-align: left;
+    background: var(--white);
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.checklist-page .checklist-address-option:last-child {
+    border-bottom: 0;
+}
+
+.checklist-page .checklist-address-option:hover,
+.checklist-page .checklist-address-option:focus-visible {
+    background: var(--light-gray);
+    outline: 0;
+}
+
+.checklist-page .checklist-address-option small {
+    color: var(--tesla-blue);
+    font-size: 0.75rem;
+}
+
+.checklist-page #checklist-address-status {
+    min-height: 1.2em;
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+@media (max-width: 700px) {
+    .checklist-page .checklist-address-panel {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin: 32px 0;
+        padding: 20px;
+    }
+
+    .checklist-page .checklist-address-row {
+        flex-direction: column;
+    }
+
+    .checklist-page .checklist-address-row button {
+        min-height: 42px;
+    }
+
+    .checklist-page .checklist-address-suggestions:not([hidden]) {
+        top: 124px;
+    }
+}
+
 .checklist-page .progress-track {
     width: 100%;
 }

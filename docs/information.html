@@ -81,10 +81,12 @@
                     and respond safely when evacuation becomes necessary.
                 </p>
 
-                <a href="#preparation" class="hero-button">
-                    Explore Preparedness
-                    <span>↓</span>
-                </a>
+                <a href="#preparation"
+   class="hero-button"
+   id="explore-preparedness">
+    Explore Preparedness
+    <span>↓</span>
+</a>
 
             </div>
 
@@ -452,5 +454,35 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
     <script src="nav-auth.js"></script>
+<!-- SMOOTH SCROLLING ANIMATION -->
+
+<script>
+    document.getElementById("explore-preparedness")
+        .addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            const section = document.getElementById("preparation");
+
+            const header = document.querySelector(".site-header");
+
+            const headerHeight = header.offsetHeight;
+
+            const sectionPosition =
+                section.getBoundingClientRect().top
+                + window.scrollY
+                - headerHeight
+                - 20;
+
+            window.scrollTo({
+                top: sectionPosition,
+                behavior: window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches ? "instant" : "smooth"
+            });
+
+        });
+</script>
+
 </body>
 </html>

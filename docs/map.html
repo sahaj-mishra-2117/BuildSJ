@@ -9,13 +9,16 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
+    <script src="address-storage.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
     
             <meta name="viewport" content="width=device-width,
@@ -104,25 +107,6 @@
 </head>
 <body>
     
-<form class="address-search" id="address-search" role="search">
-  <label for="address-input">Find an address</label>
-  <div class="address-search-row">
-    <input
-      type="search"
-      id="address-input"
-      name="address"
-      placeholder="Enter a San Jose address"
-      autocomplete="off"
-      aria-autocomplete="list"
-      aria-controls="address-suggestions"
-      aria-expanded="false"
-    />
-    <button type="submit">Search</button>
-  </div>
-  <div class="address-suggestions" id="address-suggestions" role="listbox" hidden></div>
-  <p class="address-search-status" id="address-search-status" aria-live="polite"></p>
-</form>
-
 <div class="map-title">
   <h2>San Jos&eacute; &middot; District 10</h2>
   <p>Wildfire hazard severity zones &middot; CalFire</p>

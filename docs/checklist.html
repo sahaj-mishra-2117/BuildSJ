@@ -25,7 +25,9 @@
     <!-- Checklist functionality -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
+    <script src="address-storage.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="checklist-address.js" defer></script>
 </head>
 
 <body class="checklist-page">
@@ -158,6 +160,40 @@
                 </div>
 
             </div>
+
+            <section class="checklist-address-panel" aria-labelledby="checklist-address-heading">
+                <div>
+                    <p class="eyebrow">YOUR ADDRESS</p>
+                    <h2 id="checklist-address-heading">Set a preferred address</h2>
+                    <p class="checklist-address-description">
+                        Your latest map search is saved here. Choose another address to make it your preferred address instead.
+                    </p>
+                </div>
+
+                <form id="checklist-address-form" role="search">
+                    <label for="checklist-address-input">Address</label>
+                    <div class="checklist-address-row">
+                        <input
+                            type="search"
+                            id="checklist-address-input"
+                            name="address"
+                            placeholder="Start typing an address"
+                            autocomplete="off"
+                            aria-autocomplete="list"
+                            aria-controls="checklist-address-suggestions"
+                            aria-expanded="false">
+                        <button type="submit">Use this address</button>
+                    </div>
+                    <div
+                        class="checklist-address-suggestions"
+                        id="checklist-address-suggestions"
+                        role="listbox"
+                        aria-label="Address suggestions"
+                        hidden>
+                    </div>
+                    <p id="checklist-address-status" role="status" aria-live="polite"></p>
+                </form>
+            </section>
 
 
             <!-- DISASTER KIT ESSENTIALS -->

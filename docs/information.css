@@ -604,3 +604,12 @@ body.information-page { padding-top:80px; }
 .information-page a:focus-visible,.information-page button:focus-visible { outline:2px solid #3e6ae1; outline-offset:4px; }
 @media(max-width:900px) { .information-page .intro-section { gap:30px; padding:75px 25px; } }
 @media(max-width:650px) { .information-page .hero { height:auto; min-height:570px; } .information-page .hero-content { padding:75px 25px 100px; } .information-page .hero h1 { font-size:clamp(2.5rem,11vw,3.7rem); letter-spacing:-1.5px; } .information-page .intro-section { padding:65px 20px; } .information-page :is(.intro-content,.section-heading,.additional-heading) h2 { font-size:2rem; } .information-page .footer-content { align-items:center; } }
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent the header from covering the information */
+#preparedness {
+    scroll-margin-top: 100px;
+}
