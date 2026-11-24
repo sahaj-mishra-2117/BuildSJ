@@ -6,6 +6,7 @@
   const status = document.getElementById("address-search-status");
   const searchBounds = "-121.97,37.15,-121.72,37.3";
   let savedAddress = "";
+  let currentUserId = null;
   let searchTimer = null;
   let searchController = null;
   let addressMarker = null;
@@ -129,9 +130,18 @@
   async function loadSavedAddress() {
     const { data, error } = await supabaseClient.auth.getSession();
     if (error) throw error;
-    if (!data.session) return;
+    if (!data.session) {
+      currentUserId = null;
+      savedAddress = "";
+      if (document.activeElement === input) renderSuggestions([]);
+      return;
+    }
 
-    savedAddress = await getProfileAddress(data.session);
+    const userId = data.session.user.id;
+    currentUserId = userId;
+    const address = await getProfileAddress(data.session);
+    if (currentUserId !== userId) return;
+    savedAddress = address;
     if (document.activeElement === input) {
       renderSuggestions([]);
     }

@@ -52,6 +52,12 @@ body.information-page { padding-top:80px; }
 .information-page .site-header #login-btn, .information-page .site-header #logout-btn { height:38px; padding:9px 17px; color:#10432F; background:white; border:1px solid white; border-radius:4px; font-family:inherit; font-size:.82rem; font-weight:600; cursor:pointer; white-space:nowrap; }
 .information-page .site-header #login-btn:hover, .information-page .site-header #logout-btn:hover { color:#171a20; background:#f4f4f4; }
 .information-page #login-btn[hidden], .information-page #logout-btn[hidden] { display:none !important; }
+.information-page .site-header .nav-links button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
 @media(max-width:900px) { .information-page .site-nav { padding:0 3%; } .information-page .site-header .nav-links { gap:0; } .information-page .site-header .nav-links a { padding:0 8px; font-size:.77rem; } }
 @media(max-width:600px) { body.information-page { padding-top:0; } .information-page .site-header { position:relative; height:auto; min-height:62px; } .information-page .site-nav { flex-wrap:wrap; gap:10px; padding:16px 18px; } .information-page .site-header :is(.brand,.logo) { font-size:.95rem; margin-left:0; } .information-page .site-header .nav-links { order:2; justify-content:flex-start; width:100%; overflow-x:auto; gap:4px; margin:0; } .information-page .site-header .nav-links a { height:42px; padding:0 10px; font-size:.76rem; } }
 /* =========================================================
