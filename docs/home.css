@@ -131,7 +131,7 @@
 
 .home-page #logout-btn {
     padding: 9px 17px;
-    color: var(--home-white);
+    color: black;
     background: white;
     border: 1px solid white;
     border-radius: 4px;
