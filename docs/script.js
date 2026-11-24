@@ -11,6 +11,55 @@ document.addEventListener("DOMContentLoaded", () => {
   let checkedInSaved = false;   // true once the save succeeded
   let checkInInFlight = false;  // true while a save is running (prevents double-saves)
 
+  // Writes checked_in = true to the signed-in user's row in `profiles`.
+  // Tries the auth user id first, then the email column, so it works whichever
+  // one the row happens to be keyed on.
+  async function setCheckedIn(session) {
+    const user = session.user;
+
+    const targets = [
+      { column: "id", value: user.id, exact: true },
+      { column: "email", value: user.email, exact: false },
+    ];
+
+    for (const { column, value, exact } of targets) {
+      if (!value) continue;
+
+      const match = query => (exact ? query.eq(column, value) : query.ilike(column, value));
+
+      const { error } = await match(
+        supabaseClient.from("profiles").update({ checked_in: true })
+      );
+
+      if (error) {
+        console.warn(`checked_in: could not save by ${column}:`, error.message);
+        continue;
+      }
+
+      // An UPDATE that matches zero rows is not an error, so read it back.
+      const { data, error: readError } = await match(
+        supabaseClient.from("profiles").select("email, checked_in")
+      ).limit(1);
+
+      if (readError) {
+        console.warn(`checked_in: saved by ${column}, but read-back failed:`, readError.message);
+        return true; // the write itself was accepted
+      }
+
+      if (data && data.length > 0 && data[0].checked_in === true) {
+        console.log(`checked_in = true for ${data[0].email || value} (matched by ${column})`);
+        return true;
+      }
+
+      console.warn(`checked_in: no profiles row matched by ${column} = ${value}`);
+    }
+
+    console.error(
+      "Could not set checked_in = true. The row exists but the RLS UPDATE policy likely blocks it."
+    );
+    return false;
+  }
+
   async function markCheckedIn() {
     if (checkedInSaved || checkInInFlight) return;
 
@@ -21,51 +70,20 @@ document.addEventListener("DOMContentLoaded", () => {
     checkInInFlight = true;
 
     try {
-      const { data: { session }, error: sessionError } =
-        await supabaseClient.auth.getSession();
-
-      if (sessionError) throw sessionError;
+      const { data: { session }, error } = await supabaseClient.auth.getSession();
+      if (error) throw error;
 
       if (!session) {
+        // The page is login-protected, so this is only a safety net.
         console.warn("Checklist complete, but nobody is logged in - not saving checked_in.");
         return;
       }
 
-      const email = session.user.email;
-
-      // The profiles column is checked_in (underscore), not "checked-in".
-      // No .select() attached, so the write never depends on SELECT rights.
-      const { error: updateError } = await supabaseClient
-        .from("profiles")
-        .update({ checked_in: true })
-        .ilike("email", email);
-
-      if (updateError) throw updateError;
-
-      checkedInSaved = true;
-      console.log("Saved checked_in = true for", email);
-
-      // Best-effort read-back: an UPDATE that matched zero rows is not an error.
-      const { data, error: readError } = await supabaseClient
-        .from("profiles")
-        .select("email, checked_in")
-        .ilike("email", email)
-        .limit(1);
-
-      if (readError) {
-        console.warn("Saved, but could not read the row back:", readError.message);
-      } else if (!data || data.length === 0) {
-        console.warn(
-          `Saved, but no profiles row matched "${email}". Check the row exists ` +
-          "and that an RLS UPDATE policy lets this user update it."
-        );
-      } else {
-        console.log(`profiles row ${data[0].email}: checked_in = ${data[0].checked_in}`);
-      }
+      checkedInSaved = await setCheckedIn(session);
     } catch (error) {
       console.error("Could not save check-in:", error.message || error);
     } finally {
-      checkInInFlight = false; // always release the lock so a later click can retry
+      checkInInFlight = false; // release the lock so a later click can retry
     }
   }
 
@@ -96,10 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (percentage === 100) markCheckedIn();
   }
 
-  // 3. Set up every checkbox: restore saved state, then handle ticks
-  // Login is enforced for the whole page by protect.js, so we let the browser
-  // do the toggling itself. An event.preventDefault() + await inside a click
-  // handler cancels the native toggle, which is why clicking did nothing.
+  // 3. Set up every checkbox: restore saved state, then handle ticks.
+  // Login is enforced for the whole page by protect.js, so the browser does
+  // the toggling itself and no click is ever swallowed.
   checkboxes.forEach(checkbox => {
     const storageKey = `buildSJ.checklist.${checkbox.id}`;
     checkbox.checked = localStorage.getItem(storageKey) === "true"; // Load saved state
