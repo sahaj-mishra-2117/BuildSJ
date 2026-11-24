@@ -34,7 +34,46 @@
   border: 0;
   background: #e9efe9;
 }
+.map-page #login-btn {
+    padding: 9px 17px;
+    color: black;
+    background: white;
+    border: 1px solid green;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
 
+.map-page #login-btn:hover {
+    color: var(--home-ink);
+    background: #f4f4f4;
+}
+
+.map-page #logout-btn {
+    padding: 9px 17px;
+    color: black;
+    background: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.map-page #logout-btn:hover {
+    background: var(--home-blue);
+    border-color: var(--home-blue);
+}
+
+.map-page #login-btn[hidden],
+.map-page #logout-btn[hidden] {
+    display: none !important;
+}
 /* =========================================================
    2. Floating map cards (markup comes from map.py)
    ========================================================= */
