@@ -1,9 +1,11 @@
 const loginBtn = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout-btn');
+const accountBtn = document.getElementById('account-btn');
 
 function updateButtons(session) {
   if (loginBtn) loginBtn.hidden = !!session;
   if (logoutBtn) logoutBtn.hidden = !session;
+  if (accountBtn) accountBtn.hidden = !session;
 }
 
 // Set the buttons on page load
