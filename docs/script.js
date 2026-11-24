@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitStatus = document.getElementById("submit-status");
   submitButton.disabled = true;
 
-  let checkInInFlight = false;
+  let progressSavePromise = null;
+  let pendingProgressSave = null;
+  let autosaveTimer = null;
 
   function redirectToLogin() {
     const loginUrl = new URL("login.html", window.location.href);
@@ -105,29 +107,78 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
 
-  async function saveProgress(session, percentage, checkedIn) {
-    if (checkInInFlight) return false;
-    checkInInFlight = true;
+  function saveProgress(session, percentage, checkedIn) {
+    pendingProgressSave = { session, percentage, checkedIn };
 
-    try {
-      return await setCheckedIn(session, percentage, checkedIn);
-    } catch (error) {
-      console.error("Could not save check-in:", error.message || error);
-      return false;
-    } finally {
-      checkInInFlight = false; // release the lock so a later click can retry
+    if (!progressSavePromise) {
+      progressSavePromise = (async () => {
+        let saved = false;
+        while (pendingProgressSave) {
+          const pending = pendingProgressSave;
+          pendingProgressSave = null;
+
+          try {
+            saved = await setCheckedIn(
+              pending.session,
+              pending.percentage,
+              pending.checkedIn
+            );
+          } catch (error) {
+            console.error("Could not save check-in:", error.message || error);
+            saved = false;
+          }
+        }
+        return saved;
+      })().finally(() => {
+        progressSavePromise = null;
+      });
     }
+
+    return progressSavePromise;
+  }
+
+  function cancelScheduledAutosave() {
+    if (autosaveTimer === null) return;
+    clearTimeout(autosaveTimer);
+    autosaveTimer = null;
+  }
+
+  function getProgressState() {
+    const total = checkboxes.length;
+    const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+    const percentage = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+    return { checkedCount, total, percentage };
+  }
+
+  async function saveCurrentProgress() {
+    cancelScheduledAutosave();
+    await checklistReady;
+    const { data, error } = await supabaseClient.auth.getSession();
+    if (error) throw error;
+    if (!data.session) return true;
+
+    const { percentage } = getProgressState();
+    return saveProgress(data.session, percentage, percentage === 100);
+  }
+
+  function scheduleAutosave() {
+    cancelScheduledAutosave();
+    autosaveTimer = window.setTimeout(() => {
+      autosaveTimer = null;
+      saveCurrentProgress().then(saved => {
+        submitStatus.textContent = saved
+          ? "Progress saved automatically."
+          : "Auto-save failed. Use Save & Submit Progress to retry.";
+      }).catch(error => {
+        console.error("Could not autosave checklist progress:", error.message || error);
+        submitStatus.textContent = "Auto-save failed. Use Save & Submit Progress to retry.";
+      });
+    }, 500);
   }
 
   // 2. Define the function that updates the progress numbers and bar
   function updateProgress() {
-    const total = checkboxes.length;
-
-    // Count only the checkboxes that are currently checked
-    const checkedCount = document.querySelectorAll(".task-item:checked").length;
-
-    // Calculate the percentage (prevents errors if the checklist is empty)
-    const percentage = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+    const { checkedCount, total, percentage } = getProgressState();
 
     // Change the visual loading bar width/value
     progressBar.value = percentage;
@@ -145,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   submitButton.addEventListener("click", async () => {
+    cancelScheduledAutosave();
     submitButton.disabled = true;
     submitStatus.textContent = "";
 
@@ -157,9 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const percentage = checkboxes.length > 0
-        ? Math.round((document.querySelectorAll(".task-item:checked").length / checkboxes.length) * 100)
-        : 0;
+      const { percentage } = getProgressState();
       const checkedIn = percentage === 100;
 
       if (await saveProgress(data.session, percentage, checkedIn)) {
@@ -213,6 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
           savedChecked = requestedValue;
           localStorage.setItem(storageKey, String(savedChecked));
           updateProgress();
+          scheduleAutosave();
         } catch (error) {
           checkbox.checked = savedChecked;
           console.error("Could not check sign-in status:", error.message || error);
@@ -226,7 +277,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. Run once immediately so the bar shows the right value on page load
     updateProgress();
     submitButton.disabled = false;
+    if (session) scheduleAutosave();
   }
 
-  initializeChecklist();
+  const checklistReady = initializeChecklist();
 });
