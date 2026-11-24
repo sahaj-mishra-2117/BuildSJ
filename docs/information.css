@@ -55,49 +55,51 @@
 
 
 .information-page .site-header {
-   position: absolute;
-   top: 0;
-   left: 0;
-   z-index: 10;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: #10432F;
+    border-bottom: none;
 
-
-   width: 100%;
-
-
-   background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 
 .information-page .site-nav {
-   width: min(1450px, 100%);
-   min-height: 85px;
-
-
-   margin: 0 auto;
-   padding: 0 5%;
-
-
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   gap: 25px;
+       display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 
 .information-page .brand {
-   color: #ffffff;
-
-
-   font-size: 1.45rem;
-   font-weight: 800;
-   letter-spacing: -1px;
+      color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 550;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-left: 20px;
+    padding: 0;
+    font-size: 24px;
+    white-space: nowrap;
 }
 
 
 .information-page .nav-links {
-   display: flex;
-   align-items: center;
-   gap: clamp(15px, 2.5vw, 38px);
+  display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 
