@@ -166,9 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
     autosaveTimer = window.setTimeout(() => {
       autosaveTimer = null;
       saveCurrentProgress().then(saved => {
-        submitStatus.textContent = saved
-          ? "Progress saved automatically."
-          : "Auto-save failed. Use Save & Submit Progress to retry.";
+        if (!saved) {
+          submitStatus.textContent = "Auto-save failed. Use Save & Submit Progress to retry.";
+        } else if (submitStatus.textContent === "Auto-save failed. Use Save & Submit Progress to retry.") {
+          submitStatus.textContent = "";
+        }
       }).catch(error => {
         console.error("Could not autosave checklist progress:", error.message || error);
         submitStatus.textContent = "Auto-save failed. Use Save & Submit Progress to retry.";
