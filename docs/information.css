@@ -58,6 +58,22 @@ body.information-page { padding-top:80px; }
     justify-content: center;
     vertical-align: middle;
 }
+.popup {
+  display: none; 
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
 @media(max-width:900px) { .information-page .site-nav { padding:0 3%; } .information-page .site-header .nav-links { gap:0; } .information-page .site-header .nav-links a { padding:0 8px; font-size:.77rem; } }
 @media(max-width:600px) { body.information-page { padding-top:0; } .information-page .site-header { position:relative; height:auto; min-height:62px; } .information-page .site-nav { flex-wrap:wrap; gap:10px; padding:16px 18px; } .information-page .site-header :is(.brand,.logo) { font-size:.95rem; margin-left:0; } .information-page .site-header .nav-links { order:2; justify-content:flex-start; width:100%; overflow-x:auto; gap:4px; margin:0; } .information-page .site-header .nav-links a { height:42px; padding:0 10px; font-size:.76rem; } }
 /* =========================================================
