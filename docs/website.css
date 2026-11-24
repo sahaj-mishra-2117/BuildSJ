@@ -282,55 +282,65 @@
   .map-legend li { font-size: 0.75rem; }
 }
 /* =========================================
-   MATCH PREPARATION CHECKLIST HEADER
+   MAP HEADER - MATCH INFORMATION HEADER
    ========================================= */
 
 .map-page .site-header {
-    background: #10432F;
+    display: flex;
+    align-items: center;
+    width: 100%;
     height: 80px;
     min-height: 80px;
-    width: 100%;
-    padding: 0;
+    background: #10432F;
     border: none;
     box-shadow: none;
     position: relative;
-    display: flex;
-    align-items: center;
     flex-shrink: 0;
+    z-index: 1000;
+    padding: 0;
+    font-family: "Source Sans 3", "Helvetica Neue",
+                 Arial, sans-serif;
 }
+
+/* Navigation container */
 
 .map-page .site-nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     max-width: none;
     height: 100%;
+    padding: 0;
     margin: 0;
-    padding: 0 10px 0 20px;
 }
 
 /* Build SJ logo */
 
-.map-page .brand,
-.map-page .logo {
+.map-page .site-header :is(.brand, .logo) {
     display: flex;
     align-items: center;
     gap: 12px;
     color: #ffffff;
     font-family: "Times New Roman", Times, serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 550;
     letter-spacing: 1px;
-    margin: 0;
+    margin-left: 20px;
     padding: 0;
-    text-decoration: none;
     white-space: nowrap;
+    text-decoration: none;
 }
 
-.map-page .logo-dot {
+/* Green logo dot */
+
+.map-page .site-header .logo-dot,
+.map-page .site-header :is(.brand, .logo):not(:has(.logo-dot))::before {
+    content: "";
+    display: inline-block;
     width: 11px;
     height: 11px;
+    flex-shrink: 0;
     background: #209c70;
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(32, 156, 112, 0.15);
@@ -344,123 +354,13 @@
     justify-content: flex-end;
     gap: 5px;
     margin-left: auto;
-    margin-right: 0;
-}
-
-/* Navigation text */
-
-.map-page .nav-links a,
-.map-page .nav-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 52px;
-    padding: 0 15px;
-    color: #e4ece7;
-    background: transparent;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    white-space: nowrap;
-    border: none;
-    border-radius: 0 0 10px 10px;
-}
-
-/* Selected Emergency Map tab */
-
-.map-page .nav-links a.nav-map,
-.map-page .nav-links a.active,
-.map-page .nav-links a[aria-current="page"],
-.map-page .nav-links a[href="map.html"] {
-    background: #f4f4f4;
-    color: #171a20;
-    font-weight: 700;
-    border-radius: 0 0 10px 10px;
-}
-
-/* Hover effect */
-
-.map-page .nav-links a:hover {
-    background: #f4f4f4;
-    color: #171a20;
-}
-
-/* Remove old underline */
-
-.map-page .nav-links a::after {
-    display: none;
-}
-
-/* Login and Logout buttons */
-
-.map-page #login-btn,
-.map-page #logout-btn {
-    height: 38px;
-    padding: 9px 17px;
-    margin-left: 0;
-    color: #10432F;
-    background: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    font-family: "Source Sans 3", Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.map-page #login-btn:hover,
-.map-page #logout-btn:hover {
-    color: #171a20;
-    background: #f4f4f4;
-    border-color: #f4f4f4;
-}
-
-.map-page #login-btn[hidden],
-.map-page #logout-btn[hidden] {
-    display: none !important;
-}
-
-/* Mobile responsiveness */
-
-@media (max-width: 700px) {
-    .map-page .site-header {
-        height: auto;
-        min-height: 62px;
-    }
-
-    .map-page .site-nav {
-        flex-wrap: wrap;
-        padding: 12px 16px;
-        gap: 10px;
-    }
-
-    .map-page .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: auto;
-    }
-
-    .map-page .nav-links a {
-        font-size: 12px;
-        padding: 0 10px;
-        height: 42px;
-    }
-}
-/* =========================================
-   MAP HEADER - CURVED WHITE UNDERLINE
-   ========================================= */
-
-.map-page .site-header {
-    background: #10432F;
+    margin-right: 10px;
 }
 
 /* Normal navigation links */
 
-.map-page .nav-links a,
-.map-page .nav-link {
+.map-page .site-header .nav-links a,
+.map-page .site-header .nav-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -481,12 +381,19 @@
                 color 0.2s ease;
 }
 
+/* Navigation hover effect */
+
+.map-page .site-header .nav-links a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
 /* Selected Emergency Map tab */
 
-.map-page .nav-links a.active,
-.map-page .nav-links a.nav-map,
-.map-page .nav-links a[href="map.html"],
-.map-page .nav-links a[aria-current="page"] {
+.map-page .site-header .nav-links a.active,
+.map-page .site-header .nav-links a.nav-map,
+.map-page .site-header .nav-links a[href="map.html"],
+.map-page .site-header .nav-links a[aria-current="page"] {
     color: #ffffff;
     background: transparent;
     font-weight: 700;
@@ -494,27 +401,114 @@
     border-radius: 0 0 10px 10px;
 }
 
-/* Navigation hover effect */
-
-.map-page .nav-links a:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
-}
-
 /* Remove previous underline effects */
 
-.map-page .nav-links a::after {
+.map-page .site-header .nav-links a::after {
     display: none;
 }
 
 /* Login and Logout buttons */
 
-.map-page #login-btn,
-.map-page #logout-btn {
+.map-page .site-header #login-btn,
+.map-page .site-header #logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 9px 17px;
     color: #10432F;
     background: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 4px;
-    height: 38px;
-    padding: 9px 17px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease,
+                color 0.2s ease;
+}
+
+/* Login and Logout hover effects */
+
+.map-page .site-header #login-btn:hover,
+.map-page .site-header #logout-btn:hover {
+    color: #171a20;
+    background: #f4f4f4;
+    border-color: #f4f4f4;
+}
+
+/* Hide inactive authentication buttons */
+
+.map-page #login-btn[hidden],
+.map-page #logout-btn[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   TABLET RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .map-page .site-nav {
+        padding: 0 3%;
+    }
+
+    .map-page .nav-links {
+        gap: 0;
+    }
+
+    .map-page .site-header .nav-links a {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .map-page .site-header {
+        position: relative;
+        height: auto;
+        min-height: 62px;
+    }
+
+    .map-page .site-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 16px 18px;
+    }
+
+    .map-page .site-header :is(.brand, .logo) {
+        font-size: 0.95rem;
+        margin-left: 0;
+    }
+
+    .map-page .nav-links {
+        order: 2;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 4px;
+        margin: 0;
+        overflow-x: auto;
+        padding: 5px 0;
+    }
+
+    .map-page .site-header .nav-links a {
+        height: 42px;
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .map-page .site-header #login-btn,
+    .map-page .site-header #logout-btn {
+        flex-shrink: 0;
+        font-size: 0.75rem;
+    }
 }
