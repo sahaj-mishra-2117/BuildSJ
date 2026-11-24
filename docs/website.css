@@ -281,3 +281,171 @@
 
   .map-legend li { font-size: 0.75rem; }
 }
+/* =========================================
+   MATCH PREPARATION CHECKLIST HEADER
+   ========================================= */
+
+.map-page .site-header {
+    background: #10432F;
+    height: 80px;
+    min-height: 80px;
+    width: 100%;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.map-page .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 0 10px 0 20px;
+}
+
+/* Build SJ logo */
+
+.map-page .brand,
+.map-page .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.map-page .logo-dot {
+    width: 11px;
+    height: 11px;
+    background: #209c70;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(32, 156, 112, 0.15);
+}
+
+/* Navigation alignment */
+
+.map-page .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* Navigation text */
+
+.map-page .nav-links a,
+.map-page .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 15px;
+    color: #e4ece7;
+    background: transparent;
+    font-family: "Source Sans 3", "Helvetica Neue",
+                 Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    border: none;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Selected Emergency Map tab */
+
+.map-page .nav-links a.nav-map,
+.map-page .nav-links a.active,
+.map-page .nav-links a[aria-current="page"],
+.map-page .nav-links a[href="map.html"] {
+    background: #f4f4f4;
+    color: #171a20;
+    font-weight: 700;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Hover effect */
+
+.map-page .nav-links a:hover {
+    background: #f4f4f4;
+    color: #171a20;
+}
+
+/* Remove old underline */
+
+.map-page .nav-links a::after {
+    display: none;
+}
+
+/* Login and Logout buttons */
+
+.map-page #login-btn,
+.map-page #logout-btn {
+    height: 38px;
+    padding: 9px 17px;
+    margin-left: 0;
+    color: #10432F;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.map-page #login-btn:hover,
+.map-page #logout-btn:hover {
+    color: #171a20;
+    background: #f4f4f4;
+    border-color: #f4f4f4;
+}
+
+.map-page #login-btn[hidden],
+.map-page #logout-btn[hidden] {
+    display: none !important;
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 700px) {
+    .map-page .site-header {
+        height: auto;
+        min-height: 62px;
+    }
+
+    .map-page .site-nav {
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
+    .map-page .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .map-page .nav-links a {
+        font-size: 12px;
+        padding: 0 10px;
+        height: 42px;
+    }
+}
