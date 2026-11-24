@@ -11,6 +11,7 @@ from pathlib import Path
 import folium
 # allows us to load in stuff to have interactive maps -> python database
 from folium.plugins import Geocoder
+from folium.template import Template
 from fetch_neighborhoods import get_filtered_neighborhoods
 
 ROOT = Path(__file__).resolve().parent
@@ -36,6 +37,40 @@ MAX_BOUNDS = [
     [D10_BOUNDS[0] - PADDING_LAT, D10_BOUNDS[1] - PADDING_LON],
     [D10_BOUNDS[2] + PADDING_LAT, D10_BOUNDS[3] + PADDING_LON],
 ]
+
+
+class AddressGeocoder(Geocoder):
+    _template = Template(
+        """
+        {% macro script(this, kwargs) %}
+            var geocoderOpts_{{ this.get_name() }} = {{ this.options|tojavascript }};
+            var geocoderName_{{ this.get_name() }} = geocoderOpts_{{ this.get_name() }}["provider"];
+            var customGeocoder_{{ this.get_name() }} = L.Control.Geocoder[
+                geocoderName_{{ this.get_name() }}
+            ](geocoderOpts_{{ this.get_name() }}["providerOptions"]);
+            geocoderOpts_{{ this.get_name() }}["geocoder"] = customGeocoder_{{ this.get_name() }};
+
+            L.Control.geocoder(geocoderOpts_{{ this.get_name() }})
+                .on("markgeocode", function(event) {
+                    var zoom = geocoderOpts_{{ this.get_name() }}["zoom"]
+                        || {{ this._parent.get_name() }}.getZoom();
+                    {{ this._parent.get_name() }}.setView(event.geocode.center, zoom);
+                    window.dispatchEvent(new CustomEvent("map-address-selected", {
+                        detail: event.geocode.name
+                    }));
+                })
+                .addTo({{ this._parent.get_name() }});
+        {% endmacro %}
+        """
+    )
+
+    def render(self, **kwargs):
+        super().render(**kwargs)
+        self.get_root().header.add_child(
+            folium.Element('<link rel="stylesheet" href="website.css"/>'),
+            name="website-css",
+        )
+
 
 # Define the field and color mapping for fire hazard severity zones
 FIELD = "FIREHAZARDSEVERITYZONE"
@@ -253,7 +288,7 @@ def main():
         sj_map.options["minZoom"] = 11
         # Adding the search tool (uses the Photon geocoding service)
         # Will have to check usage rights for Photon later
-        Geocoder(
+        AddressGeocoder(
             provider="photon",
             provider_options={
                 "geocodingQueryParams": {
@@ -328,10 +363,7 @@ def main():
             padding=(16, 16),
         )
 
-        # After generating the map, we add our CSS file to style the map container
-        # We can't add it to html directly because map generation changes everytime the script is run
-        # The site typefaces go in first so the map chrome matches the other pages.
-        # If you change the font list here, change it in the HTML pages too.
+        # Add site styles after the Leaflet plugins so map controls keep their theme.
         sj_map.get_root().header.add_child(
             folium.Element(
                 '<link rel="preconnect" href="https://fonts.googleapis.com"/>'
@@ -340,7 +372,12 @@ def main():
             )
         )
         sj_map.get_root().header.add_child(
-            folium.Element('<link rel="stylesheet" href="website.css"/>')
+            folium.Element(
+                '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>'
+                '<script src="supabase-client.js"></script>'
+                '<script src="address-storage.js"></script>'
+                '<script src="map-address.js"></script>'
+            )
         )
 
         # Small floating cards so the map explains itself without a key sitting elsewhere.
