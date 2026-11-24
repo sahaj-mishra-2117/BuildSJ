@@ -65,13 +65,20 @@
     <p class="divider">or</p>
 
     <!-- Google login button with logo -->
-    <button type="button" id="google-btn">
+    <button type="button" id="google-btn" class="oauth-btn">
       <img
         src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
         alt=""
         class="google-icon"
       />
       <span>Continue with Google</span>
+    </button>
+
+    <button type="button" id="microsoft-btn" class="oauth-btn">
+      <span class="microsoft-icon" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </span>
+      <span>Continue with Microsoft</span>
     </button>
 
     <p id="message"></p>
