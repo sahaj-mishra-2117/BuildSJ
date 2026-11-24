@@ -225,7 +225,8 @@ def main():
             zoom_start=13,
             min_zoom=12,
             max_zoom=18,
-            zoom_snap=0.1,
+            # Photon only accepts integer zoom bias parameters.
+            zoom_snap=1,
             max_bounds=True,
             control_scale=True,
             prefer_canvas=True,     # canvas draws the large hazard polygons far more smoothly
@@ -262,8 +263,6 @@ def main():
                     "bbox": f"{D10_BOUNDS[1]},{D10_BOUNDS[0]},{D10_BOUNDS[3]},{D10_BOUNDS[2]}",
                     # Max amount of suggested results
                     "limit": 5,
-                    # Photon requires an integer zoom; Leaflet's fitted view is fractional.
-                    "zoom": 13,
                 }
             },
             add_marker=True,
@@ -361,20 +360,22 @@ def main():
         sj_map.get_root().script.add_child(
             folium.Element(
                 f"""
-                {map_name}.on("popupopen", function(event) {{
-                    const marker = event.popup._source;
-                    if (!(marker instanceof L.Marker)) return;
+                document.addEventListener("DOMContentLoaded", function() {{
+                    {map_name}.on("popupopen", function(event) {{
+                        const marker = event.popup._source;
+                        if (!(marker instanceof L.Marker)) return;
 
-                    const content = event.popup.getContent();
-                    const address = typeof content === "string" ? content : content.textContent;
-                    if (address) {{
-                        window.dispatchEvent(new CustomEvent("map-address-selected", {{
-                            detail: {{
-                                address,
-                                coordinates: [marker.getLatLng().lng, marker.getLatLng().lat]
-                            }}
-                        }}));
-                    }}
+                        const content = event.popup.getContent();
+                        const address = typeof content === "string" ? content : content.textContent;
+                        if (address) {{
+                            window.dispatchEvent(new CustomEvent("map-address-selected", {{
+                                detail: {{
+                                    address,
+                                    coordinates: [marker.getLatLng().lng, marker.getLatLng().lat]
+                                }}
+                            }}));
+                        }}
+                    }});
                 }});
                 """
             ),
