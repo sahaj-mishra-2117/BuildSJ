@@ -357,6 +357,10 @@ h1 {
     color 0.2s ease;
 }
 
+#microsoft-btn {
+  margin-top: 8px;
+}
+
 .google-icon {
   width: 20px;
   height: 20px;
