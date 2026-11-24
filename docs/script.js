@@ -11,52 +11,81 @@ document.addEventListener("DOMContentLoaded", () => {
   let checkedInSaved = false;   // true once the save succeeded
   let checkInInFlight = false;  // true while a save is running (prevents double-saves)
 
+  // Reads the signed-in user's row back. An UPDATE that matches no rows is not
+  // an error in Postgres, so this is the only way to know a save really landed.
+  async function readBack(session, column) {
+    const value = column === "id" ? session.user.id : session.user.email;
+    if (!value) return { state: "nomatch" };
+
+    let query = supabaseClient.from("profiles").select("email, checked_in");
+    query = column === "id" ? query.eq(column, value) : query.ilike(column, value);
+
+    const { data, error } = await query.limit(1);
+
+    if (error) return { state: "error", message: error.message };
+    if (!data || data.length === 0) return { state: "nomatch" };
+    return { state: data[0].checked_in === true ? "saved" : "notsaved", row: data[0] };
+  }
+
   // Writes checked_in = true to the signed-in user's row in `profiles`.
   // Tries the auth user id first, then the email column, so it works whichever
   // one the row happens to be keyed on.
   async function setCheckedIn(session) {
     const user = session.user;
+    let blocked = null; // first database error we hit (permissions, RLS, ...)
 
-    const targets = [
-      { column: "id", value: user.id, exact: true },
-      { column: "email", value: user.email, exact: false },
-    ];
-
-    for (const { column, value, exact } of targets) {
+    for (const column of ["id", "email"]) {
+      const value = column === "id" ? user.id : user.email;
       if (!value) continue;
 
-      const match = query => (exact ? query.eq(column, value) : query.ilike(column, value));
+      let update = supabaseClient.from("profiles").update({ checked_in: true });
+      update = column === "id" ? update.eq(column, value) : update.ilike(column, value);
 
-      const { error } = await match(
-        supabaseClient.from("profiles").update({ checked_in: true })
-      );
-
+      const { error } = await update;
       if (error) {
-        console.warn(`checked_in: could not save by ${column}:`, error.message);
+        blocked = blocked || error.message;
+        console.warn(`checked_in: update by ${column} was refused -`, error.message);
         continue;
       }
 
-      // An UPDATE that matches zero rows is not an error, so read it back.
-      const { data, error: readError } = await match(
-        supabaseClient.from("profiles").select("email, checked_in")
-      ).limit(1);
+      const check = await readBack(session, column);
 
-      if (readError) {
-        console.warn(`checked_in: saved by ${column}, but read-back failed:`, readError.message);
-        return true; // the write itself was accepted
-      }
-
-      if (data && data.length > 0 && data[0].checked_in === true) {
-        console.log(`checked_in = true for ${data[0].email || value} (matched by ${column})`);
+      if (check.state === "saved") {
+        console.log(`checked_in = true for ${check.row.email || value} (matched by ${column})`);
         return true;
       }
 
-      console.warn(`checked_in: no profiles row matched by ${column} = ${value}`);
+      if (check.state === "notsaved") {
+        // Row is there but unchanged: row level security silently dropped the write.
+        blocked = blocked || "the update was accepted but the row did not change (RLS UPDATE policy)";
+        console.warn(`checked_in: row matched by ${column}, but the value did not change.`);
+        continue;
+      }
+
+      if (check.state === "error") {
+        // Write accepted, verification not permitted.
+        console.warn(`checked_in: saved by ${column}, but the read-back was denied -`, check.message);
+        return true;
+      }
     }
 
-    console.error(
-      "Could not set checked_in = true. The row exists but the RLS UPDATE policy likely blocks it."
-    );
+    // Nothing to update means this user has no profiles row yet. Create one so
+    // the flag has somewhere to live (needs an INSERT policy on profiles).
+    if (!blocked) {
+      const { error } = await supabaseClient
+        .from("profiles")
+        .insert({ id: user.id, email: user.email, checked_in: true });
+
+      if (!error) {
+        console.log("checked_in = true (created a profiles row for this user)");
+        return true;
+      }
+
+      console.warn("checked_in: could not create a profiles row -", error.message);
+      blocked = error.message;
+    }
+
+    console.error("Could not set checked_in = true -", blocked || "no profiles row matched");
     return false;
   }
 
