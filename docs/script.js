@@ -96,50 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (percentage === 100) markCheckedIn();
   }
 
-  // 3. Set up every checkbox: restore saved state, then handle clicks
+  // 3. Set up every checkbox: restore saved state, then handle ticks
+  // Login is enforced for the whole page by protect.js, so we let the browser
+  // do the toggling itself. An event.preventDefault() + await inside a click
+  // handler cancels the native toggle, which is why clicking did nothing.
   checkboxes.forEach(checkbox => {
     const storageKey = `buildSJ.checklist.${checkbox.id}`;
     checkbox.checked = localStorage.getItem(storageKey) === "true"; // Load saved state
 
-    checkbox.addEventListener("click", async event => {
-      // Stop the browser from toggling right away; we toggle manually
-      // once we've confirmed the user is logged in.
-      event.preventDefault();
-      checkbox.disabled = true; // block double-clicks while we check login
-
-      try {
-        // If the Supabase client didn't load, we can't verify login,
-        // so let the checklist work locally instead of freezing.
-        if (typeof supabaseClient === "undefined") {
-          console.warn("Supabase client not found - checklist working locally only.");
-          checkbox.checked = !checkbox.checked;
-        } else {
-          const { data: { session }, error } = await supabaseClient.auth.getSession();
-
-          if (error) {
-            console.error("Could not verify login:", error.message);
-            return;
-          }
-
-          // Not logged in: offer to send them to the login page
-          if (!session) {
-            if (window.confirm("Please log in to use the checklist. Would you like to log in now?")) {
-              window.location.href = "login.html";
-            }
-            return;
-          }
-
-          // Logged in: toggle the checkbox ourselves
-          checkbox.checked = !checkbox.checked;
-        }
-
-        localStorage.setItem(storageKey, String(checkbox.checked)); // Save state on change
-        updateProgress(); // Update progress bar, text, and (at 100%) save to Supabase
-      } catch (error) {
-        console.error("Could not verify login:", error.message || error);
-      } finally {
-        checkbox.disabled = false; // re-enable the checkbox no matter what
-      }
+    checkbox.addEventListener("change", () => {
+      localStorage.setItem(storageKey, String(checkbox.checked)); // Save state on change
+      updateProgress(); // Update progress bar, text, and (at 100%) save checked_in
     });
   });
 
