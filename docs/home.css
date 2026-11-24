@@ -112,7 +112,7 @@
 
 .home-page #login-btn {
     padding: 9px 17px;
-    color: green;
+    color: black;
     background: white;
     border: 1px solid green;
     border-radius: 4px;
@@ -757,60 +757,41 @@
 
 
 /* =========================================================
-   ADDED: compact content with empty space on the outer
-   sides (everything above is your original CSS)
+   ADDED: center the team heading + photo, and center the
+   cards on the right (everything above is your original CSS)
    ========================================================= */
 
-/* Narrower, centered section so the far left and far right stay empty */
-.home-page .home-content-layout {
-    grid-template-columns: 1fr 1fr;
-    width: min(1000px, 100%);
-    gap: 60px;
-}
-
-/* Left side: About Us, team heading and a smaller photo, all left-aligned */
+/* Left side: everything in About Us centered, including the photo */
 .home-page .about {
-    display: block;
-    max-width: 460px;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.home-page .about h2,
-.home-page .about h3,
 .home-page .about p {
-    text-align: left;
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
+}
+
+.home-page .about h3 {
+    width: 100%;
+    text-align: center;
 }
 
 .home-page .about img {
-    max-width: 420px;
-    margin: 25px 0 0;
+    margin: 25px auto 0;
 }
 
-/* Right side: narrower stack of cards, pushed to the right edge */
+/* Right side: cards centered to match */
 .home-page .step-grid {
-    max-width: 380px;
-    margin-left: auto;
+    align-self: center;
 }
 
 .home-page .step-card {
-    align-items: flex-end;
-    text-align: right;
+    align-items: center;
+    text-align: center;
 }
 
 .home-page .step-link {
-    align-self: flex-end;
-}
-
-/* Mobile: back to one column, full width */
-@media (max-width: 600px) {
-    .home-page .about,
-    .home-page .step-grid {
-        max-width: 100%;
-    }
-
-    .home-page .about img {
-        max-width: 100%;
-    }
+    align-self: center;
 }
