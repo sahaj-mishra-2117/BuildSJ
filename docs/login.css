@@ -361,28 +361,12 @@ h1 {
     color 0.2s ease;
 }
 
-#facebook-btn {
-  margin-top: 8px;
-}
-
 .google-icon {
   width: 20px;
   height: 20px;
 
   object-fit: contain;
   flex-shrink: 0;
-}
-
-.facebook-icon {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #1877f2;
-  color: #fff;
-  font: 700 19px/20px Arial, sans-serif;
 }
 
 .oauth-btn:hover {

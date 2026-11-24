@@ -1,4 +1,4 @@
-// Login logic (email + password, Google, and Facebook). Used only on login.html.
+// Login logic (email + password and Google). Used only on login.html.
 const emailEl = document.getElementById('email');
 const passwordEl = document.getElementById('password');
 const messageEl = document.getElementById('message');
@@ -57,19 +57,6 @@ document.getElementById('google-btn').addEventListener('click', async () => {
   const { error } = await supabaseClient.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: returnUrl,
-    },
-  });
-  if (error) messageEl.textContent = error.message;
-});
-
-// Continue with Facebook
-document.getElementById('facebook-btn').addEventListener('click', async () => {
-  messageEl.textContent = '';
-  const { error } = await supabaseClient.auth.signInWithOAuth({
-    provider: 'facebook',
-    options: {
-      scopes: 'email',
       redirectTo: returnUrl,
     },
   });
