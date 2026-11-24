@@ -143,19 +143,59 @@ document.addEventListener("DOMContentLoaded", () => {
     if (percentage === 100) markCheckedIn();
   }
 
-  // 3. Set up every checkbox: restore saved state, then handle ticks.
-  // Login is enforced for the whole page by protect.js, so the browser does
-  // the toggling itself and no click is ever swallowed.
-  checkboxes.forEach(checkbox => {
-    const storageKey = `buildSJ.checklist.${checkbox.id}`;
-    checkbox.checked = localStorage.getItem(storageKey) === "true"; // Load saved state
-
-    checkbox.addEventListener("change", () => {
-      localStorage.setItem(storageKey, String(checkbox.checked)); // Save state on change
-      updateProgress(); // Update progress bar, text, and (at 100%) save checked_in
+  // 3. Set up every checkbox: restore saved state for signed-in users, then
+  // ask visitors to sign in only when they try to track an item.
+  async function initializeChecklist() {
+    checkboxes.forEach(checkbox => {
+      checkbox.disabled = true;
     });
-  });
 
-  // 4. Run once immediately so the bar shows the right value on page load
-  updateProgress();
+    let session = null;
+    try {
+      const { data, error } = await supabaseClient.auth.getSession();
+      if (error) throw error;
+      session = data.session;
+    } catch (error) {
+      console.error("Could not check sign-in status:", error.message || error);
+    }
+
+    checkboxes.forEach(checkbox => {
+      const storageKey = `buildSJ.checklist.${checkbox.id}`;
+      checkbox.checked = !!session && localStorage.getItem(storageKey) === "true";
+      let savedChecked = checkbox.checked;
+
+      checkbox.addEventListener("change", async () => {
+        const requestedValue = checkbox.checked;
+        checkbox.disabled = true;
+
+        try {
+          const { data, error } = await supabaseClient.auth.getSession();
+          if (error) throw error;
+
+          if (!data.session) {
+            checkbox.checked = savedChecked;
+            const loginUrl = new URL("login.html", window.location.href);
+            loginUrl.searchParams.set("returnTo", "checklist.html");
+            window.location.assign(loginUrl);
+            return;
+          }
+
+          savedChecked = requestedValue;
+          localStorage.setItem(storageKey, String(savedChecked));
+          updateProgress();
+        } catch (error) {
+          checkbox.checked = savedChecked;
+          console.error("Could not check sign-in status:", error.message || error);
+        } finally {
+          checkbox.disabled = false;
+        }
+      });
+      checkbox.disabled = false;
+    });
+
+    // 4. Run once immediately so the bar shows the right value on page load
+    updateProgress();
+  }
+
+  initializeChecklist();
 });

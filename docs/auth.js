@@ -2,10 +2,14 @@
 const emailEl = document.getElementById('email');
 const passwordEl = document.getElementById('password');
 const messageEl = document.getElementById('message');
+const returnPage = new URLSearchParams(window.location.search).get('returnTo') === 'checklist.html'
+  ? 'checklist.html'
+  : 'home.html';
+const returnUrl = new URL(returnPage, window.location.href).href;
 
 // If the user is already logged in, skip the login page
 supabaseClient.auth.getSession().then(({ data: { session } }) => {
-  if (session) window.location.href = 'home.html';
+  if (session) window.location.href = returnUrl;
 });
 
 // Sign up with email
@@ -19,14 +23,14 @@ document.getElementById('signup-btn').addEventListener('click', async () => {
     email: emailEl.value,
     password: passwordEl.value,
     options: {
-      emailRedirectTo: window.location.origin + '/home.html',
+      emailRedirectTo: returnUrl,
     },
   });
   if (error) {
     messageEl.textContent = error.message;
   } else if (data.session) {
     // Email confirmation is off, so the user is logged in immediately
-    window.location.href = 'home.html';
+    window.location.href = returnUrl;
   } else {
     messageEl.textContent = 'Check your email to confirm your account.';
   }
@@ -53,7 +57,7 @@ document.getElementById('google-btn').addEventListener('click', async () => {
   const { error } = await supabaseClient.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: window.location.origin + '/home.html',
+      redirectTo: returnUrl,
     },
   });
   if (error) messageEl.textContent = error.message;
