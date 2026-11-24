@@ -258,6 +258,17 @@ def main():
         geocoder = Geocoder(
             provider="photon",
             provider_options={
+                "nameProperties": [
+                    "housenumber",
+                    "name",
+                    "street",
+                    "suburb",
+                    "hamlet",
+                    "town",
+                    "city",
+                    "state",
+                    "country",
+                ],
                 "geocodingQueryParams": {
                     # Limits autocomplete results to District 10
                     "bbox": f"{D10_BOUNDS[1]},{D10_BOUNDS[0]},{D10_BOUNDS[3]},{D10_BOUNDS[2]}",
@@ -366,8 +377,10 @@ def main():
                         if (!(marker instanceof L.Marker)) return;
 
                         const content = event.popup.getContent();
-                        const address = typeof content === "string" ? content : content.textContent;
+                        const rawAddress = typeof content === "string" ? content : content.textContent;
+                        const address = rawAddress && rawAddress.replace(/^(\\d+[A-Za-z]?),\\s+/, "$1 ");
                         if (address) {{
+                            if (address !== rawAddress) event.popup.setContent(address);
                             window.dispatchEvent(new CustomEvent("map-address-selected", {{
                                 detail: {{
                                     address,
