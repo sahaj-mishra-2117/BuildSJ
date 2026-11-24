@@ -99,6 +99,112 @@
   max-width: min(280px, calc(100% - 32px));
 }
 
+.address-search {
+  position: absolute;
+  z-index: 1000;
+  top: 100px;
+  left: 16px;
+  width: min(360px, calc(100% - 32px));
+  padding: 12px;
+  color: var(--ink);
+  font-family: var(--font);
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.address-search > label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--green-800);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.address-search-row {
+  display: flex;
+  gap: 6px;
+}
+
+.address-search-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 8px 10px;
+  color: var(--ink);
+  font: inherit;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.address-search-row button {
+  padding: 8px 12px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  background: var(--green-700);
+  border: 1px solid var(--green-700);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.address-search-row button:hover {
+  background: var(--green-800);
+}
+
+.address-suggestions:not([hidden]) {
+  position: absolute;
+  top: calc(100% - 12px);
+  right: 12px;
+  left: 12px;
+  z-index: 1;
+  max-height: 240px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.address-suggestion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 9px 10px;
+  color: var(--ink);
+  text-align: left;
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.address-suggestion:last-child {
+  border-bottom: 0;
+}
+
+.address-suggestion:hover,
+.address-suggestion:focus-visible {
+  background: var(--green-50);
+  outline: 0;
+}
+
+.address-suggestion small {
+  margin-top: 2px;
+  color: var(--green-700);
+  font-size: 0.72rem;
+}
+
+.address-search-status {
+  min-height: 1em;
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
 .map-title h2 {
   margin: 0 0 2px;
   color: var(--green-900);
@@ -112,7 +218,7 @@
 }
 
 /* Push the zoom buttons below the title card so they never overlap */
-.leaflet-top.leaflet-left { top: 110px; }
+.leaflet-top.leaflet-left { top: 200px; }
 
 .map-legend {
   right: 16px;
@@ -164,8 +270,7 @@
 }
 
 .leaflet-control-zoom,
-.leaflet-control-layers,
-.leaflet-control-geocoder {
+.leaflet-control-layers {
   overflow: hidden;
   background: #fff !important;
   border: 1px solid var(--line) !important;
@@ -216,14 +321,17 @@
   cursor: pointer;
 }
 
-.leaflet-control-geocoder input {
-  padding: 6px 8px !important;
-  color: var(--ink);
-  font-family: var(--font);
-  font-size: 0.85rem;
-}
 
-.leaflet-control-geocoder-icon { border: 0 !important; }
+
+@media (max-width: 600px) {
+  .address-search {
+    top: 100px;
+    left: 12px;
+    width: min(360px, calc(100% - 24px));
+  }
+
+  .leaflet-top.leaflet-left { top: 200px; }
+}
 
 .leaflet-control-attribution {
   color: var(--muted) !important;
