@@ -367,6 +367,7 @@ body.information-page { padding-top:80px; }
   8. EMERGENCY RESOURCES
   ========================================================= */
 .information-page .additional-section {
+   margin-top: 50px;
    width: min(1250px, 88%);
    margin: 0 auto 110px;
 }
