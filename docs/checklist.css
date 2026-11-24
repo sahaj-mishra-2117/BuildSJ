@@ -558,6 +558,22 @@ body.checklist-page {
     border-color: #2854c5;
 }
 
+.checklist-page button.bottom-button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.checklist-page button.bottom-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.checklist-page #submit-status {
+    min-height: 1.5em;
+    margin: 14px 0 0;
+    color: var(--ink);
+}
+
 
 /* =========================================================
    10. FOOTER

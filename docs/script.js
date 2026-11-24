@@ -5,32 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkboxes = document.querySelectorAll(".task-item");
   const progressBar = document.getElementById("progress-bar");
   const progressText = document.getElementById("progress-text");
+  const submitButton = document.getElementById("submit-checklist");
+  const submitStatus = document.getElementById("submit-status");
+  submitButton.disabled = true;
 
-  // Marks the profile row as checked in. Saves at most once per page load,
-  // because we don't want a database write on every single click.
-  let checkedInSaved = false;   // true once the save succeeded
-  let checkInInFlight = false;  // true while a save is running (prevents double-saves)
+  let checkInInFlight = false;
+
+  function redirectToLogin() {
+    const loginUrl = new URL("login.html", window.location.href);
+    loginUrl.searchParams.set("returnTo", "checklist.html");
+    window.location.assign(loginUrl);
+  }
 
   // Reads the signed-in user's row back. An UPDATE that matches no rows is not
   // an error in Postgres, so this is the only way to know a save really landed.
-  async function readBack(session, column) {
+  async function readBack(session, column, percentage) {
     const value = column === "id" ? session.user.id : session.user.email;
     if (!value) return { state: "nomatch" };
 
-    let query = supabaseClient.from("profiles").select("email, checked_in");
+    let query = supabaseClient.from("profiles").select("email, checked_in, progress_percentage");
     query = column === "id" ? query.eq(column, value) : query.ilike(column, value);
 
     const { data, error } = await query.limit(1);
 
     if (error) return { state: "error", message: error.message };
     if (!data || data.length === 0) return { state: "nomatch" };
-    return { state: data[0].checked_in === true ? "saved" : "notsaved", row: data[0] };
+    const saved = data[0].checked_in === true
+      && data[0].progress_percentage === percentage;
+    return { state: saved ? "saved" : "notsaved", row: data[0] };
   }
 
-  // Writes checked_in = true to the signed-in user's row in `profiles`.
+  // Writes the check-in flag and submitted progress to the user's profile.
   // Tries the auth user id first, then the email column, so it works whichever
   // one the row happens to be keyed on.
-  async function setCheckedIn(session) {
+  async function setCheckedIn(session, percentage) {
     const user = session.user;
     let blocked = null; // first database error we hit (permissions, RLS, ...)
 
@@ -38,7 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const value = column === "id" ? user.id : user.email;
       if (!value) continue;
 
-      let update = supabaseClient.from("profiles").update({ checked_in: true });
+      let update = supabaseClient.from("profiles").update({
+        checked_in: true,
+        progress_percentage: percentage,
+      });
       update = column === "id" ? update.eq(column, value) : update.ilike(column, value);
 
       const { error } = await update;
@@ -48,10 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
         continue;
       }
 
-      const check = await readBack(session, column);
+      const check = await readBack(session, column, percentage);
 
       if (check.state === "saved") {
-        console.log(`checked_in = true for ${check.row.email || value} (matched by ${column})`);
+        console.log(`Check-in and ${percentage}% progress saved for ${check.row.email || value} (matched by ${column})`);
         return true;
       }
 
@@ -74,10 +85,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!blocked) {
       const { error } = await supabaseClient
         .from("profiles")
-        .insert({ id: user.id, email: user.email, checked_in: true });
+        .insert({
+          id: user.id,
+          email: user.email,
+          checked_in: true,
+          progress_percentage: percentage,
+        });
 
       if (!error) {
-        console.log("checked_in = true (created a profiles row for this user)");
+        console.log(`Check-in and ${percentage}% progress saved (created a profiles row)`);
         return true;
       }
 
@@ -89,28 +105,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
 
-  async function markCheckedIn() {
-    if (checkedInSaved || checkInInFlight) return;
-
-    // supabase-client.js declares supabaseClient with `const`, so it is NOT a
-    // property of window. Check it by name instead.
-    if (typeof supabaseClient === "undefined") return;
-
+  async function markCheckedIn(session, percentage) {
+    if (checkInInFlight) return false;
     checkInInFlight = true;
 
     try {
-      const { data: { session }, error } = await supabaseClient.auth.getSession();
-      if (error) throw error;
-
-      if (!session) {
-        // The page is login-protected, so this is only a safety net.
-        console.warn("Checklist complete, but nobody is logged in - not saving checked_in.");
-        return;
-      }
-
-      checkedInSaved = await setCheckedIn(session);
+      return await setCheckedIn(session, percentage);
     } catch (error) {
       console.error("Could not save check-in:", error.message || error);
+      return false;
     } finally {
       checkInInFlight = false; // release the lock so a later click can retry
     }
@@ -139,9 +142,37 @@ document.addEventListener("DOMContentLoaded", () => {
     progressBar.classList.toggle("almost-done", percentage >= 70 && percentage < 100);
     progressBar.classList.toggle("complete", percentage === 100);
 
-    // 100% of the list done = checked in (saved to Supabase)
-    if (percentage === 100) markCheckedIn();
   }
+
+  submitButton.addEventListener("click", async () => {
+    submitButton.disabled = true;
+    submitStatus.textContent = "";
+
+    try {
+      const { data, error } = await supabaseClient.auth.getSession();
+      if (error) throw error;
+
+      if (!data.session) {
+        redirectToLogin();
+        return;
+      }
+
+      const percentage = checkboxes.length > 0
+        ? Math.round((document.querySelectorAll(".task-item:checked").length / checkboxes.length) * 100)
+        : 0;
+
+      if (await markCheckedIn(data.session, percentage)) {
+        submitStatus.textContent = `Your check-in and ${percentage}% progress have been submitted.`;
+      } else {
+        submitStatus.textContent = "We couldn't process your check-in. Please try again.";
+      }
+    } catch (error) {
+      console.error("Could not submit checklist:", error.message || error);
+      submitStatus.textContent = "We couldn't process your check-in. Please try again.";
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
 
   // 3. Set up every checkbox: restore saved state for signed-in users, then
   // ask visitors to sign in only when they try to track an item.
@@ -174,9 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (!data.session) {
             checkbox.checked = savedChecked;
-            const loginUrl = new URL("login.html", window.location.href);
-            loginUrl.searchParams.set("returnTo", "checklist.html");
-            window.location.assign(loginUrl);
+            redirectToLogin();
             return;
           }
 
@@ -195,6 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. Run once immediately so the bar shows the right value on page load
     updateProgress();
+    submitButton.disabled = false;
   }
 
   initializeChecklist();
