@@ -70,9 +70,16 @@
                 Log In
             </a>
 
-            <button type="button" id="logout-btn" class="nav-link" hidden>
-                Log Out
+            <button id="account-btn" hidden onclick="openPopup()">
+                Account
             </button>
+            <div id="popup" class="popup">
+            <div class="popup-content">
+                <h2>Account Settings</h2>
+                <button id = "logout-btn">Log Out</button>
+                <button onclick="closePopup()">Close</button>
+            </div>
+            </div>
 
         </div>
 
