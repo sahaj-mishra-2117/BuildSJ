@@ -864,3 +864,231 @@
     height: 38px;
     padding: 9px 17px;
 }
+/* =========================================
+   HOME HEADER - MATCH INFORMATION HEADER
+   ========================================= */
+
+.home-page .site-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: #10432F;
+    border: none;
+    box-shadow: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 0;
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Navigation container */
+
+.home-page .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Build SJ logo */
+
+.home-page .site-header :is(.brand, .logo) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
+    font-weight: 550;
+    letter-spacing: 1px;
+    margin-left: 20px;
+    padding: 0;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+/* Green logo dot */
+
+.home-page .site-header .logo-dot,
+.home-page .site-header :is(.brand, .logo):not(:has(.logo-dot))::before {
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+    background: #209c70;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(32, 156, 112, 0.15);
+}
+
+/* Navigation alignment */
+
+.home-page .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* Normal navigation links */
+
+.home-page .site-header .nav-links a,
+.home-page .site-header .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 15px;
+    color: #e4ece7;
+    background: transparent;
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0 0 10px 10px;
+    transition: background 0.2s ease,
+                color 0.2s ease;
+}
+
+/* Navigation hover effect */
+
+.home-page .site-header .nav-links a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Selected Home tab */
+
+.home-page .site-header .nav-links a.active,
+.home-page .site-header .nav-links a.nav-home,
+.home-page .site-header .nav-links a[href="home.html"],
+.home-page .site-header .nav-links a[aria-current="page"] {
+    color: #ffffff;
+    background: transparent;
+    font-weight: 700;
+    border-bottom: 2px solid #ffffff;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Remove previous underline effects */
+
+.home-page .site-header .nav-links a::after {
+    display: none;
+}
+
+/* Login and Logout buttons */
+
+.home-page .site-header #login-btn,
+.home-page .site-header #logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 9px 17px;
+    color: #10432F;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease,
+                color 0.2s ease;
+}
+
+/* Login and Logout hover effects */
+
+.home-page .site-header #login-btn:hover,
+.home-page .site-header #logout-btn:hover {
+    color: #171a20;
+    background: #f4f4f4;
+    border-color: #f4f4f4;
+}
+
+/* Hide inactive authentication buttons */
+
+.home-page #login-btn[hidden],
+.home-page #logout-btn[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   TABLET RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .home-page .site-nav {
+        padding: 0 3%;
+    }
+
+    .home-page .nav-links {
+        gap: 0;
+    }
+
+    .home-page .site-header .nav-links a {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .home-page .site-header {
+        position: relative;
+        height: auto;
+        min-height: 62px;
+    }
+
+    .home-page .site-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 16px 18px;
+    }
+
+    .home-page .site-header :is(.brand, .logo) {
+        font-size: 0.95rem;
+        margin-left: 0;
+    }
+
+    .home-page .nav-links {
+        order: 2;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 4px;
+        margin: 0;
+        overflow-x: auto;
+        padding: 5px 0;
+    }
+
+    .home-page .site-header .nav-links a {
+        height: 42px;
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .home-page .site-header #login-btn,
+    .home-page .site-header #logout-btn {
+        flex-shrink: 0;
+        font-size: 0.75rem;
+    }
+}
