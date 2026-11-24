@@ -1,1219 +1,552 @@
 
-
 /* =========================================================
   BUILD SJ - INFORMATION PAGE
   Modern Tesla-inspired design
   ========================================================= */
-
-
-
-
 /* =========================================================
   1. GLOBAL STYLES
   ========================================================= */
-
-
 .information-page {
    margin: 0;
    min-height: 100vh;
-
-
-   background: #f5f6f4;
-   color: #171c19;
-
-
-   font-family: "Inter", sans-serif;
+   background: #ffffff;
+   color: #171a20;
+   font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
 }
-
-
 .information-page * {
    box-sizing: border-box;
 }
-
-
 .information-page a {
    text-decoration: none;
 }
-
-
 .information-page .section-label {
    margin: 0 0 18px;
-
-
-   color: #487957;
+   color: #5c5e62;
    font-size: 0.73rem;
    font-weight: 700;
    letter-spacing: 2.3px;
 }
-
-
-
-
-/* =========================================================
-  2. NAVIGATION
-  ========================================================= */
-
-
-.information-page .site-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 80px;
-    background: #10432F;
-    border: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 0;
-    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
-}
-body.information-page { padding-top: 80px; }
-.information-page .site-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-.information-page .site-header :is(.brand, .logo) {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: white;
-    font-family: "Times New Roman", Times, serif;
-    font-weight: 550;
-    font-size: 24px;
-    letter-spacing: 1px;
-    margin-left: 20px;
-    white-space: nowrap;
-}
-.information-page .site-header :is(.brand, .logo):not(:has(.logo-dot))::before,
-.information-page .site-header .logo-dot {
-    content: "";
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    flex-shrink: 0;
-    background: #209c70;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(32,156,112,.15);
-}
-.information-page .nav-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 5px;
-    margin-left: auto;
-    margin-right: 10px;
-}
-.information-page .site-header .nav-links a {
-    padding: 16px 15px;
-    color: #e5ebe7;
-    font-size: 0.9rem;
-    font-weight: 500;
-    white-space: nowrap;
-    border-radius: 0 0 10px 10px;
-    background: transparent;
-    border: none;
-    transition: background .2s ease, color .2s ease;
-}
-.information-page .site-header .nav-links a:hover,
-.information-page .site-header .nav-links a.nav-information,
-.information-page .site-header .nav-links a[aria-current="page"],
-.information-page .site-header .nav-links a.active {
-    color: #171a20;
-    background: #f4f4f4;
-}
-.information-page .site-header .nav-links a:is(.nav-information, .active, [aria-current="page"]) { font-weight: 700; }
-.information-page .site-header .nav-links a::after { display: none; }
-.information-page .site-header #login-btn,
-.information-page .site-header #logout-btn,
-.information-page .site-header .nav-action {
-    padding: 9px 17px;
-    color: #10432F;
-    background: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: .82rem;
-    font-weight: 600;
-    cursor: pointer;
-}
-.information-page .site-header #login-btn:hover,
-.information-page .site-header #logout-btn:hover { color: #171a20; background: #f4f4f4; }
-@media (max-width: 900px) {
-    .information-page .site-nav { padding: 0 3%; }
-    .information-page .nav-links { gap: 0; }
-    .information-page .site-header .nav-links a { padding: 9px 8px; font-size: .77rem; }
-}
-@media (max-width: 600px) {
-    body.information-page { padding-top: 0; }
-    .information-page .site-header { position: relative; height: auto; min-height: 62px; }
-    .information-page .site-nav { flex-wrap: wrap; gap: 10px; padding: 16px 18px; }
-    .information-page .site-header :is(.brand, .logo) { font-size: .95rem; margin-left: 0; }
-    .information-page .nav-links { order: 2; justify-content: flex-start; width: 100%; overflow-x: auto; gap: 4px; padding: 5px 0; margin: 0; }
-    .information-page .site-header .nav-links a { padding: 8px 10px; font-size: .76rem; }
-}
-
+/* 2. NAVIGATION */
+.information-page .site-header { display:flex; align-items:center; width:100%; height:80px; background:#10432F; border:0; position:fixed; top:0; left:0; z-index:1000; padding:0; }
+body.information-page { padding-top:80px; }
+.information-page .site-nav { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:none; height:100%; padding:0; margin:0; }
+.information-page .site-header :is(.brand,.logo) { display:flex; align-items:center; gap:12px; color:white; font-family: 'Times New Roman', Times, serif; font-weight:700; font-size:24px; letter-spacing:1px; margin-left:20px; padding:0; white-space:nowrap; }
+.information-page .site-header :is(.brand,.logo):not(:has(.logo-dot))::before, .information-page .site-header .logo-dot { content:""; display:inline-block; width:11px; height:11px; flex-shrink:0; background:#209c70; border-radius:50%; box-shadow:0 0 0 4px rgba(32,156,112,.15); }
+.information-page .site-header .nav-links { display:flex; align-items:center; justify-content:flex-end; gap:5px; margin-left:auto; margin-right:10px; }
+.information-page .site-header .nav-links a { display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 15px; color:#e4ece7; background:transparent; font-family:inherit; font-size:0.9rem; font-weight:500; white-space:nowrap; border:0; border-bottom:2px solid transparent; border-radius:0 0 10px 10px; transition:background .2s ease,color .2s ease; }
+.information-page .site-header .nav-links a:hover { color:white; background:rgba(255,255,255,.05); }
+.information-page .site-header .nav-links a:is(.nav-information,.active,[aria-current="page"],[href="information.html"]) { color:white; background:transparent; font-weight:700; border-bottom:2px solid white; }
+.information-page .site-header .nav-links a::after { display:none; }
+.information-page .site-header #login-btn, .information-page .site-header #logout-btn { height:38px; padding:9px 17px; color:#10432F; background:white; border:1px solid white; border-radius:4px; font-family:inherit; font-size:.82rem; font-weight:600; cursor:pointer; white-space:nowrap; }
+.information-page .site-header #login-btn:hover, .information-page .site-header #logout-btn:hover { color:#171a20; background:#f4f4f4; }
+.information-page #login-btn[hidden], .information-page #logout-btn[hidden] { display:none !important; }
+@media(max-width:900px) { .information-page .site-nav { padding:0 3%; } .information-page .site-header .nav-links { gap:0; } .information-page .site-header .nav-links a { padding:0 8px; font-size:.77rem; } }
+@media(max-width:600px) { body.information-page { padding-top:0; } .information-page .site-header { position:relative; height:auto; min-height:62px; } .information-page .site-nav { flex-wrap:wrap; gap:10px; padding:16px 18px; } .information-page .site-header :is(.brand,.logo) { font-size:.95rem; margin-left:0; } .information-page .site-header .nav-links { order:2; justify-content:flex-start; width:100%; overflow-x:auto; gap:4px; margin:0; } .information-page .site-header .nav-links a { height:42px; padding:0 10px; font-size:.76rem; } }
 /* =========================================================
   3. HERO SECTION
   ========================================================= */
-
-
 .information-page .hero {
    position: relative;
-
-
    min-height: 680px;
-
-
    display: flex;
    align-items: center;
-
-
    overflow: hidden;
-
-
    background-image:
-       url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2400&q=90");
-
-
+       url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
    background-position: center;
    background-size: cover;
-
-
    color: #ffffff;
 }
-
-
 .information-page .hero-overlay {
-   position: absolute;
-   inset: 0;
-
-
-   background:
-       linear-gradient(
-           90deg,
-           rgba(12, 20, 17, 0.82) 0%,
-           rgba(12, 20, 17, 0.52) 48%,
-           rgba(12, 20, 17, 0.12) 100%
-       ),
-       linear-gradient(
-           0deg,
-           rgba(12, 20, 17, 0.42),
-           transparent 45%
-       );
+    position:absolute; inset:0; background:linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.50) 52%, rgba(0,0,0,.20) 100%); pointer-events:none;
 }
-
-
 .information-page .hero-content {
-   position: relative;
-   z-index: 2;
-
-
-   width: min(1250px, 100%);
-   margin: 0 auto;
-
-
-   padding: 125px 7% 105px;
+    position:relative; z-index:2; width:100%; margin:0 auto; padding:85px 9%;
 }
-
-
 .information-page .hero .eyebrow {
    margin: 0 0 23px;
-
-
    color: #d5e7d9;
-
-
    font-size: 0.78rem;
    font-weight: 700;
    letter-spacing: 3px;
 }
-
-
 .information-page .hero h1 {
    max-width: 850px;
-
-
    margin: 0 0 25px;
-
-
    color: #ffffff;
-
-
-   font-size: clamp(3.5rem, 7.5vw, 6.5rem);
+   font-size: clamp(2.5rem, 4.5vw, 4.5rem);
    font-weight: 700;
-
-
    line-height: 0.99;
    letter-spacing: -4px;
 }
-
-
 .information-page .hero-description {
    max-width: 560px;
-
-
    margin: 0 0 32px;
-
-
    color: rgba(255,255,255,0.87);
-
-
    font-size: 1.08rem;
    line-height: 1.8;
 }
-
-
 .information-page .hero-button {
-   display: inline-flex;
-   align-items: center;
-   gap: 35px;
-
-
-   padding: 15px 23px;
-
-
-   color: #ffffff;
-   background: #356c48;
-
-
-   border: 1px solid #356c48;
-   border-radius: 3px;
-
-
-   font-size: 0.82rem;
-   font-weight: 700;
-
-
-   transition:
-       background 0.2s ease,
-       transform 0.2s ease;
+    display:inline-flex; align-items:center; justify-content:center; gap:24px; min-width:190px; padding:13px 22px; color:#171a20; background:#fff; border:1px solid #fff; border-radius:4px; font-size:.88rem; font-weight:600; transition:background .2s ease,color .2s ease,border-color .2s ease;
 }
-
-
 .information-page .hero-button:hover {
-   background: #285739;
-   transform: translateY(-2px);
+    color:white; background:#3e6ae1; border-color:#3e6ae1;
 }
-
-
 .information-page .hero-button span {
    font-size: 1.1rem;
 }
-
-
 .information-page .hero-bottom {
    position: absolute;
    bottom: 27px;
    left: 7%;
    z-index: 2;
-
-
    color: rgba(255,255,255,0.7);
-
-
    font-size: 0.68rem;
    font-weight: 600;
    letter-spacing: 2px;
 }
-
-
 .information-page .hero-bottom span {
    padding: 0 8px;
    color: #8bc49a;
 }
-
-
-
-
 /* =========================================================
   4. INTRODUCTION SECTION
   ========================================================= */
-
-
 .information-page .intro-section {
    display: grid;
-
-
    grid-template-columns: 1.05fr 0.95fr;
-
-
    align-items: center;
    gap: clamp(35px, 7vw, 100px);
-
-
    width: min(1300px, 100%);
-
-
    margin: 0 auto;
    padding: 110px 6%;
 }
-
-
 .information-page .intro-image {
    min-height: 420px;
-
-
    background-image:
        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1400&q=85");
-
-
    background-position: center;
    background-size: cover;
-
-
    border-radius: 5px;
 }
-
-
 .information-page .intro-content {
    max-width: 500px;
 }
-
-
 .information-page .intro-content h2 {
    margin: 0 0 25px;
-
-
-   color: #18231c;
-
-
-   font-size: clamp(2.5rem, 4.5vw, 4rem);
+   color: #171a20;
+   font-size: clamp(1.8rem, 3vw, 2.25rem);
    font-weight: 700;
-
-
    line-height: 1.08;
    letter-spacing: -2px;
 }
-
-
 .information-page .intro-content > p:not(.section-label) {
    margin: 0 0 18px;
-
-
-   color: #606861;
-
-
+   color: #5c5e62;
    font-size: 0.97rem;
    line-height: 1.9;
 }
-
-
 .information-page .text-link {
    display: inline-flex;
    align-items: center;
    gap: 15px;
-
-
    margin-top: 12px;
-
-
-   color: #306b43;
-
-
+   color: #3e6ae1;
    font-size: 0.88rem;
    font-weight: 700;
-
-
    border-bottom: 1px solid #8cab94;
    padding-bottom: 7px;
-
-
    transition: gap 0.2s ease;
 }
-
-
 .information-page .text-link:hover {
    gap: 23px;
 }
-
-
-
-
 /* =========================================================
   5. SAFETY SECTION
   ========================================================= */
-
-
 .information-page .safety-section {
    padding: 100px 6% 115px;
-
-
-   background: #e9eee8;
+   background: #f4f4f4;
 }
-
-
 .information-page .section-heading {
    width: min(1250px, 100%);
    margin: 0 auto 45px;
 }
-
-
 .information-page .section-heading h2 {
    margin: 0 0 15px;
-
-
-   color: #18231c;
-
-
-   font-size: clamp(2.5rem, 4.5vw, 4rem);
+   color: #171a20;
+   font-size: clamp(1.8rem, 3vw, 2.25rem);
    font-weight: 700;
-
-
    letter-spacing: -2px;
 }
-
-
 .information-page .section-heading > p:last-child {
    max-width: 550px;
-
-
    margin: 0;
-
-
-   color: #68716a;
-
-
+   color: #5c5e62;
    font-size: 0.98rem;
    line-height: 1.8;
 }
-
-
-
-
 /* =========================================================
   6. SAFETY CARDS
   ========================================================= */
-
-
 .information-page .safety-grid {
    display: grid;
-
-
    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-
    gap: 22px;
-
-
    width: min(1250px, 100%);
    margin: 0 auto;
 }
-
-
 .information-page .safety-card {
    min-height: 340px;
-
-
    padding: 35px 36px;
-
-
    background: #ffffff;
-
-
-   border: 1px solid rgba(30,60,38,0.07);
+   border: 1px solid #e5e5e5;
    border-radius: 8px;
-
-
-   box-shadow: 0 8px 30px rgba(25,45,30,0.035);
-
-
+   box-shadow: none;
    transition:
        transform 0.25s ease,
        box-shadow 0.25s ease;
 }
-
-
 .information-page .safety-card:hover {
    transform: translateY(-5px);
-
-
-   box-shadow: 0 15px 35px rgba(25,45,30,0.08);
+   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
-
-
 .information-page .card-top {
    display: flex;
    align-items: center;
    justify-content: space-between;
-
-
    margin-bottom: 25px;
 }
-
-
 .information-page .card-number {
    color: #88a48d;
-
-
    font-size: 0.78rem;
    font-weight: 700;
    letter-spacing: 2px;
 }
-
-
 .information-page .card-icon {
    display: flex;
    align-items: center;
    justify-content: center;
-
-
    width: 47px;
    height: 47px;
-
-
    color: #356d48;
    background: #edf3ed;
-
-
    border-radius: 50%;
-
-
    font-size: 1.65rem;
 }
-
-
 .information-page .safety-card h3 {
    margin: 0 0 13px;
-
-
-   color: #1b2c20;
-
-
+   color: #171a20;
    font-size: 1.45rem;
    font-weight: 700;
    letter-spacing: -0.6px;
 }
-
-
 .information-page .safety-card > p {
    max-width: 450px;
-
-
    margin: 0 0 22px;
-
-
-   color: #727a73;
-
-
+   color: #5c5e62;
    font-size: 0.9rem;
    line-height: 1.75;
 }
-
-
 .information-page .safety-card ul {
    display: grid;
    gap: 13px;
-
-
    margin: 0;
    padding: 0;
-
-
    list-style: none;
 }
-
-
 .information-page .safety-card li {
    position: relative;
-
-
    padding-left: 25px;
-
-
-   color: #4c554e;
-
-
+   color: #393c41;
    font-size: 0.88rem;
    line-height: 1.6;
 }
-
-
 .information-page .safety-card li::before {
-   content: "âœ“";
-
-
+   content: "\2713";
    position: absolute;
    left: 0;
    top: 1px;
-
-
    display: flex;
    align-items: center;
    justify-content: center;
-
-
    width: 17px;
    height: 17px;
-
-
    color: #ffffff;
    background: #39754b;
-
-
    border-radius: 50%;
-
-
    font-size: 0.67rem;
    font-weight: 700;
 }
-
-
-
-
 /* =========================================================
   7. EVACUATION WARNING
   ========================================================= */
-
-
 .information-page .evacuation-banner {
    position: relative;
-
-
    display: flex;
    align-items: center;
    justify-content: space-between;
    gap: 30px;
-
-
    width: min(1250px, 88%);
-
-
    margin: 100px auto;
-
-
    padding: clamp(40px, 6vw, 75px);
-
-
    overflow: hidden;
-
-
    background: #1b3023;
    border-radius: 6px;
-
-
    color: #ffffff;
 }
-
-
 .information-page .warning-content {
    max-width: 760px;
 }
-
-
 .information-page .warning-content .section-label {
    color: #a8d2b1;
 }
-
-
 .information-page .warning-content h2 {
    margin: 0 0 22px;
-
-
    color: #ffffff;
-
-
    font-size: clamp(2rem, 4vw, 3.5rem);
    font-weight: 700;
-
-
    line-height: 1.15;
    letter-spacing: -1.7px;
 }
-
-
 .information-page .warning-content > p:last-child {
    max-width: 650px;
-
-
    margin: 0;
-
-
    color: rgba(255,255,255,0.75);
-
-
    font-size: 0.96rem;
    line-height: 1.85;
 }
-
-
 .information-page .warning-symbol {
    flex-shrink: 0;
-
-
    display: flex;
    align-items: center;
    justify-content: center;
-
-
    width: 105px;
    height: 105px;
-
-
    color: #ffffff;
    border: 2px solid rgba(255,255,255,0.4);
    border-radius: 50%;
-
-
    font-size: 3.5rem;
    font-weight: 500;
 }
-
-
-
-
 /* =========================================================
   8. EMERGENCY RESOURCES
   ========================================================= */
-
-
 .information-page .additional-section {
    width: min(1250px, 88%);
    margin: 0 auto 110px;
 }
-
-
 .information-page .additional-heading {
    margin-bottom: 35px;
 }
-
-
 .information-page .additional-heading h2 {
    margin: 0 0 15px;
-
-
-   color: #1b2c20;
-
-
-   font-size: clamp(2.4rem, 4vw, 3.7rem);
+   color: #171a20;
+   font-size: clamp(1.8rem, 3vw, 2.25rem);
    font-weight: 700;
    letter-spacing: -1.8px;
 }
-
-
 .information-page .additional-heading > p:last-child {
    max-width: 580px;
-
-
    margin: 0;
-
-
-   color: #69736b;
-
-
+   color: #5c5e62;
    font-size: 0.96rem;
    line-height: 1.8;
 }
-
-
 .information-page .resource-panel {
    display: grid;
-
-
    grid-template-columns: 1fr 0.9fr;
-
-
    align-items: center;
    gap: 40px;
-
-
    padding: 45px;
-
-
    background: #ffffff;
-
-
-   border: 1px solid #e7ebe5;
+   border: 1px solid #e5e5e5;
    border-radius: 7px;
-
-
-   box-shadow: 0 8px 30px rgba(20,40,25,0.035);
+   box-shadow: none;
 }
-
-
 .information-page .resource-icon {
    display: flex;
    align-items: center;
    justify-content: center;
-
-
    width: 45px;
    height: 45px;
-
-
    margin-bottom: 20px;
-
-
    color: #39754b;
    background: #edf3ed;
-
-
    border-radius: 50%;
-
-
    font-size: 1.3rem;
 }
-
-
 .information-page .resource-info h3 {
    margin: 0 0 12px;
-
-
-   color: #1b2c20;
-
-
+   color: #171a20;
    font-size: 1.55rem;
    font-weight: 700;
 }
-
-
 .information-page .resource-info p {
    max-width: 430px;
-
-
    margin: 0;
-
-
-   color: #737b74;
-
-
+   color: #5c5e62;
    font-size: 0.92rem;
    line-height: 1.8;
 }
-
-
 .information-page .resource-select label {
    display: block;
-
-
    margin-bottom: 12px;
-
-
    color: #526456;
-
-
    font-size: 0.72rem;
    font-weight: 700;
    letter-spacing: 1.6px;
 }
-
-
 .information-page .resource-select select {
    width: 100%;
-
-
    padding: 17px 16px;
-
-
    color: #303a32;
    background: #f7f8f6;
-
-
    border: 1px solid #dce3dc;
    border-radius: 4px;
-
-
    font-family: inherit;
    font-size: 0.9rem;
-
-
    cursor: pointer;
-
-
    transition: border-color 0.2s ease;
 }
-
-
 .information-page .resource-select select:hover,
 .information-page .resource-select select:focus {
    border-color: #477b53;
 }
-
-
 .information-page .resource-select select:focus {
    outline: 2px solid rgba(71,123,83,0.25);
    outline-offset: 2px;
 }
-
-
 .information-page .resource-open-link {
    display: inline-flex;
    align-items: center;
    gap: 10px;
-
-
    margin-top: 18px;
-
-
-   color: #326c43;
-
-
+   color: #3e6ae1;
    font-size: 0.88rem;
    font-weight: 700;
 }
-
-
 .information-page .resource-open-link:hover {
    text-decoration: underline;
    text-underline-offset: 4px;
 }
-
-
-
-
 /* =========================================================
   9. FOOTER
   ========================================================= */
-
-
 .information-page .site-footer {
-   position: relative;
-
-
-   padding: 45px 7%;
-
-
-   background:
-       linear-gradient(
-           rgba(13,26,19,0.86),
-           rgba(13,26,19,0.94)
-       ),
-       url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80");
-
-
-   background-position: center;
-   background-size: cover;
-
-
-   color: #ffffff;
+    width:100%; margin-top:auto; padding:27px 20px; color:#5c5e62; background:white; border-top:1px solid #e5e5e5; font-size:.82rem; text-align:center;
 }
-
-
 .information-page .footer-content {
    width: min(1250px, 100%);
    margin: 0 auto;
-
-
    display: flex;
    align-items: center;
    justify-content: space-between;
    gap: 20px;
 }
-
-
 .information-page .footer-brand {
-   color: #ffffff;
-
-
-   font-size: 1.35rem;
-   font-weight: 800;
-   letter-spacing: -0.8px;
+    color:#171a20; font-size:.95rem; font-weight:600;
 }
-
-
 .information-page .footer-content p {
-   margin: 0;
-
-
-   color: rgba(255,255,255,0.78);
-
-
-   font-size: 0.86rem;
+    margin:0; color:#5c5e62; font-size:.82rem;
 }
-
-
 .information-page .footer-content span {
-   color: rgba(255,255,255,0.65);
-
-
-   font-size: 0.78rem;
+    color:#5c5e62; font-size:.78rem;
 }
-
-
-
-
 /* =========================================================
   10. TABLET RESPONSIVENESS
   ========================================================= */
-
-
 @media (max-width: 900px) {
-
-
-
-
-
    .information-page .hero {
        min-height: 620px;
    }
-
-
    .information-page .intro-section {
        gap: 35px;
    }
-
-
    .information-page .intro-image {
        min-height: 350px;
    }
-
-
    .information-page .safety-card {
        padding: 28px;
    }
-
-
 }
-
-
-
-
 /* =========================================================
   11. MOBILE RESPONSIVENESS
   ========================================================= */
-
-
 @media (max-width: 650px) {
-
-
-
-
-
-
-
-
    .information-page .hero {
        min-height: 650px;
        background-position: 60% center;
    }
-
-
    .information-page .hero-content {
        padding: 160px 25px 100px;
    }
-
-
    .information-page .hero h1 {
        font-size: clamp(3rem, 12vw, 4.2rem);
        letter-spacing: -2.5px;
    }
-
-
    .information-page .hero-description {
        font-size: 0.95rem;
    }
-
-
    .information-page .hero-bottom {
        left: 25px;
    }
-
-
    .information-page .intro-section {
        grid-template-columns: 1fr;
        gap: 35px;
-
-
        padding: 65px 24px;
    }
-
-
    .information-page .intro-image {
        min-height: 280px;
    }
-
-
    .information-page .intro-content h2 {
        font-size: 2.8rem;
    }
-
-
    .information-page .safety-section {
        padding: 70px 22px;
    }
-
-
    .information-page .section-heading h2 {
        font-size: 2.7rem;
    }
-
-
    .information-page .safety-grid {
        grid-template-columns: 1fr;
        gap: 16px;
    }
-
-
    .information-page .safety-card {
        min-height: auto;
        padding: 27px;
    }
-
-
    .information-page .evacuation-banner {
        width: calc(100% - 36px);
-
-
        margin: 65px auto;
-
-
        padding: 35px 25px;
-
-
        align-items: flex-start;
        flex-direction: column;
    }
-
-
    .information-page .warning-symbol {
        width: 65px;
        height: 65px;
-
-
        font-size: 2rem;
    }
-
-
    .information-page .additional-section {
        width: calc(100% - 40px);
        margin-bottom: 70px;
    }
-
-
    .information-page .resource-panel {
        grid-template-columns: 1fr;
        gap: 30px;
-
-
        padding: 28px 22px;
    }
-
-
    .information-page .footer-content {
        align-items: flex-start;
        flex-direction: column;
        gap: 13px;
    }
-
-
 }
-
-
-
-
 /* =========================================================
   12. ACCESSIBILITY
   ========================================================= */
-
-
 @media (prefers-reduced-motion: reduce) {
-
-
    .information-page *,
    .information-page *::before,
    .information-page *::after {
@@ -1221,243 +554,21 @@ body.information-page { padding-top: 80px; }
        animation-duration: 0.01ms !important;
        transition-duration: 0.01ms !important;
    }
-
-
-}
-/* =========================================
-   MATCH PREPARATION CHECKLIST HEADER
-   ========================================= */
-
-.map-page .site-header {
-    background: #10432F;
-    height: 80px;
-    min-height: 80px;
-    width: 100%;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
 }
 
-.map-page .site-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: none;
-    height: 100%;
-    margin: 0;
-    padding: 0 10px 0 20px;
-}
-
-/* Build SJ logo */
-
-.map-page .brand,
-.map-page .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #ffffff;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.map-page .logo-dot {
-    width: 11px;
-    height: 11px;
-    background: #209c70;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(32, 156, 112, 0.15);
-}
-
-/* Navigation alignment */
-
-.map-page .nav-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 5px;
-    margin-left: auto;
-    margin-right: 0;
-}
-
-/* Navigation text */
-
-.map-page .nav-links a,
-.map-page .nav-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 52px;
-    padding: 0 15px;
-    color: #e4ece7;
-    background: transparent;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    white-space: nowrap;
-    border: none;
-    border-radius: 0 0 10px 10px;
-}
-
-/* Selected Emergency Map tab */
-
-.map-page .nav-links a.nav-map,
-.map-page .nav-links a.active,
-.map-page .nav-links a[aria-current="page"],
-.map-page .nav-links a[href="map.html"] {
-    background: #f4f4f4;
-    color: #171a20;
-    font-weight: 700;
-    border-radius: 0 0 10px 10px;
-}
-
-/* Hover effect */
-
-.map-page .nav-links a:hover {
-    background: #f4f4f4;
-    color: #171a20;
-}
-
-/* Remove old underline */
-
-.map-page .nav-links a::after {
-    display: none;
-}
-
-/* Login and Logout buttons */
-
-.map-page #login-btn,
-.map-page #logout-btn {
-    height: 38px;
-    padding: 9px 17px;
-    margin-left: 0;
-    color: #10432F;
-    background: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    font-family: "Source Sans 3", Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.map-page #login-btn:hover,
-.map-page #logout-btn:hover {
-    color: #171a20;
-    background: #f4f4f4;
-    border-color: #f4f4f4;
-}
-
-.map-page #login-btn[hidden],
-.map-page #logout-btn[hidden] {
-    display: none !important;
-}
-
-/* Mobile responsiveness */
-
-@media (max-width: 700px) {
-    .map-page .site-header {
-        height: auto;
-        min-height: 62px;
-    }
-
-    .map-page .site-nav {
-        flex-wrap: wrap;
-        padding: 12px 16px;
-        gap: 10px;
-    }
-
-    .map-page .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: auto;
-    }
-
-    .map-page .nav-links a {
-        font-size: 12px;
-        padding: 0 10px;
-        height: 42px;
-    }
-}
-/* =========================================
-   UPDATED HEADER - CURVED WHITE UNDERLINE
-   ========================================= */
-
-.information-page .site-header {
-    background: #10432F;
-}
-
-/* Normal navigation links */
-
-.information-page .nav-links a,
-.information-page .nav-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 52px;
-    padding: 0 15px;
-    color: #e4ece7;
-    background: transparent;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    white-space: nowrap;
-    border: none;
-    border-bottom: 2px solid transparent;
-    border-radius: 0 0 10px 10px;
-    transition: background 0.2s ease,
-                color 0.2s ease;
-}
-
-/* Selected Evacuation Information tab */
-
-.information-page .nav-links a.active,
-.information-page .nav-links a.nav-information,
-.information-page .nav-links a[href="information.html"],
-.information-page .nav-links a[aria-current="page"] {
-    color: #ffffff;
-    background: transparent;
-    font-weight: 700;
-    border-bottom: 2px solid #ffffff;
-    border-radius: 0 0 10px 10px;
-}
-
-/* Navigation hover effect */
-
-.information-page .nav-links a:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Remove previous underline effects */
-
-.information-page .nav-links a::after {
-    display: none;
-}
-
-/* Login and Logout buttons */
-
-.information-page #login-btn,
-.information-page #logout-btn {
-    color: #10432F;
-    background: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    height: 38px;
-    padding: 9px 17px;
-}
+/* Home-page design refinements */
+.information-page .hero { min-height:620px; height:min(760px, calc(100vh - 80px)); }
+.information-page .hero h1 { font-weight:600; line-height:1.15; letter-spacing:-2px; max-width:650px; }
+.information-page .hero .eyebrow { color:rgba(255,255,255,.8); font-size:.76rem; font-weight:600; letter-spacing:1.8px; }
+.information-page .intro-section { width:min(1200px,100%); gap:55px; padding:95px 35px; }
+.information-page :is(.intro-content,.section-heading,.additional-heading) h2 { font-weight:500; letter-spacing:-.8px; }
+.information-page .safety-card { padding:27px; border-radius:5px; min-height:0; }
+.information-page .safety-card:hover { transform:translateY(-3px); border-color:#c8c8c8; }
+.information-page .safety-card h3 { font-size:1.35rem; font-weight:600; letter-spacing:-.3px; }
+.information-page .safety-card > p { font-size:.95rem; line-height:1.65; }
+.information-page .resource-panel { border-radius:5px; }
+.information-page .evacuation-banner { background:#10432F; }
+.information-page .footer-content { justify-content:center; flex-wrap:wrap; align-items:center; }
+.information-page a:focus-visible,.information-page button:focus-visible { outline:2px solid #3e6ae1; outline-offset:4px; }
+@media(max-width:900px) { .information-page .intro-section { gap:30px; padding:75px 25px; } }
+@media(max-width:650px) { .information-page .hero { height:auto; min-height:570px; } .information-page .hero-content { padding:75px 25px 100px; } .information-page .hero h1 { font-size:clamp(2.5rem,11vw,3.7rem); letter-spacing:-1.5px; } .information-page .intro-section { padding:65px 20px; } .information-page :is(.intro-content,.section-heading,.additional-heading) h2 { font-size:2rem; } .information-page .footer-content { align-items:center; } }
