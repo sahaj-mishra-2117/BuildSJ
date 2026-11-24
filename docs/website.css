@@ -201,6 +201,10 @@
   box-shadow: var(--shadow-md);
 }
 
+.leaflet-control-geocoder-options-open .leaflet-control-geocoder-form-no-error {
+  display: none;
+}
+
 .leaflet-control-zoom a {
   color: var(--green-800) !important;
   background: #fff !important;
