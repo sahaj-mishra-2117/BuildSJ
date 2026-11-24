@@ -52,7 +52,7 @@ body.information-page { padding-top:80px; }
    align-items: center;
    overflow: hidden;
    background-image:
-       url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
+       url("https://media.istockphoto.com/id/1433420252/photo/rays-of-sunlight-in-a-green-forest.jpg?s=612x612&w=0&k=20&c=DHB1oA9zYPQuKZ2DeGbRwwSnl-dWCg406k9AOvIawVU=");
    background-position: center;
    background-size: cover;
    color: #ffffff;
@@ -557,7 +557,21 @@ body.information-page { padding-top:80px; }
 }
 
 /* Home-page design refinements */
-.information-page .hero { min-height:620px; height:min(760px, calc(100vh - 80px)); }
+.information-page .hero { 
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 80px);
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
 .information-page .hero h1 { font-weight:600; line-height:1.15; letter-spacing:-2px; max-width:650px; }
 .information-page .hero .eyebrow { color:rgba(255,255,255,.8); font-size:.76rem; font-weight:600; letter-spacing:1.8px; }
 .information-page .intro-section { width:min(1200px,100%); gap:55px; padding:95px 35px; }

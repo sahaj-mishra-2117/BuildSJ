@@ -362,5 +362,118 @@
     </footer>
 
     <script src="nav-auth.js"></script>
+    <!-- Congratulations popup -->
+
+<div id="congrats-popup"
+     class="congrats-overlay"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="congrats-title"
+     hidden>
+
+    <div class="congrats-box">
+
+        <div class="congrats-icon">🎉</div>
+
+        <h2 id="congrats-title">
+            Congratulations!
+        </h2>
+
+        <p>
+            You've taken an important step toward
+            keeping yourself, your family, and
+            your community safe.
+        </p>
+
+        <button class="congrats-close"
+                type="button"
+                onclick="closeCongratulations()">
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+let previousFocus;
+
+function showCongratulations() {
+
+    previousFocus = document.activeElement;
+
+    const popup = document.getElementById(
+        "congrats-popup"
+    );
+
+    popup.hidden = false;
+
+    popup.querySelector(".congrats-close").focus();
+
+    if (window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches) {
+        return;
+    }
+
+    const colors = [
+        "#10432F",
+        "#209c70",
+        "#ffffff",
+        "#FFD700",
+        "#3e6ae1",
+        "#FF6B6B"
+    ];
+
+    for (let i = 0; i < 100; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti-piece";
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.backgroundColor =
+            colors[Math.floor(
+                Math.random() * colors.length
+            )];
+
+        confetti.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        confetti.style.animationDuration =
+            2 + Math.random() * 2 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 6000);
+    }
+}
+
+function closeCongratulations() {
+
+    document.getElementById(
+        "congrats-popup"
+    ).hidden = true;
+
+    document.querySelectorAll(
+        ".confetti-piece"
+    ).forEach(piece => piece.remove());
+
+    previousFocus?.focus();
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" &&
+        !document.getElementById("congrats-popup").hidden) {
+        closeCongratulations();
+    }
+});
+
+</script>
 </body>
 </html>

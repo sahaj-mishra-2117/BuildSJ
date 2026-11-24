@@ -185,7 +185,7 @@ body.checklist-page {
             rgba(0, 0, 0, 0.38) 48%,
             rgba(0, 0, 0, 0.08) 100%
         ),
-        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
+        url("https://media.istockphoto.com/id/2168248304/photo/blazing-fall-color-in-northern-michigan.jpg?s=612x612&w=0&k=20&c=kpN87DfIQOgz0afe3bfRmv92vtes-3gONf02LMrApn4=");
 
     background-size: cover;
     background-position: center;
@@ -1027,5 +1027,119 @@ body.checklist-page {
     .checklist-page .site-header #logout-btn {
         flex-shrink: 0;
         font-size: 0.75rem;
+    }
+}
+/* =========================================
+   CONGRATULATIONS ANIMATION
+   ========================================= */
+
+.congrats-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.congrats-overlay[hidden] {
+    display: none !important;
+}
+
+.congrats-box {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    padding: 45px 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    animation: congratsPop 0.5s ease-out;
+}
+
+.congrats-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.congrats-box h2 {
+    color: #10432F;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+
+.congrats-box p {
+    color: #5c5e62;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.congrats-close {
+    background: #10432F;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 35px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.congrats-close:hover {
+    background: #209c70;
+}
+
+@keyframes congratsPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Falling confetti */
+
+.confetti-piece {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 15px;
+    pointer-events: none;
+    z-index: 10000;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .congrats-box {
+        animation: none;
+    }
+
+    .confetti-piece {
+        display: none;
     }
 }
