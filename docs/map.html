@@ -190,18 +190,18 @@
             tile_layer_41c5e83c3c81d309169c24a7b3068a38.addTo(map_b7dcc81e2ea976ef891fac0989f036fc);
         
     
+            var mapPhotonGeocoder = L.Control.Geocoder.photon({
+                geocodingQueryParams: {
+                    bbox: "-121.97,37.15,-121.72,37.3",
+                    limit: 5,
+                },
+            });
             var mapGeocoder = L.Control.geocoder({
                 collapsed: false,
                 position: "topright",
                 defaultMarkGeocode: true,
                 zoom: 15,
-                provider: "photon",
-                providerOptions: {
-                    geocodingQueryParams: {
-                        bbox: "-121.97,37.15,-121.72,37.3",
-                        limit: 5,
-                    },
-                },
+                geocoder: mapPhotonGeocoder,
                 suggestMinLength: 3,
                 suggestTimeout: 250,
             }).on("markgeocode", function(event) {
