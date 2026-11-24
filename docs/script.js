@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Reads the signed-in user's row back. An UPDATE that matches no rows is not
   // an error in Postgres, so this is the only way to know a save really landed.
-  async function readBack(session, column, percentage, checkedIn) {
+  async function readBack(session, column, percentage, checkedIn, tasksCompleted) {
     const value = column === "id" ? session.user.id : session.user.email;
     if (!value) return { state: "nomatch" };
 
-    let query = supabaseClient.from("profiles").select("email, checked_in, progress_percentage");
+    let query = supabaseClient.from("profiles").select("email, checked_in, progress_percentage, tasks_completed");
     query = column === "id" ? query.eq(column, value) : query.ilike(column, value);
 
     const { data, error } = await query.limit(1);
@@ -33,14 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (error) return { state: "error", message: error.message };
     if (!data || data.length === 0) return { state: "nomatch" };
     const saved = data[0].checked_in === checkedIn
-      && data[0].progress_percentage === percentage;
+      && data[0].progress_percentage === percentage
+      && data[0].tasks_completed === tasksCompleted;
     return { state: saved ? "saved" : "notsaved", row: data[0] };
   }
 
   // Writes the check-in flag and submitted progress to the user's profile.
   // Tries the auth user id first, then the email column, so it works whichever
   // one the row happens to be keyed on.
-  async function setCheckedIn(session, percentage, checkedIn) {
+  async function setCheckedIn(session, percentage, checkedIn, tasksCompleted) {
     const user = session.user;
     let blocked = null; // first database error we hit (permissions, RLS, ...)
 
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let update = supabaseClient.from("profiles").update({
         checked_in: checkedIn,
         progress_percentage: percentage,
+        tasks_completed: tasksCompleted,
       });
       update = column === "id" ? update.eq(column, value) : update.ilike(column, value);
 
@@ -61,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         continue;
       }
 
-      const check = await readBack(session, column, percentage, checkedIn);
+      const check = await readBack(session, column, percentage, checkedIn, tasksCompleted);
 
       if (check.state === "saved") {
         console.log(`Check-in status and ${percentage}% progress saved for ${check.row.email || value} (matched by ${column})`);
@@ -92,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
           email: user.email,
           checked_in: checkedIn,
           progress_percentage: percentage,
+          tasks_completed: tasksCompleted,
         });
 
       if (!error) {
@@ -107,8 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
 
-  function saveProgress(session, percentage, checkedIn) {
-    pendingProgressSave = { session, percentage, checkedIn };
+  function saveProgress(session, percentage, checkedIn, tasksCompleted) {
+    pendingProgressSave = { session, percentage, checkedIn, tasksCompleted };
 
     if (!progressSavePromise) {
       progressSavePromise = (async () => {
@@ -121,7 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
             saved = await setCheckedIn(
               pending.session,
               pending.percentage,
-              pending.checkedIn
+              pending.checkedIn,
+              pending.tasksCompleted
             );
           } catch (error) {
             console.error("Could not save check-in:", error.message || error);
@@ -157,8 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (error) throw error;
     if (!data.session) return true;
 
-    const { percentage } = getProgressState();
-    return saveProgress(data.session, percentage, percentage === 100);
+    const { checkedCount, percentage } = getProgressState();
+    return saveProgress(data.session, percentage, percentage === 100, checkedCount);
   }
 
   function scheduleAutosave() {
@@ -211,10 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const { percentage } = getProgressState();
+      const { checkedCount, percentage } = getProgressState();
       const checkedIn = percentage === 100;
 
-      if (await saveProgress(data.session, percentage, checkedIn)) {
+      if (await saveProgress(data.session, percentage, checkedIn, checkedCount)) {
         submitStatus.textContent = `Your ${percentage}% progress and check-in status have been submitted.`;
       } else {
         submitStatus.textContent = "We couldn't process your check-in. Please try again.";
