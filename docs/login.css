@@ -73,83 +73,8 @@ h1 {
   }
 }
 
-/* General page styling */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #ffffff;
-  color: #171a20;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Login heading */
-h1 {
-  font-size: 36px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin-top: 130px;
-  margin-bottom: 45px;
-  text-align: center;
-}
-
-/* Login container */
-#auth-form {
-  width: 100%;
-  max-width: 420px;
-  padding: 0 25px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Google login button */
-#google-btn {
-  width: 100%;
-  padding: 16px;
-  background-color: #171a20;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-#google-btn:hover {
-  background-color: #393c41;
-}
-
-/* Login message */
-#message {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #e82127;
-  text-align: center;
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
-  h1 {
-    margin-top: 100px;
-    font-size: 30px;
-  }
-
-  #auth-form {
-    max-width: 100%;
-    padding: 0 22px;
-  }
-}
-
 /* =====================================================
-   ADDED BELOW: everything above is your original CSS
+   Design layer (forest background, nav, panels)
    ===================================================== */
 
 :root {
@@ -232,6 +157,88 @@ h1 {
 #google-btn:hover { background-color: rgba(255,255,255,.14); color: #fff; backdrop-filter: blur(6px); }
 #google-btn:focus-visible, .btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 #message { color: #ffb4b0; font-size: 14px; }
+
+/* =====================================================
+   Email + password login form
+   ===================================================== */
+
+#email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Email and password fields */
+#auth-form input {
+  width: 100%;
+  padding: 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: #14201a;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+#auth-form input::placeholder { color: #6b7570; }
+#auth-form input:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Log In button: solid white, same look as the Google button */
+#email-form button[type="submit"] {
+  width: 100%;
+  padding: 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #14201a;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+#email-form button[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+
+/* Sign Up button: outlined, so Log In stays the main action */
+#signup-btn {
+  width: 100%;
+  padding: 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+#signup-btn:hover { background: #ffffff; color: #14201a; }
+#signup-btn:focus-visible,
+#email-form button[type="submit"]:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* "or" divider with lines on each side */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
 
 /* Scroll cue */
 .scroll-cue {
