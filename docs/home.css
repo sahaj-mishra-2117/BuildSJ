@@ -132,8 +132,8 @@
 .home-page #logout-btn {
     padding: 9px 17px;
     color: var(--home-white);
-    background: var(--home-ink);
-    border: 1px solid var(--home-ink);
+    background: white;
+    border: 1px solid white;
     border-radius: 4px;
     font-family: inherit;
     font-size: 0.82rem;

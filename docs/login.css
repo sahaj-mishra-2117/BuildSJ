@@ -361,6 +361,10 @@ h1 {
   margin-top: 8px;
 }
 
+#facebook-btn {
+  margin-top: 8px;
+}
+
 .google-icon {
   width: 20px;
   height: 20px;
@@ -391,6 +395,18 @@ h1 {
 
 .microsoft-icon span:nth-child(4) {
   background: #ffb900;
+}
+
+.facebook-icon {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1877f2;
+  color: #fff;
+  font: 700 19px/20px Arial, sans-serif;
 }
 
 .oauth-btn:hover {

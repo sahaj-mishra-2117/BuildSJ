@@ -1,4 +1,4 @@
-// Login logic (email + password, Google, and Microsoft). Used only on login.html.
+// Login logic (email + password, Google, Microsoft, and Facebook). Used only on login.html.
 const emailEl = document.getElementById('email');
 const passwordEl = document.getElementById('password');
 const messageEl = document.getElementById('message');
@@ -68,6 +68,19 @@ document.getElementById('microsoft-btn').addEventListener('click', async () => {
   messageEl.textContent = '';
   const { error } = await supabaseClient.auth.signInWithOAuth({
     provider: 'azure',
+    options: {
+      scopes: 'email',
+      redirectTo: returnUrl,
+    },
+  });
+  if (error) messageEl.textContent = error.message;
+});
+
+// Continue with Facebook
+document.getElementById('facebook-btn').addEventListener('click', async () => {
+  messageEl.textContent = '';
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: 'facebook',
     options: {
       scopes: 'email',
       redirectTo: returnUrl,
