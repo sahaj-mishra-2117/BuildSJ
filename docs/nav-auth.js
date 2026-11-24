@@ -21,3 +21,10 @@ logoutBtn?.addEventListener('click', async () => {
   await supabaseClient.auth.signOut();
   window.location.href = 'home.html';
 });
+function openPopup() {
+  document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
