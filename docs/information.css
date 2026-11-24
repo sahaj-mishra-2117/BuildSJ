@@ -53,6 +53,111 @@
   2. NAVIGATION
   ========================================================= */
 
+
+.information-page .site-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: #10432F;
+    border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 0;
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+body.information-page { padding-top: 80px; }
+.information-page .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.information-page .site-header :is(.brand, .logo) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 550;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-left: 20px;
+    white-space: nowrap;
+}
+.information-page .site-header :is(.brand, .logo):not(:has(.logo-dot))::before,
+.information-page .site-header .logo-dot {
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+    background: #209c70;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(32,156,112,.15);
+}
+.information-page .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+.information-page .site-header .nav-links a {
+    padding: 16px 15px;
+    color: #e5ebe7;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    border-radius: 0 0 10px 10px;
+    background: transparent;
+    border: none;
+    transition: background .2s ease, color .2s ease;
+}
+.information-page .site-header .nav-links a:hover,
+.information-page .site-header .nav-links a.nav-information,
+.information-page .site-header .nav-links a[aria-current="page"],
+.information-page .site-header .nav-links a.active {
+    color: #171a20;
+    background: #f4f4f4;
+}
+.information-page .site-header .nav-links a:is(.nav-information, .active, [aria-current="page"]) { font-weight: 700; }
+.information-page .site-header .nav-links a::after { display: none; }
+.information-page .site-header #login-btn,
+.information-page .site-header #logout-btn,
+.information-page .site-header .nav-action {
+    padding: 9px 17px;
+    color: #10432F;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.information-page .site-header #login-btn:hover,
+.information-page .site-header #logout-btn:hover { color: #171a20; background: #f4f4f4; }
+@media (max-width: 900px) {
+    .information-page .site-nav { padding: 0 3%; }
+    .information-page .nav-links { gap: 0; }
+    .information-page .site-header .nav-links a { padding: 9px 8px; font-size: .77rem; }
+}
+@media (max-width: 600px) {
+    body.information-page { padding-top: 0; }
+    .information-page .site-header { position: relative; height: auto; min-height: 62px; }
+    .information-page .site-nav { flex-wrap: wrap; gap: 10px; padding: 16px 18px; }
+    .information-page .site-header :is(.brand, .logo) { font-size: .95rem; margin-left: 0; }
+    .information-page .nav-links { order: 2; justify-content: flex-start; width: 100%; overflow-x: auto; gap: 4px; padding: 5px 0; margin: 0; }
+    .information-page .site-header .nav-links a { padding: 8px 10px; font-size: .76rem; }
+}
+
 /* =========================================================
   3. HERO SECTION
   ========================================================= */
@@ -530,7 +635,7 @@
 
 
 .information-page .safety-card li::before {
-   content: "✓";
+   content: "âœ“";
 
 
    position: absolute;
@@ -940,19 +1045,7 @@
 @media (max-width: 900px) {
 
 
-   .information-page .site-nav {
-       padding: 0 4%;
-   }
 
-
-   .information-page .nav-links {
-       gap: 15px;
-   }
-
-
-   .information-page .nav-link {
-       font-size: 0.74rem;
-   }
 
 
    .information-page .hero {
@@ -988,48 +1081,10 @@
 @media (max-width: 650px) {
 
 
-   .information-page .site-header {
-       position: absolute;
-       background: rgba(15,28,20,0.25);
-   }
 
 
-   .information-page .site-nav {
-       min-height: auto;
 
 
-       padding: 20px;
-
-
-       align-items: flex-start;
-       flex-direction: column;
-       gap: 17px;
-   }
-
-
-   .information-page .brand {
-       font-size: 1.25rem;
-   }
-
-
-   .information-page .nav-links {
-       width: 100%;
-
-
-       display: flex;
-       flex-wrap: wrap;
-       gap: 13px 19px;
-   }
-
-
-   .information-page .nav-link {
-       font-size: 0.72rem;
-   }
-
-
-   .information-page .nav-information::after {
-       bottom: -5px;
-   }
 
 
    .information-page .hero {
@@ -1169,75 +1224,3 @@
 
 
 }
-
-/* ===== BUILD SJ HEADER ===== */
-
-.site-header {
-    background-color: #104630;
-    width: 100%;
-    height: 84px;
-    padding: 0 24px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* ===== BUILD SJ LOGO ===== */
-
-.site-header .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: white;
-    font-family: Georgia, serif;
-    font-size: 26px;
-    font-weight: bold;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.logo-dot {
-    width: 12px;
-    height: 12px;
-    background-color: #1c9c69;
-    border-radius: 50%;
-    box-shadow: 0 0 0 5px rgba(28, 156, 105, 0.15);
-}
-
-/* ===== NAVIGATION LINKS ===== */
-
-.site-header .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.site-header .nav-links a {
-    color: #e4ece7;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 20px 16px;
-    border-bottom: 2px solid transparent;
-    border-radius: 12px;
-    white-space: nowrap;
-    transition: 0.2s ease;
-}
-
-/* ===== HOVER EFFECT ===== */
-
-.site-header .nav-links a:hover {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* ===== ACTIVE PAGE ===== */
-
-.site-header .nav-links a.active {
-    color: white;
-    font-weight: bold;
-    border-bottom: 2px solid white;
-}
-
