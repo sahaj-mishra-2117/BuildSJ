@@ -1577,3 +1577,7 @@ body.checklist-page {
 .checklist-page .hero-button {
     margin-top: 40px;
 }
+.checklist-page .checklist-hero .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
