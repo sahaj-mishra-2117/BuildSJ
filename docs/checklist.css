@@ -1508,3 +1508,31 @@ body.checklist-page {
     background-position: center;
     background-repeat: no-repeat;
 }
+.checklist-page .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Make hero fill the screen below the header */
+.checklist-page .checklist-hero {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+
+    padding-top: 160px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Desktop */
+@media (min-width: 601px) {
+    .checklist-page .checklist-hero {
+        min-height: 100vh;
+        height: 100vh;
+    }
+}

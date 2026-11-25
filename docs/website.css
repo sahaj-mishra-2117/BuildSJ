@@ -200,12 +200,50 @@
 }
 
 .leaflet-control-geocoder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   position: relative;
   overflow: visible !important;
+  min-height: 44px;
+  padding: 5px 10px 5px 8px;
   background: #fff !important;
-  border: 1px solid var(--line) !important;
-  border-radius: var(--radius-sm) !important;
-  box-shadow: var(--shadow-sm) !important;
+  border: 1px solid rgba(20, 67, 47, 0.18) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 18px rgba(6, 37, 26, 0.14) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leaflet-control-geocoder:focus-within {
+  border-color: rgba(23, 28, 25, 0.3) !important;
+  box-shadow:
+    0 0 0 2px rgba(23, 28, 25, 0.08),
+    0 8px 22px rgba(6, 37, 26, 0.16) !important;
+}
+
+.leaflet-control-geocoder-icon {
+  flex: 0 0 32px;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  background-color: var(--green-50) !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  transition: background-color 0.2s ease;
+}
+
+.leaflet-control-geocoder-icon:hover {
+  background-color: var(--green-100) !important;
+}
+
+.leaflet-control-geocoder-icon:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+}
+
+.leaflet-control-geocoder-form {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .leaflet-control-geocoder-alternatives {
@@ -213,6 +251,7 @@
   box-shadow: var(--shadow-md);
 }
 
+.leaflet-control-geocoder:focus-within .leaflet-control-geocoder-form-no-error,
 .leaflet-control-geocoder-options-open .leaflet-control-geocoder-form-no-error {
   display: none;
 }
@@ -263,10 +302,23 @@
 
 
 .leaflet-control-geocoder input {
-  padding: 6px 8px !important;
+  width: 190px;
+  height: 32px;
+  padding: 0 2px !important;
   color: var(--ink);
-  font-family: var(--font);
-  font-size: 0.85rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  outline: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.leaflet-control-geocoder input::placeholder {
+  color: #748078;
+  opacity: 1;
 }
 
 .leaflet-control-geocoder-icon { border: 0 !important; }
@@ -421,6 +473,8 @@
   }
 
   .map-legend li { font-size: 0.75rem; }
+
+  .leaflet-control-geocoder input { width: 140px; }
 }
 
 @media (max-width: 400px) {
