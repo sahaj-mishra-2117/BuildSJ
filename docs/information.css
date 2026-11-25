@@ -1160,3 +1160,10 @@ body.information-page {
     margin: 0;
     padding: 125px 7% 105px 12%;
 }
+
+.information-page .hero h1 {
+    max-width: 850px;
+    margin: 0 0 25px;
+    color: #ffffff;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
