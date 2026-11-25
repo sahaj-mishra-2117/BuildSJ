@@ -1169,7 +1169,7 @@ body.information-page {
 }
 
 .information-page .hero .eyebrow {
-    margin-bottom: 65px;
+    margin-bottom: 55px;
 }
 
 .information-page .hero h1 {
@@ -1184,8 +1184,8 @@ body.information-page {
     margin-top: 30px;
 }
 .information-page .hero .eyebrow {
-    font-size: 0.65rem;
-    color: #ffffff;
+    font-size: 0.75rem;
+    color: #bbb9b9;
     font-weight: 600;
     letter-spacing: 2.5px;
 }
