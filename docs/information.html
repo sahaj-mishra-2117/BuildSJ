@@ -4,18 +4,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Evacuation Information | Build SJ</title>
 
     <meta name="description"
           content="Wildfire evacuation information and emergency resources for San Jose District 10 residents.">
+
     <link rel="icon" type="image/webp" href="logo.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap">
 
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="information.css">
@@ -23,52 +26,88 @@
 
 <body class="information-page">
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION HEADER -->
 
-<header class="site-header">
+    <header class="site-header">
 
-    <a href="home.html" class="logo">
-        <span class="logo-dot"></span>
-        Build SJ
-    </a>
+        <nav class="site-nav">
 
-    <nav class="nav-links">
-        <a href="home.html">Home</a>
+            <a href="home.html" class="brand">
+                Build SJ
+            </a>
 
-        <a href="index.html">Emergency Map</a>
+            <div class="nav-links">
 
-        <a href="checklist.html">
-            Preparation Checklist
-        </a>
+                <a href="home.html"
+                   class="nav-link nav-home">
+                    Home
+                </a>
 
-        <a href="information.html">
-            Evacuation Information
-        </a>
+                <a href="index.html"
+                   class="nav-link nav-map">
+                    Emergency Map
+                </a>
 
-      <button id="account-btn"
-        class="account-button"
-        hidden
-        onclick="openPopup()">
-    Account
-</button>
+                <a href="checklist.html"
+                   class="nav-link nav-checklist">
+                    Preparation Checklist
+                </a>
 
-        <button id="account-btn" hidden onclick="openPopup()">
-                Account
+                <a href="information.html"
+                   class="nav-link nav-information"
+                   aria-current="page">
+                    Evacuation Information
+                </a>
+
+                <a href="login.html"
+                   id="login-btn"
+                   hidden>
+                    Log In
+                </a>
+
+                <button type="button"
+                        id="account-btn"
+                        class="account-button"
+                        hidden
+                        onclick="openPopup()">
+                    Account
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ACCOUNT SETTINGS POPUP -->
+
+    <div id="popup" class="popup"
+         role="dialog"
+         aria-label="Account Settings">
+
+        <div class="popup-content">
+
+            <h2>Account Settings</h2>
+
+            <button type="button" id="logout-btn">
+                Log Out
             </button>
-            <div id="popup" class="popup">
-            <div class="popup-content">
-                <h2>Account Settings</h2>
-                <button id = "logout-btn">Log Out</button>
-                <button onclick="closePopup()">Close</button>
-            </div>
-            </div>
-    </nav>
 
-</header>
+            <button type="button" onclick="closePopup()">
+                Close
+            </button>
 
-    <!-- HERO SECTION -->
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
 
     <main>
+
+        <!-- HERO SECTION -->
 
         <section class="hero">
 
@@ -92,11 +131,11 @@
                 </p>
 
                 <a href="#preparation"
-   class="hero-button"
-   id="explore-preparedness">
-    Explore Preparedness
-    <span>↓</span>
-</a>
+                   class="hero-button"
+                   id="explore-preparedness">
+                    Explore Preparedness
+                    <span>↓</span>
+                </a>
 
             </div>
 
@@ -156,9 +195,7 @@
                     KNOW WHAT TO DO
                 </p>
 
-                <h2>
-                    Protect what matters.
-                </h2>
+                <h2>Protect what matters.</h2>
 
                 <p>
                     Simple steps can make a difference when
@@ -167,10 +204,9 @@
 
             </div>
 
-
             <div class="safety-grid">
 
-                <!-- HOME -->
+                <!-- INSIDE YOUR HOME -->
 
                 <article class="safety-card">
 
@@ -197,7 +233,7 @@
                 </article>
 
 
-                <!-- OUTSIDE -->
+                <!-- OUTSIDE YOUR HOME -->
 
                 <article class="safety-card">
 
@@ -224,7 +260,7 @@
                 </article>
 
 
-                <!-- PETS -->
+                <!-- ANIMALS AND PETS -->
 
                 <article class="safety-card">
 
@@ -251,7 +287,7 @@
                 </article>
 
 
-                <!-- EVACUATION -->
+                <!-- EVACUATION STEPS -->
 
                 <article class="safety-card">
 
@@ -282,7 +318,7 @@
         </section>
 
 
-
+        <!-- EMERGENCY RESOURCES -->
 
         <section class="additional-section">
 
@@ -292,9 +328,7 @@
                     STAY INFORMED
                 </p>
 
-                <h2>
-                    Know where to turn.
-                </h2>
+                <h2>Know where to turn.</h2>
 
                 <p>
                     Use trusted emergency resources to monitor
@@ -303,7 +337,6 @@
                 </p>
 
             </div>
-
 
             <div class="resource-panel">
 
@@ -377,13 +410,9 @@
                 BUILD SJ
             </a>
 
-            <p>
-                Building a Safer San Jose.
-            </p>
+            <p>Building a Safer San Jose.</p>
 
-            <span>
-                © 2026 Build SJ
-            </span>
+            <span>© 2026 Build SJ</span>
 
         </div>
 
@@ -421,9 +450,7 @@
                 "Open " + selectedOption.textContent.trim();
 
             link.target = "_blank";
-
             link.rel = "noopener noreferrer";
-
             link.className = "resource-open-link";
 
             resourceContainer.appendChild(link);
@@ -431,38 +458,47 @@
         });
 
     </script>
+
+
+    <!-- AUTHENTICATION -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
     <script src="nav-auth.js"></script>
-<!-- SMOOTH SCROLLING ANIMATION -->
 
-<script>
-    document.getElementById("explore-preparedness")
-        .addEventListener("click", function(event) {
 
-            event.preventDefault();
+    <!-- ACCOUNT POPUP AND SMOOTH SCROLLING -->
 
-            const section = document.getElementById("preparation");
+    <script>
 
-            const header = document.querySelector(".site-header");
+        if (typeof window.openPopup !== "function") {
+            window.openPopup = function () {
+                document.getElementById("popup").style.display = "flex";
+            };
+        }
 
-            const headerHeight = header.offsetHeight;
+        if (typeof window.closePopup !== "function") {
+            window.closePopup = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+        }
 
-            const sectionPosition =
-                section.getBoundingClientRect().top
-                + window.scrollY
-                - headerHeight
-                - 20;
+        document.getElementById("explore-preparedness")
+            .addEventListener("click", function (event) {
 
-            window.scrollTo({
-                top: sectionPosition,
-                behavior: window.matchMedia(
-                    "(prefers-reduced-motion: reduce)"
-                ).matches ? "instant" : "smooth"
+                event.preventDefault();
+
+                document.getElementById("preparation")
+                    .scrollIntoView({
+                        behavior: window.matchMedia(
+                            "(prefers-reduced-motion: reduce)"
+                        ).matches ? "instant" : "smooth",
+                        block: "start"
+                    });
+
             });
 
-        });
-</script>
+    </script>
 
 </body>
 </html>
