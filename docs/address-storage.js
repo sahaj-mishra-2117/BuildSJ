@@ -5,10 +5,18 @@
     "specific_neighborhoods.geojson",
     "neighborhoods.geojson",
   ];
+  const FIRE_ZONE_FILE = "fire_zones_d10.geojson";
+  const FIRE_ZONE_PROPERTY = "FIREHAZARDSEVERITYZONE";
+  const FIRE_ZONE_PRIORITY = {
+    NonWildland: 0,
+    Moderate: 1,
+    High: 2,
+    "Very High": 3,
+  };
   const boundaryCache = new Map();
  
-  function toArea(feature) {
-    const name = feature && feature.properties && feature.properties.NAME;
+  function toArea(feature, labelProperty = "NAME") {
+    const name = feature && feature.properties && feature.properties[labelProperty];
     const geometry = feature && feature.geometry;
     if (!name || !geometry) return null;
  
@@ -55,8 +63,9 @@
     });
   }
  
-  function loadAreas(path) {
-    if (!boundaryCache.has(path)) {
+  function loadAreas(path, labelProperty = "NAME") {
+    const cacheKey = `${path}:${labelProperty}`;
+    if (!boundaryCache.has(cacheKey)) {
       const request = fetch(new URL(path, document.baseURI))
         .then(response => {
           if (!response.ok) {
@@ -64,16 +73,16 @@
           }
           return response.json();
         })
-        .then(data => (data.features || []).map(toArea).filter(Boolean))
+        .then(data => (data.features || []).map(feature => toArea(feature, labelProperty)).filter(Boolean))
         .catch(error => {
-          boundaryCache.delete(path);
+          boundaryCache.delete(cacheKey);
           throw error;
         });
  
-      boundaryCache.set(path, request);
+      boundaryCache.set(cacheKey, request);
     }
  
-    return boundaryCache.get(path);
+    return boundaryCache.get(cacheKey);
   }
  
   async function findNeighborhood(coordinates) {
@@ -95,6 +104,58 @@
  
     return null;
   }
+
+  async function findFireZone(coordinates) {
+    if (!Array.isArray(coordinates) || coordinates.length < 2) return null;
+
+    const lng = Number(coordinates[0]);
+    const lat = Number(coordinates[1]);
+    if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null;
+
+    const areas = await loadAreas(FIRE_ZONE_FILE, FIRE_ZONE_PROPERTY);
+    const matches = areas.filter(area => containsPoint(area, lng, lat));
+    if (!matches.length) return null;
+
+    const zone = matches.reduce((highest, area) => {
+      const priority = FIRE_ZONE_PRIORITY[area.name] || 0;
+      const highestPriority = FIRE_ZONE_PRIORITY[highest.name] || 0;
+      return priority > highestPriority ? area : highest;
+    }).name;
+
+    return zone === "NonWildland" ? "Non-Hazard" : zone;
+  }
+
+  async function saveFireZone(session, coordinates) {
+    const fireZone = await findFireZone(coordinates);
+    const selectors = [["id", session.user.id], ["email", session.user.email]]
+      .filter(([, value]) => value);
+    let updateError = null;
+
+    for (const [column, value] of selectors) {
+      let query = supabaseClient.from("profiles").update({ fire_zone: fireZone });
+      query = column === "id" ? query.eq(column, value) : query.ilike(column, value);
+      const { data, error } = await query.select("id").limit(1);
+      if (error) {
+        updateError = updateError || error;
+        continue;
+      }
+      if (data && data.length > 0) return fireZone;
+    }
+
+    if (updateError) throw updateError;
+
+    const { error } = await supabaseClient.from("profiles").insert({
+      id: session.user.id,
+      email: session.user.email,
+      checked_in: false,
+      progress_percentage: 0,
+      tasks_completed: 0,
+      fire_zone: fireZone,
+    });
+    if (error) throw error;
+
+    return fireZone;
+  }
  
   async function read(session) {
     const selectors = [["id", session.user.id], ["email", session.user.email]]
@@ -115,7 +176,7 @@
     const selectors = [["id", session.user.id], ["email", session.user.email]]
       .filter(([, value]) => value);
  
-    /* Only touch the neighborhood when we know where the address is. */
+    /* Only update the neighborhood when coordinates are available. */
     const changes = { address };
     if (Array.isArray(coordinates)) {
       changes.neighborhood = await findNeighborhood(coordinates);
@@ -152,5 +213,5 @@
     return { neighborhood: changes.neighborhood || null };
   }
  
-  window.profileAddress = { read, save, neighborhoodFor: findNeighborhood };
+  window.profileAddress = { read, save, saveFireZone, neighborhoodFor: findNeighborhood };
 })();

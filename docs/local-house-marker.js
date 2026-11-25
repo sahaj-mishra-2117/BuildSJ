@@ -30,6 +30,19 @@
     }
   }
 
+  function saveHomeFireZone(coordinates) {
+    const save = async () => {
+      const { data, error } = await supabaseClient.auth.getSession();
+      if (error) throw error;
+      if (!data.session) return;
+      await window.profileAddress.saveFireZone(data.session, coordinates);
+    };
+
+    save().catch(error => {
+      console.error("Could not save home fire-zone severity to the profile:", error.message || error);
+    });
+  }
+
   window.initLocalHouseMarker = map => {
     let marker = null;
     let pendingSelection = null;
@@ -50,7 +63,7 @@
         <p class="buildsj-home-confirmation-eyebrow">Map location</p>
         <h2 id="buildsj-home-confirmation-title">Save this as your home?</h2>
         <p id="buildsj-home-confirmation-description">
-          The house marker is saved only in this browser.
+          The marker is saved in this browser. Fire-zone severity is saved to your profile when signed in.
         </p>
         <div class="buildsj-home-confirmation-actions">
           <button type="button" class="buildsj-home-cancel">Not now</button>
@@ -102,6 +115,7 @@
         direction: "top",
         offset: [0, -34],
       });
+      saveHomeFireZone(coordinates);
     };
 
     try {
