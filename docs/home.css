@@ -1272,3 +1272,18 @@ width: 100%;
         white-space: nowrap;
     }
 }
+
+.home-page .step-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 180px;
+    margin: 0;
+    padding: 27px;
+
+    background: var(--home-white);
+    border: 3px solid var(--home-border);
+    border-radius: 8px;
+}
