@@ -69,7 +69,7 @@
       const request = fetch(new URL(path, document.baseURI))
         .then(response => {
           if (!response.ok) {
-            throw new Error(`Neighborhood boundaries unavailable (${response.status}).`);
+            throw new Error(`Location boundary data unavailable (${response.status}).`);
           }
           return response.json();
         })
