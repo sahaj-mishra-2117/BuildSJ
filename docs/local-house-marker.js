@@ -97,9 +97,7 @@
       marker.setIcon(icon);
       marker.options.title = "Your home location, saved in this browser";
       if (marker.getElement()) marker.getElement().title = marker.options.title;
-      if (!selectedMarker) {
-        marker.bindPopup("Your selected home location (saved only in this browser).");
-      }
+      marker.bindPopup("Home Location");
       marker.bindTooltip("Home location (saved in this browser)", {
         direction: "top",
         offset: [0, -34],
