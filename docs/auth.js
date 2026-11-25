@@ -1,45 +1,53 @@
-// Login logic (email + password and Google). Used only on login.html.
+// Login and registration logic (email + password and Google).
 const emailEl = document.getElementById('email');
 const passwordEl = document.getElementById('password');
 const messageEl = document.getElementById('message');
-const returnPage = new URLSearchParams(window.location.search).get('returnTo') === 'checklist.html'
+const query = new URLSearchParams(window.location.search);
+const returnPage = query.get('returnTo') === 'checklist.html'
   ? 'checklist.html'
   : 'home.html';
 const returnUrl = new URL(returnPage, window.location.href).href;
+
+document.querySelectorAll('[data-auth-link]').forEach((link) => {
+  const url = new URL(link.href, window.location.href);
+  if (returnPage === 'checklist.html') {
+    url.searchParams.set('returnTo', returnPage);
+  }
+  link.href = url.href;
+});
 
 // If the user is already logged in, skip the login page
 supabaseClient.auth.getSession().then(({ data: { session } }) => {
   if (session) window.location.href = returnUrl;
 });
 
-// Sign up with email
-document.getElementById('signup-btn').addEventListener('click', async () => {
-  messageEl.textContent = '';
-  if (!emailEl.value || passwordEl.value.length < 6) {
-    messageEl.textContent = 'Enter an email and a password of at least 6 characters.';
-    return;
-  }
-  const { data, error } = await supabaseClient.auth.signUp({
-    email: emailEl.value,
-    password: passwordEl.value,
-    options: {
-      emailRedirectTo: returnUrl,
-    },
-  });
-  if (error) {
-    messageEl.textContent = error.message;
-  } else if (data.session) {
-    // Email confirmation is off, so the user is logged in immediately
-    window.location.href = returnUrl;
-  } else {
-    messageEl.textContent = 'Check your email to confirm your account.';
-  }
-});
-
-// Log in with email
 document.getElementById('email-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   messageEl.textContent = '';
+
+  if (e.currentTarget.dataset.authAction === 'signup') {
+    if (!emailEl.value || passwordEl.value.length < 8) {
+      messageEl.textContent = 'Enter an email and a password of at least 8 characters.';
+      return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email: emailEl.value,
+      password: passwordEl.value,
+      options: {
+        emailRedirectTo: returnUrl,
+      },
+    });
+    if (error) {
+      messageEl.textContent = error.message;
+    } else if (data.session) {
+      window.location.href = returnUrl;
+    } else {
+      messageEl.textContent = 'Check your email to confirm your account.';
+    }
+    return;
+  }
+
   const { error } = await supabaseClient.auth.signInWithPassword({
     email: emailEl.value,
     password: passwordEl.value,
@@ -47,12 +55,12 @@ document.getElementById('email-form').addEventListener('submit', async (e) => {
   if (error) {
     messageEl.textContent = error.message;
   } else {
-    window.location.href = 'home.html';
+    window.location.href = returnUrl;
   }
 });
 
 // Continue with Google
-document.getElementById('google-btn').addEventListener('click', async () => {
+document.getElementById('google-btn')?.addEventListener('click', async () => {
   messageEl.textContent = '';
   const { error } = await supabaseClient.auth.signInWithOAuth({
     provider: 'google',

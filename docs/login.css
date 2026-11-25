@@ -117,24 +117,36 @@ body {
 
 .site-nav nav {
   display: flex;
+  align-items: center;
+  justify-self: center;
   gap: clamp(8px, 2vw, 28px);
 }
 
 .site-nav nav a {
-  padding: 8px 14px;
+  padding: 9px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 4px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .site-nav nav a:hover {
   background: rgba(255, 255, 255, 0.14);
 }
 
-.nav-right {
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.auth-nav a[aria-current="page"] {
+  color: #14201a;
+  background: #fff;
+  border-color: #fff;
+}
+
+.auth-nav a[aria-current="page"]:hover {
+  background: #f0f2f0;
+}
+
+.auth-nav a:focus-visible,
+.back-home:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .back-home {
@@ -151,18 +163,6 @@ body {
 .back-home:hover {
   background: #fff;
   color: #14201a !important;
-}
-
-.back-home:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
-}
-
-.district {
-  color: var(--ink-dim);
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.16em;
 }
 
 
@@ -294,43 +294,7 @@ h1 {
 
 
 /* =====================================================
-   8. SIGN UP BUTTON
-   ===================================================== */
-
-#signup-btn {
-  width: 100%;
-  padding: 16px;
-
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 600;
-
-  background: transparent;
-  color: #fff;
-
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 4px;
-
-  cursor: pointer;
-
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-#signup-btn:hover {
-  background: #ffffff;
-  color: #14201a;
-}
-
-#signup-btn:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
-}
-
-
-/* =====================================================
-   9. OAUTH PROVIDER BUTTONS
+   8. OAUTH PROVIDER BUTTONS
    ===================================================== */
 
 .oauth-btn {
@@ -382,7 +346,7 @@ h1 {
 
 
 /* =====================================================
-   10. OR DIVIDER
+   9. OR DIVIDER
    ===================================================== */
 
 .divider {
@@ -410,7 +374,7 @@ h1 {
 
 
 /* =====================================================
-   11. LOGIN MESSAGE
+   10. LOGIN MESSAGE
    ===================================================== */
 
 #message {
@@ -424,7 +388,7 @@ h1 {
 
 
 /* =====================================================
-   12. SCROLL CUE
+   11. SCROLL CUE
    ===================================================== */
 
 .scroll-cue {
@@ -476,7 +440,7 @@ h1 {
 
 
 /* =====================================================
-   13. FEATURE PANELS
+   12. FEATURE PANELS
    ===================================================== */
 
 .panel {
@@ -537,7 +501,7 @@ h1 {
 
 
 /* =====================================================
-   14. FEATURE PANEL BUTTONS
+   13. FEATURE PANEL BUTTONS
    ===================================================== */
 
 .btn {
@@ -572,7 +536,7 @@ h1 {
 
 
 /* =====================================================
-   15. FEATURE PANEL BACKGROUNDS
+   14. FEATURE PANEL BACKGROUNDS
    ===================================================== */
 
 .panel-kit {
@@ -589,7 +553,7 @@ h1 {
 
 
 /* =====================================================
-   16. FOOTER
+   15. FOOTER
    ===================================================== */
 
 .site-footer {
@@ -611,21 +575,34 @@ h1 {
 
 
 /* =====================================================
-   17. MOBILE RESPONSIVENESS
+   16. MOBILE RESPONSIVENESS
    ===================================================== */
 
 @media (max-width: 700px) {
 
   .site-nav {
-    grid-template-columns: 1fr auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 16px;
   }
 
-  .site-nav nav {
-    display: none;
+  .site-nav nav.auth-nav {
+    display: flex;
+    gap: 4px;
   }
 
-  .district {
-    display: none;
+  .auth-nav a {
+    padding: 7px 9px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .back-home {
+    position: static;
+    padding: 7px 9px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   .eyebrow {
@@ -650,7 +627,7 @@ h1 {
 
 
 /* =====================================================
-   18. REDUCED MOTION ACCESSIBILITY
+   17. REDUCED MOTION ACCESSIBILITY
    ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {

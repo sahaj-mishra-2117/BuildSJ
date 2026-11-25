@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | Build SJ</title>
+  <title>Log In | Build SJ</title>
   <link rel="icon" type="image/webp" href="logo.webp">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="login.css" />
@@ -20,12 +20,12 @@
 
   <!-- Top navigation -->
   <header class="site-nav" id="top">
-    <a class="logo" href="#top">Build SJ</a>
-
-    <div class="nav-right">
-      <span class="district">District 10</span>
-      <a class="back-home" href="home.html">&larr; Back to home</a>
-    </div>
+    <a class="logo" href="home.html">Build SJ</a>
+    <nav class="auth-nav" aria-label="Account">
+      <a href="login.html" data-auth-link aria-current="page">Log In</a>
+      <a href="signup.html" data-auth-link>Sign Up</a>
+    </nav>
+    <a class="back-home" href="home.html">&larr; Home</a>
   </header>
 
   <!-- Login hero -->
@@ -41,19 +41,18 @@
   <!-- Login form -->
   <div id="auth-form">
 
-    <form id="email-form">
-      <input type="email" id="email" placeholder="Email" required />
+    <form id="email-form" data-auth-action="login">
+      <input type="email" id="email" placeholder="Email" autocomplete="email" required />
 
       <input
         type="password"
         id="password"
-        placeholder="Password (8+ characters)"
+        placeholder="Password"
+        autocomplete="current-password"
         required
       />
 
       <button type="submit">Log In</button>
-
-      <button type="button" id="signup-btn">Sign Up</button>
     </form>
 
     <p class="divider">or</p>
