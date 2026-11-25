@@ -673,23 +673,23 @@ button.nav-link {
 }
 
 .account-popup-actions .account-close {
-    background: #ffffff;
-    color: var(--green-900);
-    border: 1px solid var(--line);
+    background: var(--green-700);
+    color: #ffffff;
+    border: 1px solid var(--green-700);
 }
 
 .account-popup-actions .account-close:hover {
-    background: var(--green-50);
-    border-color: var(--green-500);
+    background: var(--green-800);
+    border-color: var(--green-800);
 }
 
-.account-popup-actions .account-logout {
+#popup .account-popup-actions #logout-btn {
     background: var(--green-900);
     color: #ffffff;
     border: 1px solid var(--green-900);
 }
 
-.account-popup-actions .account-logout:hover {
+#popup .account-popup-actions #logout-btn:hover {
     background: var(--green-700);
     border-color: var(--green-700);
 }

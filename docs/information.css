@@ -1167,3 +1167,19 @@ body.information-page {
     color: #ffffff;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
 }
+
+.information-page .hero .eyebrow {
+    margin-bottom: 35px;
+}
+
+.information-page .hero h1 {
+    margin-bottom: 40px;
+}
+
+.information-page .hero-description {
+    margin-bottom: 50px;
+}
+
+.information-page .hero-button {
+    margin-top: 10px;
+}
