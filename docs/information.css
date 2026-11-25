@@ -1151,3 +1151,7 @@ body.information-page {
         padding: 100px 25px 100px;
     }
 }
+
+.information-page .hero-content {
+    padding-left: 12%;
+}
