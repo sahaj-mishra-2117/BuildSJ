@@ -1,683 +1,962 @@
 
 /* =========================================================
-  BUILD SJ - INFORMATION PAGE
-  Modern Tesla-inspired design
-  ========================================================= */
+   BUILD SJ - INFORMATION PAGE
+   Modern Tesla-inspired design
+   ========================================================= */
+
+
 /* =========================================================
-  1. GLOBAL STYLES
-  ========================================================= */
+   1. GLOBAL STYLES
+   ========================================================= */
+
 .information-page {
-   margin: 0;
-   min-height: 100vh;
-   background: #ffffff;
-   color: #171a20;
-   font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f5f6f4;
+    color: #171c19;
+
+    font-family: "Inter", sans-serif;
 }
+
 .information-page * {
-   box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 .information-page a {
-   text-decoration: none;
+    text-decoration: none;
 }
+
 .information-page .section-label {
-   margin: 0 0 18px;
-   color: #5c5e62;
-   font-size: 0.73rem;
-   font-weight: 700;
-   letter-spacing: 2.3px;
-}
-/* 2. NAVIGATION */
-.information-page .site-header {   position: fixed;
-   display: flex;
-   align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    z-index: 1000;}
-body.information-page { padding-top:80px; }
-.information-page .site-header .logo {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-.information-page .site-nav { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:none; height:100%; padding:0; margin:0; }
-.information-page .site-header :is(.brand,.logo) { display:flex; align-items:center; gap:12px; color:white; font-family: 'Times New Roman', Times, serif; font-weight:550; font-size:24px; letter-spacing:1px; margin-left:20px; padding:0; white-space:nowrap; }
-.information-page .site-header :is(.brand,.logo):not(:has(.logo-dot))::before, .information-page .site-header .logo-dot { content:""; display:inline-block; width:11px; height:11px; flex-shrink:0; background:#209c70; border-radius:50%; box-shadow:0 0 0 4px rgba(32,156,112,.15); }
-.information-page .site-header .nav-links { display:flex; align-items:center; height: 100%; justify-content:flex-end; gap:1px; margin-left:auto; margin-right:10px; }
-.information-page .site-header .nav-links a { display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 15px; color:#e4ece7; background:transparent; font-family:inherit; font-size:0.8rem; font-weight:500; white-space:nowrap; border:0; border-bottom:2px solid transparent; border-radius:0 0 10px 10px; transition:background .2s ease,color .2s ease; }
-.information-page .site-header .nav-links a:hover { color:white; background:rgba(255,255,255,.05); }
-.information-page .site-header .nav-links a:is(.nav-information,.active,[aria-current="page"],[href="information.html"]) { color:white; background:transparent; font-weight:700; border-bottom:2px solid white; }
-.information-page .site-header .nav-links a::after { display:none; }
-.information-page .site-header #login-btn, .information-page .site-header #logout-btn { height:38px; padding:9px 17px; color:#10432F; background:white; border:1px solid white; border-radius:4px; font-family:inherit; font-size:.82rem; font-weight:600; cursor:pointer; white-space:nowrap; }
-.information-page .site-header #login-btn:hover, .information-page .site-header #logout-btn:hover { color:#171a20; background:#f4f4f4; }
-.information-page #login-btn[hidden], .information-page #logout-btn[hidden] { display:none !important; }
-.information-page .site-header .nav-links button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-}
-.popup {
-  display: none; 
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
+    margin: 0 0 18px;
+
+    color: #487957;
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 2.3px;
 }
 
-.popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-@media(max-width:900px) { .information-page .site-nav { padding:0 3%; } .information-page .site-header .nav-links { gap:0; } .information-page .site-header .nav-links a { padding:0 8px; font-size:.77rem; } }
-@media(max-width:600px) { body.information-page { padding-top:0; } .information-page .site-header { position:relative; height:auto; min-height:62px; } .information-page .site-nav { flex-wrap:wrap; gap:10px; padding:16px 18px; } .information-page .site-header :is(.brand,.logo) { font-size:.95rem; margin-left:0; } .information-page .site-header .nav-links { order:2; justify-content:flex-start; width:100%; overflow-x:auto; gap:4px; margin:0; } .information-page .site-header .nav-links a { height:42px; padding:0 10px; font-size:.76rem; } }
-/* =========================================================
-  3. HERO SECTION
-  ========================================================= */
-.information-page .hero {
-   position: relative;
-   min-height: 680px;
-   display: flex;
-   align-items: center;
-   overflow: hidden;
-   background-image:
-       url("https://static.vecteezy.com/system/resources/thumbnails/057/293/383/small/misty-mountains-rise-above-the-still-water-in-this-scenic-landscape-promising-adventure-and-tranquility-in-a-natural-setting-free-photo.jpg");
-   background-position: center;
-   background-size: cover;
-   color: #ffffff;
-}
-.information-page .hero-overlay {
-    position:absolute; inset:0; background:linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.50) 52%, rgba(0,0,0,.20) 100%); pointer-events:none;
-}
-.information-page .hero-content {
-    position:relative; z-index:2; width:100%; margin:0 auto; padding:85px 9%;
-}
-.information-page .hero .eyebrow {
-   margin: 0 0 23px;
-   color: #d5e7d9;
-   font-size: 0.78rem;
-   font-weight: 700;
-   letter-spacing: 3px;
-}
-.information-page .hero h1 {
-   max-width: 850px;
-   margin: 0 0 25px;
-   color: #ffffff;
-   font-size: clamp(2.5rem, 4.5vw, 4.5rem);
-   font-weight: 700;
-   line-height: 0.99;
-   letter-spacing: -4px;
-}
 
-.information-page .hero-description {
-   max-width: 560px;
-   margin: 0 0 32px;
-   color: rgba(255,255,255,0.87);
-   font-size: 1.08rem;
-   line-height: 1.8;
-}
-.information-page .hero-button {
-    display:inline-flex; align-items:center; justify-content:center; gap:24px; min-width:190px; padding:13px 22px; color:#171a20; background:#fff; border:1px solid #fff; border-radius:4px; font-size:.88rem; font-weight:600; transition:background .2s ease,color .2s ease,border-color .2s ease;
-}
-.information-page .hero-button:hover {
-    color:white; background:#3e6ae1; border-color:#3e6ae1;
-}
-.information-page .hero-button span {
-   font-size: 1.1rem;
-}
-.information-page .hero-bottom {
-   position: absolute;
-   bottom: 27px;
-   left: 7%;
-   z-index: 2;
-   color: rgba(255,255,255,0.7);
-   font-size: 0.68rem;
-   font-weight: 600;
-   letter-spacing: 2px;
-}
-.information-page .hero-bottom span {
-   padding: 0 8px;
-   color: #8bc49a;
-}
 /* =========================================================
-  4. INTRODUCTION SECTION
-  ========================================================= */
-.information-page .intro-section {
-   display: grid;
-   grid-template-columns: 1.05fr 0.95fr;
-   align-items: center;
-   gap: clamp(35px, 7vw, 100px);
-   width: min(1300px, 100%);
-   margin: 0 auto;
-   padding: 110px 6%;
-}
-.information-page .intro-image {
-   min-height: 420px;
-   background-image:
-       url("https://www.idahospringsco.com/sites/g/files/vyhlif11416/files/media/police-department/image/3206/wildland_fire_preperation.jpg");
-   background-position: center;
-   background-size: cover;
-   border-radius: 5px;
-}
-.information-page .intro-content {
-   max-width: 500px;
-}
-.information-page .intro-content h2 {
-   margin: 0 0 25px;
-   color: #171a20;
-   font-size: clamp(1.8rem, 3vw, 2.25rem);
-   font-weight: 700;
-   line-height: 1.08;
-   letter-spacing: -2px;
-}
-.information-page .intro-content > p:not(.section-label) {
-   margin: 0 0 18px;
-   color: #5c5e62;
-   font-size: 0.97rem;
-   line-height: 1.9;
-}
-.information-page .text-link {
-   display: inline-flex;
-   align-items: center;
-   gap: 15px;
-   margin-top: 12px;
-   color: #3e6ae1;
-   font-size: 0.88rem;
-   font-weight: 700;
-   border-bottom: 1px solid #8cab94;
-   padding-bottom: 7px;
-   transition: gap 0.2s ease;
-}
-.information-page .text-link:hover {
-   gap: 23px;
-}
-/* =========================================================
-  5. SAFETY SECTION
-  ========================================================= */
-.information-page .safety-section {
-   padding: 100px 6% 115px;
-   background: #f4f4f4;
-}
-.information-page .section-heading {
-   width: min(1250px, 100%);
-   margin: 0 auto 45px;
-}
-.information-page .section-heading h2 {
-   margin: 0 0 15px;
-   color: #171a20;
-   font-size: clamp(1.8rem, 3vw, 2.25rem);
-   font-weight: 700;
-   letter-spacing: -2px;
-}
-.information-page .section-heading > p:last-child {
-   max-width: 550px;
-   margin: 0;
-   color: #5c5e62;
-   font-size: 0.98rem;
-   line-height: 1.8;
-}
-/* =========================================================
-  6. SAFETY CARDS
-  ========================================================= */
-.information-page .safety-grid {
-   display: grid;
-   grid-template-columns: repeat(2, minmax(0, 1fr));
-   gap: 22px;
-   width: min(1250px, 100%);
-   margin: 0 auto;
-}
-.information-page .safety-card {
-   min-height: 340px;
-   padding: 35px 36px;
-   background: #ffffff;
-   border: 1px solid #e5e5e5;
-   border-radius: 8px;
-   box-shadow: none;
-   transition:
-       transform 0.25s ease,
-       box-shadow 0.25s ease;
-}
-.information-page .safety-card:hover {
-   transform: translateY(-5px);
-   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-}
-.information-page .card-top {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   margin-bottom: 25px;
-}
-.information-page .card-number {
-   color: #88a48d;
-   font-size: 0.78rem;
-   font-weight: 700;
-   letter-spacing: 2px;
-}
-.information-page .card-icon {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 47px;
-   height: 47px;
-   color: #356d48;
-   background: #edf3ed;
-   border-radius: 50%;
-   font-size: 1.65rem;
-}
-.information-page .safety-card h3 {
-   margin: 0 0 13px;
-   color: #171a20;
-   font-size: 1.45rem;
-   font-weight: 700;
-   letter-spacing: -0.6px;
-}
-.information-page .safety-card > p {
-   max-width: 450px;
-   margin: 0 0 22px;
-   color: #5c5e62;
-   font-size: 0.9rem;
-   line-height: 1.75;
-}
-.information-page .safety-card ul {
-   display: grid;
-   gap: 13px;
-   margin: 0;
-   padding: 0;
-   list-style: none;
-}
-.information-page .safety-card li {
-   position: relative;
-   padding-left: 25px;
-   color: #393c41;
-   font-size: 0.88rem;
-   line-height: 1.6;
-}
-.information-page .safety-card li::before {
-   content: "\2713";
-   position: absolute;
-   left: 0;
-   top: 1px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 17px;
-   height: 17px;
-   color: #ffffff;
-   background: #39754b;
-   border-radius: 50%;
-   font-size: 0.67rem;
-   font-weight: 700;
-}
-/* =========================================================
-  7. EVACUATION WARNING
-  ========================================================= */
-.information-page .evacuation-banner {
-   position: relative;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   gap: 30px;
-   width: min(1250px, 88%);
-   margin: 100px auto;
-   padding: clamp(40px, 6vw, 75px);
-   overflow: hidden;
-   background: #1b3023;
-   border-radius: 6px;
-   color: #ffffff;
-}
-.information-page .warning-content {
-   max-width: 760px;
-}
-.information-page .warning-content .section-label {
-   color: #a8d2b1;
-}
-.information-page .warning-content h2 {
-   margin: 0 0 22px;
-   color: #ffffff;
-   font-size: clamp(2rem, 4vw, 3.5rem);
-   font-weight: 700;
-   line-height: 1.15;
-   letter-spacing: -1.7px;
-}
-.information-page .warning-content > p:last-child {
-   max-width: 650px;
-   margin: 0;
-   color: rgba(255,255,255,0.75);
-   font-size: 0.96rem;
-   line-height: 1.85;
-}
-.information-page .warning-symbol {
-   flex-shrink: 0;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 105px;
-   height: 105px;
-   color: #ffffff;
-   border: 2px solid rgba(255,255,255,0.4);
-   border-radius: 50%;
-   font-size: 3.5rem;
-   font-weight: 500;
-}
-/* =========================================================
-  8. EMERGENCY RESOURCES
-  ========================================================= */
-.information-page .additional-section {
-   margin-top: 50px;
-   width: min(1250px, 88%);
-   margin: 0 auto 110px;
-}
-.information-page .additional-heading {
-   margin-bottom: 35px;
-}
-.information-page .additional-heading h2 {
-   margin: 0 0 15px;
-   color: #171a20;
-   font-size: clamp(1.8rem, 3vw, 2.25rem);
-   font-weight: 700;
-   letter-spacing: -1.8px;
-}
-.information-page .additional-heading > p:last-child {
-   max-width: 580px;
-   margin: 0;
-   color: #5c5e62;
-   font-size: 0.96rem;
-   line-height: 1.8;
-}
-.information-page .resource-panel {
-   display: grid;
-   grid-template-columns: 1fr 0.9fr;
-   align-items: center;
-   gap: 40px;
-   padding: 45px;
-   background: #ffffff;
-   border: 1px solid #e5e5e5;
-   border-radius: 7px;
-   box-shadow: none;
-}
-.information-page .resource-icon {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 45px;
-   height: 45px;
-   margin-bottom: 20px;
-   color: #39754b;
-   background: #edf3ed;
-   border-radius: 50%;
-   font-size: 1.3rem;
-}
-.information-page .resource-info h3 {
-   margin: 0 0 12px;
-   color: #171a20;
-   font-size: 1.55rem;
-   font-weight: 700;
-}
-.information-page .resource-info p {
-   max-width: 430px;
-   margin: 0;
-   color: #5c5e62;
-   font-size: 0.92rem;
-   line-height: 1.8;
-}
-.information-page .resource-select label {
-   display: block;
-   margin-bottom: 12px;
-   color: #526456;
-   font-size: 0.72rem;
-   font-weight: 700;
-   letter-spacing: 1.6px;
-}
-.information-page .resource-select select {
-   width: 100%;
-   padding: 17px 16px;
-   color: #303a32;
-   background: #f7f8f6;
-   border: 1px solid #dce3dc;
-   border-radius: 4px;
-   font-family: inherit;
-   font-size: 0.9rem;
-   cursor: pointer;
-   transition: border-color 0.2s ease;
-}
-.information-page .resource-select select:hover,
-.information-page .resource-select select:focus {
-   border-color: #477b53;
-}
-.information-page .resource-select select:focus {
-   outline: 2px solid rgba(71,123,83,0.25);
-   outline-offset: 2px;
-}
-.information-page .resource-open-link {
-   display: inline-flex;
-   align-items: center;
-   gap: 10px;
-   margin-top: 18px;
-   color: #3e6ae1;
-   font-size: 0.88rem;
-   font-weight: 700;
-}
-.information-page .resource-open-link:hover {
-   text-decoration: underline;
-   text-underline-offset: 4px;
-}
-/* =========================================================
-  9. FOOTER
-  ========================================================= */
-.information-page .site-footer {
-    width:100%; margin-top:auto; padding:27px 20px; color:#5c5e62; background:white; border-top:1px solid #e5e5e5; font-size:.82rem; text-align:center;
-}
-.information-page .footer-content {
-   width: min(1250px, 100%);
-   margin: 0 auto;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   gap: 20px;
-}
-.information-page .footer-brand {
-    color:#171a20; font-size:.95rem; font-weight:600;
-}
-.information-page .footer-content p {
-    margin:0; color:#5c5e62; font-size:.82rem;
-}
-.information-page .footer-content span {
-    color:#5c5e62; font-size:.78rem;
-}
-/* =========================================================
-  10. TABLET RESPONSIVENESS
-  ========================================================= */
-@media (max-width: 900px) {
-   .information-page .hero {
-       min-height: 620px;
-   }
-   .information-page .intro-section {
-       gap: 35px;
-   }
-   .information-page .intro-image {
-       min-height: 350px;
-   }
-   .information-page .safety-card {
-       padding: 28px;
-   }
-}
-/* =========================================================
-  11. MOBILE RESPONSIVENESS
-  ========================================================= */
-@media (max-width: 650px) {
-   .information-page .hero {
-       min-height: 650px;
-       background-position: 60% center;
-   }
-   .information-page .hero-content {
-       padding: 160px 25px 100px;
-   }
-   .information-page .hero h1 {
-       font-size: clamp(3rem, 12vw, 4.2rem);
-       letter-spacing: -2.5px;
-   }
-   .information-page .hero-description {
-       font-size: 0.95rem;
-   }
-   .information-page .hero-bottom {
-       left: 25px;
-   }
-   .information-page .intro-section {
-       grid-template-columns: 1fr;
-       gap: 35px;
-       padding: 65px 24px;
-   }
-   .information-page .intro-image {
-       min-height: 280px;
-   }
-   .information-page .intro-content h2 {
-       font-size: 2.8rem;
-   }
-   .information-page .safety-section {
-       padding: 70px 22px;
-   }
-   .information-page .section-heading h2 {
-       font-size: 2.7rem;
-   }
-   .information-page .safety-grid {
-       grid-template-columns: 1fr;
-       gap: 16px;
-   }
-   .information-page .safety-card {
-       min-height: auto;
-       padding: 27px;
-   }
-   .information-page .evacuation-banner {
-       width: calc(100% - 36px);
-       margin: 65px auto;
-       padding: 35px 25px;
-       align-items: flex-start;
-       flex-direction: column;
-   }
-   .information-page .warning-symbol {
-       width: 65px;
-       height: 65px;
-       font-size: 2rem;
-   }
-   .information-page .additional-section {
-       width: calc(100% - 40px);
-       margin-bottom: 70px;
-   }
-   .information-page .resource-panel {
-       grid-template-columns: 1fr;
-       gap: 30px;
-       padding: 28px 22px;
-   }
-   .information-page .footer-content {
-       align-items: flex-start;
-       flex-direction: column;
-       gap: 13px;
-   }
-}
-/* =========================================================
-  12. ACCESSIBILITY
-  ========================================================= */
-@media (prefers-reduced-motion: reduce) {
-   .information-page *,
-   .information-page *::before,
-   .information-page *::after {
-       scroll-behavior: auto !important;
-       animation-duration: 0.01ms !important;
-       transition-duration: 0.01ms !important;
-   }
-}
+   2. NAVIGATION
+   ========================================================= */
 
-/* Home-page design refinements */
-.information-page .hero { 
+.information-page .site-header {
     position: relative;
+    z-index: 10;
     width: 100%;
-    height: calc(100vh - 80px);
-    min-height: 600px;
+    background: #104630;
+}
+.information-page .site-nav {
+    width: 100%;
+    min-height: 84px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+.information-page .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: white;
+    font: bold 26px Georgia, serif;
+    white-space: nowrap;
+}
+.information-page .brand::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #1c9c69;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(28,156,105,.15);
+}
+.information-page .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.information-page .nav-link {
+    color: #e4ece7;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 20px 16px;
+    border-bottom: 2px solid transparent;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+.information-page .nav-link:hover {
+    color: white;
+    background: rgba(255,255,255,.05);
+}
+.information-page .nav-information {
+    color: white;
+    font-weight: 700;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================================
+   3. HERO SECTION
+   ========================================================= */
+
+.information-page .hero {
+    position: relative;
+
+    min-height: 680px;
+
+    display: flex;
+    align-items: center;
+
     overflow: hidden;
 
     background-image:
-        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
+        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2400&q=90");
 
-    background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; }
-.information-page .hero h1 { font-weight:600; line-height:1.15; letter-spacing:-2px; max-width:650px; }
-.information-page .hero .eyebrow { color:rgba(255,255,255,.8); font-size:.76rem; font-weight:600; letter-spacing:1.8px; }
-.information-page .intro-section { width:min(1200px,100%); gap:55px; padding:95px 35px; }
-.information-page :is(.intro-content,.section-heading,.additional-heading) h2 { font-weight:500; letter-spacing:-.8px; }
-.information-page .safety-card { padding:27px; border-radius:5px; min-height:0; }
-.information-page .safety-card:hover { transform:translateY(-3px); border-color:#c8c8c8; }
-.information-page .safety-card h3 { font-size:1.35rem; font-weight:600; letter-spacing:-.3px; }
-.information-page .safety-card > p { font-size:.95rem; line-height:1.65; }
-.information-page .resource-panel { border-radius:5px; }
-.information-page .evacuation-banner { background:#10432F; }
-.information-page .footer-content { justify-content:center; flex-wrap:wrap; align-items:center; }
-.information-page a:focus-visible,.information-page button:focus-visible { outline:2px solid #3e6ae1; outline-offset:4px; }
-@media(max-width:900px) { .information-page .intro-section { gap:30px; padding:75px 25px; } }
-@media(max-width:650px) { .information-page .hero { height:auto; min-height:570px; } .information-page .hero-content { padding:75px 25px 100px; } .information-page .hero h1 { font-size:clamp(2.5rem,11vw,3.7rem); letter-spacing:-1.5px; } .information-page .intro-section { padding:65px 20px; } .information-page :is(.intro-content,.section-heading,.additional-heading) h2 { font-size:2rem; } .information-page .footer-content { align-items:center; } }
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
+    background-size: cover;
+
+    color: #ffffff;
 }
 
-/* Prevent the header from covering the information */
-#preparedness {
-    scroll-margin-top: 100px;
-}
-/* =========================================
-   ACCOUNT BUTTON
-   ========================================= */
+.information-page .hero-overlay {
+    position: absolute;
+    inset: 0;
 
-.account-button {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12, 20, 17, 0.82) 0%,
+            rgba(12, 20, 17, 0.52) 48%,
+            rgba(12, 20, 17, 0.12) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(12, 20, 17, 0.42),
+            transparent 45%
+        );
+}
+
+.information-page .hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(1250px, 100%);
+    margin: 0 auto;
+
+    padding: 125px 7% 105px;
+}
+
+.information-page .hero .eyebrow {
+    margin: 0 0 23px;
+
+    color: #d5e7d9;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.information-page .hero h1 {
+    max-width: 850px;
+
+    margin: 0 0 25px;
+
+    color: #ffffff;
+
+    font-size: clamp(3.5rem, 7.5vw, 6.5rem);
+    font-weight: 700;
+
+    line-height: 0.99;
+    letter-spacing: -4px;
+}
+
+.information-page .hero-description {
+    max-width: 560px;
+
+    margin: 0 0 32px;
+
+    color: rgba(255,255,255,0.87);
+
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+.information-page .hero-button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    gap: 35px;
 
-    background: transparent;
-    color: white;
+    padding: 15px 23px;
 
-    border: 1.5px solid rgba(255, 255, 255, 0.8);
-    border-radius: 50px;
+    color: #ffffff;
+    background: #356c48;
 
-    padding: 7px 14px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
+    border: 1px solid #356c48;
+    border-radius: 3px;
 
-    cursor: pointer;
-    transition: all 0.25s ease;
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-/* Default profile picture */
+.information-page .hero-button:hover {
+    background: #285739;
+    transform: translateY(-2px);
+}
 
-.account-button::after {
-    content: "";
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
+.information-page .hero-button span {
+    font-size: 1.1rem;
+}
 
-    background-color: #e0e5e3;
+.information-page .hero-bottom {
+    position: absolute;
+    bottom: 27px;
+    left: 7%;
+    z-index: 2;
+
+    color: rgba(255,255,255,0.7);
+
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.information-page .hero-bottom span {
+    padding: 0 8px;
+    color: #8bc49a;
+}
+
+
+/* =========================================================
+   4. INTRODUCTION SECTION
+   ========================================================= */
+
+.information-page .intro-section {
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    align-items: center;
+    gap: clamp(35px, 7vw, 100px);
+
+    width: min(1300px, 100%);
+
+    margin: 0 auto;
+    padding: 110px 6%;
+}
+
+.information-page .intro-image {
+    min-height: 420px;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1400&q=85");
+
+    background-position: center;
+    background-size: cover;
+
+    border-radius: 5px;
+}
+
+.information-page .intro-content {
+    max-width: 500px;
+}
+
+.information-page .intro-content h2 {
+    margin: 0 0 25px;
+
+    color: #18231c;
+
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 700;
+
+    line-height: 1.08;
+    letter-spacing: -2px;
+}
+
+.information-page .intro-content > p:not(.section-label) {
+    margin: 0 0 18px;
+
+    color: #606861;
+
+    font-size: 0.97rem;
+    line-height: 1.9;
+}
+
+.information-page .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 12px;
+
+    color: #306b43;
+
+    font-size: 0.88rem;
+    font-weight: 700;
+
+    border-bottom: 1px solid #8cab94;
+    padding-bottom: 7px;
+
+    transition: gap 0.2s ease;
+}
+
+.information-page .text-link:hover {
+    gap: 23px;
+}
+
+
+/* =========================================================
+   5. SAFETY SECTION
+   ========================================================= */
+
+.information-page .safety-section {
+    padding: 100px 6% 115px;
+
+    background: #e9eee8;
+}
+
+.information-page .section-heading {
+    width: min(1250px, 100%);
+    margin: 0 auto 45px;
+}
+
+.information-page .section-heading h2 {
+    margin: 0 0 15px;
+
+    color: #18231c;
+
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 700;
+
+    letter-spacing: -2px;
+}
+
+.information-page .section-heading > p:last-child {
+    max-width: 550px;
+
+    margin: 0;
+
+    color: #68716a;
+
+    font-size: 0.98rem;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   6. SAFETY CARDS
+   ========================================================= */
+
+.information-page .safety-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+
+    width: min(1250px, 100%);
+    margin: 0 auto;
+}
+
+.information-page .safety-card {
+    min-height: 340px;
+
+    padding: 35px 36px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(30,60,38,0.07);
+    border-radius: 8px;
+
+    box-shadow: 0 8px 30px rgba(25,45,30,0.035);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.information-page .safety-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(25,45,30,0.08);
+}
+
+.information-page .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.information-page .card-number {
+    color: #88a48d;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.information-page .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 47px;
+    height: 47px;
+
+    color: #356d48;
+    background: #edf3ed;
+
     border-radius: 50%;
 
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='4' fill='%2310432F'/%3E%3Cpath d='M4 21v-2a8 8 0 0 1 16 0v2' fill='%2310432F'/%3E%3C/svg%3E");
-
-    background-size: 20px;
-    background-position: center;
-    background-repeat: no-repeat;
+    font-size: 1.65rem;
 }
 
-/* Hover animation */
+.information-page .safety-card h3 {
+    margin: 0 0 13px;
 
-.account-button:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: white;
+    color: #1b2c20;
+
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+.information-page .safety-card > p {
+    max-width: 450px;
+
+    margin: 0 0 22px;
+
+    color: #727a73;
+
+    font-size: 0.9rem;
+    line-height: 1.75;
+}
+
+.information-page .safety-card ul {
+    display: grid;
+    gap: 13px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.information-page .safety-card li {
+    position: relative;
+
+    padding-left: 25px;
+
+    color: #4c554e;
+
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.information-page .safety-card li::before {
+    content: "✓";
+
+    position: absolute;
+    left: 0;
+    top: 1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 17px;
+    height: 17px;
+
+    color: #ffffff;
+    background: #39754b;
+
+    border-radius: 50%;
+
+    font-size: 0.67rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   7. EVACUATION WARNING
+   ========================================================= */
+
+.information-page .evacuation-banner {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    width: min(1250px, 88%);
+
+    margin: 100px auto;
+
+    padding: clamp(40px, 6vw, 75px);
+
+    overflow: hidden;
+
+    background: #1b3023;
+    border-radius: 6px;
+
+    color: #ffffff;
+}
+
+.information-page .warning-content {
+    max-width: 760px;
+}
+
+.information-page .warning-content .section-label {
+    color: #a8d2b1;
+}
+
+.information-page .warning-content h2 {
+    margin: 0 0 22px;
+
+    color: #ffffff;
+
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+
+    line-height: 1.15;
+    letter-spacing: -1.7px;
+}
+
+.information-page .warning-content > p:last-child {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 0.96rem;
+    line-height: 1.85;
+}
+
+.information-page .warning-symbol {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 105px;
+    height: 105px;
+
+    color: #ffffff;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   8. EMERGENCY RESOURCES
+   ========================================================= */
+
+.information-page .additional-section {
+    width: min(1250px, 88%);
+    margin: 0 auto 110px;
+}
+
+.information-page .additional-heading {
+    margin-bottom: 35px;
+}
+
+.information-page .additional-heading h2 {
+    margin: 0 0 15px;
+
+    color: #1b2c20;
+
+    font-size: clamp(2.4rem, 4vw, 3.7rem);
+    font-weight: 700;
+    letter-spacing: -1.8px;
+}
+
+.information-page .additional-heading > p:last-child {
+    max-width: 580px;
+
+    margin: 0;
+
+    color: #69736b;
+
+    font-size: 0.96rem;
+    line-height: 1.8;
+}
+
+.information-page .resource-panel {
+    display: grid;
+
+    grid-template-columns: 1fr 0.9fr;
+
+    align-items: center;
+    gap: 40px;
+
+    padding: 45px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7ebe5;
+    border-radius: 7px;
+
+    box-shadow: 0 8px 30px rgba(20,40,25,0.035);
+}
+
+.information-page .resource-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+
+    margin-bottom: 20px;
+
+    color: #39754b;
+    background: #edf3ed;
+
+    border-radius: 50%;
+
+    font-size: 1.3rem;
+}
+
+.information-page .resource-info h3 {
+    margin: 0 0 12px;
+
+    color: #1b2c20;
+
+    font-size: 1.55rem;
+    font-weight: 700;
+}
+
+.information-page .resource-info p {
+    max-width: 430px;
+
+    margin: 0;
+
+    color: #737b74;
+
+    font-size: 0.92rem;
+    line-height: 1.8;
+}
+
+.information-page .resource-select label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #526456;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.information-page .resource-select select {
+    width: 100%;
+
+    padding: 17px 16px;
+
+    color: #303a32;
+    background: #f7f8f6;
+
+    border: 1px solid #dce3dc;
+    border-radius: 4px;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    transition: border-color 0.2s ease;
+}
+
+.information-page .resource-select select:hover,
+.information-page .resource-select select:focus {
+    border-color: #477b53;
+}
+
+.information-page .resource-select select:focus {
+    outline: 2px solid rgba(71,123,83,0.25);
+    outline-offset: 2px;
+}
+
+.information-page .resource-open-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 18px;
+
+    color: #326c43;
+
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.information-page .resource-open-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+
+/* =========================================================
+   9. FOOTER
+   ========================================================= */
+
+.information-page .site-footer {
+    position: relative;
+
+    padding: 45px 7%;
+
+    background:
+        linear-gradient(
+            rgba(13,26,19,0.86),
+            rgba(13,26,19,0.94)
+        ),
+        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80");
+
+    background-position: center;
+    background-size: cover;
+
+    color: #ffffff;
+}
+
+.information-page .footer-content {
+    width: min(1250px, 100%);
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.information-page .footer-brand {
+    color: #ffffff;
+
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.information-page .footer-content p {
+    margin: 0;
+
+    color: rgba(255,255,255,0.78);
+
+    font-size: 0.86rem;
+}
+
+.information-page .footer-content span {
+    color: rgba(255,255,255,0.65);
+
+    font-size: 0.78rem;
+}
+
+
+/* =========================================================
+   10. TABLET RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .information-page .site-nav {
+        padding: 0 4%;
+    }
+
+    .information-page .nav-links {
+        gap: 15px;
+    }
+
+    .information-page .nav-link {
+        font-size: 0.74rem;
+        padding: 12px 6px;
+    }
+
+    .information-page .hero {
+        min-height: 620px;
+    }
+
+    .information-page .intro-section {
+        gap: 35px;
+    }
+
+    .information-page .intro-image {
+        min-height: 350px;
+    }
+
+    .information-page .safety-card {
+        padding: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   11. MOBILE RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .information-page .site-header {
+        position: relative;
+        background: #104630;
+    }
+
+    .information-page .site-nav {
+        min-height: auto;
+
+        padding: 20px;
+
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .information-page .brand {
+        font-size: 1.25rem;
+    }
+
+    .information-page .nav-links {
+        width: 100%;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 13px 19px;
+    }
+
+    .information-page .nav-link {
+        font-size: 0.72rem;
+    }
+
+    .information-page .nav-link {
+        padding: 8px 4px;
+    }
+
+    .information-page .hero {
+        min-height: 650px;
+        background-position: 60% center;
+    }
+
+    .information-page .hero-content {
+        padding: 160px 25px 100px;
+    }
+
+    .information-page .hero h1 {
+        font-size: clamp(3rem, 12vw, 4.2rem);
+        letter-spacing: -2.5px;
+    }
+
+    .information-page .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .information-page .hero-bottom {
+        left: 25px;
+    }
+
+    .information-page .intro-section {
+        grid-template-columns: 1fr;
+        gap: 35px;
+
+        padding: 65px 24px;
+    }
+
+    .information-page .intro-image {
+        min-height: 280px;
+    }
+
+    .information-page .intro-content h2 {
+        font-size: 2.8rem;
+    }
+
+    .information-page .safety-section {
+        padding: 70px 22px;
+    }
+
+    .information-page .section-heading h2 {
+        font-size: 2.7rem;
+    }
+
+    .information-page .safety-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .information-page .safety-card {
+        min-height: auto;
+        padding: 27px;
+    }
+
+    .information-page .evacuation-banner {
+        width: calc(100% - 36px);
+
+        margin: 65px auto;
+
+        padding: 35px 25px;
+
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .information-page .warning-symbol {
+        width: 65px;
+        height: 65px;
+
+        font-size: 2rem;
+    }
+
+    .information-page .additional-section {
+        width: calc(100% - 40px);
+        margin-bottom: 70px;
+    }
+
+    .information-page .resource-panel {
+        grid-template-columns: 1fr;
+        gap: 30px;
+
+        padding: 28px 22px;
+    }
+
+    .information-page .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   12. ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .information-page *,
+    .information-page *::before,
+    .information-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+/* Hide authentication buttons when required */
+
+#account-btn[hidden],
+#login-btn[hidden],
+#logout-btn[hidden] {
+    display: none !important;
 }

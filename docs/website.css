@@ -596,3 +596,10 @@
     background: rgba(255, 255, 255, 0.12);
     border-color: white;
 }
+/* Hide authentication buttons when required */
+
+#account-btn[hidden],
+#login-btn[hidden],
+#logout-btn[hidden] {
+    display: none !important;
+}
