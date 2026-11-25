@@ -839,14 +839,6 @@ body.information-page {
 
 @media (max-width: 900px) {
 
-    .information-page .site-nav {
-        padding: 0 3%;
-    }
-
-    .information-page .site-header .nav-links {
-        gap: 0;
-    }
-
     .information-page .site-header .nav-link {
         padding: 0 8px;
         font-size: 0.77rem;
@@ -1038,4 +1030,65 @@ body.information-page {
 #login-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
+}
+
+@media (max-width: 900px) {
+    .information-page .site-header {
+        height: auto;
+        min-height: 80px;
+    }
+
+    .information-page .site-nav {
+        height: auto;
+        min-height: 80px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 3%;
+    }
+
+    .information-page .site-header .brand {
+        order: 0;
+        margin-left: 0;
+    }
+
+    .information-page .auth-actions {
+        order: 1;
+        margin-left: auto;
+    }
+
+    .information-page .site-header .nav-links {
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin: 0;
+        overflow-x: auto;
+        padding: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .information-page .site-nav {
+        gap: 10px;
+        padding: 16px 18px;
+    }
+
+    .information-page .site-header .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        overflow: visible;
+        padding: 5px 0;
+    }
+
+    .information-page .site-header .nav-link {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
 }

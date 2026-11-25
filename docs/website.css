@@ -318,6 +318,10 @@
 
   .map-legend li { font-size: 0.75rem; }
 }
+
+@media (max-width: 400px) {
+  .leaflet-top.leaflet-right { top: 60px; }
+}
 /* =========================================
    MAP HEADER - MATCH INFORMATION HEADER
    ========================================= */
@@ -492,14 +496,6 @@
 
 @media (max-width: 900px) {
 
-    .map-page .site-nav {
-        padding: 0 3%;
-    }
-
-    .map-page .nav-links {
-        gap: 0;
-    }
-
     .map-page .site-header .nav-links a {
         padding: 0 8px;
         font-size: 12px;
@@ -610,4 +606,65 @@
 #signup-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
+}
+
+@media (max-width: 900px) {
+    .map-page .site-header {
+        height: auto;
+        min-height: 80px;
+    }
+
+    .map-page .site-nav {
+        height: auto;
+        min-height: 80px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 3%;
+    }
+
+    .map-page .brand {
+        order: 0;
+        margin-left: 0;
+    }
+
+    .map-page .auth-actions {
+        order: 1;
+        margin-left: auto;
+    }
+
+    .map-page .nav-links {
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin: 0;
+        overflow-x: auto;
+        padding: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .map-page .site-nav {
+        gap: 10px;
+        padding: 16px 18px;
+    }
+
+    .map-page .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        overflow: visible;
+        padding: 5px 0;
+    }
+
+    .map-page .nav-link {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
 }

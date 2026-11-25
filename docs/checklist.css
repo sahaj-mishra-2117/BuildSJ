@@ -804,14 +804,6 @@ body.checklist-page {
 
 @media (max-width: 900px) {
 
-    .checklist-page .site-nav {
-        padding: 0 3%;
-    }
-
-    .checklist-page .nav-links {
-        gap: 0;
-    }
-
     .checklist-page .nav-link {
         padding: 9px 8px;
         font-size: 0.77rem;
@@ -1131,6 +1123,26 @@ body.checklist-page {
     display: none !important;
 }
 
+@media (max-width: 600px) {
+    .checklist-page .progress-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .checklist-page .progress-number {
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .checklist-page #progress-text {
+        max-width: 100%;
+        font-size: clamp(1.5rem, 8vw, 2rem);
+        overflow-wrap: anywhere;
+    }
+}
+
 /* =========================================
    TABLET RESPONSIVENESS
    ========================================= */
@@ -1390,4 +1402,65 @@ body.checklist-page {
 #signup-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
+}
+
+@media (max-width: 900px) {
+    .checklist-page .site-header {
+        height: auto;
+        min-height: 80px;
+    }
+
+    .checklist-page .site-nav {
+        height: auto;
+        min-height: 80px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 3%;
+    }
+
+    .checklist-page .brand {
+        order: 0;
+        margin-left: 0;
+    }
+
+    .checklist-page .auth-actions {
+        order: 1;
+        margin-left: auto;
+    }
+
+    .checklist-page .nav-links {
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin: 0;
+        overflow-x: auto;
+        padding: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .checklist-page .site-nav {
+        gap: 10px;
+        padding: 16px 18px;
+    }
+
+    .checklist-page .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        overflow: visible;
+        padding: 5px 0;
+    }
+
+    .checklist-page .nav-link {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
 }

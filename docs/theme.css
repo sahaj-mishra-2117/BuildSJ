@@ -445,6 +445,14 @@ button.nav-link {
     flex-wrap: wrap;
 }
 
+.site-nav .auth-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
 /* All navigation buttons */
 
 .site-nav .nav-link,
@@ -546,5 +554,40 @@ button.nav-link {
         font-size: 0.82rem;
         white-space: normal;
         text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .site-nav .brand {
+        order: 0;
+    }
+
+    .site-nav .auth-actions {
+        order: 1;
+        margin-left: auto;
+    }
+
+    .site-nav .nav-links {
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: visible;
+    }
+
+    .site-nav .nav-links .nav-link {
+        white-space: nowrap;
+    }
+
+    .home-page .site-nav .brand,
+    .checklist-page .site-nav .brand {
+        margin-left: 0;
     }
 }

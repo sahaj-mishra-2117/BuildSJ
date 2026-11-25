@@ -602,14 +602,6 @@ width: 100%;
 
 @media (max-width: 900px) {
 
-    .home-page .site-nav {
-        padding: 0 3%;
-    }
-
-    .home-page .nav-links {
-        gap: 0;
-    }
-
     .home-page .nav-link {
         padding: 9px 8px;
         font-size: 0.77rem;
@@ -1177,4 +1169,65 @@ width: 100%;
 #login-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
+}
+
+@media (max-width: 900px) {
+    .home-page .site-header {
+        height: auto;
+        min-height: 80px;
+    }
+
+    .home-page .site-nav {
+        height: auto;
+        min-height: 80px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 3%;
+    }
+
+    .home-page .brand {
+        order: 0;
+        margin-left: 0;
+    }
+
+    .home-page .auth-actions {
+        order: 1;
+        margin-left: auto;
+    }
+
+    .home-page .nav-links {
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin: 0;
+        overflow-x: auto;
+        padding: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .home-page .site-nav {
+        gap: 10px;
+        padding: 16px 18px;
+    }
+
+    .home-page .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        overflow: visible;
+        padding: 5px 0;
+    }
+
+    .home-page .nav-link {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
 }
