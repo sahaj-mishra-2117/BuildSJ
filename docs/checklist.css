@@ -10,13 +10,13 @@
    ========================================================= */
 
 :root {
-    --tesla-blue: #3e6ae1;
-    --ink: #171a20;
-    --body-text: #393c41;
-    --muted: #5c5e62;
+    --tesla-blue: #356c48;
+    --ink: #171c19;
+    --body-text: #4c554e;
+    --muted: #69736b;
     --white: #ffffff;
-    --light-gray: #f4f4f4;
-    --border: #e5e5e5;
+    --light-gray: #f5f6f4;
+    --border: #e7ebe5;
 }
 
 html {
@@ -29,9 +29,9 @@ header.checklist-page{
 body.checklist-page {
     margin: 0;
     min-height: 100vh;
-    background: var(--white);
+    background: var(--light-gray);
     color: var(--ink);
-    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .checklist-page *,
@@ -94,7 +94,7 @@ body.checklist-page {
     margin-right: 10px;
 }
 .checklist-page .footer-brand {
-    color: var(--ink);
+    color: #ffffff;
     font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -198,9 +198,14 @@ body.checklist-page {
     background:
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, 0.66) 0%,
-            rgba(0, 0, 0, 0.38) 48%,
-            rgba(0, 0, 0, 0.08) 100%
+            rgba(12, 20, 17, 0.82) 0%,
+            rgba(12, 20, 17, 0.52) 48%,
+            rgba(12, 20, 17, 0.12) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(12, 20, 17, 0.42),
+            transparent 45%
         ),
         url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
 
@@ -245,19 +250,19 @@ body.checklist-page {
     gap: 24px;
     min-width: 190px;
     padding: 13px 22px;
-    color: var(--ink);
-    background: var(--white);
-    border: 1px solid var(--white);
-    border-radius: 4px;
+    color: #ffffff;
+    background: #356c48;
+    border: 1px solid #356c48;
+    border-radius: 3px;
     font-size: 0.88rem;
     font-weight: 600;
     transition: background 0.25s ease, color 0.25s ease;
 }
 
 .checklist-page .hero-button:hover {
-    color: var(--white);
-    background: var(--tesla-blue);
-    border-color: var(--tesla-blue);
+    color: #ffffff;
+    background: #285739;
+    border-color: #285739;
 }
 
 .checklist-page .hero-button span {
@@ -362,9 +367,10 @@ body.checklist-page {
     gap: 32px;
     margin: 42px 0;
     padding: 26px;
-    background: var(--light-gray);
+    background: #ffffff;
     border: 1px solid var(--border);
     border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(20, 40, 25, 0.035);
 }
 
 .checklist-page .checklist-address-panel .eyebrow {
@@ -516,12 +522,12 @@ body.checklist-page {
     -webkit-appearance: none;
     border: 0;
     border-radius: 20px;
-    background: #e8e8e8;
+    background: #e7ebe5;
     --fill: var(--tesla-blue);
 }
 
 .checklist-page progress::-webkit-progress-bar {
-    background: #e8e8e8;
+    background: #e7ebe5;
     border-radius: 20px;
 }
 
@@ -620,13 +626,13 @@ body.checklist-page {
     padding: 15px 5px;
     background: transparent;
     border: none;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #e7ebe5;
     border-radius: 0;
     transition: background 0.2s ease;
 }
 
 .checklist-page .checklist-item:hover {
-    background: #f8f8f8;
+    background: #f5f6f4;
 }
 
 .checklist-page .item-number {
@@ -659,7 +665,7 @@ body.checklist-page {
    ========================================================= */
 
 .checklist-page .checklist-item:has(input:checked) {
-    background: #fafafa;
+    background: #f1f5f1;
 }
 
 .checklist-page .checklist-item:has(input:checked) label {
@@ -720,8 +726,8 @@ body.checklist-page {
 }
 
 .checklist-page .bottom-button:hover {
-    background: #2854c5;
-    border-color: #2854c5;
+    background: #285739;
+    border-color: #285739;
 }
 
 .checklist-page button.bottom-button {
@@ -752,8 +758,15 @@ body.checklist-page {
     gap: 20px;
     min-height: 105px;
     padding: 25px 6%;
-    background: var(--white);
-    border-top: 1px solid var(--border);
+    background:
+        linear-gradient(
+            rgba(13, 26, 19, 0.86),
+            rgba(13, 26, 19, 0.94)
+        ),
+        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80");
+    background-position: center;
+    background-size: cover;
+    border-top: none;
 }
 
 .checklist-page .footer-brand {
@@ -762,19 +775,19 @@ body.checklist-page {
 
 .checklist-page .site-footer p {
     margin: 0;
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.78);
     font-size: 0.78rem;
     text-align: center;
 }
 
 .checklist-page .footer-link {
-    color: var(--body-text);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.8rem;
     font-weight: 500;
 }
 
 .checklist-page .footer-link:hover {
-    color: var(--tesla-blue);
+    color: #a8d2b1;
 }
 
 
@@ -1044,7 +1057,7 @@ body.checklist-page {
     background: transparent;
     font-family: "Source Sans 3", "Helvetica Neue",
                  Arial, sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;

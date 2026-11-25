@@ -9,13 +9,13 @@
    ========================================================= */
 
 :root {
-    --home-blue: #3e6ae1;
-    --home-ink: #171a20;
-    --home-text: #393c41;
-    --home-muted: #5c5e62;
+    --home-blue: #356c48;
+    --home-ink: #171c19;
+    --home-text: #404840;
+    --home-muted: #606861;
     --home-white: #ffffff;
-    --home-light: #f4f4f4;
-    --home-border: #e5e5e5;
+    --home-light: #f5f6f4;
+    --home-border: #e7ebe5;
 }
 
 .home-page {
@@ -24,9 +24,9 @@
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
-    background: var(--home-white);
+    background: var(--home-light);
     color: var(--home-ink);
-    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .home-page *,
@@ -210,9 +210,14 @@ width: 100%;
     background:
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, 0.72) 0%,
-            rgba(0, 0, 0, 0.50) 52%,
-            rgba(0, 0, 0, 0.20) 100%
+            rgba(12, 20, 17, 0.82) 0%,
+            rgba(12, 20, 17, 0.52) 48%,
+            rgba(12, 20, 17, 0.12) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(12, 20, 17, 0.42),
+            transparent 45%
         ),
         url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2400&q=85");
 
@@ -321,7 +326,7 @@ width: 100%;
     color: var(--home-ink);
     background: var(--home-white);
     border: 1px solid var(--home-white);
-    border-radius: 4px;
+    border-radius: 3px;
 
     font-size: 0.88rem;
     font-weight: 600;
@@ -336,6 +341,29 @@ width: 100%;
     color: var(--home-white);
     background: var(--home-blue);
     border-color: var(--home-blue);
+}
+
+.home-page .hero .btn-primary {
+    color: #ffffff;
+    background: #356c48;
+    border-color: #356c48;
+}
+
+.home-page .hero .btn-primary:hover {
+    background: #285739;
+    border-color: #285739;
+}
+
+.home-page .hero .btn-secondary {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.75);
+}
+
+.home-page .hero .btn-secondary:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.18);
+    border-color: #ffffff;
 }
 
 
@@ -442,9 +470,8 @@ width: 100%;
 
     background: var(--home-white);
     border: 1px solid var(--home-border);
-    border-radius: 5px;
-
-    box-shadow: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(25, 45, 30, 0.035);
 
     transition:
         border-color 0.2s ease,
@@ -453,9 +480,9 @@ width: 100%;
 }
 
 .home-page .step-card:hover {
-    transform: translateY(-3px);
-    border-color: #c8c8c8;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transform: translateY(-5px);
+    border-color: #d3dfd5;
+    box-shadow: 0 15px 35px rgba(25, 45, 30, 0.08);
 }
 
 /* Card headings */
@@ -506,7 +533,7 @@ width: 100%;
 }
 
 .home-page .step-link:hover {
-    color: #244bb5;
+    color: #285739;
     text-decoration: underline;
 }
 
@@ -567,9 +594,16 @@ width: 100%;
     margin-top: auto;
     padding: 27px 20px;
 
-    color: var(--home-muted);
-    background: var(--home-white);
-    border-top: 1px solid var(--home-border);
+    color: rgba(255, 255, 255, 0.78);
+    background:
+        linear-gradient(
+            rgba(13, 26, 19, 0.86),
+            rgba(13, 26, 19, 0.94)
+        ),
+        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80");
+    background-position: center;
+    background-size: cover;
+    border-top: none;
 
     font-size: 0.82rem;
     text-align: center;
@@ -967,7 +1001,7 @@ width: 100%;
     color: #e4ece7;
     background: transparent;
     font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;

@@ -6,6 +6,7 @@
    ========================================================= */
 
 @import url("theme.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 /* =========================================================
    1. Index page layout: header on top, map fills the rest
@@ -17,7 +18,8 @@
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background: var(--page);
+  background: #f5f6f4;
+  font-family: "Inter", sans-serif;
 }
 
 /* The header does not scroll on this page, so no sticky needed */
@@ -32,7 +34,7 @@
   width: 100%;
   min-height: 0;
   border: 0;
-  background: #e9efe9;
+  background: #e9eee8;
 }
 .map-page #login-btn,
 .map-page #signup-btn {
@@ -51,7 +53,7 @@
 
 .map-page #login-btn:hover,
 .map-page #signup-btn:hover {
-    color: var(--home-ink);
+    color: #171c19;
     background: #f4f4f4;
 }
 
@@ -68,8 +70,8 @@
 }
 
 .map-page #logout-btn:hover {
-    background: var(--home-blue);
-    border-color: var(--home-blue);
+    background: #285739;
+    border-color: #285739;
 }
 
 .map-page #login-btn[hidden],
@@ -87,11 +89,11 @@
   z-index: 600;
   padding: 14px 18px;
   color: var(--ink);
-  font-family: var(--font);
+  font-family: "Inter", sans-serif;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(25, 45, 30, 0.035);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -177,7 +179,7 @@
    ========================================================= */
 
 .leaflet-container {
-  font-family: var(--font);
+  font-family: "Inter", sans-serif;
   background: #eef2ef;
 }
 
@@ -411,7 +413,7 @@
     background: transparent;
     font-family: "Source Sans 3", "Helvetica Neue",
                  Arial, sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
@@ -477,7 +479,7 @@
 .map-page .site-header #login-btn:hover,
 .map-page .site-header #signup-btn:hover,
 .map-page .site-header #logout-btn:hover {
-    color: #171a20;
+    color: #171c19;
     background: #f4f4f4;
     border-color: #f4f4f4;
 }

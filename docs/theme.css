@@ -453,6 +453,12 @@ button.nav-link {
     flex-shrink: 0;
 }
 
+@media (min-width: 901px) {
+    .site-nav .auth-actions {
+        margin-right: 20px;
+    }
+}
+
 /* All navigation buttons */
 
 .site-nav .nav-link,
