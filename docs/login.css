@@ -199,8 +199,9 @@ h1 {
   text-align: center;
 }
 
-.auth-switch a {
-  color: var(--ink);
+.auth-switch a,
+.auth-switch a:visited {
+  color: #fff;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
