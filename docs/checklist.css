@@ -1553,7 +1553,7 @@ body.checklist-page {
 /* "Be Prepared. Stay Safe." heading: bigger + new color */
 .checklist-page .hero-content h3 {
     margin: 0 0 24px;
-    color: #a8d2b1;
+    color: #FFF;
     font-size: clamp(2.8rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.05;
