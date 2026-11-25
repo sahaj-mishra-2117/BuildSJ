@@ -1,9 +1,11 @@
 const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const accountBtn = document.getElementById('account-btn');
 
 function updateButtons(session) {
   if (loginBtn) loginBtn.hidden = !!session;
+  if (signupBtn) signupBtn.hidden = !!session;
   if (logoutBtn) logoutBtn.hidden = !session;
   if (accountBtn) accountBtn.hidden = !session;
 }

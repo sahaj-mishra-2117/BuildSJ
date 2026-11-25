@@ -144,6 +144,7 @@ body.checklist-page {
 }
 
 .checklist-page #login-btn,
+.checklist-page #signup-btn,
 .checklist-page #logout-btn {
     padding: 9px 17px;
     color: #10432F;
@@ -158,6 +159,7 @@ body.checklist-page {
 }
 
 .checklist-page #login-btn:hover,
+.checklist-page #signup-btn:hover,
 .checklist-page #logout-btn:hover {
     color: var(--ink);
     background: #f4f4f4;
@@ -1090,6 +1092,7 @@ body.checklist-page {
 /* Login and Logout buttons */
 
 .checklist-page .site-header #login-btn,
+.checklist-page .site-header #signup-btn,
 .checklist-page .site-header #logout-btn {
     display: inline-flex;
     align-items: center;
@@ -1113,6 +1116,7 @@ body.checklist-page {
 /* Login and Logout hover effects */
 
 .checklist-page .site-header #login-btn:hover,
+.checklist-page .site-header #signup-btn:hover,
 .checklist-page .site-header #logout-btn:hover {
     color: #171a20;
     background: #f4f4f4;
@@ -1122,6 +1126,7 @@ body.checklist-page {
 /* Hide inactive authentication buttons */
 
 .checklist-page #login-btn[hidden],
+.checklist-page #signup-btn[hidden],
 .checklist-page #logout-btn[hidden] {
     display: none !important;
 }
@@ -1187,6 +1192,7 @@ body.checklist-page {
     }
 
     .checklist-page .site-header #login-btn,
+    .checklist-page .site-header #signup-btn,
     .checklist-page .site-header #logout-btn {
         flex-shrink: 0;
         font-size: 0.75rem;
@@ -1381,6 +1387,7 @@ body.checklist-page {
 
 #account-btn[hidden],
 #login-btn[hidden],
+#signup-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
 }

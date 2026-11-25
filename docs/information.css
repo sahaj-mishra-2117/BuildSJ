@@ -159,7 +159,8 @@ body.information-page {
    3. LOGIN BUTTON
    ========================================================= */
 
-.information-page .site-header #login-btn {
+.information-page .site-header #login-btn,
+.information-page .site-header #signup-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -179,7 +180,8 @@ body.information-page {
                 color 0.2s ease;
 }
 
-.information-page .site-header #login-btn:hover {
+.information-page .site-header #login-btn:hover,
+.information-page .site-header #signup-btn:hover {
     background: #f4f4f4;
     color: #171a20;
 }
@@ -237,6 +239,7 @@ body.information-page {
 
 .information-page #account-btn[hidden],
 .information-page #login-btn[hidden],
+.information-page #signup-btn[hidden],
 .information-page #logout-btn[hidden] {
     display: none !important;
 }

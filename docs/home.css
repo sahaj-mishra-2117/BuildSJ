@@ -110,7 +110,8 @@
 
 /* Login and logout controls */
 
-.home-page #login-btn {
+.home-page #login-btn,
+.home-page #signup-btn {
     padding: 9px 17px;
     color: black;
     background: white;
@@ -124,7 +125,8 @@
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.home-page #login-btn:hover {
+.home-page #login-btn:hover,
+.home-page #signup-btn:hover {
     color: var(--home-ink);
     background: #f4f4f4;
 }
@@ -162,6 +164,7 @@
 }
 
 .home-page #login-btn[hidden],
+.home-page #signup-btn[hidden],
 .home-page #logout-btn[hidden] {
     display: none !important;
 }
@@ -1012,6 +1015,7 @@ width: 100%;
 /* Login and Logout buttons */
 
 .home-page .site-header #login-btn,
+.home-page .site-header #signup-btn,
 .home-page .site-header #logout-btn {
     display: inline-flex;
     align-items: center;
@@ -1035,6 +1039,7 @@ width: 100%;
 /* Login and Logout hover effects */
 
 .home-page .site-header #login-btn:hover,
+.home-page .site-header #signup-btn:hover,
 .home-page .site-header #logout-btn:hover {
     color: #171a20;
     background: #f4f4f4;
@@ -1044,6 +1049,7 @@ width: 100%;
 /* Hide inactive authentication buttons */
 
 .home-page #login-btn[hidden],
+.home-page #signup-btn[hidden],
 .home-page #logout-btn[hidden] {
     display: none !important;
 }
@@ -1109,6 +1115,7 @@ width: 100%;
     }
 
     .home-page .site-header #login-btn,
+    .home-page .site-header #signup-btn,
     .home-page .site-header #logout-btn {
         flex-shrink: 0;
         font-size: 0.75rem;

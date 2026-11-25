@@ -34,7 +34,8 @@
   border: 0;
   background: #e9efe9;
 }
-.map-page #login-btn {
+.map-page #login-btn,
+.map-page #signup-btn {
     padding: 9px 17px;
     color: black;
     background: white;
@@ -48,7 +49,8 @@
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.map-page #login-btn:hover {
+.map-page #login-btn:hover,
+.map-page #signup-btn:hover {
     color: var(--home-ink);
     background: #f4f4f4;
 }
@@ -71,6 +73,7 @@
 }
 
 .map-page #login-btn[hidden],
+.map-page #signup-btn[hidden],
 .map-page #logout-btn[hidden] {
     display: none !important;
 }
@@ -444,6 +447,7 @@
 /* Login and Logout buttons */
 
 .map-page .site-header #login-btn,
+.map-page .site-header #signup-btn,
 .map-page .site-header #logout-btn {
     display: inline-flex;
     align-items: center;
@@ -467,6 +471,7 @@
 /* Login and Logout hover effects */
 
 .map-page .site-header #login-btn:hover,
+.map-page .site-header #signup-btn:hover,
 .map-page .site-header #logout-btn:hover {
     color: #171a20;
     background: #f4f4f4;
@@ -476,6 +481,7 @@
 /* Hide inactive authentication buttons */
 
 .map-page #login-btn[hidden],
+.map-page #signup-btn[hidden],
 .map-page #logout-btn[hidden] {
     display: none !important;
 }
@@ -541,6 +547,7 @@
     }
 
     .map-page .site-header #login-btn,
+    .map-page .site-header #signup-btn,
     .map-page .site-header #logout-btn {
         flex-shrink: 0;
         font-size: 0.75rem;
@@ -600,6 +607,7 @@
 
 #account-btn[hidden],
 #login-btn[hidden],
+#signup-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
 }
