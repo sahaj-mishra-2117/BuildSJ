@@ -1477,3 +1477,14 @@ body.checklist-page {
         white-space: nowrap;
     }
 }
+/* FULL SCREEN HERO BACKGROUND */
+
+.checklist-page .hero {
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 80px);
+    min-height: calc(100dvh - 80px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
