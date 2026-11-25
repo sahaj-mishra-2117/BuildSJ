@@ -15,8 +15,8 @@
 }
 
 :root {
-  --ink: #f4f6f3;
-  --ink-dim: rgba(244, 246, 243, 0.78);
+  --ink: #10241b;
+  --ink-dim: #6b7d73;
   --sans: "Source Sans 3", Arial, Helvetica, sans-serif;
   --serif: "Source Serif 4", Georgia, serif;
 }
@@ -27,7 +27,7 @@ html {
 
 body {
   font-family: var(--sans);
-  background-color: #0e1a14;
+  background: var(--page, #f2f6f3);
   color: var(--ink);
   min-height: 100vh;
   display: flex;
@@ -45,6 +45,9 @@ body {
   inset: 0;
   z-index: -1;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(34, 168, 107, 0.16), transparent 28%),
+    linear-gradient(135deg, #06251a 0%, #0f5138 58%, #146c46 100%);
 }
 
 .bg-media {
@@ -57,12 +60,9 @@ body {
 .bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 14, 11, 0.6) 0%,
-    rgba(8, 14, 11, 0.35) 45%,
-    rgba(8, 14, 11, 0.75) 100%
-  );
+  background:
+    linear-gradient(90deg, rgba(6, 37, 26, 0.26), transparent 65%),
+    radial-gradient(circle at 20% 75%, rgba(215, 235, 223, 0.10), transparent 32%);
 }
 
 @keyframes drift {
@@ -97,11 +97,8 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em;
 
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.45),
-    transparent
-  );
+  background: linear-gradient(180deg, rgba(6, 37, 26, 0.92), rgba(6, 37, 26, 0.72));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .site-nav a {
@@ -126,8 +123,9 @@ body {
   right: clamp(20px, 4vw, 56px);
   z-index: 11;
   padding: 9px 16px;
+  color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 4px;
+  border-radius: 8px;
   transition: background 0.2s, color 0.2s;
 }
 
@@ -149,7 +147,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
 
-  color: var(--ink-dim);
+  color: rgba(244, 246, 243, 0.78);
   text-align: center;
 }
 
@@ -162,7 +160,7 @@ h1 {
   margin-top: 14px;
   margin-bottom: 18px;
 
-  color: var(--ink);
+  color: #f4f6f3;
   text-align: center;
 }
 
@@ -175,7 +173,7 @@ h1 {
   line-height: 1.65;
   text-align: center;
 
-  color: var(--ink-dim);
+  color: rgba(244, 246, 243, 0.78);
 }
 
 
@@ -186,15 +184,20 @@ h1 {
 #auth-form {
   width: 100%;
   max-width: 420px;
-  padding: 0 25px;
+  padding: 26px;
 
   display: flex;
   flex-direction: column;
+
+  background: #ffffff;
+  border: 1px solid #dbe5df;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(6, 37, 26, 0.28);
 }
 
 .auth-switch {
   margin: 24px 20px 34px;
-  color: var(--ink-dim);
+  color: rgba(244, 246, 243, 0.78);
   font-size: 16px;
   text-align: center;
 }
@@ -235,10 +238,10 @@ h1 {
   font-size: 15px;
   color: #14201a;
 
-  background: rgba(255, 255, 255, 0.92);
+  background: #f1f8f4;
 
-  border: 1px solid #ffffff;
-  border-radius: 4px;
+  border: 1px solid #dbe5df;
+  border-radius: 8px;
 }
 
 #auth-form input::placeholder {
@@ -263,11 +266,11 @@ h1 {
   font-size: 15px;
   font-weight: 600;
 
-  background-color: #ffffff;
-  color: #14201a;
+  background-color: #0a3b2a;
+  color: #ffffff;
 
-  border: 1px solid #ffffff;
-  border-radius: 4px;
+  border: 1px solid #0a3b2a;
+  border-radius: 8px;
 
   cursor: pointer;
 
@@ -277,13 +280,13 @@ h1 {
 }
 
 #email-form button[type="submit"]:hover {
-  background-color: rgba(255, 255, 255, 0.14);
+  background-color: #146c46;
+  border-color: #146c46;
   color: #fff;
-  backdrop-filter: blur(6px);
 }
 
 #email-form button[type="submit"]:focus-visible {
-  outline: 2px solid #fff;
+  outline: 3px solid #22a86b;
   outline-offset: 3px;
 }
 
@@ -306,8 +309,8 @@ h1 {
   background-color: #ffffff;
   color: #14201a;
 
-  border: 1px solid #ffffff;
-  border-radius: 4px;
+  border: 1px solid #dbe5df;
+  border-radius: 8px;
 
   font-family: var(--sans);
   font-size: 15px;
@@ -329,13 +332,13 @@ h1 {
 }
 
 .oauth-btn:hover {
-  background-color: rgba(255, 255, 255, 0.14);
-  color: #fff;
-  backdrop-filter: blur(6px);
+  background-color: #f1f8f4;
+  border-color: #22a86b;
+  color: #10241b;
 }
 
 .oauth-btn:focus-visible {
-  outline: 2px solid #fff;
+  outline: 3px solid #22a86b;
   outline-offset: 3px;
 }
 
@@ -356,7 +359,7 @@ h1 {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 
-  color: var(--ink-dim);
+  color: #6b7d73;
 }
 
 .divider::before,
@@ -364,7 +367,7 @@ h1 {
   content: "";
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.3);
+  background: #dbe5df;
 }
 
 
@@ -376,7 +379,7 @@ h1 {
   margin-top: 20px;
 
   font-size: 14px;
-  color: #ffb4b0;
+  color: #9b2c2c;
 
   text-align: center;
 }
@@ -512,7 +515,7 @@ h1 {
   font-size: 14px;
 
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 8px;
 
   transition:
     background 0.2s,

@@ -597,3 +597,113 @@ button.nav-link {
         margin-left: 0;
     }
 }
+
+/* =========================================================
+   ACCOUNT SETTINGS POPUP
+   ========================================================= */
+
+.account-popup-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.account-avatar {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--green-100);
+    color: var(--green-900);
+    border: 1px solid rgba(15, 81, 56, 0.12);
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.account-eyebrow {
+    margin: 0 0 2px;
+    color: var(--green-700);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.information-page .popup-content .account-popup-heading h2,
+.account-popup-heading h2 {
+    margin: 0;
+    color: var(--green-950);
+    font-family: var(--font-serif);
+    font-size: 24px;
+    line-height: 1.15;
+}
+
+.account-email {
+    margin: 18px 0 20px;
+    padding: 12px 14px;
+    overflow-wrap: anywhere;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--green-50);
+    color: var(--ink-soft);
+    font-size: 14px;
+}
+
+.account-popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.information-page .popup-content .account-popup-actions button,
+.account-popup-actions button {
+    min-height: 42px;
+    margin: 0;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.account-popup-actions .account-close {
+    background: #ffffff;
+    color: var(--green-900);
+    border: 1px solid var(--line);
+}
+
+.account-popup-actions .account-close:hover {
+    background: var(--green-50);
+    border-color: var(--green-500);
+}
+
+.account-popup-actions .account-logout {
+    background: var(--green-900);
+    color: #ffffff;
+    border: 1px solid var(--green-900);
+}
+
+.account-popup-actions .account-logout:hover {
+    background: var(--green-700);
+    border-color: var(--green-700);
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 22px;
+    }
+
+    .account-popup-actions {
+        flex-direction: column-reverse;
+    }
+
+    .account-popup-actions button {
+        width: 100%;
+    }
+}

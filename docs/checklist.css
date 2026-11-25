@@ -165,20 +165,27 @@ body.checklist-page {
     background: #f4f4f4;
 }
 .popup {
-  display: none; 
+  display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: rgba(6, 37, 26, 0.62);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
 }
 
 .popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
+  width: min(410px, calc(100vw - 40px));
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  text-align: left;
+  box-shadow: 0 24px 70px rgba(6, 37, 26, 0.28);
 }
 
 /* =========================================================
@@ -1230,7 +1237,8 @@ body.checklist-page {
 .congrats-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(6, 37, 26, 0.62);
+    backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1246,11 +1254,12 @@ body.checklist-page {
     position: relative;
     width: 100%;
     max-width: 450px;
-    padding: 45px 30px;
+    padding: 36px 30px;
     background: #ffffff;
-    border-radius: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
     text-align: center;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 24px 70px rgba(6, 37, 26, 0.28);
     animation: congratsPop 0.5s ease-out;
 }
 
@@ -1260,24 +1269,25 @@ body.checklist-page {
 }
 
 .congrats-box h2 {
-    color: #10432F;
+    color: var(--green-950);
+    font-family: var(--font-serif);
     font-size: 32px;
     font-weight: 700;
     margin: 0 0 15px;
 }
 
 .congrats-box p {
-    color: #5c5e62;
+    color: var(--ink-soft);
     font-size: 16px;
     line-height: 1.7;
     margin-bottom: 25px;
 }
 
 .congrats-close {
-    background: #10432F;
+    background: var(--green-900);
     color: white;
-    border: none;
-    border-radius: 4px;
+    border: 1px solid var(--green-900);
+    border-radius: var(--radius-sm);
     padding: 12px 35px;
     font-size: 15px;
     font-weight: 600;
@@ -1286,7 +1296,8 @@ body.checklist-page {
 }
 
 .congrats-close:hover {
-    background: #209c70;
+    background: var(--green-700);
+    border-color: var(--green-700);
 }
 
 /* Popup animation */

@@ -66,9 +66,18 @@
 
         <div id="popup" class="popup">
             <div class="popup-content">
-                <h2>Account Settings</h2>
-                <button id = "logout-btn">Log Out</button>
-                <button onclick="closePopup()">Close</button>
+                <div class="account-popup-heading">
+                    <div id="account-avatar" class="account-avatar" aria-hidden="true">B</div>
+                    <div>
+                        <p class="account-eyebrow">Your account</p>
+                        <h2>Account Settings</h2>
+                    </div>
+                </div>
+                <p id="account-email" class="account-email">Signed in</p>
+                <div class="account-popup-actions">
+                    <button type="button" class="account-close" onclick="closePopup()">Close</button>
+                    <button type="button" id="logout-btn" class="account-logout">Log Out</button>
+                </div>
             </div>
         </div>
 
