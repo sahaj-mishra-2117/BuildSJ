@@ -1287,3 +1287,7 @@ width: 100%;
     border: 3px solid var(--home-border);
     border-radius: 8px;
 }
+.home-page .step-card:hover {
+    transform: translateY(-5px);
+    border-color: #356c48;
+}
