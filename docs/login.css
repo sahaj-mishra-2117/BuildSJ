@@ -115,35 +115,6 @@ body {
   justify-self: start;
 }
 
-.site-nav nav {
-  display: flex;
-  align-items: center;
-  justify-self: center;
-  gap: clamp(8px, 2vw, 28px);
-}
-
-.site-nav nav a {
-  padding: 9px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 4px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.site-nav nav a:hover {
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.auth-nav a[aria-current="page"] {
-  color: #14201a;
-  background: #fff;
-  border-color: #fff;
-}
-
-.auth-nav a[aria-current="page"]:hover {
-  background: #f0f2f0;
-}
-
-.auth-nav a:focus-visible,
 .back-home:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
@@ -219,6 +190,29 @@ h1 {
 
   display: flex;
   flex-direction: column;
+}
+
+.auth-switch {
+  margin: 24px 20px 34px;
+  color: var(--ink-dim);
+  font-size: 16px;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-switch a:hover {
+  color: #fff;
+}
+
+.auth-switch a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 #email-form {
@@ -585,17 +579,6 @@ h1 {
     justify-content: space-between;
     gap: 8px;
     padding: 16px;
-  }
-
-  .site-nav nav.auth-nav {
-    display: flex;
-    gap: 4px;
-  }
-
-  .auth-nav a {
-    padding: 7px 9px;
-    font-size: 12px;
-    white-space: nowrap;
   }
 
   .back-home {
