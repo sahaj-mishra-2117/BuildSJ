@@ -1,8 +1,14 @@
 (() => {
-  const STORAGE_KEY = "buildSJ.localHouseMarker";
+  const LEGACY_STORAGE_KEY = "buildSJ.localHouseMarker";
+  const STORAGE_PREFIX = `${LEGACY_STORAGE_KEY}:`;
 
-  function readLocation() {
-    const stored = localStorage.getItem(STORAGE_KEY);
+  function locationStorageKey(userId) {
+    return `${STORAGE_PREFIX}${userId}`;
+  }
+
+  function readLocation(userId) {
+    const key = locationStorageKey(userId);
+    const stored = localStorage.getItem(key);
     if (!stored) return null;
 
     try {
@@ -18,23 +24,23 @@
         coordinates[1] < -90 ||
         coordinates[1] > 90
       ) {
-        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(key);
         return null;
       }
 
       return coordinates;
     } catch (error) {
-      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(key);
       console.warn("Could not read the locally saved home location:", error.message || error);
       return null;
     }
   }
 
-  function saveHomeFireZone(coordinates) {
+  function saveHomeFireZone(userId, coordinates) {
     const save = async () => {
       const { data, error } = await supabaseClient.auth.getSession();
       if (error) throw error;
-      if (!data.session) return;
+      if (!data.session || data.session.user.id !== userId) return;
       await window.profileAddress.saveFireZone(data.session, coordinates);
     };
 
@@ -46,6 +52,7 @@
   window.initLocalHouseMarker = map => {
     let marker = null;
     let pendingSelection = null;
+    let activeUserId = null;
     const icon = L.divIcon({
       className: "buildsj-home-marker-icon",
       html: '<span class="buildsj-home-marker" role="img" aria-label="Your home location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.8v-6h-5.4v6H3.5a.5.5 0 0 1-.5-.5z"/></svg></span>',
@@ -63,7 +70,7 @@
         <p class="buildsj-home-confirmation-eyebrow">Map location</p>
         <h2 id="buildsj-home-confirmation-title">Save this as your home?</h2>
         <p id="buildsj-home-confirmation-description">
-          The marker is saved in this browser. Fire-zone severity is saved to your profile when signed in.
+          The marker is saved for your account in this browser. Fire-zone severity is saved to your profile.
         </p>
         <div class="buildsj-home-confirmation-actions">
           <button type="button" class="buildsj-home-cancel">Not now</button>
@@ -82,12 +89,12 @@
     confirmation.addEventListener("close", () => {
       const selection = pendingSelection;
       pendingSelection = null;
-      if (confirmation.returnValue !== "save" || !selection) return;
+      if (confirmation.returnValue !== "save" || !selection || !activeUserId) return;
 
       showLocation(selection.coordinates, selection.marker);
       try {
         localStorage.setItem(
-          STORAGE_KEY,
+          locationStorageKey(activeUserId),
           JSON.stringify({ coordinates: selection.coordinates })
         );
       } catch (error) {
@@ -102,30 +109,70 @@
       marker = selectedMarker || L.marker([lat, lng], {
           icon,
           keyboard: true,
-          title: "Your home location, saved in this browser",
+          title: "Your home location, saved for your account",
           alt: "Your home location",
           zIndexOffset: 1000,
         }).addTo(map);
       marker.options.isLocalHouseMarker = true;
       marker.setIcon(icon);
-      marker.options.title = "Your home location, saved in this browser";
+      marker.options.title = "Your home location, saved for your account";
       if (marker.getElement()) marker.getElement().title = marker.options.title;
       marker.bindPopup("Home Location");
-      marker.bindTooltip("Home location (saved in this browser)", {
+      marker.bindTooltip("Home location (saved to your account)", {
         direction: "top",
         offset: [0, -34],
       });
-      saveHomeFireZone(coordinates);
+      saveHomeFireZone(activeUserId, coordinates);
+    };
+
+    const clearLocationMarker = () => {
+      if (!marker) return;
+      map.removeLayer(marker);
+      marker = null;
+    };
+
+    const setActiveUser = session => {
+      const userId = session && session.user && session.user.id;
+      if (userId === activeUserId) return;
+
+      pendingSelection = null;
+      if (confirmation.open) confirmation.close("cancel");
+      clearLocationMarker();
+      activeUserId = userId || null;
+      if (!activeUserId) return;
+
+      try {
+        const savedCoordinates = readLocation(activeUserId);
+        if (savedCoordinates) showLocation(savedCoordinates);
+      } catch (error) {
+        console.warn("Could not restore the account's home location:", error.message || error);
+      }
     };
 
     try {
-      const savedCoordinates = readLocation();
-      if (savedCoordinates) showLocation(savedCoordinates);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
     } catch (error) {
-      console.warn("Could not restore the locally saved home location:", error.message || error);
+      console.warn("Could not clear the unassigned home location:", error.message || error);
     }
 
+    let authEventVersion = 0;
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
+      authEventVersion += 1;
+      setActiveUser(session);
+    });
+
+    const initialAuthEventVersion = authEventVersion;
+    supabaseClient.auth.getSession()
+      .then(({ data, error }) => {
+        if (error) throw error;
+        if (initialAuthEventVersion === authEventVersion) setActiveUser(data.session);
+      })
+      .catch(error => {
+        console.error("Could not check the signed-in account for its home location:", error.message || error);
+      });
+
     window.addEventListener("map-address-selected", event => {
+      if (!activeUserId) return;
       const coordinates = event.detail && event.detail.coordinates;
       if (
         !Array.isArray(coordinates) ||

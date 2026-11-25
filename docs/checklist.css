@@ -1,4 +1,3 @@
-
 /* =========================================================
    BUILD SJ - PREPARATION CHECKLIST
    Tesla-inspired minimalist design
@@ -1535,4 +1534,28 @@ body.checklist-page {
         min-height: 100vh;
         height: 100vh;
     }
+}
+
+
+/* =========================================================
+   ADDED: bigger "Wildfire Preparedness" label and a larger,
+   recolored "Be Prepared. Stay Safe." heading
+   (everything above is your original CSS)
+   ========================================================= */
+
+/* "| WILDFIRE PREPAREDNESS" label: bigger */
+.checklist-page .checklist-hero .eyebrow {
+    font-size: 1rem;
+    letter-spacing: 2.2px;
+    margin-bottom: 22px;
+}
+
+/* "Be Prepared. Stay Safe." heading: bigger + new color */
+.checklist-page .hero-content h3 {
+    margin: 0 0 24px;
+    color: #a8d2b1;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
 }
