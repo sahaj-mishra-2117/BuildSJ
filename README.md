@@ -5,6 +5,7 @@ Build SJ is a wildfire-preparedness website for residents of San Jose District 1
 ## Features
 
 - Interactive map of wildfire hazard zones and selected District 10 neighborhoods.
+- An optional home marker on the map, saved locally in the current browser after confirmation.
 - Evacuation guidance and links to emergency resources.
 - Preparation checklist with saved progress and profile address support.
 - Email/password and Google sign-in using Supabase.

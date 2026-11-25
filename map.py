@@ -357,6 +357,7 @@ def main():
                 '<script src="supabase-client.js"></script>'
                 '<script src="address-storage.js"></script>'
                 '<script src="map-address.js"></script>'
+                '<script src="local-house-marker.js"></script>'
             )
         )
 
@@ -374,7 +375,7 @@ def main():
                 document.addEventListener("DOMContentLoaded", function() {{
                     {map_name}.on("popupopen", function(event) {{
                         const marker = event.popup._source;
-                        if (!(marker instanceof L.Marker)) return;
+                        if (!(marker instanceof L.Marker) || marker.options.isLocalHouseMarker) return;
 
                         const content = event.popup.getContent();
                         const rawAddress = typeof content === "string" ? content : content.textContent;
@@ -384,11 +385,13 @@ def main():
                             window.dispatchEvent(new CustomEvent("map-address-selected", {{
                                 detail: {{
                                     address,
-                                    coordinates: [marker.getLatLng().lng, marker.getLatLng().lat]
+                                    coordinates: [marker.getLatLng().lng, marker.getLatLng().lat],
+                                    marker
                                 }}
                             }}));
                         }}
                     }});
+                    window.initLocalHouseMarker({map_name});
                 }});
                 """
             ),
