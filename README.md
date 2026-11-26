@@ -31,11 +31,11 @@ Never put a Supabase service-role key in the browser client.
 
 ### Checklist sync and neighborhood totals
 
-Apply the migrations in `supabase/migrations/` to the configured Supabase project, in filename order, before deploying the checklist changes. You can run them in the Supabase SQL Editor. They add per-account checklist answers, an authenticated function that saves answers for all 25 checklist items and recalculates progress, and a count-only function for neighborhood participation.
+Apply the migrations in `supabase/migrations/` to the configured Supabase project, in filename order, before deploying the checklist changes. You can run them in the Supabase SQL Editor. They add per-account checklist answers, an authenticated function that saves answers for all 25 checklist items and recalculates progress, recalculate existing profile totals against the current checklist, and add a count-only function for neighborhood participation.
 
 Checklist answers sync for signed-in accounts. Neighborhood totals count accounts with at least one completed item; areas with fewer than five participating accounts are omitted. The count function returns only neighborhood names and totals, not profile details.
 
-On the first sign-in after the migration, an existing browser-local checklist is copied into the account. Older progress totals cannot reveal which individual items were checked, so that first sync must happen on the browser holding the previous checklist.
+On the first sign-in after the migration, an existing browser-local checklist is copied into the account. Older progress totals cannot reveal which individual items were checked, so the backfill preserves the old completed-task count when individual answers are unavailable; that first sync must happen on the browser holding the previous checklist.
 
 ## Generate or refresh the map
 
