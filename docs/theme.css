@@ -37,11 +37,11 @@
   --header-height: 64px;
   --page-width: 1450px;
 
-  /* Lora brings an editorial voice; IBM Plex Sans keeps interface text crisp. */
-  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+  /* Alegreya gives headings warmth; Karla keeps interface text easy to read. */
+  --font-sans: "Karla", system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Lora", Georgia, "Times New Roman", serif;
-  --font-accent: "Barlow Condensed", "IBM Plex Sans", sans-serif;
+  --font-serif: "Alegreya", Georgia, "Times New Roman", serif;
+  --font-accent: var(--font-sans);
   /* Kept as an alias: existing rules use `var(--font)` for body text */
   --font: var(--font-sans);
 }
@@ -121,7 +121,7 @@ img {
    2. Small shared helpers
    ========================================================= */
 
-/* Short overlines use the condensed display face as a consistent site accent. */
+/* Short overlines use the interface face for a quieter, more natural hierarchy. */
 .eyebrow {
   margin: 0 0 10px;
   color: var(--green-600);
