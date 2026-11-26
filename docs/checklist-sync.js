@@ -57,6 +57,7 @@ document.addEventListener("keydown", event => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const checkboxes = Array.from(document.querySelectorAll(".task-item"));
+    const checklistTabs = Array.from(document.querySelectorAll(".checklist-tab"));
     const progressBar = document.getElementById("progress-bar");
     const progressText = document.getElementById("progress-text");
     const submitButton = document.getElementById("submit-checklist");
@@ -67,6 +68,55 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!checkboxes.length || !submitButton || !progressBar || !progressText || !submitStatus) return;
 
     const legacyStorageKey = checkbox => `buildSJ.checklist.${checkbox.id}`;
+
+    function activateChecklistTab(selectedTab, moveFocus = false) {
+        checklistTabs.forEach(tab => {
+            const isSelected = tab === selectedTab;
+            const panel = document.getElementById(tab.getAttribute("aria-controls"));
+
+            tab.setAttribute("aria-selected", String(isSelected));
+            tab.tabIndex = isSelected ? 0 : -1;
+            if (panel) panel.hidden = !isSelected;
+        });
+
+        if (moveFocus) selectedTab.focus();
+    }
+
+    function initializeChecklistTabs() {
+        if (!checklistTabs.length) return;
+
+        checklistTabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => activateChecklistTab(tab));
+            tab.addEventListener("keydown", event => {
+                let nextIndex = index;
+                if (event.key === "ArrowRight") nextIndex = (index + 1) % checklistTabs.length;
+                else if (event.key === "ArrowLeft") nextIndex = (index - 1 + checklistTabs.length) % checklistTabs.length;
+                else if (event.key === "Home") nextIndex = 0;
+                else if (event.key === "End") nextIndex = checklistTabs.length - 1;
+                else return;
+
+                event.preventDefault();
+                activateChecklistTab(checklistTabs[nextIndex], true);
+            });
+        });
+
+        const selectedTab = checklistTabs.find(tab => tab.getAttribute("aria-selected") === "true")
+            || checklistTabs[0];
+        activateChecklistTab(selectedTab);
+    }
+
+    function updateTabProgress() {
+        checklistTabs.forEach(tab => {
+            const panel = document.getElementById(tab.getAttribute("aria-controls"));
+            const counter = tab.querySelector("[data-tab-count]");
+            if (!panel || !counter) return;
+
+            const items = Array.from(panel.querySelectorAll(".task-item"));
+            const complete = items.filter(item => item.checked).length;
+            counter.textContent = `${complete}/${items.length}`;
+            counter.setAttribute("aria-label", `${complete} of ${items.length} complete`);
+        });
+    }
 
     function getProgressState() {
         const checkedCount = checkboxes.filter(checkbox => checkbox.checked).length;
@@ -83,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar.classList.toggle("halfway-past", percentage >= 50 && percentage < 70);
         progressBar.classList.toggle("almost-done", percentage >= 70 && percentage < 100);
         progressBar.classList.toggle("complete", percentage === 100);
+        updateTabProgress();
     }
 
     async function saveAnswer(checkbox, checked) {
@@ -300,5 +351,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    initializeChecklistTabs();
     initializeChecklist();
 });

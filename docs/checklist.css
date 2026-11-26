@@ -672,6 +672,65 @@ body.checklist-page {
    7. CHECKLIST ITEMS
    ========================================================= */
 
+.checklist-page .checklist-tabs {
+    margin-top: 8px;
+}
+
+.checklist-page .checklist-tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.checklist-page .checklist-tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 9px;
+    margin: 0 0 -1px;
+    padding: 13px 0 12px;
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.checklist-page .checklist-tab:hover,
+.checklist-page .checklist-tab[aria-selected="true"] {
+    color: var(--ink);
+}
+
+.checklist-page .checklist-tab[aria-selected="true"] {
+    border-bottom-color: var(--tesla-blue);
+    font-weight: 600;
+}
+
+.checklist-page .checklist-tab:focus-visible {
+    outline: 2px solid var(--tesla-blue);
+    outline-offset: 3px;
+}
+
+.checklist-page .checklist-tab-count {
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+
+.checklist-page .checklist-tab-panel {
+    padding-top: 8px;
+}
+
+.checklist-page .checklist-tab-panel[hidden] {
+    display: none;
+}
+
 .checklist-page .checklist {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -683,9 +742,9 @@ body.checklist-page {
 
 .checklist-page .checklist-item {
     display: grid;
-    grid-template-columns: 30px 20px 1fr;
+    grid-template-columns: 20px 1fr;
     align-items: center;
-    gap: 13px;
+    gap: 14px;
     min-height: 77px;
     padding: 15px 5px;
     background: transparent;
@@ -697,14 +756,6 @@ body.checklist-page {
 
 .checklist-page .checklist-item:hover {
     background: #f5f6f4;
-}
-
-.checklist-page .item-number {
-    font-family: var(--font-accent);
-    color: #999999;
-    font-size: 0.84rem;
-    font-weight: 500;
-    font-variant-numeric: tabular-nums;
 }
 
 .checklist-page .checklist-item input[type="checkbox"] {
@@ -738,11 +789,6 @@ body.checklist-page {
     text-decoration: line-through;
     text-decoration-color: #b5b5b5;
 }
-
-.checklist-page .checklist-item:has(input:checked) .item-number {
-    color: var(--tesla-blue);
-}
-
 
 /* =========================================================
    9. BOTTOM CALL TO ACTION
@@ -1018,7 +1064,16 @@ body.checklist-page {
     .checklist-page .checklist-item {
         min-height: 69px;
         gap: 12px;
-        grid-template-columns: 27px 20px 1fr;
+        grid-template-columns: 20px 1fr;
+    }
+
+    .checklist-page .checklist-tab-list {
+        column-gap: 16px;
+    }
+
+    .checklist-page .checklist-tab {
+        padding: 12px 0 11px;
+        font-size: 0.82rem;
     }
 
     .checklist-page .checklist-item label {

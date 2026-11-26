@@ -263,13 +263,12 @@
                 <div class="section-heading">
 
                     <div>
-                        <p class="eyebrow">01 / ESSENTIAL SUPPLIES</p>
+                        <p class="eyebrow">WILDFIRE READINESS</p>
 
-                        <h2>Disaster Kit Essentials</h2>
+                        <h2>Your preparation checklist</h2>
 
                         <p class="section-description">
-                            Everything you should have ready
-                            before an emergency occurs.
+                            Work through the essentials a little at a time.
                         </p>
                     </div>
 
@@ -277,136 +276,96 @@
 
                 </div>
 
+                <div class="checklist-tabs">
+                    <div class="checklist-tab-list" role="tablist" aria-label="Checklist categories">
+                        <button type="button" class="checklist-tab" id="tab-kit" role="tab"
+                                aria-controls="panel-kit" aria-selected="true" tabindex="0">
+                            Pack the essentials <span class="checklist-tab-count" data-tab-count>0/8</span>
+                        </button>
+                        <button type="button" class="checklist-tab" id="tab-safety" role="tab"
+                                aria-controls="panel-safety" aria-selected="false" tabindex="-1">
+                            Stay safe &amp; connected <span class="checklist-tab-count" data-tab-count>0/4</span>
+                        </button>
+                        <button type="button" class="checklist-tab" id="tab-documents" role="tab"
+                                aria-controls="panel-documents" aria-selected="false" tabindex="-1">
+                            Documents &amp; money <span class="checklist-tab-count" data-tab-count>0/2</span>
+                        </button>
+                    </div>
 
-                <ul class="checklist">
+                    <section class="checklist-tab-panel" id="panel-kit" role="tabpanel"
+                             aria-labelledby="tab-kit" tabindex="0">
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item1" name="checked" value="true">
+                                <label for="check_item1">Have a backpack or duffel bag for your emergency supplies</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item2" name="checked" value="true">
+                                <label for="check_item2">One gallon of water per person</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item3" name="checked" value="true">
+                                <label for="check_item3">Three days' worth of non-perishable snacks or canned food</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item4" name="checked" value="true">
+                                <label for="check_item4">A first-aid kit for minor injuries</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item5" name="checked" value="true">
+                                <label for="check_item5">Hand sanitizer</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item6" name="checked" value="true">
+                                <label for="check_item6">A change of clothes</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item7" name="checked" value="true">
+                                <label for="check_item7">Toothbrush and toothpaste</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item12" name="checked" value="true">
+                                <label for="check_item12">Masks</label>
+                            </li>
+                        </ul>
+                    </section>
 
-                    <li class="checklist-item">
-                        <span class="item-number">01</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item1" name="checked" value="true">
-                        <label for="check_item1">
-                            Have a backpack or duffel bag to store all necessary supplies below for an wildfire emergency
-                        </label>
-                    </li>
+                    <section class="checklist-tab-panel" id="panel-safety" role="tabpanel"
+                             aria-labelledby="tab-safety" tabindex="0" hidden>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item8" name="checked" value="true">
+                                <label for="check_item8">Flashlight</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item9" name="checked" value="true">
+                                <label for="check_item9">Battery-powered radio</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item11" name="checked" value="true">
+                                <label for="check_item11">Whistle</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item14" name="checked" value="true">
+                                <label for="check_item14">Phone battery pack and charging cords</label>
+                            </li>
+                        </ul>
+                    </section>
 
-                    <li class="checklist-item">
-                        <span class="item-number">02</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item2" name="checked" value="true">
-                        <label for="check_item2">
-                            One gallon of water per person 
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">03</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item3" name="checked" value="true">
-                        <label for="check_item3">
-                            3 day supply of non-perishable snacks or canned food
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">04</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item4" name="checked" value="true">
-                        <label for="check_item4">
-                            First-aid kit that can treat minor injuries 
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">05</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item5" name="checked" value="true">
-                        <label for="check_item5">
-                            Hand sanitizer
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">06</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item6" name="checked" value="true">
-                        <label for="check_item6">
-                            Changes of clothes
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">07</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item7" name="checked" value="true">
-                        <label for="check_item7">
-                            Toothbrush and toothpaste
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">08</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item8" name="checked" value="true">
-                        <label for="check_item8">
-                            Flashlight
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">09</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item9" name="checked" value="true">
-                        <label for="check_item9">
-                            Battery-powered radio
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">10</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item10" name="checked" value="true">
-                        <label for="check_item10">
-                            Cash and credit cards
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">11</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item11" name="checked" value="true">
-                        <label for="check_item11">
-                            Whistle
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">12</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item12" name="checked" value="true">
-                        <label for="check_item12">
-                            Masks
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">13</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item13" name="checked" value="true">
-                        <label for="check_item13">
-                            Important documents (i.e. passports and birth certificates)
-                        </label>
-                    </li>
-
-                    <li class="checklist-item">
-                        <span class="item-number">14</span>
-                        <input type="checkbox" class="task-item"
-                               id="check_item14" name="checked" value="true">
-                        <label for="check_item14">
-                            Cell phone battery pack with charging cords
-                        </label>
-                    </li>
-
-                </ul>
+                    <section class="checklist-tab-panel" id="panel-documents" role="tabpanel"
+                             aria-labelledby="tab-documents" tabindex="0" hidden>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item10" name="checked" value="true">
+                                <label for="check_item10">Cash and credit cards</label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item13" name="checked" value="true">
+                                <label for="check_item13">Important documents, such as passports and birth certificates</label>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
 
                 <button type="button" class="bottom-button" id="submit-checklist" disabled>
                     Save &amp; Submit Progress
