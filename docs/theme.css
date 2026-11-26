@@ -37,16 +37,11 @@
   --header-height: 64px;
   --page-width: 1450px;
 
-  /* Typography
-     Two faces, one job each:
-       --font-sans  -> body copy, buttons, nav (Source Sans 3)
-       --font-serif -> headings and the brand name (Source Serif 4)
-     The system stack stays on the end of each list, so the site still looks
-     correct if Google Fonts is slow or blocked. */
-  --font-sans: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto,
+  /* Lora brings an editorial voice; IBM Plex Sans keeps interface text crisp. */
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Source Serif 4", "Source Serif Pro", Georgia,
-    "Times New Roman", serif;
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-accent: "Barlow Condensed", "IBM Plex Sans", sans-serif;
   /* Kept as an alias: existing rules use `var(--font)` for body text */
   --font: var(--font-sans);
 }
@@ -70,6 +65,13 @@ body {
   background: var(--page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 /* Headings use the serif face so the page has a clear editorial hierarchy.
@@ -119,15 +121,14 @@ img {
    2. Small shared helpers
    ========================================================= */
 
-/* Small uppercase label above a heading.
-   Wider-than-tight tracking is correct here, but 0.14em at weight 700 came
-   across as a template label — 0.1em at 600 is calmer. */
+/* Short overlines use the condensed display face as a consistent site accent. */
 .eyebrow {
   margin: 0 0 10px;
   color: var(--green-600);
-  font-size: 0.78rem;
+  font-family: var(--font-accent);
+  font-size: 0.84rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -178,7 +179,7 @@ img {
   gap: 10px;
   color: #fff;
   /* Serif brand name: reads as an organisation, not a product logo */
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 550;
   letter-spacing: 0.01em;
@@ -413,7 +414,7 @@ button.nav-link {
     gap: 12px;
 
     color: #ffffff;
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none;
@@ -477,7 +478,7 @@ button.nav-link {
     border-bottom: 2px solid transparent;
     border-radius: 0 0 10px 10px;
 
-    font-family: "Source Sans 3", Arial, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.95rem;
     font-weight: 500;
 
@@ -599,13 +600,39 @@ button.nav-link {
 }
 
 /* =========================================================
-   ACCOUNT SETTINGS POPUP
+   ACCOUNT PROFILE POPUP
    ========================================================= */
+
+.popup-content.account-popup {
+    width: min(460px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: 26px;
+    border: 1px solid #d9e3dc;
+    border-radius: 18px;
+    background: #fdfcf8;
+    color: var(--ink);
+    box-shadow: 0 24px 70px rgba(6, 37, 26, 0.3);
+}
+
+.account-popup-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--font-accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
 
 .account-popup-heading {
     display: flex;
     align-items: center;
     gap: 14px;
+    margin: 22px 0 12px;
 }
 
 .account-avatar {
@@ -614,57 +641,123 @@ button.nav-link {
     flex: 0 0 52px;
     display: grid;
     place-items: center;
-    border-radius: 50%;
-    background: var(--green-100);
-    color: var(--green-900);
-    border: 1px solid rgba(15, 81, 56, 0.12);
+    border: 1px solid rgba(15, 81, 56, 0.18);
+    border-radius: 14px 14px 14px 4px;
+    background: var(--green-900);
+    color: #fdfcf8;
     font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 26px;
+    font-weight: 600;
 }
 
 .account-eyebrow {
-    margin: 0 0 2px;
+    margin: 0 0 3px;
     color: var(--green-700);
+    font-family: var(--font-accent);
     font-size: 12px;
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: 0.09em;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
-.information-page .popup-content .account-popup-heading h2,
 .account-popup-heading h2 {
     margin: 0;
     color: var(--green-950);
     font-family: var(--font-serif);
-    font-size: 24px;
-    line-height: 1.15;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
-.account-email {
-    margin: 18px 0 20px;
-    padding: 12px 14px;
-    overflow-wrap: anywhere;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--green-50);
+.account-intro {
+    margin: 0 0 20px;
     color: var(--ink-soft);
     font-size: 14px;
 }
 
-.account-popup-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+.account-details {
+    border-top: 1px solid var(--line);
 }
 
-.information-page .popup-content .account-popup-actions button,
+.account-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.account-detail-copy {
+    min-width: 0;
+}
+
+.account-detail-label {
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-family: var(--font-accent);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.account-detail-value {
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--green-950);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+#account-address {
+    font-family: var(--font-serif);
+    font-size: 17px;
+}
+
+#account-email {
+    color: var(--ink-soft);
+    font-size: 14px;
+}
+
+.account-detail-link {
+    flex: 0 0 auto;
+    color: var(--green-700);
+    font-family: var(--font-accent);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+.account-detail-link:hover {
+    color: var(--green-950);
+    text-decoration: underline;
+}
+
+.account-detail-link:focus-visible,
+.account-popup-actions button:focus-visible {
+    outline: 3px solid rgba(34, 168, 107, 0.45);
+    outline-offset: 3px;
+}
+
+.account-popup-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
 .account-popup-actions button {
     min-height: 42px;
     margin: 0;
-    padding: 10px 16px;
-    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    border-radius: 7px;
     font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 700;
@@ -672,38 +765,44 @@ button.nav-link {
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 
-.account-popup-actions .account-close {
-    background: var(--green-700);
+.account-popup-actions .account-logout {
+    border-color: var(--green-900);
+    background: var(--green-900);
     color: #ffffff;
-    border: 1px solid var(--green-700);
+}
+
+.account-popup-actions .account-logout:hover {
+    border-color: var(--green-700);
+    background: var(--green-700);
+}
+
+.account-popup-actions .account-close {
+    border-color: var(--line);
+    background: transparent;
+    color: var(--green-900);
 }
 
 .account-popup-actions .account-close:hover {
-    background: var(--green-800);
-    border-color: var(--green-800);
+    border-color: var(--green-100);
+    background: var(--green-50);
 }
 
-#popup .account-popup-actions #logout-btn {
-    background: var(--green-900);
-    color: #ffffff;
-    border: 1px solid var(--green-900);
+.account-status:empty {
+    display: none;
 }
 
-#popup .account-popup-actions #logout-btn:hover {
-    background: var(--green-700);
-    border-color: var(--green-700);
+.account-status {
+    margin: 12px 0 0;
+    color: #9c342d;
+    font-size: 13px;
 }
 
 @media (max-width: 480px) {
-    .popup-content {
+    .popup-content.account-popup {
         padding: 22px;
     }
 
-    .account-popup-actions {
-        flex-direction: column-reverse;
-    }
-
     .account-popup-actions button {
-        width: 100%;
+        flex: 1;
     }
 }

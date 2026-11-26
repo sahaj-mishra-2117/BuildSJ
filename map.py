@@ -348,7 +348,7 @@ def main():
             folium.Element(
                 '<link rel="preconnect" href="https://fonts.googleapis.com"/>'
                 '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>'
-                '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap"/>'
+                '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"/>'
             )
         )
         sj_map.get_root().header.add_child(

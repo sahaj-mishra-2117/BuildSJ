@@ -6,7 +6,6 @@
    ========================================================= */
 
 @import url("theme.css");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 /* =========================================================
    1. Index page layout: header on top, map fills the rest
@@ -19,7 +18,7 @@
   height: 100dvh;
   overflow: hidden;
   background: #f5f6f4;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* The header does not scroll on this page, so no sticky needed */
@@ -89,7 +88,7 @@
   z-index: 600;
   padding: 14px 18px;
   color: var(--ink);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -150,9 +149,9 @@
 .map-legend h2 {
   margin: 0 0 10px;
   color: var(--green-700);
-  /* Small uppercase label: stays in the sans face, not the serif headings */
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-family: var(--font-accent);
+  font-size: 0.84rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -186,7 +185,7 @@
    ========================================================= */
 
 .leaflet-container {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   background: #eef2ef;
 }
 
@@ -310,7 +309,7 @@
   border: 0;
   box-shadow: none;
   outline: 0;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
@@ -367,9 +366,10 @@
 .buildsj-home-confirmation-eyebrow {
   margin: 0 0 4px;
   color: var(--green-700);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: var(--font-accent);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -497,8 +497,7 @@
     flex-shrink: 0;
     z-index: 1000;
     padding: 0;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
+    font-family: var(--font-sans);
 }
 
 /* Navigation container */
@@ -521,7 +520,7 @@
     align-items: center;
     gap: 12px;
     color: #ffffff;
-    font-family: "Times New Roman", Times, serif;
+    font-family: var(--font-serif);
     font-size: 24px;
     font-weight: 550;
     letter-spacing: 1px;
@@ -567,8 +566,7 @@
     padding: 0 15px;
     color: #e4ece7;
     background: transparent;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;

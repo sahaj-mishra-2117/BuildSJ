@@ -17,8 +17,8 @@
 :root {
   --ink: #10241b;
   --ink-dim: #6b7d73;
-  --sans: "Source Sans 3", Arial, Helvetica, sans-serif;
-  --serif: "Source Serif 4", Georgia, serif;
+  --sans: var(--font-sans);
+  --serif: var(--font-serif);
 }
 
 html {
@@ -142,9 +142,10 @@ body {
 .eyebrow {
   margin-top: 16vh;
 
-  font-size: 12px;
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 
   color: rgba(244, 246, 243, 0.78);

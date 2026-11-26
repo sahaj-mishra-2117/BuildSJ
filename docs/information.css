@@ -18,7 +18,7 @@ body.information-page {
     padding-top: 0;
     background: #f5f6f4;
     color: #171c19;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-sans);
 }
 
 .information-page * {
@@ -32,9 +32,10 @@ body.information-page {
 .information-page .section-label {
     margin: 0 0 18px;
     color: #487957;
-    font-size: 0.73rem;
-    font-weight: 700;
-    letter-spacing: 2.3px;
+    font-family: var(--font-accent);
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
 }
 
 #preparation {
@@ -60,7 +61,7 @@ body.information-page {
     box-shadow: none;
     padding: 0;
     z-index: 1000;
-    font-family: "Source Sans 3", Arial, sans-serif;
+    font-family: var(--font-sans);
 }
 
 .information-page .site-nav {
@@ -82,7 +83,7 @@ body.information-page {
     align-items: center;
     gap: 12px;
     color: white;
-    font-family: "Times New Roman", Times, serif;
+    font-family: var(--font-serif);
     font-weight: 550;
     font-size: 24px;
     letter-spacing: 1px;
@@ -263,7 +264,7 @@ body.information-page {
     z-index: 3000;
 }
 
-.information-page .popup-content {
+.information-page .popup-content:not(.account-popup) {
     width: min(410px, calc(100vw - 40px));
     background: #ffffff;
     color: #10432F;
@@ -275,13 +276,13 @@ body.information-page {
     box-shadow: 0 24px 70px rgba(6, 37, 26, 0.28);
 }
 
-.information-page .popup-content h2 {
+.information-page .popup-content:not(.account-popup) h2 {
     margin: 0 0 24px;
     font-size: 24px;
     color: #10432F;
 }
 
-.information-page .popup-content button {
+.information-page .popup-content:not(.account-popup) button {
     background: #10432F;
     color: white;
     border: none;
@@ -293,7 +294,7 @@ body.information-page {
     cursor: pointer;
 }
 
-.information-page .popup-content button:hover {
+.information-page .popup-content:not(.account-popup) button:hover {
     background: #236749;
 }
 
@@ -349,9 +350,10 @@ body.information-page {
 .information-page .hero .eyebrow {
     margin: 0 0 23px;
     color: #d5e7d9;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 3px;
+    font-family: var(--font-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
 }
 
 .information-page .hero h1 {

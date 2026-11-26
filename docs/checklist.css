@@ -30,7 +30,7 @@ body.checklist-page {
     min-height: 100vh;
     background: var(--light-gray);
     color: var(--ink);
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-sans);
 }
 
 .checklist-page *,
@@ -74,7 +74,7 @@ body.checklist-page {
 
 .checklist-page .brand {
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-weight: 550;
     font-size: 1.1rem;
     letter-spacing: 1px;
@@ -229,9 +229,9 @@ body.checklist-page {
 .checklist-page .eyebrow {
     margin: 0 0 18px;
     color: var(--muted);
-    font-size: 0.76rem;
+    font-size: 0.84rem;
     font-weight: 600;
-    letter-spacing: 1.8px;
+    letter-spacing: 0.12em;
     line-height: 1.5;
 }
 
@@ -360,10 +360,11 @@ body.checklist-page {
 }
 
 .checklist-page .progress-caption {
+    font-family: var(--font-accent);
     color: var(--muted);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 1.3px;
+    letter-spacing: 0.1em;
 }
 
 .checklist-page .checklist-address-panel {
@@ -382,9 +383,9 @@ body.checklist-page {
 .checklist-page .checklist-address-panel .eyebrow {
     margin: 0 0 8px;
     color: var(--tesla-blue);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 1.4px;
+    letter-spacing: 0.1em;
 }
 
 .checklist-page .checklist-address-panel h2 {
@@ -603,7 +604,8 @@ body.checklist-page {
 .checklist-page .item-count {
     padding-bottom: 5px;
     color: var(--muted);
-    font-size: 0.72rem;
+    font-family: var(--font-accent);
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 1.3px;
     white-space: nowrap;
@@ -642,8 +644,9 @@ body.checklist-page {
 }
 
 .checklist-page .item-number {
+    font-family: var(--font-accent);
     color: #999999;
-    font-size: 0.75rem;
+    font-size: 0.84rem;
     font-weight: 500;
     font-variant-numeric: tabular-nums;
 }
@@ -991,8 +994,7 @@ body.checklist-page {
     left: 0;
     z-index: 1000;
     padding: 0;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
+    font-family: var(--font-sans);
 }
 
 /* Navigation container */
@@ -1015,7 +1017,7 @@ body.checklist-page {
     align-items: center;
     gap: 12px;
     color: #ffffff;
-    font-family: "Times New Roman", Times, serif;
+    font-family: var(--font-serif);
     font-size: 24px;
     font-weight: 550;
     letter-spacing: 1px;
@@ -1061,8 +1063,7 @@ body.checklist-page {
     padding: 0 15px;
     color: #e4ece7;
     background: transparent;
-    font-family: "Source Sans 3", "Helvetica Neue",
-                 Arial, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
@@ -1578,6 +1579,6 @@ body.checklist-page {
     margin-top: 40px;
 }
 .checklist-page .checklist-hero .eyebrow {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
 }
