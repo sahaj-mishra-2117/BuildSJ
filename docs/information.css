@@ -493,99 +493,211 @@ body.information-page {
 
 
 /* =========================================================
-   9. SAFETY CARDS
+   9. ACTION ACCORDION
    ========================================================= */
 
-.information-page .safety-grid {
+.information-page .action-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
-    width: min(1250px, 100%);
+    gap: 14px;
+    width: min(1000px, 100%);
     margin: 0 auto;
 }
 
-.information-page .safety-card {
-    min-height: 340px;
-    padding: 35px 36px;
+.information-page .action-item {
     background: #ffffff;
     border: 1px solid rgba(30,60,38,0.07);
     border-radius: 8px;
     box-shadow: 0 8px 30px rgba(25,45,30,0.035);
-    transition: transform 0.25s ease,
-                box-shadow 0.25s ease;
+    transition: box-shadow 0.25s ease;
 }
 
-.information-page .safety-card:hover {
-    transform: translateY(-5px);
+.information-page .action-item[open] {
     box-shadow: 0 15px 35px rgba(25,45,30,0.08);
 }
 
-.information-page .card-top {
+.information-page .action-item > summary {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 25px;
+    gap: 22px;
+    padding: 24px 30px;
+    list-style: none;
+    cursor: pointer;
 }
 
-.information-page .card-icon {
+.information-page .action-item > summary::-webkit-details-marker {
+    display: none;
+}
+
+.information-page .action-item > summary:focus-visible {
+    outline: 2px solid #3e6ae1;
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+.information-page .action-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 47px;
-    height: 47px;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
     color: #356d48;
     background: #edf3ed;
     border-radius: 50%;
-    font-size: 1.65rem;
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
-.information-page .safety-card h3 {
-    margin: 0 0 13px;
-    color: #1b2c20;
-    font-size: 1.45rem;
-    font-weight: 700;
-    letter-spacing: -0.6px;
-}
-
-.information-page .safety-card > p {
-    max-width: 450px;
-    margin: 0 0 22px;
-    color: #727a73;
-    font-size: 1rem;
-    line-height: 1.75;
-}
-
-.information-page .safety-card ul {
+.information-page .action-heading {
     display: grid;
-    gap: 13px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    gap: 4px;
+    min-width: 0;
 }
 
-.information-page .safety-card li {
+.information-page .action-title {
+    color: #1b2c20;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    transition: color 0.18s ease;
+}
+
+.information-page .action-item > summary:hover .action-title {
+    color: #306b43;
+}
+
+.information-page .action-summary {
+    color: #6b736c;
+    font-size: 0.97rem;
+    line-height: 1.5;
+}
+
+.information-page .action-toggle {
     position: relative;
-    padding-left: 28px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    margin-left: auto;
+    border: 1px solid #c9d4ca;
+    border-radius: 50%;
+}
+
+.information-page .action-toggle::before,
+.information-page .action-toggle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #356d48;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+}
+
+.information-page .action-toggle::before {
+    width: 12px;
+    height: 1.5px;
+}
+
+.information-page .action-toggle::after {
+    width: 1.5px;
+    height: 12px;
+}
+
+.information-page .action-item[open] .action-toggle::after {
+    opacity: 0;
+}
+
+.information-page .action-body {
+    padding: 0 30px 30px 98px;
+}
+
+.information-page .action-steps {
+    display: grid;
+    gap: 16px;
+    max-width: 720px;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.information-page .action-steps li {
+    padding-left: 6px;
     color: #4c554e;
     font-size: 1rem;
+    line-height: 1.65;
+}
+
+.information-page .action-steps li::marker {
+    color: #39754b;
+    font-weight: 700;
+}
+
+.information-page .action-steps strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #1b2c20;
+    font-weight: 700;
+}
+
+.information-page .action-note {
+    max-width: 720px;
+    margin: 22px 0 0;
+    padding: 14px 18px;
+    background: #f1f5f1;
+    border-left: 3px solid #39754b;
+    color: #2b3a2f;
+    font-size: 0.95rem;
     line-height: 1.6;
 }
 
-.information-page .safety-card li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    color: #ffffff;
-    background: #39754b;
-    border-radius: 50%;
+.information-page .action-source {
+    width: min(1000px, 100%);
+    margin: 26px auto 0;
+    color: #6b736c;
     font-size: 0.9rem;
-    font-weight: 700;
+    line-height: 1.6;
+}
+
+.information-page .action-source a {
+    color: #306b43;
+    text-decoration: underline;
+}
+
+@media (max-width: 650px) {
+
+    .information-page .action-item > summary {
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .information-page .action-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+
+    .information-page .action-title {
+        font-size: 1.12rem;
+    }
+
+    .information-page .action-summary {
+        font-size: 0.92rem;
+    }
+
+    .information-page .action-toggle {
+        width: 26px;
+        height: 26px;
+        margin-top: 5px;
+    }
+
+    .information-page .action-body {
+        padding: 0 20px 24px;
+    }
+
+    .information-page .action-steps {
+        padding-left: 18px;
+    }
+
 }
 
 
