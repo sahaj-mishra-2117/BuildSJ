@@ -153,9 +153,9 @@
                     Stay Safe.
                 </h3>
                 <p class="hero-description">
-                    Prepare for the unexpected. Build your emergency
-                    disaster kit and make sure your household has
-                    the essentials needed during a wildfire evacuation.
+                    Build a go-bag, get your home ready to leave,
+                    and make a plan before a wildfire evacuation
+                    is called.
                 </p>
 
                 <a href="#checklist" class="hero-button">
@@ -179,11 +179,12 @@
                 <div class="progress-heading">
 
                     <div>
-                        <h2>Disaster Kit Progress</h2>
+                        <h2>Preparation progress</h2>
 
                         <p class="progress-description">
-                            Track your progress as you gather
-                            your emergency supplies.
+                            See what you have done and what is still
+                            missing. Every checked item is saved to
+                            your account.
                         </p>
                     </div>
 
@@ -250,7 +251,8 @@
                         <h2>Your preparation checklist</h2>
 
                         <p class="section-description">
-                            Work through the essentials a little at a time.
+                            Three short lists: what to pack, what to do
+                            before you leave, and what to set up now.
                         </p>
                     </div>
 
@@ -260,92 +262,364 @@
                     <div class="checklist-tab-list" role="tablist" aria-label="Checklist categories">
                         <button type="button" class="checklist-tab" id="tab-kit" role="tab"
                                 aria-controls="panel-kit" aria-selected="true" tabindex="0">
-                            Pack the essentials <span class="checklist-tab-count" data-tab-count>0/8</span>
+                            Disaster kit <span class="checklist-tab-count" data-tab-count>0/17</span>
                         </button>
-                        <button type="button" class="checklist-tab" id="tab-safety" role="tab"
-                                aria-controls="panel-safety" aria-selected="false" tabindex="-1">
-                            Stay safe &amp; connected <span class="checklist-tab-count" data-tab-count>0/4</span>
+                        <button type="button" class="checklist-tab" id="tab-home" role="tab"
+                                aria-controls="panel-home" aria-selected="false" tabindex="-1">
+                            Your home <span class="checklist-tab-count" data-tab-count>0/15</span>
                         </button>
-                        <button type="button" class="checklist-tab" id="tab-documents" role="tab"
-                                aria-controls="panel-documents" aria-selected="false" tabindex="-1">
-                            Documents &amp; money <span class="checklist-tab-count" data-tab-count>0/2</span>
+                        <button type="button" class="checklist-tab" id="tab-plan" role="tab"
+                                aria-controls="panel-plan" aria-selected="false" tabindex="-1">
+                            Plan ahead <span class="checklist-tab-count" data-tab-count>0/10</span>
                         </button>
                     </div>
 
                     <section class="checklist-tab-panel" id="panel-kit" role="tabpanel"
                              aria-labelledby="tab-kit" tabindex="0">
+                        <h3 class="checklist-group">Water, food, and medicine</h3>
                         <ul class="checklist">
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item1" name="checked" value="true">
-                                <label for="check_item1">Have a backpack or duffel bag for your emergency supplies</label>
+                                <label for="check_item1">
+                                    A bag you can carry
+                                    <span class="item-note">A backpack or duffel light enough to lift into the car.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item2" name="checked" value="true">
-                                <label for="check_item2">One gallon of water per person</label>
+                                <label for="check_item2">
+                                    Water
+                                    <span class="item-note">One gallon per person per day, for three days.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item3" name="checked" value="true">
-                                <label for="check_item3">Three days' worth of non-perishable snacks or canned food</label>
+                                <label for="check_item3">
+                                    Three days of food
+                                    <span class="item-note">Non-perishables you can eat without cooking, plus a can opener.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item15" name="checked" value="true">
+                                <label for="check_item15">
+                                    Medications
+                                    <span class="item-note">Prescriptions, pain relievers, and spare glasses or contacts.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item4" name="checked" value="true">
-                                <label for="check_item4">A first-aid kit for minor injuries</label>
-                            </li>
-                            <li class="checklist-item">
-                                <input type="checkbox" class="task-item" id="check_item5" name="checked" value="true">
-                                <label for="check_item5">Hand sanitizer</label>
-                            </li>
-                            <li class="checklist-item">
-                                <input type="checkbox" class="task-item" id="check_item6" name="checked" value="true">
-                                <label for="check_item6">A change of clothes</label>
-                            </li>
-                            <li class="checklist-item">
-                                <input type="checkbox" class="task-item" id="check_item7" name="checked" value="true">
-                                <label for="check_item7">Toothbrush and toothpaste</label>
-                            </li>
-                            <li class="checklist-item">
-                                <input type="checkbox" class="task-item" id="check_item12" name="checked" value="true">
-                                <label for="check_item12">Masks</label>
+                                <label for="check_item4">
+                                    First-aid kit
+                                    <span class="item-note">Enough to treat minor cuts, burns, and sprains.</span>
+                                </label>
                             </li>
                         </ul>
-                    </section>
 
-                    <section class="checklist-tab-panel" id="panel-safety" role="tabpanel"
-                             aria-labelledby="tab-safety" tabindex="0" hidden>
+                        <h3 class="checklist-group">Light, power, and communication</h3>
                         <ul class="checklist">
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item8" name="checked" value="true">
-                                <label for="check_item8">Flashlight</label>
+                                <label for="check_item8">
+                                    Flashlight and spare batteries
+                                    <span class="item-note">Keep one in the kit and one by your bed.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item9" name="checked" value="true">
-                                <label for="check_item9">Battery-powered radio</label>
+                                <label for="check_item9">
+                                    Battery or hand-crank radio
+                                    <span class="item-note">For alerts when power and phone service fail.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item11" name="checked" value="true">
-                                <label for="check_item11">Whistle</label>
+                                <label for="check_item11">
+                                    Whistle
+                                    <span class="item-note">To signal for help if you are trapped.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
                                 <input type="checkbox" class="task-item" id="check_item14" name="checked" value="true">
-                                <label for="check_item14">Phone battery pack and charging cords</label>
+                                <label for="check_item14">
+                                    Phone charger and backup battery
+                                    <span class="item-note">A charging cable plus a portable battery you keep charged.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item12" name="checked" value="true">
+                                <label for="check_item12">
+                                    N95 masks
+                                    <span class="item-note">For smoke, ash, and dust.</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <h3 class="checklist-group">Clothing, hygiene, and personal items</h3>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item6" name="checked" value="true">
+                                <label for="check_item6">
+                                    A change of clothes and sturdy shoes
+                                    <span class="item-note">Add a poncho or rain jacket.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item16" name="checked" value="true">
+                                <label for="check_item16">
+                                    Emergency blanket
+                                    <span class="item-note">Holds in body heat if you are stuck waiting overnight.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item7" name="checked" value="true">
+                                <label for="check_item7">
+                                    Toothbrush, toothpaste, and soap
+                                    <span class="item-note">Small sizes are easier to pack.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item5" name="checked" value="true">
+                                <label for="check_item5">
+                                    Sanitation supplies
+                                    <span class="item-note">Hand sanitizer, moist towelettes, garbage bags, and ties.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item13" name="checked" value="true">
+                                <label for="check_item13">
+                                    Copies of important documents
+                                    <span class="item-note">IDs, insurance, and bank information, on paper and in the cloud.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item10" name="checked" value="true">
+                                <label for="check_item10">
+                                    Cash, a card, and spare car keys
+                                    <span class="item-note">Card readers and ATMs may be down.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item17" name="checked" value="true">
+                                <label for="check_item17">
+                                    Pet supplies
+                                    <span class="item-note">Food, water, medications, and a leash or carrier.</span>
+                                </label>
                             </li>
                         </ul>
                     </section>
 
-                    <section class="checklist-tab-panel" id="panel-documents" role="tabpanel"
-                             aria-labelledby="tab-documents" tabindex="0" hidden>
+                    <section class="checklist-tab-panel" id="panel-home" role="tabpanel"
+                             aria-labelledby="tab-home" tabindex="0" hidden>
+                        <h3 class="checklist-group">Inside your home</h3>
                         <ul class="checklist">
                             <li class="checklist-item">
-                                <input type="checkbox" class="task-item" id="check_item10" name="checked" value="true">
-                                <label for="check_item10">Cash and credit cards</label>
+                                <input type="checkbox" class="task-item" id="check_item18" name="checked" value="true">
+                                <label for="check_item18">
+                                    Close windows and doors
+                                    <span class="item-note">Leave them unlocked so firefighters can get inside.</span>
+                                </label>
                             </li>
                             <li class="checklist-item">
-                                <input type="checkbox" class="task-item" id="check_item13" name="checked" value="true">
-                                <label for="check_item13">Important documents, such as passports and birth certificates</label>
+                                <input type="checkbox" class="task-item" id="check_item19" name="checked" value="true">
+                                <label for="check_item19">
+                                    Clear the windows
+                                    <span class="item-note">Take down flammable curtains and shades, and move furniture to the center of the room.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item20" name="checked" value="true">
+                                <label for="check_item20">
+                                    Shut off the gas
+                                    <span class="item-note">Turn off the gas at the meter and put out pilot lights.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item21" name="checked" value="true">
+                                <label for="check_item21">
+                                    Shut off the air conditioner
+                                    <span class="item-note">So smoke is not pulled into the house.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item22" name="checked" value="true">
+                                <label for="check_item22">
+                                    Leave the lights on
+                                    <span class="item-note">Firefighters can see your house in the smoke.</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <h3 class="checklist-group">Outside your home</h3>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item23" name="checked" value="true">
+                                <label for="check_item23">
+                                    Bring in anything that burns
+                                    <span class="item-note">Patio furniture, cushions, toys, and door mats.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item24" name="checked" value="true">
+                                <label for="check_item24">
+                                    Turn off propane
+                                    <span class="item-note">Shut off the tank and move the BBQ away from the house.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item25" name="checked" value="true">
+                                <label for="check_item25">
+                                    Set out water for firefighters
+                                    <span class="item-note">Connect garden hoses and fill buckets. Do not leave sprinklers running.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item26" name="checked" value="true">
+                                <label for="check_item26">
+                                    Leave exterior lights on
+                                    <span class="item-note">So your home is visible in smoke or at night.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item27" name="checked" value="true">
+                                <label for="check_item27">
+                                    Load the car
+                                    <span class="item-note">Put the kit inside, back into the driveway, close windows and doors, and keep the keys with you.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item28" name="checked" value="true">
+                                <label for="check_item28">
+                                    Set out a ladder
+                                    <span class="item-note">Leave it at a corner of the house for roof access.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item29" name="checked" value="true">
+                                <label for="check_item29">
+                                    Seal attic and ground vents
+                                    <span class="item-note">Use pre-cut plywood or commercial vent covers.</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <h3 class="checklist-group">Neighbors and animals</h3>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item30" name="checked" value="true">
+                                <label for="check_item30">
+                                    Keep pets close
+                                    <span class="item-note">Find them early and load them before the fire gets near.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item31" name="checked" value="true">
+                                <label for="check_item31">
+                                    Move large animals early
+                                    <span class="item-note">Prepare trailers and move horses or livestock before an evacuation order.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item32" name="checked" value="true">
+                                <label for="check_item32">
+                                    Check on neighbors
+                                    <span class="item-note">Make sure they know what is happening and are getting ready to leave.</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <p class="checklist-note">
+                            Leave as soon as evacuation is recommended. Do not wait for an order.
+                        </p>
+                    </section>
+
+                    <section class="checklist-tab-panel" id="panel-plan" role="tabpanel"
+                             aria-labelledby="tab-plan" tabindex="0" hidden>
+                        <h3 class="checklist-group">Your household plan</h3>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item33" name="checked" value="true">
+                                <label for="check_item33">
+                                    Pick a meeting spot
+                                    <span class="item-note">Somewhere outside the wildfire area, so you can tell who got out.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item34" name="checked" value="true">
+                                <label for="check_item34">
+                                    Plan two ways out
+                                    <span class="item-note">Choose more than one route out of your neighborhood and drive them.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item35" name="checked" value="true">
+                                <label for="check_item35">
+                                    Choose an out-of-area contact
+                                    <span class="item-note">One friend or relative everyone calls if you get separated.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item36" name="checked" value="true">
+                                <label for="check_item36">
+                                    Line up rides
+                                    <span class="item-note">Make sure everyone has a way out, including anyone who needs help getting to a car.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item37" name="checked" value="true">
+                                <label for="check_item37">
+                                    Plan for extra support
+                                    <span class="item-note">Children, older adults, and people with disabilities may need more time and help.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item38" name="checked" value="true">
+                                <label for="check_item38">
+                                    Plan for pets and livestock
+                                    <span class="item-note">Decide now who moves them, how, and where they go.</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <h3 class="checklist-group">Know your home and stay informed</h3>
+                        <ul class="checklist">
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item39" name="checked" value="true">
+                                <label for="check_item39">
+                                    Find your utility shut-offs
+                                    <span class="item-note">Know where the gas, electric, and water shut-offs are and how to turn them off.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item40" name="checked" value="true">
+                                <label for="check_item40">
+                                    Keep a fire extinguisher handy
+                                    <span class="item-note">Check that it works and that everyone knows how to use it.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item41" name="checked" value="true">
+                                <label for="check_item41">
+                                    Sign up for emergency alerts
+                                    <span class="item-note">Register for AlertSCC and download the Genasys Protect app.</span>
+                                </label>
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" class="task-item" id="check_item42" name="checked" value="true">
+                                <label for="check_item42">
+                                    Post emergency contacts
+                                    <span class="item-note">Keep key phone numbers by the phone and inside the kit.</span>
+                                </label>
                             </li>
                         </ul>
                     </section>
                 </div>
+
+                <p class="checklist-source">
+                    Adapted from the City of San José Fire Department's
+                    <a href="https://www.sanjoseca.gov/your-government/departments-offices/fire-department/public-education/wildfire-preparedness/pre-evacuation">Pre-Evacuation</a>,
+                    <a href="https://www.sanjoseca.gov/your-government/departments-offices/fire-department/public-education/wildfire-preparedness/emergency-supply-kit">Emergency Supply Kit</a>, and
+                    <a href="https://www.sanjoseca.gov/your-government/departments-offices/fire-department/public-education/wildfire-preparedness/wildfire-action-plan">Wildfire Action Plan</a> pages.
+                </p>
 
                 <button type="button" class="bottom-button" id="submit-checklist" disabled>
                     Save &amp; Submit Progress
