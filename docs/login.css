@@ -93,7 +93,7 @@ body {
 
   padding: 24px clamp(20px, 4vw, 56px);
 
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.08em;
 
@@ -107,7 +107,7 @@ body {
 }
 
 .logo {
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.24em;
   justify-self: start;
 }
@@ -143,7 +143,7 @@ body {
   margin-top: 16vh;
 
   font-family: var(--font-accent);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -236,7 +236,7 @@ h1 {
   padding: 16px;
 
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 16px;
   color: #14201a;
 
   background: #f1f8f4;
@@ -264,7 +264,7 @@ h1 {
   padding: 16px;
 
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
 
   background-color: #0a3b2a;
@@ -314,7 +314,7 @@ h1 {
   border-radius: 8px;
 
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
 
   cursor: pointer;
@@ -355,7 +355,7 @@ h1 {
 
   margin: 22px 0;
 
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -379,7 +379,7 @@ h1 {
 #message {
   margin-top: 20px;
 
-  font-size: 14px;
+  font-size: 16px;
   color: #9b2c2c;
 
   text-align: center;
@@ -513,7 +513,7 @@ h1 {
   color: #14201a;
 
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
 
   text-decoration: none;
   border-radius: 8px;
@@ -563,7 +563,7 @@ h1 {
 
   padding: 28px clamp(20px, 4vw, 56px);
 
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -589,7 +589,7 @@ h1 {
   .back-home {
     position: static;
     padding: 7px 9px;
-    font-size: 12px;
+    font-size: 16px;
     white-space: nowrap;
   }
 

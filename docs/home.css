@@ -91,7 +91,7 @@
 .home-page .nav-link {
     padding: 9px 13px;
     color: var(--home-text);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
     border-radius: 4px;
@@ -118,7 +118,7 @@
     border: 1px solid green;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
@@ -138,7 +138,7 @@
     border: 1px solid white;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
 }
@@ -241,9 +241,9 @@ width: 100%;
     margin: 0 0 22px;
     color: rgba(255, 255, 255, 0.8);
     font-family: var(--font-accent);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
 }
 
 /* Hero title and San Jose image */
@@ -336,7 +336,7 @@ width: 100%;
     border: 1px solid var(--home-white);
     border-radius: 3px;
 
-    font-size: 0.88rem;
+    font-size: 1rem;
     font-weight: 600;
 
     transition:
@@ -521,7 +521,7 @@ width: 100%;
     margin: 0;
 
     color: var(--home-muted);
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.65;
 }
 
@@ -534,7 +534,7 @@ width: 100%;
     margin-top: 8px;
 
     color: var(--home-blue);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -613,7 +613,7 @@ width: 100%;
     background-size: cover;
     border-top: none;
 
-    font-size: 0.82rem;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -646,7 +646,7 @@ width: 100%;
 
     .home-page .nav-link {
         padding: 9px 8px;
-        font-size: 0.77rem;
+        font-size: 0.9rem;
     }
 
     .home-page .home-content-layout {
@@ -690,7 +690,7 @@ width: 100%;
     }
 
     .home-page .brand {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .home-page .nav-links {
@@ -706,13 +706,13 @@ width: 100%;
 
     .home-page .nav-link {
         padding: 8px 10px;
-        font-size: 0.76rem;
+        font-size: 0.9rem;
     }
 
     .home-page #login-btn,
     .home-page #logout-btn {
         flex-shrink: 0;
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
 
     /* Hero */
@@ -752,7 +752,7 @@ width: 100%;
 
     .home-page .hero-text {
         margin-top: 25px;
-        font-size: 0.98rem;
+        font-size: 1rem;
     }
 
     .home-page .hero-actions {
@@ -779,7 +779,7 @@ width: 100%;
     }
 
     .home-page .about p {
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: 1.75;
     }
 
@@ -810,7 +810,7 @@ width: 100%;
 
     .home-page .site-footer {
         padding: 25px 18px;
-        font-size: 0.75rem;
+        font-size: 1rem;
     }
 }
 
@@ -1008,7 +1008,7 @@ width: 100%;
     color: #e4ece7;
     background: transparent;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
@@ -1060,7 +1060,7 @@ width: 100%;
     border: 1px solid #ffffff;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
@@ -1103,7 +1103,7 @@ width: 100%;
 
     .home-page .site-header .nav-links a {
         padding: 0 8px;
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
@@ -1126,7 +1126,7 @@ width: 100%;
     }
 
     .home-page .site-header :is(.brand, .logo) {
-        font-size: 0.95rem;
+        font-size: 1rem;
         margin-left: 0;
     }
 
@@ -1144,14 +1144,14 @@ width: 100%;
     .home-page .site-header .nav-links a {
         height: 42px;
         padding: 0 10px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .home-page .site-header #login-btn,
     .home-page .site-header #signup-btn,
     .home-page .site-header #logout-btn {
         flex-shrink: 0;
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
 }
 /* =========================================

@@ -7,6 +7,10 @@
 
 @import url("theme.css");
 
+html {
+  font-size: 16px;
+}
+
 /* =========================================================
    1. Index page layout: header on top, map fills the rest
    ========================================================= */
@@ -43,7 +47,7 @@
     border: 1px solid green;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
@@ -63,7 +67,7 @@
     border: 1px solid white;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
 }
@@ -112,7 +116,7 @@
 .map-title p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 .popup {
   display: none;
@@ -150,7 +154,7 @@
   margin: 0 0 10px;
   color: var(--green-700);
   font-family: var(--font-accent);
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -169,7 +173,7 @@
   align-items: center;
   gap: 9px;
   color: var(--ink-soft);
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 
 .map-legend .swatch {
@@ -277,7 +281,7 @@
   color: var(--ink-soft) !important;
   border: 2px solid var(--green-700) !important;
   box-shadow: var(--shadow-md) !important;
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 
 .leaflet-control-layers::before {
@@ -286,9 +290,9 @@
   margin-bottom: 6px;
   color: var(--green-800);
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -367,7 +371,7 @@
   margin: 0 0 4px;
   color: var(--green-700);
   font-family: var(--font-accent);
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -420,7 +424,7 @@
 
 .leaflet-control-attribution {
   color: var(--muted) !important;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   background: rgba(255, 255, 255, 0.82) !important;
 }
 
@@ -428,7 +432,7 @@
 
 .leaflet-control-scale-line {
   color: var(--green-900);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   background: rgba(255, 255, 255, 0.8);
   border-color: var(--green-700);
 }
@@ -437,7 +441,7 @@
 .leaflet-tooltip {
   padding: 8px 10px;
   color: var(--ink) !important;
-  font-size: 0.8rem;
+  font-size: 1rem;
   border: 1px solid var(--line) !important;
   border-radius: var(--radius-sm) !important;
   box-shadow: var(--shadow-sm) !important;
@@ -472,7 +476,7 @@
     padding: 12px 14px;
   }
 
-  .map-legend li { font-size: 0.75rem; }
+  .map-legend li { font-size: 1rem; }
 
   .leaflet-control-geocoder input { width: 140px; }
 }
@@ -567,7 +571,7 @@
     color: #e4ece7;
     background: transparent;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
@@ -619,7 +623,7 @@
     border: 1px solid #ffffff;
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
@@ -654,7 +658,7 @@
 
     .map-page .site-header .nav-links a {
         padding: 0 8px;
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
@@ -695,14 +699,14 @@
     .map-page .site-header .nav-links a {
         height: 42px;
         padding: 0 10px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .map-page .site-header #login-btn,
     .map-page .site-header #signup-btn,
     .map-page .site-header #logout-btn {
         flex-shrink: 0;
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
 }
 /* =========================================
@@ -762,6 +766,45 @@
 #signup-btn[hidden],
 #logout-btn[hidden] {
     display: none !important;
+}
+
+@media (min-width: 901px) and (max-width: 980px) {
+    .map-page .site-nav {
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding: 0 14px;
+    }
+
+    .map-page .site-header :is(.brand, .logo) {
+        margin-left: 0;
+        font-size: 1.2rem;
+    }
+
+    .map-page .nav-links {
+        flex: 0 1 auto;
+        min-width: 0;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 0;
+        margin: 0;
+    }
+
+    .map-page .site-header .nav-links .nav-link {
+        height: auto;
+        padding: 9px;
+        font-size: 0.9rem;
+    }
+
+    .map-page .auth-actions {
+        flex: 0 0 auto;
+        gap: 4px;
+        margin: 0;
+    }
+
+    .map-page .site-header .auth-actions :is(#login-btn, #signup-btn) {
+        padding: 8px 11px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 900px) {
