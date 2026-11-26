@@ -7,7 +7,7 @@ Build SJ is a wildfire-preparedness website for residents of San Jose District 1
 - Interactive map of wildfire hazard zones and selected District 10 neighborhoods.
 - An optional home marker on the map, saved locally in the current browser after confirmation.
 - Evacuation guidance and links to emergency resources.
-- Preparation checklist with saved progress and profile address support.
+- Preparation checklist with account-synced answers, neighborhood participation totals, and profile address support.
 - Email/password and Google sign-in using Supabase.
 - Responsive pages for desktop and mobile.
 
@@ -28,6 +28,14 @@ If the `py` command is unavailable, use `python -m http.server 5500 --directory 
 Authentication and profile data use the Supabase project configured in `docs/supabase-client.js`. For a different Supabase project, update that file with its project URL and publishable key. Configure the Supabase Auth site URL and allowed redirect URLs for both local development and the deployed site. Enable Google as an auth provider in Supabase if Google sign-in is needed.
 
 Never put a Supabase service-role key in the browser client.
+
+### Checklist sync and neighborhood totals
+
+Apply `supabase/migrations/20261125170417_checklist_sync_and_neighborhood_counts.sql` to the configured Supabase project before deploying the checklist changes. You can run the migration in the Supabase SQL Editor. It adds per-account checklist answers, an authenticated function that saves one answer at a time and recalculates progress, and a count-only function for neighborhood participation.
+
+Checklist answers sync for signed-in accounts. Neighborhood totals count accounts with at least one completed item; areas with fewer than five participating accounts are omitted. The count function returns only neighborhood names and totals, not profile details.
+
+On the first sign-in after the migration, an existing browser-local checklist is copied into the account. Older progress totals cannot reveal which individual items were checked, so that first sync must happen on the browser holding the previous checklist.
 
 ## Generate or refresh the map
 
