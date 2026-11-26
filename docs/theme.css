@@ -172,7 +172,7 @@ img {
   padding: 0 20px;
 }
 
-/* Brand — the dot replaces a logo image for now */
+/* Brand */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -185,15 +185,6 @@ img {
   letter-spacing: 0.01em;
   text-decoration: none;
   white-space: nowrap;
-}
-
-.brand::before {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--green-500);
-  box-shadow: 0 0 0 4px rgba(34, 168, 107, 0.25);
 }
 
 .brand:hover { opacity: 0.85; }
@@ -419,21 +410,6 @@ button.nav-link {
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
-}
-
-/* Green circle next to logo */
-
-.site-nav .brand::before {
-    content: "";
-    display: block;
-
-    width: 11px;
-    height: 11px;
-    flex-shrink: 0;
-
-    background: #1c9a62;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(28,154,98,0.15);
 }
 
 /* Navigation links container */

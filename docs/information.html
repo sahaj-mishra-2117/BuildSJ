@@ -143,41 +143,6 @@
 
     <main>
 
-        <!-- HERO SECTION -->
-
-        <section class="hero">
-
-            <div class="hero-overlay"></div>
-
-            <div class="hero-content">
-
-                <p class="eyebrow">
-                    EVACUATION INFORMATION
-                </p>
-
-                <h1>
-                    Be Prepared.<br>
-                    Stay Safe.
-                </h1>
-
-                <p class="hero-description">
-                    Wildfires can develop quickly. Learn how to
-                    prepare your home, protect your household,
-                    and respond safely when evacuation becomes necessary.
-                </p>
-
-                <a href="#preparation"
-                   class="hero-button"
-                   id="explore-preparedness">
-                    Explore Preparedness
-                    <span>↓</span>
-                </a>
-
-            </div>
-
-        </section>
-
-
         <!-- INTRODUCTION -->
 
         <section class="intro-section" id="preparation">
@@ -659,21 +624,6 @@
                 document.getElementById("popup").style.display = "none";
             };
         }
-
-        document.getElementById("explore-preparedness")
-            .addEventListener("click", function (event) {
-
-                event.preventDefault();
-
-                document.getElementById("preparation")
-                    .scrollIntoView({
-                        behavior: window.matchMedia(
-                            "(prefers-reduced-motion: reduce)"
-                        ).matches ? "instant" : "smooth",
-                        block: "start"
-                    });
-
-            });
 
     </script>
 

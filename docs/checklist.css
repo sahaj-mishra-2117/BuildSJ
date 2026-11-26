@@ -1159,20 +1159,6 @@ body.checklist-page {
     text-decoration: none;
 }
 
-/* Green logo dot */
-
-.checklist-page .site-header .logo-dot,
-.checklist-page .site-header :is(.brand, .logo):not(:has(.logo-dot))::before {
-    content: "";
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    flex-shrink: 0;
-    background: #209c70;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(32, 156, 112, 0.15);
-}
-
 /* Navigation alignment */
 
 .checklist-page .nav-links {
@@ -1641,7 +1627,7 @@ body.checklist-page {
     background-repeat: no-repeat;
 }
 .checklist-page .site-header {
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;

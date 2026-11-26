@@ -92,17 +92,6 @@ body.information-page {
     white-space: nowrap;
 }
 
-.information-page .site-header .brand::before {
-    content: "";
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    flex-shrink: 0;
-    background: #209c70;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(32,156,112,0.15);
-}
-
 
 /* NAVIGATION LINKS */
 
@@ -1187,7 +1176,7 @@ body.information-page {
 
 /* Header overlays the hero image */
 .information-page .site-header {
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
