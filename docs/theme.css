@@ -37,10 +37,10 @@
   --header-height: 64px;
   --page-width: 1450px;
 
-  /* Alegreya gives headings warmth; Karla keeps interface text easy to read. */
-  --font-sans: "Karla", system-ui, -apple-system, "Segoe UI", Roboto,
+  /* Prata gives headings a classic display style; Open Sans keeps interface text clear. */
+  --font-sans: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Alegreya", Georgia, "Times New Roman", serif;
+  --font-serif: "Prata", Georgia, "Times New Roman", serif;
   --font-accent: var(--font-sans);
   /* Kept as an alias: existing rules use `var(--font)` for body text */
   --font: var(--font-sans);
@@ -59,6 +59,7 @@
 body {
   margin: 0;
   font-family: var(--font);
+  font-weight: 700;
   font-size: 16px;
   line-height: 1.6;
   color: var(--ink);
@@ -74,16 +75,14 @@ textarea {
   font-family: inherit;
 }
 
-/* Headings use the serif face so the page has a clear editorial hierarchy.
-   Serifs are optically larger and tighter than sans, so this drops from 700 to
-   600 weight and relaxes the tracking we used for bold sans headlines. */
+/* Display headings use Prata's regular weight. */
 h1,
 h2,
 h3 {
   margin: 0 0 0.5em;
   color: var(--green-950);
   font-family: var(--font-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-optical-sizing: auto;
   line-height: 1.22;
   letter-spacing: -0.005em;
@@ -127,7 +126,7 @@ img {
   color: var(--green-600);
   font-family: var(--font-accent);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -181,7 +180,7 @@ img {
   /* Serif brand name: reads as an organisation, not a product logo */
   font-family: var(--font-serif);
   font-size: 1.3rem;
-  font-weight: 550;
+  font-weight: 400;
   letter-spacing: 0.01em;
   text-decoration: none;
   white-space: nowrap;
@@ -407,7 +406,7 @@ button.nav-link {
     color: #ffffff;
     font-family: var(--font-serif);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -610,7 +609,7 @@ button.nav-link {
     color: #fdfcf8;
     font-family: var(--font-serif);
     font-size: 26px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .account-popup-heading h2 {
@@ -618,7 +617,7 @@ button.nav-link {
     color: var(--green-950);
     font-family: var(--font-serif);
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.02em;
 }
@@ -652,7 +651,7 @@ button.nav-link {
     color: var(--muted);
     font-family: var(--font-sans);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.4;
 }
 
@@ -665,8 +664,9 @@ button.nav-link {
 }
 
 #account-address {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 17px;
+    font-weight: 700;
 }
 
 #account-email {

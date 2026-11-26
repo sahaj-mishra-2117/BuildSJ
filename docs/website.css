@@ -382,6 +382,7 @@ html {
   color: var(--green-950);
   font-family: var(--font-serif);
   font-size: 1.4rem;
+  font-weight: 400;
 }
 
 .buildsj-home-confirmation-content > p:not(.buildsj-home-confirmation-eyebrow) {
@@ -526,7 +527,7 @@ html {
     color: #ffffff;
     font-family: var(--font-serif);
     font-size: 24px;
-    font-weight: 550;
+    font-weight: 400;
     letter-spacing: 1px;
     margin-left: 20px;
     padding: 0;
