@@ -2,8 +2,7 @@
   window.addEventListener("map-address-selected", async event => {
     const selection = event.detail || {};
     const address = (typeof selection === "string" ? selection : selection.address || "").trim();
-    const searchInput = document.querySelector(".leaflet-control-geocoder input");
-    if (searchInput) searchInput.value = address;
+    
     if (!address) return;
 
     try {
