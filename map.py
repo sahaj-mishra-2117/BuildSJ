@@ -391,6 +391,41 @@ def main():
                             }}));
                         }}
                     }});
+                    {map_name}.on("click", async function(event) {{
+                        const target = event.originalEvent && event.originalEvent.target;
+                        if (target instanceof Element && target.closest(".leaflet-marker-icon")) return;
+
+                        const url = new URL("https://photon.komoot.io/reverse/");
+                        url.searchParams.set("lat", String(event.latlng.lat));
+                        url.searchParams.set("lon", String(event.latlng.lng));
+                        url.searchParams.set("limit", "1");
+
+                        try {{
+                            const response = await fetch(url);
+                            if (!response.ok) {{
+                                throw new Error("Address lookup failed (" + response.status + ").");
+                            }}
+
+                            const result = await response.json();
+                            const properties = result.features?.[0]?.properties;
+                            if (!properties) return;
+
+                            const street = properties.street || properties.name;
+                            const firstLine = [properties.housenumber, street].filter(Boolean).join(" ");
+                            const locality = [
+                                properties.city || properties.town || properties.suburb,
+                                properties.state,
+                                properties.postcode
+                            ].filter(Boolean).join(", ");
+                            const address = [firstLine, locality].filter(Boolean).join(", ");
+                            if (!address) return;
+
+                            const searchInput = document.querySelector(".leaflet-control-geocoder input");
+                            if (searchInput) searchInput.value = address;
+                        }} catch (error) {{
+                            console.error("Could not look up the clicked map address:", error.message || error);
+                        }}
+                    }});
                     window.initLocalHouseMarker({map_name});
                 }});
                 """
