@@ -128,7 +128,10 @@ accountAvatarFile?.addEventListener("change", async () => {
   } catch (error) {
     console.error("Could not update the profile picture:", error.message || error);
     if (accountStatus) {
-      accountStatus.textContent = `Could not update the profile picture: ${error.message || "Please try again."}`;
+      const message = error.message || "Please try again.";
+      accountStatus.textContent = message.toLowerCase().includes("bucket not found")
+        ? "Profile picture storage is not set up yet. Apply the avatar storage migration in Supabase, then try again."
+        : `Could not update the profile picture: ${message}`;
     }
   } finally {
     accountAvatarFile.value = "";

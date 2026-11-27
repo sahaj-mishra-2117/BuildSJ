@@ -1265,3 +1265,334 @@ width: 100%;
     font-weight: 400;
     text-align: center;
 }
+
+/* =========================================================
+   ABOUT US AND MEET OUR TEAM CARDS
+   ========================================================= */
+
+
+/* Left column layout */
+
+.home-page .about {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+/* About Us and Meet Our Team card design */
+
+.home-page .about-card,
+.home-page .team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 27px;
+
+    background: #ffffff;
+    border: 3px solid #c5d4c8;
+    border-radius: 8px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 30px rgba(25, 45, 30, 0.035);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Card hover animation */
+
+.home-page .about-card:hover,
+.home-page .team-card:hover {
+    transform: translateY(-5px);
+    border-color: #356c48;
+
+    box-shadow: 0 15px 35px rgba(25, 45, 30, 0.08);
+}
+
+
+/* Matching title sizes */
+
+.home-page .about-card h2,
+.home-page .team-card h2 {
+    width: 100%;
+
+    margin: 0 0 20px;
+
+    color: var(--home-ink);
+
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+
+    letter-spacing: -0.3px;
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+
+/* About Us description */
+
+.home-page .about-card p {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+    color: var(--home-muted);
+
+    font-size: 1rem;
+    line-height: 1.8;
+
+    text-align: center;
+}
+
+
+/* Meet Our Team photograph */
+
+.home-page .team-card img {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 0 auto;
+
+    border-radius: 5px;
+
+    object-fit: cover;
+}
+
+
+/* Align left and right columns */
+
+.home-page .home-content-layout {
+    align-items: start;
+}
+
+.home-page .step-grid {
+    align-self: start;
+}
+
+
+/* Mobile responsiveness */
+
+@media (max-width: 600px) {
+
+    .home-page .about {
+        gap: 14px;
+    }
+
+    .home-page .about-card,
+    .home-page .team-card {
+        padding: 23px;
+    }
+
+    .home-page .about-card h2,
+    .home-page .team-card h2 {
+        font-size: 24px;
+    }
+
+    .home-page .team-card img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .home-page .about-card,
+    .home-page .team-card {
+        transition: none;
+    }
+
+    .home-page .about-card:hover,
+    .home-page .team-card:hover {
+        transform: none;
+    }
+
+}
+
+/* =========================================
+   FINAL ABOUT US AND MEET OUR TEAM DESIGN
+   ========================================= */
+
+/* Remove the border around the entire left column */
+
+.home-page .panel.about {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 18px !important;
+
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+/* Make all five cards have matching borders */
+
+.home-page .about-card,
+.home-page .team-card,
+.home-page .step-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    padding: 27px !important;
+    margin: 0 !important;
+
+    background: #ffffff !important;
+    border: 3px solid #c5d4c8 !important;
+    border-radius: 8px !important;
+
+    text-align: center;
+
+    box-shadow: 0 8px 30px rgba(25, 45, 30, 0.035);
+
+    transition: transform 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+
+/* Make all card titles the same smaller size */
+
+.home-page .about .about-card h2,
+.home-page .about .team-card h2,
+.home-page .step-card h2 {
+    font-family: var(--font-serif);
+    font-size: 22px !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.3px;
+
+    color: #171c19;
+
+    margin: 0 0 16px !important;
+    padding: 0 !important;
+
+    text-align: center;
+}
+
+
+/* About Us paragraph */
+
+.home-page .about-card p {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0;
+
+    color: #606861;
+    font-size: 1rem;
+    line-height: 1.75;
+
+    text-align: center;
+}
+
+
+/* Meet Our Team photograph */
+
+.home-page .team-card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    margin: 0 !important;
+    border-radius: 5px;
+
+    object-fit: cover;
+}
+
+
+/* Align both columns at the top */
+
+.home-page .home-content-layout {
+    align-items: start !important;
+}
+
+.home-page .step-grid {
+    align-self: start !important;
+    gap: 18px;
+}
+
+
+/* Matching hover effects */
+
+.home-page .about-card:hover,
+.home-page .team-card:hover,
+.home-page .step-card:hover {
+    border-color: #356c48 !important;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(25, 45, 30, 0.08);
+}
+
+
+/* Mobile responsiveness */
+
+@media (max-width: 600px) {
+
+    .home-page .about-card,
+    .home-page .team-card,
+    .home-page .step-card {
+        padding: 23px !important;
+    }
+
+    .home-page .about .about-card h2,
+    .home-page .about .team-card h2,
+    .home-page .step-card h2 {
+        font-size: 20px !important;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-page .about-card,
+    .home-page .team-card,
+    .home-page .step-card {
+        transition: none;
+    }
+
+    .home-page .about-card:hover,
+    .home-page .team-card:hover,
+    .home-page .step-card:hover {
+        transform: none;
+    }
+}
