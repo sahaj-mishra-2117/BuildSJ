@@ -4,7 +4,8 @@
     const address = (typeof selection === "string" ? selection : selection.address || "").trim();
     
     if (!address) return;
-    
+    const searchInput = document.querySelector(".leaflet-control-geocoder input");
+    if (searchInput) searchInput.value = address;
     try {
       const { data, error } = await supabaseClient.auth.getSession();
       if (error) throw error;
