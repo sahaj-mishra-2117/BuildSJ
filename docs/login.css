@@ -119,7 +119,7 @@ body {
 
 .back-home {
   position: fixed;
-  top: 18px;
+  top: 16px;
   right: clamp(20px, 4vw, 56px);
   z-index: 11;
   padding: 9px 16px;

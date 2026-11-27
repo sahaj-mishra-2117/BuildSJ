@@ -114,7 +114,7 @@
           zIndexOffset: 1000,
         }).addTo(map);
       marker.options.isLocalHouseMarker = true;
-      marker.setIcon(icon);
+      marker.setIcon(icon); 
       marker.options.title = "Your home location, saved for your account";
       if (marker.getElement()) marker.getElement().title = marker.options.title;
       marker.bindPopup("Home Location");
