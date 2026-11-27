@@ -2,6 +2,7 @@ const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const accountBtn = document.getElementById("account-btn");
+const accountButtonAvatar = document.getElementById("account-button-avatar");
 const accountEmail = document.getElementById("account-email");
 const accountAvatar = document.getElementById("account-avatar");
 const accountAvatarUpload = document.getElementById("account-avatar-upload");
@@ -22,6 +23,22 @@ const AVATAR_TYPES = {
   "image/webp": "webp",
 };
 
+function updateAvatar(element, initial, avatarUrl) {
+  if (!element) return;
+  element.replaceChildren(document.createTextNode(initial));
+
+  if (typeof avatarUrl !== "string" || !avatarUrl.startsWith("https://")) return;
+
+  const image = document.createElement("img");
+  image.className = "account-avatar-image";
+  image.src = avatarUrl;
+  image.alt = "";
+  image.setAttribute("aria-hidden", "true");
+  image.referrerPolicy = "no-referrer";
+  image.addEventListener("error", () => image.remove(), { once: true });
+  element.appendChild(image);
+}
+
 function updateButtons(session) {
   if (loginBtn) loginBtn.hidden = !!session;
   if (signupBtn) signupBtn.hidden = !!session;
@@ -32,22 +49,10 @@ function updateButtons(session) {
   if (accountEmail) {
     accountEmail.textContent = email || "Email unavailable";
   }
-  if (accountAvatar) {
-    const initial = email ? email.trim().charAt(0).toUpperCase() : "B";
-    accountAvatar.replaceChildren(document.createTextNode(initial));
-
-    const avatarUrl = session?.user?.user_metadata?.avatar_url;
-    if (typeof avatarUrl === "string" && avatarUrl.startsWith("https://")) {
-      const image = document.createElement("img");
-      image.className = "account-avatar-image";
-      image.src = avatarUrl;
-      image.alt = "";
-      image.setAttribute("aria-hidden", "true");
-      image.referrerPolicy = "no-referrer";
-      image.addEventListener("error", () => image.remove(), { once: true });
-      accountAvatar.appendChild(image);
-    }
-  }
+  const initial = email ? email.trim().charAt(0).toUpperCase() : "B";
+  const avatarUrl = session?.user?.user_metadata?.avatar_url;
+  updateAvatar(accountAvatar, initial, avatarUrl);
+  updateAvatar(accountButtonAvatar, initial, avatarUrl);
 }
 
 async function uploadAccountAvatar(file) {
