@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,123 +14,249 @@
           content="Helping San Jose District 10 residents prepare for wildfires and protect their families.">
 
     <link rel="icon" type="image/webp" href="logo.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Prata&display=swap">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Prata&display=swap">
 
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="home.css">
+
 </head>
 
 <body class="home-page">
 
-    <!-- ===== HEADER ===== -->
+    <!-- ===== NAVIGATION HEADER ===== -->
 
-  
-<!-- BUILD SJ NAVIGATION HEADER -->
+    <header class="site-header">
 
-<header class="site-header">
-    <nav class="site-nav">
+        <nav class="site-nav">
 
-        <a href="home.html" class="brand">
-            Build SJ
-        </a>
-
-        <div class="nav-links">
-
-            <a href="home.html"
-               class="nav-link nav-home">
-                Home
+            <a href="home.html" class="brand">
+                Build SJ
             </a>
 
-            <a href="index.html"
-               class="nav-link nav-map">
-                Emergency Map
-            </a>
+            <div class="nav-links">
 
-            <a href="checklist.html"
-               class="nav-link nav-checklist">
-                Preparation Checklist
-            </a>
+                <a href="home.html"
+                   class="nav-link nav-home">
+                    Home
+                </a>
 
-            <a href="information.html"
-               class="nav-link nav-information">
-                Evacuation Information
-            </a>
-        </div>
+                <a href="index.html"
+                   class="nav-link nav-map">
+                    Emergency Map
+                </a>
 
-        <div class="auth-actions">
-            <a href="login.html" id="login-btn" class="nav-link" hidden>
-                Log In
-            </a>
-            <a href="signup.html" id="signup-btn" class="nav-link" hidden>
-                Sign Up
-            </a>
-<button id="account-btn"
-        class="account-button"
-        hidden
-        onclick="openPopup()">
-    Account <span id="account-button-avatar" class="account-button-avatar" aria-hidden="true">B</span>
-</button>
-        </div>
+                <a href="checklist.html"
+                   class="nav-link nav-checklist">
+                    Preparation Checklist
+                </a>
 
-        <div id="popup" class="popup"
-             role="dialog"
-             aria-modal="true"
-             aria-labelledby="account-dialog-title"
-             aria-describedby="account-popup-intro">
-            <div class="popup-content account-popup">
-                <div class="account-popup-heading">
-                    <div class="account-avatar-control">
-                        <div id="account-avatar" class="account-avatar" aria-hidden="true">B</div>
-                        <button type="button" id="account-avatar-upload" class="account-avatar-upload">Change photo</button>
-                        <input id="account-avatar-file" type="file" accept="image/png,image/jpeg,image/webp" hidden>
-                    </div>
-                    <div>
-                        <h2 id="account-dialog-title">Your account</h2>
-                    </div>
-                </div>
-                <p id="account-popup-intro" class="account-intro">
-                    Your saved address and map settings, all in one place.
-                </p>
-                <div class="account-details">
-                    <section class="account-detail" aria-labelledby="account-address-label">
-                        <div class="account-detail-copy">
-                            <p id="account-address-label" class="account-detail-label">Saved address</p>
-                            <p id="account-address" class="account-detail-value" aria-live="polite">Checking your address…</p>
-                        </div>
-                        <a id="account-address-link" class="account-detail-link" href="checklist.html#checklist-address-input">Update</a>
-                    </section>
-                    <section class="account-detail" aria-labelledby="account-home-marker-label">
-                        <div class="account-detail-copy">
-                            <p id="account-home-marker-label" class="account-detail-label">Home marker · this browser</p>
-                            <p id="account-home-marker" class="account-detail-value" aria-live="polite">Checking this browser…</p>
-                        </div>
-                        <a id="account-home-marker-link" class="account-detail-link" href="index.html">Open map</a>
-                    </section>
-                    <section class="account-detail" aria-labelledby="account-email-label">
-                        <div class="account-detail-copy">
-                            <p id="account-email-label" class="account-detail-label">Account email</p>
-                            <p id="account-email" class="account-detail-value">Signed in</p>
-                        </div>
-                    </section>
-                </div>
-                <div class="account-popup-actions">
-                    <button type="button" id="logout-btn" class="account-logout">Sign out</button>
-                    <button type="button" id="account-close" class="account-close" onclick="closePopup()">Done</button>
-                </div>
-                <p id="account-status" class="account-status" role="status" aria-live="polite"></p>
+                <a href="information.html"
+                   class="nav-link nav-information">
+                    Evacuation Information
+                </a>
+
             </div>
-        </div>
 
-    </nav>
-</header>
+
+            <!-- AUTHENTICATION BUTTONS -->
+
+            <div class="auth-actions">
+
+                <a href="login.html"
+                   id="login-btn"
+                   class="nav-link"
+                   hidden>
+                    Log In
+                </a>
+
+                <a href="signup.html"
+                   id="signup-btn"
+                   class="nav-link"
+                   hidden>
+                    Sign Up
+                </a>
+
+                <button id="account-btn"
+                        class="account-button"
+                        hidden
+                        onclick="openPopup()">
+                    Account
+                </button>
+
+            </div>
+
+
+            <!-- ACCOUNT SETTINGS POPUP -->
+
+            <div id="popup"
+                 class="popup"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="account-dialog-title"
+                 aria-describedby="account-popup-intro">
+
+                <div class="popup-content account-popup">
+
+                    <div class="account-popup-heading">
+
+                        <div class="account-avatar-control">
+
+                            <div id="account-avatar"
+                                 class="account-avatar"
+                                 aria-hidden="true">
+                                B
+                            </div>
+
+                            <button type="button"
+                                    id="account-avatar-upload"
+                                    class="account-avatar-upload">
+                                Change photo
+                            </button>
+
+                            <input id="account-avatar-file"
+                                   type="file"
+                                   accept="image/png,image/jpeg,image/webp"
+                                   hidden>
+
+                        </div>
+
+                        <div>
+
+                            <h2 id="account-dialog-title">
+                                Your account
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <p id="account-popup-intro"
+                       class="account-intro">
+                        Your saved address and map settings,
+                        all in one place.
+                    </p>
+
+                    <div class="account-details">
+
+                        <section class="account-detail"
+                                 aria-labelledby="account-address-label">
+
+                            <div class="account-detail-copy">
+
+                                <p id="account-address-label"
+                                   class="account-detail-label">
+                                    Saved address
+                                </p>
+
+                                <p id="account-address"
+                                   class="account-detail-value"
+                                   aria-live="polite">
+                                    Checking your address…
+                                </p>
+
+                            </div>
+
+                            <a id="account-address-link"
+                               class="account-detail-link"
+                               href="checklist.html#checklist-address-input">
+                                Update
+                            </a>
+
+                        </section>
+
+
+                        <section class="account-detail"
+                                 aria-labelledby="account-home-marker-label">
+
+                            <div class="account-detail-copy">
+
+                                <p id="account-home-marker-label"
+                                   class="account-detail-label">
+                                    Home marker · this browser
+                                </p>
+
+                                <p id="account-home-marker"
+                                   class="account-detail-value"
+                                   aria-live="polite">
+                                    Checking this browser…
+                                </p>
+
+                            </div>
+
+                            <a id="account-home-marker-link"
+                               class="account-detail-link"
+                               href="index.html">
+                                Open map
+                            </a>
+
+                        </section>
+
+
+                        <section class="account-detail"
+                                 aria-labelledby="account-email-label">
+
+                            <div class="account-detail-copy">
+
+                                <p id="account-email-label"
+                                   class="account-detail-label">
+                                    Account email
+                                </p>
+
+                                <p id="account-email"
+                                   class="account-detail-value">
+                                    Signed in
+                                </p>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="account-popup-actions">
+
+                        <button type="button"
+                                id="logout-btn"
+                                class="account-logout">
+                            Sign out
+                        </button>
+
+                        <button type="button"
+                                id="account-close"
+                                class="account-close"
+                                onclick="closePopup()">
+                            Done
+                        </button>
+
+                    </div>
+
+                    <p id="account-status"
+                       class="account-status"
+                       role="status"
+                       aria-live="polite">
+                    </p>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
 
 
 
     <!-- ===== MAIN CONTENT ===== -->
 
     <main class="home-main">
+
 
         <!-- ===== HERO SECTION ===== -->
 
@@ -138,14 +265,24 @@
             <p class="eyebrow">
                 San Jose &middot; District 10
             </p>
+
             <div class="hi">
-            <h1>
-                Be Prepared. Stay Safe.
-            </h1>
-            <div style=" display: flex; justify-content: flex-end;">
-            <img src="https://cdn.phototourl.com/anon/2026-11-14-bdc8b9f8-245b-4e9e-a86c-1094da9746ce.png" alt="SJ image" style="max-width: 70%; height: auto; margin-left: 10px;" >
+
+                <h1>
+                    Be Prepared. Stay Safe.
+                </h1>
+
+                <div style="display: flex; justify-content: flex-end;">
+
+                    <img
+                        src="https://cdn.phototourl.com/anon/2026-11-14-bdc8b9f8-245b-4e9e-a86c-1094da9746ce.png"
+                        alt="SJ image"
+                        style="max-width: 70%; height: auto; margin-left: 10px;">
+
+                </div>
+
             </div>
-        </div>
+
             <p class="hero-text">
                 Helping San Jose families prepare
                 for wildfires
@@ -169,44 +306,64 @@
         </section>
 
 
+
         <!-- ===== TWO COLUMN SECTION ===== -->
 
         <div class="home-content-layout">
 
-            <!-- ===== LEFT: ABOUT US ===== -->
+
+            <!-- ===== LEFT COLUMN ===== -->
 
             <section class="panel about">
 
-                <h2 style="border: 2px, green, solid">About Us</h2>
 
-                <p>
-                    We are a team of eleven D10 San Jose
-                    high school students
-                    united by a shared commitment
-                    to the safety and well-being
-                    of our community.
+                <!-- ABOUT US CARD -->
 
-                    Our vision is a safer District 10
-                    where every family feels prepared,
-                    informed, and empowered to respond
-                    to emergencies—because no family
-                    should ever have to face an emergency
-                    without knowing what to do.
-                </p>
+                <div class="about-card">
 
-                <h3 style="font-size: 24px;">Meet Our Team</h3>
-                <p> </p>
-                <img src="https://cdn.phototourl.com/anon/2026-11-14-4c704735-63d5-45b9-b36d-662d1230a8ec.jpg" alt="Team image">
-                
+                    <h2>About Us</h2>
+
+                    <p>
+                        We are a team of eleven D10 San Jose
+                        high school students
+                        united by a shared commitment
+                        to the safety and well-being
+                        of our community.
+
+                        Our vision is a safer District 10
+                        where every family feels prepared,
+                        informed, and empowered to respond
+                        to emergencies—because no family
+                        should ever have to face an emergency
+                        without knowing what to do.
+                    </p>
+
+                </div>
+
+
+                <!-- MEET OUR TEAM CARD -->
+
+                <div class="team-card">
+
+                    <h2>Meet Our Team</h2>
+
+                    <img
+                        src="https://cdn.phototourl.com/anon/2026-11-14-4c704735-63d5-45b9-b36d-662d1230a8ec.jpg"
+                        alt="Build SJ team image">
+
+                </div>
+
             </section>
 
 
-            <!-- ===== RIGHT: PREPARATION CARDS ===== -->
+
+            <!-- ===== RIGHT COLUMN ===== -->
 
             <section class="step-grid"
                      aria-label="How to Get Ready">
 
-                <!-- CARD 1 -->
+
+                <!-- KNOW YOUR RISK -->
 
                 <article class="step-card">
 
@@ -225,7 +382,7 @@
                 </article>
 
 
-                <!-- CARD 3 -->
+                <!-- MAKE A PLAN -->
 
                 <article class="step-card">
 
@@ -241,27 +398,35 @@
                        class="step-link">
                         Review the checklist
                     </a>
-                    <a href= "https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management"
-                        class = "step-link">
-                    View the official San Jose City guidelines</a>
+
+                    <a href="https://www.sanjoseca.gov/your-government/departments-offices/office-of-the-city-manager/emergency-management"
+                       class="step-link">
+                        View the official San Jose City guidelines
+                    </a>
+
                 </article>
+
+
+                <!-- CONTACT US -->
+
                 <article class="step-card">
 
-    <h2>Contact Us</h2>
+                    <h2>Contact Us</h2>
 
-    <p>
-        Have questions, suggestions, or want to learn
-        more about fire safety in district 10? We'd love to hear from you.
-    </p>
+                    <p>
+                        Have questions, suggestions, or want to learn
+                        more about fire safety in district 10?
+                        We'd love to hear from you.
+                    </p>
 
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=buildsj2026@gmail.com"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="step-link">
-    Contact Us
-</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=buildsj2026@gmail.com"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="step-link">
+                        Contact Us
+                    </a>
 
-</article>
+                </article>
 
             </section>
 
@@ -270,15 +435,27 @@
     </main>
 
 
+
     <!-- ===== FOOTER ===== -->
 
     <footer class="site-footer">
+
         2026 Build SJ. Building a safer San Jose.
+
     </footer>
-    
+
+
+
+    <!-- ===== AUTHENTICATION SCRIPTS ===== -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="supabase-client.js"></script>
+
     <script src="address-storage.js"></script>
+
     <script src="nav-auth.js"></script>
+
 </body>
+
 </html>
