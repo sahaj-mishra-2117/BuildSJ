@@ -1677,3 +1677,45 @@ body.checklist-page {
     font-size: 1rem;
     letter-spacing: 0.08em;
 }
+
+/* =========================================
+   PREPARATION PROGRESS TITLE FIX
+   ========================================= */
+
+.checklist-page .progress-heading h2 {
+    font-size: 32px !important;
+    white-space: nowrap;
+    line-height: 1.3;
+    margin-bottom: 16px;
+}
+
+/* Balance the title and completion percentage */
+
+.checklist-page .progress-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.checklist-page .progress-number #progress-text {
+    font-size: 30px !important;
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 768px) {
+    .checklist-page .progress-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checklist-page .progress-heading h2 {
+        font-size: 26px !important;
+        white-space: normal;
+    }
+
+    .checklist-page .progress-number #progress-text {
+        font-size: 24px !important;
+    }
+}

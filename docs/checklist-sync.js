@@ -209,8 +209,8 @@ document.addEventListener("DOMContentLoaded", () => {
             areaList.replaceChildren();
 
             if (!data || data.length === 0) {
-                areaStatus.textContent = "Neighborhood totals appear once an area has at least five participating accounts.";
-                return;
+                areaStatus.textContent = "No neighborhood totals yet. Counts appear for any area with at least one participating account.";
+
             }
 
             data.forEach(row => {
@@ -224,7 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 areaList.appendChild(item);
             });
 
-            areaStatus.textContent = "Signed-in accounts with at least one checklist item completed. Areas with fewer than five accounts are hidden.";
+            areaStatus.textContent = "Signed-in accounts with at least one checklist item completed.";
+
         } catch (error) {
             console.error("Could not load neighborhood checklist totals:", error.message || error);
             areaStatus.textContent = "Neighborhood totals are temporarily unavailable.";

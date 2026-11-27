@@ -1,4 +1,3 @@
-
 /* =========================================================
    BUILD SJ - EVACUATION INFORMATION PAGE
    ========================================================= */
@@ -200,6 +199,24 @@ body.information-page {
                 border-color 0.25s ease;
 }
 
+
+/* DEFAULT PROFILE PICTURE */
+
+.information-page .site-header #account-btn::after {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background-color: #e0e5e3;
+    border-radius: 50%;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='4' fill='%2310432F'/%3E%3Cpath d='M4 21v-2a8 8 0 0 1 16 0v2' fill='%2310432F'/%3E%3C/svg%3E");
+
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 .information-page .site-header #account-btn:hover {
     background: rgba(255,255,255,0.12);
@@ -853,46 +870,30 @@ body.information-page {
    ========================================================= */
 
 .information-page .site-footer {
-    position: relative;
-    padding: 45px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    width: 100%;
+    min-height: 105px;
+    margin-top: auto;
+    padding: 27px 20px;
+
+    color: rgba(255, 255, 255, 0.78);
     background:
         linear-gradient(
-            rgba(13,26,19,0.86),
-            rgba(13,26,19,0.94)
+            rgba(13, 26, 19, 0.86),
+            rgba(13, 26, 19, 0.94)
         ),
         url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80");
 
     background-position: center;
     background-size: cover;
-    color: #ffffff;
-}
+    border-top: none;
 
-.information-page .footer-content {
-    width: min(1250px, 100%);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.information-page .footer-brand {
-    color: #ffffff;
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.8px;
-}
-
-.information-page .footer-content p {
-    margin: 0;
-    color: rgba(255,255,255,0.78);
     font-size: 1rem;
-}
-
-.information-page .footer-content span {
-    color: rgba(255,255,255,0.65);
-    font-size: 1rem;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 
@@ -1262,4 +1263,31 @@ body.information-page {
 
 .information-page .hero-button {
     margin-top: 0;
+}
+
+
+/* =========================================================
+   ADDED: footer matches the checklist page footer
+   (everything above is your original CSS)
+   ========================================================= */
+
+.information-page .site-footer p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .information-page .site-footer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .information-page .site-footer p {
+        font-size: 1rem;
+    }
 }
