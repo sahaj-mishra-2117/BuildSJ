@@ -465,21 +465,27 @@
             </section>
 
             <section class="neighborhood-count-panel" aria-labelledby="neighborhood-count-heading">
-                <div>
-                    <h2 id="neighborhood-count-heading">Checklist Participation by Neighborhood</h2>
-                    <p class="progress-description">
-                        See how many local accounts have started preparing. Counts are grouped by neighborhood, and areas with fewer than five accounts are hidden for privacy.
-                    </p>
-                </div>
-                <div class="neighborhood-count-results">
-                    <p id="neighborhood-count-status" role="status" aria-live="polite">
-                        Loading neighborhood totals…
-                    </p>
-                    <ul id="neighborhood-count-list" aria-label="Checklist participants by neighborhood"></ul>
-                </div>
-            </section>
+    <div>
+        <h2 id="neighborhood-count-heading">Checklist participation by neighborhood</h2>
+        <p class="progress-description">
+            Each bar shows how many local accounts in a neighborhood have started preparing. Areas with fewer than five accounts are hidden for privacy.
+        </p>
+    </div>
+    <div class="neighborhood-count-results">
+        <div class="neighborhood-chart" id="neighborhood-chart" hidden>
+            <div class="neighborhood-chart-head" aria-hidden="true">
+                <span>Neighborhood</span>
+                <span>Accounts preparing</span>
+            </div>
+            <ul id="neighborhood-count-list" class="neighborhood-chart-list" aria-label="Checklist participants by neighborhood"></ul>
+            <div class="neighborhood-chart-axis" id="neighborhood-count-axis" aria-hidden="true"></div>
+        </div>
+        <p id="neighborhood-count-status" role="status" aria-live="polite">
+            Loading neighborhood totals…
+        </p>
+    </div>
+</section>
 
-        </section>
 
     </main>
 

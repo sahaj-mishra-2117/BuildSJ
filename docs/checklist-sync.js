@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitStatus = document.getElementById("submit-status");
     const areaStatus = document.getElementById("neighborhood-count-status");
     const areaList = document.getElementById("neighborhood-count-list");
+    const areaChart = document.getElementById("neighborhood-chart");
+    const areaAxis = document.getElementById("neighborhood-count-axis");
 
     if (!checkboxes.length || !submitButton || !progressBar || !progressText || !submitStatus) return;
 
@@ -163,6 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const hasSavedAnswers = Object.keys(answers).some(id =>
             checkboxes.some(checkbox => checkbox.id === id)
         );
+        const savedCheckedCount = checkboxes.filter(checkbox =>
+            answers[checkbox.id] === true
+        ).length;
+        const hasLegacyTotalOnlyProgress = Number(data?.tasks_completed || 0) > savedCheckedCount;
 
         const migrationKey = `buildSJ.checklist.migrated.${session.user.id}`;
         const migrationInProgress = localStorage.getItem(migrationKey) === "true";
@@ -172,12 +178,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 value: localStorage.getItem(legacyStorageKey(checkbox))
             }))
             .filter(answer => answer.value === "true" || answer.value === "false");
+        const hasLocalCheckedAnswers = legacyAnswers.some(answer => answer.value === "true");
+        const hasBackfilledEmptyAnswers = hasSavedAnswers && savedCheckedCount === 0;
+        const shouldImportLegacyAnswers =
+            !hasSavedAnswers ||
+            hasLegacyTotalOnlyProgress ||
+            migrationInProgress ||
+            (hasBackfilledEmptyAnswers && hasLocalCheckedAnswers);
+        let importedLegacyAnswers = false;
 
-        if ((!hasSavedAnswers || migrationInProgress) && legacyAnswers.length) {
+        if (
+            shouldImportLegacyAnswers &&
+            legacyAnswers.length
+        ) {
+            importedLegacyAnswers = true;
             localStorage.setItem(migrationKey, "true");
 
             for (const answer of legacyAnswers) {
-                if (Object.prototype.hasOwnProperty.call(answers, answer.checkbox.id)) continue;
+                if (
+                    hasSavedAnswers &&
+                    !hasLegacyTotalOnlyProgress &&
+                    !migrationInProgress &&
+                    !hasBackfilledEmptyAnswers &&
+                    Object.prototype.hasOwnProperty.call(answers, answer.checkbox.id)
+                ) {
+                    continue;
+                }
                 await saveAnswer(answer.checkbox, answer.value === "true");
                 answers[answer.checkbox.id] = answer.value === "true";
             }
@@ -191,46 +217,124 @@ document.addEventListener("DOMContentLoaded", () => {
             checkbox.checked = answers[checkbox.id] === true;
         });
 
-        const hasLoadedAnswers = Object.keys(answers).some(id =>
-            checkboxes.some(checkbox => checkbox.id === id)
-        );
-        if (!hasLoadedAnswers && data?.tasks_completed > 0) {
+        if (
+            !importedLegacyAnswers &&
+            data?.tasks_completed > checkboxes.filter(checkbox => answers[checkbox.id] === true).length
+        ) {
             submitStatus.textContent = "Your earlier progress was saved as a total only. Open this checklist on the browser where you last used it to sync individual items.";
         }
     }
 
-    async function loadNeighborhoodCounts() {
-        if (!areaStatus || !areaList) return;
-
-        try {
-            const { data, error } = await supabaseClient.rpc("get_neighborhood_checklist_counts");
-            if (error) throw error;
-
-            areaList.replaceChildren();
-
-            if (!data || data.length === 0) {
-                areaStatus.textContent = "No neighborhood totals yet. Counts appear for any area with at least one participating account.";
-
-            }
-
-            data.forEach(row => {
-                const item = document.createElement("li");
-                const neighborhood = document.createElement("span");
-                const count = document.createElement("strong");
-
-                neighborhood.textContent = row.neighborhood;
-                count.textContent = String(row.participants);
-                item.append(neighborhood, count);
-                areaList.appendChild(item);
-            });
-
-            areaStatus.textContent = "Signed-in accounts with at least one checklist item completed.";
-
-        } catch (error) {
-            console.error("Could not load neighborhood checklist totals:", error.message || error);
-            areaStatus.textContent = "Neighborhood totals are temporarily unavailable.";
-        }
+    function renderNeighborhoodChart(rows) {
+    if (!areaList) return [];
+ 
+    areaList.replaceChildren();
+    if (areaChart) areaChart.hidden = true;
+    if (areaAxis) areaAxis.replaceChildren();
+ 
+    const entries = (rows || [])
+        .map(row => ({
+            neighborhood: String(row.neighborhood ?? "").trim(),
+            participants: Number(row.participants) || 0
+        }))
+        .filter(row => row.neighborhood && row.participants > 0)
+        .sort((a, b) => b.participants - a.participants || a.neighborhood.localeCompare(b.neighborhood));
+ 
+    if (!entries.length) return entries;
+ 
+    const highest = entries[0].participants;
+    const bars = [];
+ 
+    entries.forEach(entry => {
+        const item = document.createElement("li");
+        item.className = "neighborhood-chart-row";
+        item.setAttribute(
+            "aria-label",
+            `${entry.neighborhood}: ${entry.participants} ${entry.participants === 1 ? "account" : "accounts"} preparing`
+        );
+ 
+        const head = document.createElement("div");
+        head.className = "neighborhood-chart-row-head";
+ 
+        const name = document.createElement("span");
+        name.className = "neighborhood-chart-name";
+        name.textContent = entry.neighborhood;
+ 
+        const count = document.createElement("strong");
+        count.className = "neighborhood-chart-value";
+        count.textContent = String(entry.participants);
+ 
+        head.append(name, count);
+ 
+        const track = document.createElement("div");
+        track.className = "neighborhood-chart-track";
+        track.setAttribute("aria-hidden", "true");
+ 
+        const bar = document.createElement("span");
+        bar.className = "neighborhood-chart-bar";
+        track.appendChild(bar);
+ 
+        item.append(head, track);
+        areaList.appendChild(item);
+ 
+        bars.push({
+            bar,
+            percentage: Math.round((entry.participants / highest) * 100)
+        });
+    });
+ 
+    if (areaAxis) {
+        const zero = document.createElement("span");
+        zero.textContent = "0";
+ 
+        const top = document.createElement("span");
+        top.textContent = `${highest} ${highest === 1 ? "account" : "accounts"}`;
+ 
+        areaAxis.append(zero, top);
+        areaAxis.hidden = false;
     }
+ 
+    if (areaChart) areaChart.hidden = false;
+ 
+    // Grow the bars from zero on the next paint so the animation is visible.
+    requestAnimationFrame(() => {
+        bars.forEach(({ bar, percentage }) => {
+            bar.style.setProperty("--bar", `${percentage}%`);
+        });
+    });
+ 
+    return entries;
+}
+ 
+async function loadNeighborhoodCounts() {
+    if (!areaStatus || !areaList) return;
+ 
+    try {
+        const { data, error } = await supabaseClient.rpc("get_neighborhood_checklist_counts");
+        if (error) throw error;
+ 
+        const entries = renderNeighborhoodChart(data);
+ 
+        if (!entries.length) {
+            areaStatus.textContent = "No neighborhood totals yet. Counts appear for any area with at least five participating accounts.";
+            return;
+        }
+ 
+        const total = entries.reduce((sum, entry) => sum + entry.participants, 0);
+        areaStatus.textContent =
+            `${entries.length} ${entries.length === 1 ? "neighborhood" : "neighborhoods"} · ` +
+            `${total} ${total === 1 ? "account" : "accounts"} with at least one item completed. ` +
+            "Areas with fewer than five accounts are hidden.";
+ 
+    } catch (error) {
+        console.error("Could not load neighborhood checklist totals:", error.message || error);
+        areaStatus.textContent = "Neighborhood totals are temporarily unavailable.";
+        if (areaList) areaList.replaceChildren();
+        if (areaChart) areaChart.hidden = true;
+        if (areaAxis) areaAxis.hidden = true;
+    }
+}
+
 
     function redirectToLogin() {
         const loginUrl = new URL("login.html", window.location.href);

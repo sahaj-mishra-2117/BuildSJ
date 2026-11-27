@@ -4,7 +4,7 @@
     const address = (typeof selection === "string" ? selection : selection.address || "").trim();
     
     if (!address) return;
-
+    highlight_function=map_highlight
     try {
       const { data, error } = await supabaseClient.auth.getSession();
       if (error) throw error;

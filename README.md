@@ -35,7 +35,7 @@ The account menu stores uploaded pictures in Supabase Storage and saves their UR
 
 ### Checklist sync and neighborhood totals
 
-Apply the migrations in `supabase/migrations/` to the configured Supabase project, in filename order, before deploying the checklist changes. You can run them in the Supabase SQL Editor. They add per-account checklist answers, an authenticated function that saves answers for all 25 checklist items and recalculates progress, recalculate existing profile totals against the current checklist, and add a count-only function for neighborhood participation.
+Apply the migrations in `supabase/migrations/` to the configured Supabase project, in filename order, before deploying the checklist changes. You can run them in the Supabase SQL Editor. They add per-account checklist answers, ensure every profile stores all 25 answer keys (missing answers default to `false`), recalculate profile totals, and add a count-only function for neighborhood participation.
 
 Checklist answers sync for signed-in accounts. Neighborhood totals count accounts with at least one completed item; areas with fewer than five participating accounts are omitted. The count function returns only neighborhood names and totals, not profile details.
 

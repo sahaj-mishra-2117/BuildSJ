@@ -381,32 +381,100 @@ body.checklist-page {
     line-height: 1.5;
 }
 
-.checklist-page #neighborhood-count-list {
+/* ---------- Neighborhood participation bar chart ---------- */
+ 
+.checklist-page .neighborhood-chart {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    gap: 14px;
+}
+ 
+.checklist-page .neighborhood-chart[hidden] {
+    display: none;
+}
+ 
+.checklist-page .neighborhood-chart-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+ 
+.checklist-page .neighborhood-chart-list {
+    display: grid;
+    gap: 15px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
-
-.checklist-page #neighborhood-count-list li {
+ 
+.checklist-page .neighborhood-chart-row {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+}
+ 
+.checklist-page .neighborhood-chart-row-head {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     gap: 12px;
-    min-width: 0;
-    padding: 11px 13px;
-    background: #fff;
-    border: 1px solid var(--border);
-    color: var(--body-text);
-    font-size: 1rem;
 }
-
-.checklist-page #neighborhood-count-list strong {
+ 
+.checklist-page .neighborhood-chart-name {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--body-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+ 
+.checklist-page .neighborhood-chart-value {
+    flex-shrink: 0;
     color: var(--ink);
+    font-size: 0.95rem;
     font-variant-numeric: tabular-nums;
 }
+ 
+.checklist-page .neighborhood-chart-track {
+    position: relative;
+    height: 10px;
+    overflow: hidden;
+    background: #eef1ec;
+    border-radius: 20px;
+}
+ 
+.checklist-page .neighborhood-chart-bar {
+    display: block;
+    width: var(--bar, 0%);
+    height: 100%;
+    min-width: 7px;
+    background: var(--tesla-blue);
+    border-radius: inherit;
+    transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+ 
+.checklist-page .neighborhood-chart-axis {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+ 
+.checklist-page .neighborhood-chart-axis[hidden] {
+    display: none;
+}
+
 
 .checklist-page .checklist-address-panel {
     display: grid;
@@ -1049,9 +1117,10 @@ body.checklist-page {
         gap: 18px;
     }
 
-    .checklist-page #neighborhood-count-list {
-        grid-template-columns: 1fr;
+    .checklist-page .neighborhood-chart-name {
+    white-space: normal;
     }
+
 
     .checklist-page .checklist-section {
         margin-top: 48px;
