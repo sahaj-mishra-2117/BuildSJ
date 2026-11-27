@@ -693,12 +693,6 @@ button.nav-link {
     letter-spacing: -0.02em;
 }
 
-.account-intro {
-    margin: 0 0 20px;
-    color: var(--ink-soft);
-    font-size: 1rem;
-}
-
 .account-details {
     border-top: 1px solid var(--line);
 }
