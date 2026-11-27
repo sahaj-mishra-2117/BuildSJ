@@ -29,6 +29,56 @@ Authentication and profile data use the Supabase project configured in `docs/sup
 
 Never put a Supabase service-role key in the browser client.
 
+### Profile pictures
+
+The account menu stores uploaded pictures in Supabase Storage and saves their URL in the signed-in user's Auth metadata. Configure a **public** Storage bucket named `avatars` with a 5 MB file limit and PNG, JPEG, and WebP allowed. Avatar images are publicly readable; upload, replace, and delete access is limited to the signed-in user's folder.
+
+Run this once in the Supabase SQL editor to create the bucket and access policies:
+
+```sql
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'avatars',
+  'avatars',
+  true,
+  5242880,
+  array['image/png', 'image/jpeg', 'image/webp']
+)
+on conflict (id) do update
+set public = true,
+    file_size_limit = 5242880,
+    allowed_mime_types = array['image/png', 'image/jpeg', 'image/webp'];
+
+create policy "Avatar images are publicly readable"
+on storage.objects for select to public
+using (bucket_id = 'avatars');
+
+create policy "Users can upload their own avatars"
+on storage.objects for insert to authenticated
+with check (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = auth.uid()::text
+);
+
+create policy "Users can replace their own avatars"
+on storage.objects for update to authenticated
+using (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = auth.uid()::text
+)
+with check (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = auth.uid()::text
+);
+
+create policy "Users can remove their own avatars"
+on storage.objects for delete to authenticated
+using (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = auth.uid()::text
+);
+```
+
 ### Checklist sync and neighborhood totals
 
 Apply the migrations in `supabase/migrations/` to the configured Supabase project, in filename order, before deploying the checklist changes. You can run them in the Supabase SQL Editor. They add per-account checklist answers, an authenticated function that saves answers for all 25 checklist items and recalculates progress, recalculate existing profile totals against the current checklist, and add a count-only function for neighborhood participation.

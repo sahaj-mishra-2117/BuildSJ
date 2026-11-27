@@ -4,6 +4,8 @@ const logoutBtn = document.getElementById("logout-btn");
 const accountBtn = document.getElementById("account-btn");
 const accountEmail = document.getElementById("account-email");
 const accountAvatar = document.getElementById("account-avatar");
+const accountAvatarUpload = document.getElementById("account-avatar-upload");
+const accountAvatarFile = document.getElementById("account-avatar-file");
 const accountAddress = document.getElementById("account-address");
 const accountAddressLink = document.getElementById("account-address-link");
 const accountHomeMarker = document.getElementById("account-home-marker");
@@ -12,6 +14,13 @@ const accountStatus = document.getElementById("account-status");
 const popup = document.getElementById("popup");
 const accountCloseBtn = document.getElementById("account-close");
 let accountDetailsRequest = 0;
+const AVATAR_BUCKET = "avatars";
+const MAX_AVATAR_SIZE = 5 * 1024 * 1024;
+const AVATAR_TYPES = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+};
 
 function updateButtons(session) {
   if (loginBtn) loginBtn.hidden = !!session;
@@ -24,9 +33,103 @@ function updateButtons(session) {
     accountEmail.textContent = email || "Email unavailable";
   }
   if (accountAvatar) {
-    accountAvatar.textContent = email ? email.trim().charAt(0).toUpperCase() : "B";
+    const initial = email ? email.trim().charAt(0).toUpperCase() : "B";
+    accountAvatar.replaceChildren(document.createTextNode(initial));
+
+    const avatarUrl = session?.user?.user_metadata?.avatar_url;
+    if (typeof avatarUrl === "string" && avatarUrl.startsWith("https://")) {
+      const image = document.createElement("img");
+      image.className = "account-avatar-image";
+      image.src = avatarUrl;
+      image.alt = "";
+      image.setAttribute("aria-hidden", "true");
+      image.referrerPolicy = "no-referrer";
+      image.addEventListener("error", () => image.remove(), { once: true });
+      accountAvatar.appendChild(image);
+    }
   }
 }
+
+async function uploadAccountAvatar(file) {
+  if (!file) return;
+  if (!Object.prototype.hasOwnProperty.call(AVATAR_TYPES, file.type)) {
+    throw new Error("Choose a PNG, JPEG, or WebP image.");
+  }
+  if (file.size > MAX_AVATAR_SIZE) {
+    throw new Error("Choose an image smaller than 5 MB.");
+  }
+
+  const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+  if (sessionError) throw sessionError;
+  const session = sessionData.session;
+  if (!session) throw new Error("Sign in again before changing your profile picture.");
+  const previousPath = session.user.user_metadata?.avatar_path;
+
+  const fileToken = window.crypto?.randomUUID
+    ? window.crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  const objectPath = `${session.user.id}/${fileToken}-avatar.${AVATAR_TYPES[file.type]}`;
+  const { error: uploadError } = await supabaseClient.storage
+    .from(AVATAR_BUCKET)
+    .upload(objectPath, file, {
+      cacheControl: "3600",
+      contentType: file.type,
+      upsert: false,
+    });
+  if (uploadError) throw uploadError;
+
+  const { data: currentData, error: currentError } = await supabaseClient.auth.getSession();
+  if (currentError) throw currentError;
+  if (!currentData.session || currentData.session.user.id !== session.user.id) {
+    throw new Error("Your signed-in account changed. Please try uploading again.");
+  }
+
+  const { data: publicData } = supabaseClient.storage
+    .from(AVATAR_BUCKET)
+    .getPublicUrl(objectPath);
+  const avatarUrl = `${publicData.publicUrl}?v=${Date.now()}`;
+  const { data, error } = await supabaseClient.auth.updateUser({
+    data: { avatar_url: avatarUrl, avatar_path: objectPath },
+  });
+  if (error) throw error;
+
+  updateButtons({ user: data.user });
+
+  if (
+    typeof previousPath === "string" &&
+    previousPath.startsWith(`${session.user.id}/`) &&
+    previousPath !== objectPath
+  ) {
+    const { error: removeError } = await supabaseClient.storage
+      .from(AVATAR_BUCKET)
+      .remove([previousPath]);
+    if (removeError) {
+      console.warn("Could not remove the previous profile picture:", removeError.message || removeError);
+    }
+  }
+}
+
+accountAvatarUpload?.addEventListener("click", () => accountAvatarFile?.click());
+
+accountAvatarFile?.addEventListener("change", async () => {
+  const file = accountAvatarFile.files?.[0];
+  if (!file) return;
+
+  if (accountAvatarUpload) accountAvatarUpload.disabled = true;
+  if (accountStatus) accountStatus.textContent = "Uploading profile picture…";
+  try {
+    await uploadAccountAvatar(file);
+    if (accountStatus) accountStatus.textContent = "Profile picture updated.";
+  } catch (error) {
+    console.error("Could not update the profile picture:", error.message || error);
+    if (accountStatus) {
+      accountStatus.textContent = `Could not update the profile picture: ${error.message || "Please try again."}`;
+    }
+  } finally {
+    accountAvatarFile.value = "";
+    if (accountAvatarUpload) accountAvatarUpload.disabled = false;
+  }
+});
 
 function updateHomeMarker(session) {
   if (!accountHomeMarker || !accountHomeMarkerLink) return;

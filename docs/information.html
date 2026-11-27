@@ -99,7 +99,11 @@
 
         <div class="popup-content account-popup">
             <div class="account-popup-heading">
-                <div id="account-avatar" class="account-avatar" aria-hidden="true">B</div>
+                <div class="account-avatar-control">
+                    <div id="account-avatar" class="account-avatar" aria-hidden="true">B</div>
+                    <button type="button" id="account-avatar-upload" class="account-avatar-upload">Change photo</button>
+                    <input id="account-avatar-file" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+                </div>
                 <div>
                     <h2 id="account-dialog-title">Your account</h2>
                 </div>
