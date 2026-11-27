@@ -118,7 +118,7 @@
       marker.options.title = "Your home location, saved for your account";
       if (marker.getElement()) marker.getElement().title = marker.options.title;
       marker.bindPopup("Home Location");
-      marker.bindTooltip("Home location (saved to your account)", {
+      marker.bindTooltip("Home Location", {
         direction: "top",
         offset: [0, -34],
       });
