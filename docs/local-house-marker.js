@@ -49,6 +49,17 @@
     });
   }
 
+  async function saveConfirmedHomeSelection(userId, selection) {
+    const { data, error } = await supabaseClient.auth.getSession();
+    if (error) throw error;
+    if (!data.session || data.session.user.id !== userId) return;
+
+    if (selection.address) {
+      await window.profileAddress.save(data.session, selection.address, selection.coordinates);
+    }
+    await window.profileAddress.saveFireZone(data.session, selection.coordinates);
+  }
+
   window.initLocalHouseMarker = map => {
     let marker = null;
     let pendingSelection = null;
@@ -70,7 +81,7 @@
         <p class="buildsj-home-confirmation-eyebrow">Map location</p>
         <h2 id="buildsj-home-confirmation-title">Save this as your home?</h2>
         <p id="buildsj-home-confirmation-description">
-          The marker is saved for your account in this browser. Fire-zone severity is saved to your profile.
+          The home marker is saved in this browser. This address becomes your preferred address in the preparation checklist, and fire-zone severity is saved to your profile.
         </p>
         <div class="buildsj-home-confirmation-actions">
           <button type="button" class="buildsj-home-cancel">Not now</button>
@@ -91,7 +102,7 @@
       pendingSelection = null;
       if (confirmation.returnValue !== "save" || !selection || !activeUserId) return;
 
-      showLocation(selection.coordinates, selection.marker);
+      showLocation(selection.coordinates, selection.marker, false);
       try {
         localStorage.setItem(
           locationStorageKey(activeUserId),
@@ -100,9 +111,12 @@
       } catch (error) {
         console.warn("Could not save the home location in this browser:", error.message || error);
       }
+      saveConfirmedHomeSelection(activeUserId, selection).catch(error => {
+        console.error("Could not save the confirmed home address and fire-zone severity:", error.message || error);
+      });
     });
 
-    const showLocation = (coordinates, selectedMarker) => {
+    const showLocation = (coordinates, selectedMarker, shouldSaveFireZone = true) => {
       const [lng, lat] = coordinates;
       if (marker && marker !== selectedMarker) map.removeLayer(marker);
 
@@ -122,7 +136,7 @@
         direction: "top",
         offset: [0, -34],
       });
-      saveHomeFireZone(activeUserId, coordinates);
+      if (shouldSaveFireZone) saveHomeFireZone(activeUserId, coordinates);
     };
 
     const clearLocationMarker = () => {
@@ -186,7 +200,11 @@
         return;
       }
 
-      pendingSelection = { coordinates, marker: event.detail.marker };
+      pendingSelection = {
+        address: typeof event.detail.address === "string" ? event.detail.address.trim() : "",
+        coordinates,
+        marker: event.detail.marker,
+      };
       if (!confirmation.open) {
         confirmation.returnValue = "";
         confirmation.showModal();

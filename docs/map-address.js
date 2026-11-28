@@ -1,28 +1,14 @@
 (() => {
-  window.addEventListener("map-address-selected", async event => {
+  window.addEventListener("map-address-selected", event => {
     const selection = event.detail || {};
-    const address = (typeof selection === "string" ? selection : selection.address || "").trim();
-    
+    const address = typeof selection === "string"
+      ? selection.trim()
+      : typeof selection.address === "string"
+        ? selection.address.trim()
+        : "";
+
     if (!address) return;
     const searchInput = document.querySelector(".leaflet-control-geocoder input");
     if (searchInput) searchInput.value = address;
-    try {
-      const { data, error } = await supabaseClient.auth.getSession();
-      if (error) throw error;
-      if (!data.session) return;
-
-      const saved = await window.profileAddress.save(
-        data.session,
-        address,
-        Array.isArray(selection.coordinates) ? selection.coordinates : null
-      );
-      console.info(
-        saved.neighborhood
-          ? `Map search address saved to the user profile (${saved.neighborhood}).`
-          : "Map search address saved to the user profile."
-      );
-    } catch (error) {
-      console.error("Could not save the map search address:", error.message || error);
-    }
   });
 })();
