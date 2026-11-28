@@ -105,8 +105,20 @@ img {
   max-width: 100%;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 :focus-visible {
-  outline: 3px solid var(--green-500);
+  outline: 3px solid var(--green-700);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -674,7 +686,7 @@ button.nav-link {
 }
 
 .account-avatar-upload:focus-visible {
-    outline: 3px solid rgba(34, 168, 107, 0.45);
+    outline: 3px solid var(--green-700);
     outline-offset: 2px;
 }
 
@@ -756,7 +768,7 @@ button.nav-link {
 
 .account-detail-link:focus-visible,
 .account-popup-actions button:focus-visible {
-    outline: 3px solid rgba(34, 168, 107, 0.45);
+    outline: 3px solid var(--green-700);
     outline-offset: 3px;
 }
 

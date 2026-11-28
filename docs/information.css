@@ -827,7 +827,7 @@ body.information-page {
 }
 
 .information-page .resource-select select:focus {
-    outline: 2px solid rgba(71,123,83,0.25);
+    outline: 2px solid var(--green-700);
     outline-offset: 2px;
 }
 

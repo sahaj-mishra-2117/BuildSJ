@@ -589,7 +589,6 @@ body.checklist-page {
 .checklist-page .checklist-address-option:hover,
 .checklist-page .checklist-address-option:focus-visible {
     background: var(--light-gray);
-    outline: 0;
 }
 
 .checklist-page .checklist-address-option small {

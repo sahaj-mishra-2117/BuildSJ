@@ -196,6 +196,7 @@ def specific_neighborhood_highlight(feature):
 
 TITLE_HTML = """
 <div class="map-title">
+  <h1 class="visually-hidden">Emergency Map</h1>
   <h2>San Jose &middot; District 10</h2>
   <p>Wildfire hazard severity zones &middot; CalFire</p>
 </div>
@@ -345,6 +346,9 @@ def main():
 
         # Add site styles after the Leaflet plugins so map controls keep their theme.
         sj_map.get_root().header.add_child(
+            folium.Element("<title>Emergency Map | Build SJ</title>")
+        )
+        sj_map.get_root().header.add_child(
             folium.Element(
                 '<link rel="preconnect" href="https://fonts.googleapis.com"/>'
                 '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>'
@@ -435,6 +439,40 @@ def main():
 
         # The map is added to our html file
         sj_map.save(str(MAP_PATH))
+        generated_html = MAP_PATH.read_text(encoding="utf-8")
+        html_tag = re.search(r"<html[^>]*>", generated_html)
+        if not html_tag:
+            raise ValueError("Could not find the generated HTML root element.")
+        if "lang=" not in html_tag.group(0):
+            generated_html = generated_html.replace(
+                html_tag.group(0),
+                html_tag.group(0)[:-1] + ' lang="en">',
+                1,
+            )
+
+        generated_html, viewport_count = re.subn(
+            r'<meta name="viewport"\s+content=".*?"\s*/>',
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+            generated_html,
+            count=1,
+            flags=re.DOTALL,
+        )
+        if viewport_count != 1:
+            raise ValueError("Could not update the generated map viewport settings.")
+
+        body_tag = re.search(r"<body[^>]*>", generated_html)
+        body_close = generated_html.rfind("</body>")
+        if not body_tag or body_close < body_tag.end():
+            raise ValueError("Could not find the generated HTML body.")
+        generated_html = (
+            generated_html[: body_tag.end()]
+            + '\n<main id="map-main">'
+            + generated_html[body_tag.end() : body_close]
+            + "\n</main>\n"
+            + generated_html[body_close:]
+        )
+
+        MAP_PATH.write_text(generated_html, encoding="utf-8")
         print(f"Map was generated at {MAP_PATH.relative_to(ROOT)}")
 
     except FileNotFoundError as e:

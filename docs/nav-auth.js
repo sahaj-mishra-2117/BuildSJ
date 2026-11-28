@@ -255,6 +255,8 @@ logoutBtn?.addEventListener("click", async () => {
 function openPopup() {
   if (!popup) return;
   popup.style.display = "flex";
+  popup.setAttribute("aria-hidden", "false");
+  accountBtn?.setAttribute("aria-expanded", "true");
   refreshAccountDetails();
   accountCloseBtn?.focus();
 }
@@ -262,11 +264,35 @@ function openPopup() {
 function closePopup() {
   if (!popup) return;
   popup.style.display = "none";
+  popup.setAttribute("aria-hidden", "true");
+  accountBtn?.setAttribute("aria-expanded", "false");
   accountBtn?.focus();
 }
 
 popup?.addEventListener("click", event => {
   if (event.target === popup) closePopup();
+});
+
+popup?.addEventListener("keydown", event => {
+  if (event.key !== "Tab") return;
+
+  const focusable = Array.from(
+    popup.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')
+  ).filter(element => !element.hidden && element.getClientRects().length > 0);
+
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const activeIndex = focusable.indexOf(document.activeElement);
+
+  if (event.shiftKey && activeIndex <= 0) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && activeIndex === focusable.length - 1) {
+    event.preventDefault();
+    first.focus();
+  }
 });
 
 document.addEventListener("keydown", event => {

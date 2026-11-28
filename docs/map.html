@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Emergency Map | Build SJ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Prata&display=swap"/>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-client.js"></script><script src="address-storage.js"></script><script src="map-address.js"></script><script src="local-house-marker.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -16,8 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
     
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <style>
                 #map_28a3b7597589d6b88a56b11a203bf2a2 {
                     position: relative;
@@ -105,9 +105,10 @@
             
 </head>
 <body>
-    
+<main id="map-main">
     
 <div class="map-title">
+  <h1 class="visually-hidden">Emergency Map</h1>
   <h2>San Jose &middot; District 10</h2>
   <p>Wildfire Hazard Severity Zones &middot; CalFire</p>
 </div>
@@ -124,6 +125,7 @@
     
             <div class="folium-map" id="map_28a3b7597589d6b88a56b11a203bf2a2" ></div>
         
+</main>
 </body>
 <script>
     

@@ -129,6 +129,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateProgress() {
         const { checkedCount, percentage } = getProgressState();
         progressBar.value = percentage;
+        progressBar.setAttribute(
+            "aria-valuetext",
+            `${checkedCount} of ${checkboxes.length} tasks completed (${percentage}%)`
+        );
         progressText.textContent = `${percentage}% (${checkedCount} of ${checkboxes.length} tasks completed)`;
         progressBar.classList.toggle("not-started", percentage <= 25);
         progressBar.classList.toggle("below-halfway", percentage > 25 && percentage < 50);

@@ -78,6 +78,9 @@
 
             <button id="account-btn"
         class="account-button"
+        aria-haspopup="dialog"
+        aria-controls="popup"
+        aria-expanded="false"
         hidden
         onclick="openPopup()">
     Account <span id="account-button-avatar" class="account-button-avatar" aria-hidden="true">B</span>
@@ -87,6 +90,7 @@
         <div id="popup" class="popup"
              role="dialog"
              aria-modal="true"
+             aria-hidden="true"
              aria-labelledby="account-dialog-title">
             <div class="popup-content account-popup">
                 <div class="account-popup-heading">
@@ -143,6 +147,7 @@
         <!-- CHECKLIST CONTENT -->
 
         <section class="checklist-main" id="checklist">
+            <h1 class="visually-hidden">Preparation Checklist</h1>
 
             <!-- PROGRESS PANEL -->
 
@@ -170,7 +175,8 @@
                     <progress
                         value="0"
                         max="100"
-                        id="progress-bar">
+                        id="progress-bar"
+                        aria-label="Checklist completion">
                     </progress>
 
                 </div>

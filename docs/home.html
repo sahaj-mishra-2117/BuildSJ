@@ -84,6 +84,9 @@
 
                 <button id="account-btn"
                         class="account-button"
+                        aria-haspopup="dialog"
+                        aria-controls="popup"
+                        aria-expanded="false"
                         hidden
                         onclick="openPopup()">
                     Account <span id="account-button-avatar" class="account-button-avatar" aria-hidden="true">B</span>
@@ -98,6 +101,7 @@
                  class="popup"
                  role="dialog"
                  aria-modal="true"
+                 aria-hidden="true"
                  aria-labelledby="account-dialog-title">
 
                 <div class="popup-content account-popup">
@@ -342,7 +346,7 @@
 
                     <img
                         src="https://cdn.phototourl.com/anon/2026-11-14-4c704735-63d5-45b9-b36d-662d1230a8ec.jpg"
-                        alt="Build SJ team image">
+                        alt="Build SJ student team">
 
                 </div>
 
@@ -413,7 +417,8 @@
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=buildsj2026@gmail.com"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="step-link">
+                       class="step-link"
+                       aria-label="Email Build SJ (opens in a new tab)">
                         Email Build SJ
                     </a>
 
