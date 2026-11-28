@@ -131,7 +131,7 @@ def _neighborhood_color(feature):
 def neighborhood_halo_style(feature):
     return {
             "color": "#ffffff",
-            "weight": 6,
+            "weight": 8,
             "opacity": 0.9,
             "fill": False,
             "lineCap": "round",
@@ -140,12 +140,12 @@ def neighborhood_halo_style(feature):
 
 
 def neighborhood_style(feature):
-    return {"color": _neighborhood_color(feature), "weight": 3, "opacity": 0.95, "fill": False,
+    return {"color": _neighborhood_color(feature), "weight": 4, "opacity": 0.95, "fill": False,
             "dashArray": "", "lineCap": "round", "lineJoin": "round"}
 
 
 def neighborhood_highlight(feature):
-    return {"color": _neighborhood_color(feature), "weight": 5, "opacity": 1}
+    return {"color": _neighborhood_color(feature), "weight": 6, "opacity": 1}
 
 
 # Pick a different, readable boundary color for each specific neighborhood.
@@ -196,7 +196,7 @@ def specific_neighborhood_highlight(feature):
 
 TITLE_HTML = """
 <div class="map-title">
-  <h2>San Jos&eacute; &middot; District 10</h2>
+  <h2>San Jose &middot; District 10</h2>
   <p>Wildfire hazard severity zones &middot; CalFire</p>
 </div>
 """
